@@ -1,17 +1,26 @@
 # TODO #
 
-## Eld�ntend� ##
-* Mi legyen a README-ben, �s mi az intr�ban? �s mi a Wikiben?
+## Eldöntendő ##
+* Mi legyen a README-ben, és mi az intróban? És mi a Wikiben?
 
 ## Wiki ##
-* Haszn�lt eszk�z�k:
-	* Markdown: mert egyszer�, plaintext (r�gen LaTeX volt, de nem tudt�k
-	  rendesen haszn�lni, ez�rt �tt�rtem erre :-)
+* Használt eszközök:
+	* Markdown: mert egyszerű, majd hogy nem plaintext (régen LaTeX volt, de nem
+	  tudták rendesen használni, ezért áttértem erre :-)
 * Usage: kell a pandoc vagy Markdown.pl (+ActivePerl)
 
-## Buildel�s ###
+## Buildelés ##
 * Kell egy build script
-* Kell egy script, ami gitb�l kiszedi a contributorokat (ld. progit script)
+* Kell egy script, ami gitből kiszedi a contributorokat (ld. progit script)
 
 ## Legal stuff ##
 * Milyen CC licenc is kell nekem? Van vagy 5...
+
+## Anyag bővítése ##
+* Javadocról pár szó
+* Bevezető szöveg: Java vs. C++ (namespace + package, paraméterátadás,
+template-ek, stb.) 
+
+## Frissítés ##
+* Linkek átrágása (Sun \cup Oracle \ldots) 
+* Kiegészítések összefűzése az eredeti anyaggal

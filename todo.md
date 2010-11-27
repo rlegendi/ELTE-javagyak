@@ -30,6 +30,7 @@ emészthető
 
 ## Szószedet ##
 * wrapper: csomagoló osztályok
+* String: karakterlánc
 
 ## Gyakok ##
 ### 02-fuggvenyek-csomagok ###

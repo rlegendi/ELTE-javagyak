@@ -41,7 +41,7 @@ Részletesen: <http://java.sun.com/docs/books/tutorial/java/data/characters.html
 * Egyéb függvények a `System` osztály leírásában: <http://java.sun.com/javase/6/docs/api/java/lang/System.html>
 * Konzol kezelése `java.io.Console` osztály segítségével: <http://java.sun.com/javase/6/docs/api/java/io/Console.html>
 
-## PATH beállítása ##
+## Környezet beállítása ##
 Windows alatt _Windows + R_, majd `cmd.exe`:
 
 	C:\Users\rlegendi> PATH=%PATH%;C:\Program Files\Java\jdk1.6.0_21\bin
@@ -126,6 +126,12 @@ Részletesen:
 
 Részletesen: <http://java.sun.com/docs/codeconv/>
 
+> **Kiegészítés** Ékezetes karaktereket _ne_ használjatok! Főleg azonosítók
+> esetében ne! A Java ugyan ezt megengedi (minden UTF-8 karakter használható
+> azonosítóban, ugyanakkor a különböző környezetekbe való konvertáláskor
+> (latin2 &harr; UTF-8 &harr; Cp1250) összetörnek a karakterek! Az ilyen
+> forrásokat fordítani, következésképp értékelni sem tudom.
+
 ## Típusok ##
 Primitív típusok:
 
@@ -168,17 +174,20 @@ Szokásos operátorok (`==`, `!=`, `&&`, `||`, `%`, `++`, `--` (prefix, postfix)
 *Fontos* Az operátorok eredményének típusa _mindig_ a bővebb paraméter típusa
 (`double d = 1 / 2;` eredménye `0.0` lesz!).
 
+### Objektumok összehasonlítása ###
+Az `equals()` metódussal: az `==` operátor referencia szerinti összehasonlítást
+végez csak, nem tartalom szerintit.
+
 ### Stringek összehasonlítása###
-Mint az objektumokat: `equals()` metódussal (az `==` operátor referencia
-szerinti összehasonlítást végez csak, nem tartalom szerintit).
+Mint az objektumokat, ugyanúgy az `equals()` függvény segítségével.
 
 	boolean b1 = "a" == "a";      // lehet hamis!
 	boolean b2 = "a".equals("a"); // mindig megfeleloen mukodik
 
-### Összehasonlító operátor ###
+### Összehasonlító operátor feltételekben ###
 Baloldalra lehetőleg konstanst írjunk. C++ probléma itt nem lehet, mert `0`,
-`!= 0` nem szerepelhet elágazás, ciklus terminálási feltételében, de kellemetlen
-helyzetek így is adódhatnak:
+`!= 0` nem szerepelhet elágazás, ciklus terminálási feltételében, kizárólag
+logikai feltétel, de kellemetlen helyzetek így is adódhatnak:
 
 	boolean b = false;
 	

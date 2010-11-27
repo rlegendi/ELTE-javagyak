@@ -30,3 +30,9 @@ emészthető
 
 ## Szószedet ##
 * wrapper: csomagoló osztályok
+
+## Gyakok ##
+### 02-fuggvenyek-csomagok ###
+* default konstruktor, main is dobhat kivételt, nem a szignatúra része
+* csomagokat, láthatóságot, felsorolási típusokat, interfészeket,
+kivételkezelést, konstruktorokat

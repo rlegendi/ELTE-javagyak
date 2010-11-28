@@ -17,6 +17,7 @@
 * Milyen CC licenc is kell nekem? Van vagy 5...
 
 ## Anyag bővítése ##
+* Bevezetőnek pár megjegyzés az annotációkról: @SuppressWarnings, @Override
 * Javadocról pár szó
 * Bevezető szöveg: Java vs. C++ (namespace + package, paraméterátadás,
 template-ek, stb.)
@@ -31,6 +32,7 @@ emészthető
 ## Szószedet ##
 * wrapper: csomagoló osztályok
 * String: karakterlánc
+* Garbage Collector (GC): szemétgyűjtő
 
 ## Gyakok ##
 ### 02-fuggvenyek-csomagok ###

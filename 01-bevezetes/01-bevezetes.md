@@ -8,10 +8,12 @@
 * Java Runtime Environment (JRE) csak futtatói környezet
 * Java forráskód egy (jó) része nyílt, a forrás megtalálható a JDK könyvtárában
 (`src.zip` fájl)
-* Java referencia alapvető fontosságú <http://java.sun.com/javase/6/docs/api/>
-* Java tutorial <http://java.sun.com/docs/books/tutorial/reallybigindex.html>
-* Java Language Specification Harmadik kiadás, rendes specifikáció, HTML, PDF
-formátumban. <http://java.sun.com/docs/books/jls/>
+* Elsődleges információforrások:
+	* Java referencia alapvető fontosságú <http://java.sun.com/javase/6/docs/api/>
+	* Java tutorial <http://java.sun.com/docs/books/tutorial/reallybigindex.html>
+	  vagy Java 5.0 Útikalauz programozóknak (Nyékyné)
+	* Java Language Specification Harmadik kiadás, rendes specifikáció, HTML, PDF
+	  formátumban. <http://java.sun.com/docs/books/jls/>
 * Közösségi oldalak Levlisták, fórumok, stb.
 	* Java levlista <http://javagrund.hu/mailman/listinfo/javalist>
 	* Javagrund <http://javagrund.hu/web/java/index>

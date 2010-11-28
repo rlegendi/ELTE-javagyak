@@ -39,3 +39,9 @@ emészthető
 * default konstruktor, main is dobhat kivételt, nem a szignatúra része
 * csomagokat, láthatóságot, felsorolási típusokat, interfészeket,
 kivételkezelést, konstruktorokat
+
+### 05-oo-adt ###
+* Kieg: toString() (implicit) használata
+* instanceof operator
+* equals(), hashcode példa
+

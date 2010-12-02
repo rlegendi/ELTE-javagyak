@@ -193,8 +193,8 @@ programozó dönti el. `Comparable` interfész `compareTo()` metódusa, melynek
 eredménye `int` típusú:
 
 * 0, ha a két objektum egyenlő
-* <0, ha az adott objektum kisebb a paraméternél
-* >0, ha fordítva
+* < 0, ha az adott objektum kisebb a paraméternél
+* > 0, ha fordítva
 
 Implementáció:
 

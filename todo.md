@@ -45,3 +45,26 @@ kivételkezelést, konstruktorokat
 * instanceof operator
 * equals(), hashcode példa
 
+### 10-generics ###
+* comparable gányolós függvény
+* típusbiztonság a lényeg
+* altípusosság megértése talán a legnehezebb, mert erősen az ember intuíciója
+  ellen megy. Az intuícióval az a probléma, hogy nem veszi számításba, hogy a
+  kollekciók megváltozhatnak
+* `?` `Object`-ként kezelhető, de nem adható hozzá! Gondold végig! Szennyezed 
+  kollekciót! (kivéve: a `null`, ami ugye minden típusba beleillik). Bounded
+  típusnál persze más a helyzet.
+* compiler infers most specific generic type
+* generic függvények, ökölszabály: ha a típusok közötti polimorfikus
+  függőségeket kell megfogalmazni
+* 9. oldal lap alja - nem vagom...
+* A `Class` `Type` paramétertől függetlenül ugyanaz (ezért nem lehet pl.
+  `static` blokkokban használni őket) + ez is igaz lesz:
+  
+		List <String> l1 = new ArrayList<String>();
+		List<Integer> l2 = new ArrayList<Integer>();
+		
+* `System.out.println(l1.getClass() == l2.getClass());`
+* Köv.: `instanceof`-fal sem használható
+* Array + generic használata necces
+* Array létrehozása necces

@@ -44,6 +44,7 @@ kivételkezelést, konstruktorokat
 * Kieg: toString() (implicit) használata
 * instanceof operator
 * equals(), hashcode példa
+* Beágyazott, statikus ill. példányszintű, lokális és anonymous osztályok
 
 ### 10-generics ###
 * comparable gányolós függvény

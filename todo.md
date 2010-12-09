@@ -69,3 +69,6 @@ kivételkezelést, konstruktorokat
 * Köv.: `instanceof`-fal sem használható
 * Array + generic használata necces
 * Array létrehozása necces
+
+### D-assert ###
+* DbC szekciót kiegészíteni

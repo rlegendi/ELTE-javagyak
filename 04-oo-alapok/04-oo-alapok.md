@@ -174,8 +174,32 @@ hibát ad a fordító, valami nem stimmel (pl. nem egyezik a szignatúra).
 
 Származtatásnál a szűkebb hatókör nem megengedett. Visszatérési értékre nem
 lehet túlterhelni, mert az nem része a szignatúrának. Visszatérési értéket lehet
-specializáli (hasznos pl. a `clone()` függvénynél - kovariáns kötés). A `this`
-pszeudováltozó.
+specializáli (hasznos pl. a `clone()` függvénynél - kovariáns kötés).
+
+A kivétel lista nem lényeges ebből a szempontból.
+
+	abstract class A {
+	    public abstract int f(int a, int b);
+	    public abstract int g() throws Exception;
+	    public abstract A h();
+	}
+	
+	class B extends A {
+	    @Override
+	    int f(int a, int b) { return 0; }	// Feluldefinialas
+	
+	    void f(int a, int b) {};			// Hibas: visszateresi ertek nem kompatibilis
+	    int f(int a) { return f(a, 0); }    // Tulterheles (parameterek szama)
+	    int f(Integer a, Integer b) { ... } // Tulterheles (parameterek tipusa)
+	
+	    @Override
+	    int g() { return 0; }     			// OK: Exception lista nem szamit
+	
+	    @Override
+	    B   h() { return null; }; 			// OK: Visszateresi ertekre specializal
+	}
+
+### A `this` pszeudováltozó. ###
 
 ### Adattagok elérése ###
 Enkapszuláció elve: minden osztály rejtse el a reprezentációját (hogy könnyen le

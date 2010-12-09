@@ -70,5 +70,8 @@ kivételkezelést, konstruktorokat
 * Array + generic használata necces
 * Array létrehozása necces
 
+### 11-reflection ###
+* `Modifier.toString()`
+
 ### D-assert ###
 * DbC szekciót kiegészíteni

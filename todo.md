@@ -3,6 +3,15 @@
 ## Eldöntendő ##
 * Mi legyen a README-ben, és mi az intróban? És mi a Wikiben?
 
+## Anyagok rendezése ##
+Függőségek:
+* Generics: collections (vagy fordítva)
+* JDBC: reflection, esetleg a szálak
+* Socket: I/O, szálak
+* Névtelen osztályok: valahol a GUI akciókezelés környékén?
+* Szerializáció: I/O
+* RMI: szerializáció, socketek
+
 ## Wiki ##
 * Használt eszközök:
 	* Markdown: mert egyszerű, majd hogy nem plaintext (régen LaTeX volt, de nem

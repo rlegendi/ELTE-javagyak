@@ -97,3 +97,5 @@ kivételkezelést, konstruktorokat
 ## Final stuff ##
 * Kéne csinálni egy nagyobb review-t, hogy nem maradtak-e ki véletlen értékesebb
   bekezdések az összefésülés, újraformázás során.
+* Lehet lopni szerkezeti ötleteket a srácoktól: <https://github.com/mojombo/ernie>
+  (Github alapító srác egyik projectje, LICENSE directory, stb.)

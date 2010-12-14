@@ -159,6 +159,37 @@ Főleg tulajdonságok, viselkedés hozzáadására. Például:
 	  }
 	}
 
+## Summarium ##
+*It boils down to this.* Amit *mindenképp* meg kell jegyezni, az a következő:
+
+* *Interfész* használatával megoldható a többszörös öröklődés
+* *Absztrakt osztály* pedig megvalósítást is tartalmazhat
+
+### Interfész ###
+	public interface GroupedInterface
+	    extends Interface1, Interface2, Interface3 { ... }
+
+vagy például:
+
+	class A extends B implements I1, I2 { ... }
+
+> **Részletesen** <http://java.sun.com/docs/books/tutorial/java/IandI/interfaceDef.html>
+
+### Absztrakt osztályra példa ###
+	public abstract class Point {
+	    private int x = 1, y = 1;
+	    
+	    void move(final int dx, final int dy) {
+	        x += dx;
+	        y += dy;
+	        alert();
+	    }
+	    
+	    abstract void alert();
+	}
+
+> **Részletesen** <http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#34944>
+
 ## Feladatok ##
 A feladatok megoldásához használjatok saját osztályokat, objektumokat.
 Használjatok megfelelő módosítószavakat! Az összes osztályt tegyétek legalább

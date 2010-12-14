@@ -2,6 +2,8 @@
 
 ## Eldöntendő ##
 * Mi legyen a README-ben, és mi az intróban? És mi a Wikiben?
+* Mit tudok csinálni a képekkel? A Githubos Markdown megjelenítő baszik
+  megmutatni a fájl **mellett** lévő képeket
 
 ## Anyagok rendezése ##
 Függőségek:
@@ -28,12 +30,13 @@ Függőségek:
 
 ## Anyag bővítése ##
 * Bevezetőnek pár megjegyzés az annotációkról: `@SuppressWarnings`, `@Override`
-* Javadocról pár szó
+* Javadocról ser ártana pár szóban regélni
 * Bevezető szöveg: Java vs. C++ (namespace + package, paraméterátadás,
-template-ek, stb.)
+  template-ek, stb.), bár nem kell sok, Tamás úgyis 3 EA-on keresztül ezzel
+  foglalkozik :-)
 * Ez nem egy teljes, önálló anyag: emlékeztetők, támpontok a gyakorlathoz, aktív
-órai munka és odafigyelés nélkül is lehet haszna, de így kevésbé lehet
-emészthető
+  órai munka és odafigyelés nélkül is lehet haszna, de így kevésbé lehet
+  emészthető
 * Kéne írni a tesztelésről (*unit testing*, *mock objects*)
 
 ## Frissítés ##
@@ -86,3 +89,7 @@ kivételkezelést, konstruktorokat
 
 ### D-assert ###
 * DbC szekciót kiegészíteni
+
+## Final stuff ##
+* Kéne csinálni egy nagyobb review-t, hogy nem maradtak-e ki véletlen értékesebb
+  bekezdések az összefésülés, újraformázás során.

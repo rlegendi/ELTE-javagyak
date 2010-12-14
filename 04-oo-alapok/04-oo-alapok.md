@@ -53,6 +53,19 @@ változót, függvényt látják.
 	> **Fontos** Statikus környezetből azonban csak statikus változókat,
 	> függvényeket érhetünk el! _Miért?_ V.ö. eddigi függvénydefiníciókkal!
 	
+	Példa: adott osztály példányainak számolása:
+	
+		public class Foo {
+	    	private static int ctr = 0;
+	    	private final int idx;
+	    	...
+	    
+	    	public Foo() {
+	        	...
+	        	idx = ctr++;
+	    	}
+		}
+	
 * `final`: _Ha változó_, akkor az adott referencia nem állítható át (azonban ha
 az egy objektum, tömb, akkor az elemei igen! V.ö. C++ `const`). _Ha függvény_,
 akkor nem lehet felüldefiniálni (ld. később!).

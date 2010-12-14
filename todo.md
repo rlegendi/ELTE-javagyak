@@ -11,7 +11,9 @@ Függőségek:
 * Generics: collections (vagy fordítva)
 * JDBC: reflection, esetleg a szálak
 * Socket: I/O, szálak
-* Névtelen osztályok: valahol a GUI akciókezelés környékén?
+* Networking -> szálak (alap) -> networking (14 + 16 esetleg összegyúrható, ha
+  15 után vannak?) 
+* Névtelen osztályok: valahol a GUI akciókezelés környékén? És a threadeknél...
 * Szerializáció: I/O
 * RMI: szerializáció, socketek
 
@@ -31,6 +33,8 @@ Függőségek:
 ## Anyag bővítése ##
 * Bevezetőnek pár megjegyzés az annotációkról: `@SuppressWarnings`, `@Override`
 * Javadocról ser ártana pár szóban regélni
+* Névtelen osztályok beleszövése: igazán az eseménykezeléshez, threadinghez
+  kell, előbb nem nagyon van rá szükség
 * Bevezető szöveg: Java vs. C++ (namespace + package, paraméterátadás,
   template-ek, stb.), bár nem kell sok, Tamás úgyis 3 EA-on keresztül ezzel
   foglalkozik :-)

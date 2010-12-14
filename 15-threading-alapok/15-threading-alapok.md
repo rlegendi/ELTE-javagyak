@@ -1,53 +1,49 @@
-\section*{Threading}
+# Threading #
+Mottó: *"Concurrency is hard and boring. Unfortunately, my favoured technique of ignoring it and hoping it will go away doesn't look like it's going to bear fruit."*
 
-\begin{center}
-\emph{"Concurrency is hard and boring. Unfortunately, my favoured technique of ignoring it and hoping it will go away doesn't look like it's going to bear fruit."}
-\end{center}
+Párhuzamosság: több részfeladat egyidejűleg történő végrehajtása.
 
-Párhuzamosság: több részfeladat egyidejűleg történő végrehajtása.\\
 Miért?
 
-\begin{itemize}
-\item A feladat logikai szerkezete
-\item A program több, fizikailag is független eszközön fut
-\item Hatékonyság\\(v.ö. Amdahl's law \url{http://en.wikipedia.org/wiki/Amdahl's_law})
-\end{itemize}
+* A feladat logikai szerkezete
+* A program több, fizikailag is független eszközön fut
+* Hatékonyság (v.ö. Amdahl's law <http://en.wikipedia.org/wiki/Amdahl's_law>)
 
-Elég régóta foglalkoztatja az embereket. \emph{Látszat párhuzamosságról} is hallani még (op. rendszerek, multitasking: egyszerre egy folyamatot hajt végre, de adott időtartam alatt akár többet is), de a \emph{valódi párhuzamosság} is már mindennapos (pl. többmagos, többprocesszoros gépekben).
+Elég régóta foglalkoztatja az embereket. *Látszat párhuzamosságról* is hallani
+még (oprendszerek, multitasking: egyszerre egy folyamatot hajt végre, de adott
+időtartam alatt akár többet is), de a *valódi párhuzamosság* is már mindennapos
+(pl. többmagos, többprocesszoros gépekben).
 
-\subsection*{Párhuzamosság szintjei}
-\begin{itemize}
-\item Utasítások
-\item Taskok
-\item Folyamatok (processes)
-\item \textbf{Szálak (threads)}
-\end{itemize}
+## Párhuzamosság szintjei ##
+* Utasítások
+* Taskok
+* Folyamatok (processes)
+* **Szálak (threads)**
 
 Viselkedésük alapján lehetnek:
 
-\begin{itemize}
-\item Függetlenek
-\item Versengők
-\item Együttműködők
-\end{itemize}
+* Függetlenek
+* Versengők
+* Együttműködők
 
-\subsection*{Alapproblémák}
+## Alapproblémák ##
 
-\begin{itemize}
-\item Kommunikáció: kommunikációs közeg: socket, signal handler, fájl, osztott memória, etc.
-\item Szinkronizáció: folyamatok összehangolása, szinkron -- aszinkron
-\end{itemize}
+* Kommunikáció: kommunikációs közeg: socket, signal handler, fájl, osztott
+  memória, etc.
+* Szinkronizáció: folyamatok összehangolása, szinkron - aszinkron
 
-\subsection*{Alapdefiníciók}
+## Alapdefiníciók ##
 
-\begin{description}
-\item[Szinkronizáció] olyan folyamat, amellyel meghatározható a folyamatokban szereplő utasítások relatív sorrendje
-\item[Kölcsönös kizárás] osztott változók biztonságos használatához
-\item[Kritikus szakasz] program azon része, ahol egy időben csak egyetlen folyamat tartózkodhat
-\item[Atomi művelet] bármilyen közbeeső állapota nem látható a többi folyamat számára
-\end{description}
+* **Szinkronizáció** Olyan folyamat, amellyel meghatározható a folyamatokban
+  szereplő utasítások relatív sorrendje
+* **Kölcsönös kizárás** osztott változók biztonságos használatához
+* **Kritikus szakasz** program azon része, ahol egy időben csak egyetlen
+  folyamat tartózkodhat
+* **Atomi művelet** bármilyen közbeeső állapota nem látható a többi folyamat
+  számára
 
-Miért kell ez az egész? Pl. x++, 64 bites JVM , longon ábrázolva 2 regiszterben van tárolva $\rightarrow$ 2 olvasás + 2 írás
+Miért kell ez az egész? Pl. `x++`, 64 bites JVM , `long`-on ábrázolva 2
+regiszterben van tárolva &rarr; 2 olvasás + 2 írás
 
 \subsection*{Szálak létrehozása}
 Két lehetőség:

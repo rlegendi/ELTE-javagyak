@@ -167,6 +167,7 @@ Az `executeBatch()` egy tömbbel tér vissza, hogy az egyes utasítások hány s
 változtattak a DB-ben (itt `[0, 1, 1, 1, ...]` lesz).
 
 > **Részletesen**
+> 
 > * <http://java.sun.com/docs/books/tutorial/jdbc/index.html>
 > * <http://www.jdbc-tutorial.com/>
 > * <http://java.sun.com/developer/technicalArticles/J2SE/Desktop/javadb/>

@@ -25,7 +25,7 @@ Nem konvertálhatók, ennek oka:
 	l2.add(new Object());
 	l1.get(0); // reccs, Object -> String castolas
 
-Magyarul ha `S <= T =x=> G<S> <= G<T>$ - ez pedig ellent mond az ember
+Magyarul ha `S <= T =x=> G<S> <= G<T>` - ez pedig ellent mond az ember
 megérzésének. Castolni lehet (warning), `instanceof` tilos (fordítási hiba)!
 
 ## Wildcardok ##

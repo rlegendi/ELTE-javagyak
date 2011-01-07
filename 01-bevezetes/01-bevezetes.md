@@ -60,6 +60,11 @@ Ha nem akarod minden használat előtt ezt eljátszani, akkor _Windows + Break_,
 _Advanced system settings_, _Environment variables..._, és a `PATH` végéhez
 hozzáfűzöd a megadott elérési utat.
 
+> **Megjegyzés** Itt az ELTE-n Windows alatt nem valószínű, hogy lesz jogotok a
+> globális `PATH` változó beállítására. Érdemes erre egy egyszerű batch/ps
+> scriptet készíteni.
+> Linuxon ilyen probléma nincs.
+
 ### Fordítás ###
 
 	javac HelloWorldApp.java

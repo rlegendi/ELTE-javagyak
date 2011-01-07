@@ -129,7 +129,7 @@ Két lehetőség:
   pontosan milyen hatása van. Időosztásos (*time slicing*) rendszereken nincs
   gond vele, egyébként egy "önző" szál teljesen befoglalhatja a CPU-t.
 
-> **Részletesen** <http://java.sun.com/javase/6/docs/api/java/lang/Thread.html>
+> **Részletesen** <http://download.oracle.com/javase/6/docs/api/java/lang/Thread.html>
 
 > **Megjegyzés** Sok deprecated függvény, mert könnyen deadlockhoz vezethetnek
 >  (pl. erőforrás lefoglalásának megsznüntetése). Mindig van kerülőút, pl. szál

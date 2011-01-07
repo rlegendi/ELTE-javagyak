@@ -4,7 +4,7 @@ komponensek). Előbbi oprendszer szintű, utóbbi Javaban íródott, független 
 oprendszertől. Egyéb ablakozó keretrendszer is használható (pl. SWT, Qt, etc.).
 
 Használható komponensek (beviteli, vezérlő, megjelenítő komponensek):
-<http://java.sun.com/docs/books/tutorial/ui/features/compWin.html>
+<http://download.oracle.com/javase/tutorial/ui/features/compWin.html>
 
 Ill. `C:/Program Files/Java/jdk1.6/demo/jfc` alatt `SwingSet2` és `SwingSet3`
 példa alkalmazások.
@@ -124,7 +124,7 @@ Fontosabb Listenerek:
 * Stb., lásd referenciát.
 
 ## Elrendezési stratégiák ##
-> **Részletesen** <http://java.sun.com/docs/books/tutorial/uiswing/layout/visual.html>
+> **Részletesen** <http://download.oracle.com/javase/tutorial/uiswing/layout/visual.html>
 
 * `BorderLayout`
 * `BoxLayout`
@@ -180,7 +180,7 @@ szeparátor is.
 	    JOptionPane.ERROR_MESSAGE       // tipus
 	);
 
-> **Részletesen** <http://java.sun.com/javase/6/docs/api/javax/swing/JOptionPane.html>
+> **Részletesen** <http://download.oracle.com/javase/6/docs/api/javax/swing/JOptionPane.html>
 
 ## Scrollozható komponensek ##
 
@@ -189,8 +189,8 @@ szeparátor is.
 ## Linkek ##
 * <http://community.java.net/javadesktop>
 * <http://java.sun.com/javase/technologies/desktop/articles.jsp>
-* <http://java.sun.com/docs/books/tutorial/ui/index.html>
-* <http://java.sun.com/docs/books/tutorial/uiswing/index.html>
+* <http://download.oracle.com/javase/tutorial/ui/index.html>
+* <http://download.oracle.com/javase/tutorial/uiswing/index.html>
 
 ## Feladatok ##
 

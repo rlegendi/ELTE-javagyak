@@ -149,5 +149,5 @@ jobb módszer, mint kivételt dobni:
   `System.currentTimeMilis()` függvényt)
 
 > **Részletesen**
-> <http://java.sun.com/javase/6/docs/api/java/io/Serializable.html>
-> <http://java.sun.com/javase/6/docs/api/java/io/Externalizable.html>
+> <http://download.oracle.com/javase/6/docs/api/java/io/Serializable.html>
+> <http://download.oracle.com/javase/6/docs/api/java/io/Externalizable.html>

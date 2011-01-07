@@ -311,7 +311,7 @@ többszörös öröklődés (kivéve interfészeknél). Fontosabb függvények:
     * Ha két objektum az `equals()` szerint megegyezik, a `hashCode()` is
       egyezzen meg.
     * Két különböző objektumra _nem kell_ különböző értéket adni
-      (ld. _hash collision_).
+      (ld. *hash collision*).
       
 	Példa:
 	
@@ -329,7 +329,7 @@ többszörös öröklődés (kivéve interfészeknél). Fontosabb függvények:
 * `toString()` Az objektum szöveges reprezentációját adja vissza (Stringként).
 * Egyéb függvények: `clone()`, `finalize()`, `notify()`, `wait()`, `getClass()`
 
-> **Részletek** <http://java.sun.com/javase/6/docs/api/java/lang/Object.html>
+> **Részletek** <http://download.oracle.com/javase/6/docs/api/java/lang/Object.html>
 
 ## Feladatok ##
 A feladatok megoldásához használjatok saját osztályokat, objektumokat.

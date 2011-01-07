@@ -202,11 +202,16 @@ paramétere!).
 	    }
 	}
 
-> **Részletesen** <http://java.sun.com/docs/books/tutorial/essential/exceptions/>
+> **Részletesen** <http://download.oracle.com/javase/tutorial/essential/exceptions/>
 
 Saját kivétel is definiálható, csak származtatni kell (pl. a
 `java.lang.RuntimeException`, `java.lang.Exception` osztályokból, ezekről
 később).
+
+> **Megjegyzés** Az alábbi *Explanations of Common Java Exceptions* egy humoros
+> leírása a common Java kivételeknek. Mielőtt komolyan vennétek, hangsúlyozom,
+> ez csak poén, de ha már megragad 1-2 Exception neve, akkor már megérte
+> átröhögni :-) Thx to Björn Andersson!
 
 # +/- Feladatok #
 

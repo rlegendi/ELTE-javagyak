@@ -8,7 +8,7 @@
   függvények. Pl. egy szál `synchronized` blokkban van, és suspendelik, akkor
   nem fogja elereszteni az erőforrásokat, így más nem juthat hozzá - így könnyen
   deadlock alakulhat ki. Részletes magyarázat, megoldások, workaroundok itt
-  találhatók: <http://java.sun.com/javase/6/docs/technotes/guides/concurrency/threadPrimitiveDeprecation.html>
+  találhatók: <http://download.oracle.com/javase/6/docs/technotes/guides/concurrency/threadPrimitiveDeprecation.html>
 * `synchronized(this)` **Ez rossz!** *Nem a `this` miatt, hanem mert egy közös használatú változót különböző objektumokkal védesz le!*
   A `this` minden esetben az aktuális példányt jelenti (ami példányonként
   nyilván különbözik), az `i` változó pedig mindnél ugyanaz.  
@@ -171,5 +171,5 @@ figyelje, hogy nem jön-e új üzenet a csatornán, miközben a másik szál ír
 csatornára, ha a felhasználó üzenetet írt a konzolra!
 
 ## Linkek ##
-* **Socket példa** <http://java.sun.com/developer/onlineTraining/Programming/BasicJava2/socket.html>
-* **Java Tutorial, All About Socket fejezete** <http://java.sun.com/docs/books/tutorial/networking/sockets/index.html>
+* **Socket példa** <http://www.oracle.com/technetwork/java/socket-140484.html>
+* **Java Tutorial, All About Socket fejezete** <http://download.oracle.com/javase/tutorial/networking/sockets/index.html>

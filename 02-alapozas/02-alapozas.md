@@ -74,7 +74,7 @@ típust is meg kell jelölnünk. Pl.:
 
 ### Tömb segédosztály ###
 `java.util.Arrays`, hasznos pl. a `toString()`, `binarySearch()`, `fill()`, etc.
-Részletesen: <http://java.sun.com/javase/6/docs/api/java/util/Arrays.html>
+Részletesen: <http://download.oracle.com/javase/6/docs/api/java/util/Arrays.html>
 
 ### Összehasonlítás ###
 Az `==` operátor **nem** használható (_referencia szerinti egyenlőség vizsgálat, nem érték szerinti_).
@@ -140,7 +140,7 @@ akkor az eredmény egy `NullPointerException` lesz.
 		String haiThere = hai + " there".
 		String[] haiThereArr = haiThere.split(" ");
 	
-> **Részletesen** <http://java.sun.com/javase/6/docs/api/java/lang/String.html>
+> **Részletesen** <http://download.oracle.com/javase/6/docs/api/java/lang/String.html>
 
 * Karakterenkénti bejárás:
 
@@ -185,7 +185,7 @@ dokumentációja <http://download.oracle.com/javase/6/docs/api/java/util/regex/P
 		boolean b1 = "a" == "a";      // lehet hamis!
 		boolean b2 = "a".equals("a"); // mindig megfeleloen mukodik
 
-> **Részletesen** <http://java.sun.com/javase/6/docs/api/java/lang/StringBuilder.html>
+> **Részletesen** <http://download.oracle.com/javase/6/docs/api/java/lang/StringBuilder.html>
 
 ## Feladatok ##
 A feladat megoldásához használjatok függvényeket, és megfelelő hibakezelést (pl.

@@ -106,7 +106,7 @@ Eltérés az osztályoktól:
 * Nincs közös ős (mint osztályoknál az `Object`)
 * Nem tartalmazhat implementációt (csak absztrakt függvényeket és konstansokat)
 
-> **Részletesen** <http://java.sun.com/docs/books/tutorial/java/IandI/index.html>
+> **Részletesen** <http://download.oracle.com/javase/tutorial/java/IandI/index.html>
 
 ### Deklaráció ###
 Mint az osztályoké:
@@ -173,7 +173,7 @@ vagy például:
 
 	class A extends B implements I1, I2 { ... }
 
-> **Részletesen** <http://java.sun.com/docs/books/tutorial/java/IandI/interfaceDef.html>
+> **Részletesen** <http://download.oracle.com/javase/tutorial/java/IandI/interfaceDef.html>
 
 ### Absztrakt osztályra példa ###
 	public abstract class Point {

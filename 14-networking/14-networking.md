@@ -50,7 +50,7 @@ Hasznunkra válik az `InetAddress` osztály:
 * `getAllByName()`: név &rarr; címek (attól függ, hogy van beheggesztve a NS)
 * `getLocalHost()`: &rarr; saját cím
 
-> **Részletesen** <http://java.sun.com/javase/6/docs/api/java/net/InetAddress.html>
+> **Részletesen** <http://download.oracle.com/javase/6/docs/api/java/net/InetAddress.html>
 
 ## Példa ##
 

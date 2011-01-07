@@ -40,9 +40,9 @@ Ahol:
   az adattábla nevét, és tartalmazhatja a felhasználó nevét, jelszavát
 
 **Itt a gyakon egy egyszerű, minimális DB kezelőt, a Derby-t fogjuk használni (*"Java DB is a free, fast, robust, full-featured pure Java database that fits in a 2.5MB JAR file, blah-blah-buzzword-blah-blah)"*.**
-Elérhető az alábbi címen: <http://developers.sun.com/javadb/>. Ehhez a következő
-osztály dinamikus betöltésére van szükség (ő implementálja a `Driver`
-interfészt):
+Elérhető az alábbi címen: <http://www.oracle.com/technetwork/java/javadb/overview/index.html>.
+Ehhez a következő osztály dinamikus betöltésére van szükség (ő implementálja a
+`Driver` interfészt):
 
 	Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 
@@ -168,7 +168,7 @@ változtattak a DB-ben (itt `[0, 1, 1, 1, ...]` lesz).
 
 > **Részletesen**
 > 
-> * <http://java.sun.com/docs/books/tutorial/jdbc/index.html>
+> * <http://download.oracle.com/javase/tutorial/jdbc/index.html>
 > * <http://www.jdbc-tutorial.com/>
 > * <http://java.sun.com/developer/technicalArticles/J2SE/Desktop/javadb/>
 

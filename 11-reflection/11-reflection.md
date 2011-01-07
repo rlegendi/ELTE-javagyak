@@ -93,7 +93,7 @@ teljes hivatkozási nevét (*fully qualified name*), és
 * végigmegy az adott osztály összes statikus függvényén, és készít egy listát az
   ezen függvények által dobható kivételekről.
 
-> **Részletek** <http://java.sun.com/javase/6/docs/api/java/lang/reflect/package-frame.html>
+> **Részletek** <http://download.oracle.com/javase/6/docs/api/java/lang/reflect/package-frame.html>
 
 > **Megjegyzés** Primitív (+`void`) típusok, pl. boolean reprezentációjának
   `Class` példánya `java.lang.Boolean.TYPE`, rövidebb formája `boolean.class`,

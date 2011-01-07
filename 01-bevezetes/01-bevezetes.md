@@ -3,28 +3,28 @@
 ## Linkek ##
 
 * A tárgy honlapja Kozsik Tamás oldalán: <http://aszt.inf.elte.hu/~kto/teaching/java/>
-* Oracle Java oldala <http://java.sun.com/>
+* Oracle Java oldala <http://www.oracle.com/technetwork/java/index.html>
 * Java Development Kit (JDK) fejlesztői környezet (fordító, stb.),
 * Java Runtime Environment (JRE) csak futtatói környezet
 * Java forráskód egy (jó) része nyílt, a forrás megtalálható a JDK könyvtárában
 (`src.zip` fájl)
 * Elsődleges információforrások:
-	* Java referencia alapvető fontosságú <http://java.sun.com/javase/6/docs/api/>
-	* Java tutorial <http://java.sun.com/docs/books/tutorial/reallybigindex.html>
+	* Java referencia alapvető fontosságú <http://download.oracle.com/javase/6/docs/api/>
+	* Java tutorial <http://download.oracle.com/javase/tutorial/reallybigindex.html>
 	  vagy Java 5.0 Útikalauz programozóknak (Nyékyné)
 	* Java Language Specification Harmadik kiadás, rendes specifikáció, HTML, PDF
 	  formátumban. <http://java.sun.com/docs/books/jls/>
-* Közösségi oldalak Levlisták, fórumok, stb.
+* Közösségi oldalak, levlisták, fórumok, stb.
 	* Java levlista <http://javagrund.hu/mailman/listinfo/javalist>
 	* Javagrund <http://javagrund.hu/web/java/index>
 	* Javaforum <http://www.javaforum.hu/javaforum>
-	* Sun java fóruma <http://forums.sun.com/index.jspa>
-* Környezetek Ízlés szerint
-	* Konzol TODO
+* Környezetek ízlés szerint
+	* Konzol (ld. a megfelelő mellékletet)
 	* Eclipse <http://www.eclipse.org/downloads/>
 	* NetBeans <http://netbeans.org/downloads/>
 	
 ## Hello World ##
+Hozzatok létre egy `HelloWorldApp.java` nevű állományt a következő tartalommal:
 
 	/**
 	 * Hello world program.
@@ -35,13 +35,16 @@
 	    }
 	}
 
+* **Fontos**, hogy a fájl neve megegyezzen a benne definiált publikus osztály
+  nevével (tehát ha `XXX.java` a fájl neve, akkor benne egy darab publikus
+  osztály, `public class XXX` definícióval, különben beszól a fordító). 
 * Std. Output `System.out.println( ... );`
 * Std. Error `System.err.println( ... );`
 * Escape sequences `\r`, `\n`, `\t`, `\b`, stb.
-Részletesen: <http://java.sun.com/docs/books/tutorial/java/data/characters.html>
+  Részletesen: <http://download.oracle.com/javase/tutorial/java/data/characters.html>
 * Kilépés `System.exit( 0 );`
-* Egyéb függvények a `System` osztály leírásában: <http://java.sun.com/javase/6/docs/api/java/lang/System.html>
-* Konzol kezelése `java.io.Console` osztály segítségével: <http://java.sun.com/javase/6/docs/api/java/io/Console.html>
+* Egyéb függvények a `System` osztály leírásában: < http://download.oracle.com/javase/6/docs/api/java/lang/System.html>
+* Konzol kezelése `java.io.Console` osztály segítségével: <http://download.oracle.com/javase/6/docs/api/java/io/Console.html>
 
 ## Környezet beállítása ##
 Windows alatt _Windows + R_, majd `cmd.exe`:
@@ -71,8 +74,9 @@ Használható `*.java` a default package fordítására.
 ### Dokumentáció generálás ###
 	javadoc HelloWorldApp.java
 
-Részletesen:
-<http://java.sun.com/docs/books/tutorial/getStarted/cupojava/win32.html>
+> **Részletesen** <http://download.oracle.com/javase/tutorial/getStarted/cupojava/win32.html>
+> Ezen tutorial magyar fordítása megtalálható a feladatgyűjtemény mellékleteként.
+
 
 ## Kódolási konvenciók ##
 	package java.blah; // top-level domain, kisbetus karakterek
@@ -126,7 +130,11 @@ Részletesen:
 	   }
 	}
 
-Részletesen: <http://java.sun.com/docs/codeconv/>
+> **Egyelőre ökölszabály** Osztály név = fájl név, nagybetűvel kezdődik. Csomag
+> név = könyvtár név, kisbetűvel kezdődik (később lesz több osztály is egy
+> fordítási egységen belül).
+
+> **Részletesen** <http://www.oracle.com/technetwork/java/codeconv-138413.html>
 
 > **Kiegészítés** Ékezetes karaktereket _ne_ használjatok! Főleg azonosítók
 > esetében ne! A Java ugyan ezt megengedi (minden UTF-8 karakter használható
@@ -171,7 +179,7 @@ Szövegkonverzió:
 
 ## Operátorok ##
 Szokásos operátorok (`==`, `!=`, `&&`, `||`, `%`, `++`, `--` (prefix, postfix),
-...), részletes táblázat itt található: <http://java.sun.com/docs/books/tutorial/java/nutsandbolts/operators.html>.
+...), részletes táblázat itt található: <http://download.oracle.com/javase/tutorial/java/nutsandbolts/operators.html>.
 
 *Fontos* Az operátorok eredményének típusa _mindig_ a bővebb paraméter típusa
 (`double d = 1 / 2;` eredménye `0.0` lesz!).
@@ -263,7 +271,7 @@ hárommal oszthatók, a szám helyett `"Fizz"`-t írjon ki, és azok helyett, am
 öttel oszthatók, `"FizzBuzz"`-t írjon ki!
 
 *Motiváció* Coding Horror, _Why Can't Programmers... program?_
-<http://www.codinghorror.com/blog/archives/000781.html>
+<http://www.codinghorror.com/blog/2007/02/why-cant-programmers-program.html>
 
 Példa:
 	1

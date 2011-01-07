@@ -244,7 +244,7 @@ függvénnyel, és írjátok ki az eredményt!
 		Vector<Integer> v1 = new Vector<Integer>();  // vektorkent kezeles
 		List<Integer>   v2 = new Vector<Integer>();  // listakent kezeles
 
-> **Részletesen:** [http://java.sun.com/javase/6/docs/api/java/util/package-summary.html]()
+> **Részletesen:** <http://download.oracle.com/javase/6/docs/api/java/util/package-summary.html>
 
 #### Feladat ####
 Készítsünk egy sorozat rendező alkalmazást! A program inputja a következő

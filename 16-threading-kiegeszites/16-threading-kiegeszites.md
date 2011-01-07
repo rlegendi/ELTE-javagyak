@@ -9,7 +9,9 @@
   nem fogja elereszteni az erőforrásokat, így más nem juthat hozzá - így könnyen
   deadlock alakulhat ki. Részletes magyarázat, megoldások, workaroundok itt
   találhatók: <http://java.sun.com/javase/6/docs/technotes/guides/concurrency/threadPrimitiveDeprecation.html>
-* `syncnchronized(this)` **Ez rossz!**
+* `synchronized(this)` **Ez rossz!** *Nem a `this` miatt, hanem mert egy közös használatú változót különböző objektumokkal védesz le!*
+  A `this` minden esetben az aktuális példányt jelenti (ami példányonként
+  nyilván különbözik), az `i` változó pedig mindnél ugyanaz.  
 
 		static int i = 0;
 		

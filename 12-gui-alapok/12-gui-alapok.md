@@ -7,7 +7,7 @@ Használható komponensek (beviteli, vezérlő, megjelenítő komponensek):
 <http://java.sun.com/docs/books/tutorial/ui/features/compWin.html>
 
 Ill. `C:/Program Files/Java/jdk1.6/demo/jfc` alatt `SwingSet2` és `SwingSet3`
-példaalkalmazások.
+példa alkalmazások.
 
 ## Példakód ##
 	package gui.basics;
@@ -31,7 +31,7 @@ példaalkalmazások.
 	}
 
 ## Életciklus ##
-1. Felület felépítése. Egyszerű példaalkalmazás
+1. Felület felépítése. Egyszerű példa alkalmazás
 		package gui.basics;
 		
 		import java.awt.*;

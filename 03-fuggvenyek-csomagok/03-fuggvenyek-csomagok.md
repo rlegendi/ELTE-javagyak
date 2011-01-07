@@ -162,9 +162,11 @@ paramétere!).
 	        // ...
 	    } catch (NumberFormatException nfe) {
 	        System.err.println("Hibas input: " + args[0]);
-	        nfe.printStacktrace();
+	        nfe.printStackTrace();
 	    }
 	}
+	
+> **Megjegyzés** Kivételek neve általában `e`, de igazából ízlés kérdése. 
 
 ### Függvénydefiníció ###
 	// Egyszerubb forma, ha nem akartok uzeneteket

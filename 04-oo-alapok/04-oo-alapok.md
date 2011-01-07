@@ -71,14 +71,14 @@ az egy objektum, tömb, akkor az elemei igen! V.ö. C++ `const`). _Ha függvény
 akkor nem lehet felüldefiniálni (ld. később!).
 
 		public class Main {
-		  public static final int DEBUG = true;  
-		
-		  public sum(int[] arr) {
-		    if (DEBUG) {
-		      System.out.println("Sum params: " + Arrays.toString(arr))
-		    }
-		    ...
-		  }
+			public static final int DEBUG = true;  
+			
+			public sum(int[] arr) {
+				if ( DEBUG ) {
+					System.out.println( "Sum params: " + Arrays.toString( arr ) );
+				}
+				...
+			}
 		}
 
 * Láthatósági módosítószavak:

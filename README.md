@@ -20,7 +20,7 @@ Legéndi Richárd Olivér
 <legendi@inf.elte.hu>
 
 ### Szerkesztők ###
-A feladatgyéjtemény nem létezhetne jelen formájában az alábbi szerzők hathatós
+A feladatgyűjtemény nem létezhetne jelen formájában az alábbi szerzők hathatós
 segítsége nélkül:
 
-Kozsik Tamás (kto), Szabó Attila (kisuf)
+Kozsik Tamás (kto), Szabó Attila (kisuf), Koroknai László Áron

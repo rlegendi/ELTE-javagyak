@@ -322,4 +322,4 @@ legkisebb ilyen szám 6, 28, 496, és 8128.
 4. Egészítsük ki az előző feladatot úgy, hogy 1-től a paraméterként megadott
 határig minden számot ellenőrizzen le, hogy tökéletes szám-e, valamint adja meg,
 hogy hány ilyen számot talált! Ha nem talált egyetlen számot sem, írja ki, hogy
-_"Egyetlen szám sincs a megadott intervallumban."!
+*"Egyetlen szám sincs a megadott intervallumban."*!

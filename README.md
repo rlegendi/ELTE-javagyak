@@ -23,4 +23,6 @@ Legéndi Richárd Olivér
 A feladatgyűjtemény nem létezhetne jelen formájában az alábbi szerzők hathatós
 segítsége nélkül:
 
-Kozsik Tamás (kto), Szabó Attila (kisuf), Koroknai László Áron
+* Kozsik Tamás
+* Szabó Attila (*kisuf*)
+* Koroknai László Áron (2010-2011-I typok kigyűjtése, Sunos linkek frissítése)

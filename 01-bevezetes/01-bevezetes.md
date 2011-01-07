@@ -1,4 +1,5 @@
 # Bevezetés #
+A Java nyelvről, általánosan.
 
 ## Linkek ##
 

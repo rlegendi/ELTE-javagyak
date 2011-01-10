@@ -142,7 +142,7 @@ hozzá. Két lista egyenlő, ha ugyanazokat az elemeket tartalmazzák, ugyanabba
 sorrendben. A lista iterátora a `ListIterator`, 2 irányban is bejárható:
 `hasNext()`, `next()`, ill. `hasPrevious()`, `previous()`. Részlista: balról
 zárt, jobbról nyílt intervallumot kell megadni. Két alapvető implementáció:
-`ArrayList`, `LinkedList`, előbbi a pozicionális műveleteknek kedvez, utóbbi
+`ArrayList`, `LinkedList`, előbbi a pozicionáló műveleteknek kedvez, utóbbi
 akkor, ha a lista elejére kell sokat beszúrni, és iteráció közben törölni
 (általában az `ArrayList` használata a célravezetőbb).
 
@@ -272,5 +272,5 @@ funkcionalitásokkal rendelkezzen:
 * Új epizód felvétele
 * Epizódlista mentése (kilépés után ezt töltse be)
 * Adott epizód adatainak módosítása
-* Epizódok listázása a képrenyőre
+* Epizódok listázása a képernyőre
 * Kilépés

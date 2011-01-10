@@ -27,7 +27,7 @@ interfészben nincs definiálva, az a kliensek felé *nem fog látszani*.
 	    public abstract String hi() throws RemoteException;
 	}
 
-## Paraméterátadás ##
+## Paraméter átadás ##
 Szerializáció segítségével minden. Az elemi adattípusok JVM-ben történő
 ábrázolása rögzített (a típuskonstrukciókkal együtt), így a konverziókkal nem
 kell foglalkozni (v.ö. C). A szerializált objektum egy bájtsorozatként
@@ -132,7 +132,7 @@ csinálni, pl. `toString()`, `hashCode()`, `equals()` megfelelő implementálás
 5. Futtassuk a klienst!
 
 ## Feladatok ##
-* Készítsetek egy egyszerű hálózati naplozó alkalmazást! A szerver tudjon
+* Készítsetek egy egyszerű hálózati naplózó alkalmazást! A szerver tudjon
   lementeni sztringeket egy dedikált fájlba, és a tartalmát is le lehessen
   kérdezni a kliensekből! A szerver szolgáltatásait RMI segítségével érd el!
 

@@ -121,7 +121,7 @@ Mikor melyiket használjuk?
 * Ha szükség van egy adott osztály tagjainak elérésére, akkor beágyazott
   osztályt
 * Ha úgy logikusabb, akkor beágyazott statikus osztály
-* Ha más olsztályban nincs rá szükség, de közvetlen nem függ össze a
+* Ha más osztályban nincs rá szükség, de közvetlen nem függ össze a
   reprezentációval, akkor a public osztállyal azonos forrásállományba
 * Ha általános osztályt készítünk, akkor saját fordítási egységbe
 
@@ -181,13 +181,13 @@ forma:
 * Felüldefiniálás Ha a _szignatúra_ megegyezik
 * Túlterhelés Minden más esetben
 
-A felüldefiniált függvények elé írjuk oda az `@Override` annotációt, es segít a
+A felüldefiniált függvények elé írjuk oda az `@Override` annotációt, és segít a
 compilernek kiszűrni az elgépelésből adódó problémákat fordítási időben.  Ha
 hibát ad a fordító, valami nem stimmel (pl. nem egyezik a szignatúra).
 
 Származtatásnál a szűkebb hatókör nem megengedett. Visszatérési értékre nem
 lehet túlterhelni, mert az nem része a szignatúrának. Visszatérési értéket lehet
-specializáli (hasznos pl. a `clone()` függvénynél - kovariáns kötés).
+specializálni (hasznos pl. a `clone()` függvénynél - kovariáns kötés).
 
 A kivétel lista nem lényeges ebből a szempontból.
 
@@ -253,7 +253,7 @@ Például:
 	}
 
 Ha származtatás is játszik a történetben, az kicsit bonyolultabbá teheti.
-Konstruktorban a szülőre a `super()`, az aktuális példány valameny
+Konstruktorban a szülőre a `super()`, az aktuális példány valamely
 konstruktorára `this()` hívással hivatkozhatunk. Ha ezeknek a paramétere egy
 függvény visszatérési értéke lehet, az csak statikus függvény lehet.
 

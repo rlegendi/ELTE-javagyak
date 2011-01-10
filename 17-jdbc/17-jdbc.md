@@ -86,7 +86,7 @@ nevét és jelszavát:
 	    sqle.printStackTrace();
 	}
 
-Hova kerul a DB? A `derby.system.home` system property által beállított érték
+Hova kerül a DB? A `derby.system.home` system property által beállított érték
 határozza meg. Ezt vagy kódból lehet beállítani:
 
 	System.setProperty("derby.system.home", "/tmp");
@@ -152,9 +152,9 @@ Három lehetőség:
 		statement.executeUpdate("DELETE WHERE id=0");
 
 ## Kötegelt végrehajtás ##
-Van rá lehtőség, hogy parancsokat összefogjunk, és egyszerre küldjünk el a
+Van rá lehetőség, hogy parancsokat összefogjunk, és egyszerre küldjünk el a
 szervernek feldolgozásra, így sok kis adatmódosító utasítás gyorsabban lefuthat,
-mintha külön-külön futtatgatnánk le őket. Pl.:
+mintha külön-külön futtattatnánk le őket. Pl.:
 
 	statement.addBatch("Create TABLE ...");
 	statement.addBatch("INSERT INTO ...");

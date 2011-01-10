@@ -99,7 +99,7 @@ Példa:
 	layout.last(cards);
 
 ## JRadioButton##
-`ButtonGroup` használata kell, ha szeretnénk, hogy egyszerre csak választható ki közülül:
+`ButtonGroup` használata kell, ha szeretnénk, hogy egyszerre csak választható ki közülük:
 
 	JRadioButton button1 = new JRadioButton("A");
 	JRadioButton button2 = new JRadioButton("B");

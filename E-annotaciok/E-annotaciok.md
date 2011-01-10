@@ -1,7 +1,7 @@
 # Annotációk #
 Dekorációk a forráskódban, első sorban külső toolok számára hasznos eszközök, de
 pl. a fordító, ill. maga a program is hasznukat veheti (voltak *ad hoc* jellegű
-megfelelelőik eddig is, pl. a `@deprecated` `javadoc` tag). Általános célú
+megfelelőik eddig is, pl. a `@deprecated` `javadoc` tag). Általános célú
 eszköz, Java 5.0 óta, metainformációt közölhetnek.
 
 A program szemantikájára direkt módon nincsenek hatással, viszont különböző

@@ -21,7 +21,7 @@
 
 
 **Feladat** Adott `v_1`, `v_2`, ..., `v_n` vektorok, amelyen `n` szál dolgozik.
-A program parancssori argumenetunkmént kap egy `e` értéket. Keressük meg az első
+A program parancssori argumentumként kap egy `e` értéket. Keressük meg az első
 olyan `j` indexet, ahol ez a szám megtalálható, vagyis `v_i[j] = e`,
 `1 <= j <= n`. *Az egyszerűség kedvéért feltételezzük, hogy minden vektorelem*
 *egyedi, valamelyik vektorban megtalálható a keresett `e` érték, és `n=2`.*
@@ -44,7 +44,7 @@ ismét hamis lesz **végtelen ciklus**.
 
 ## 2. kísérlet ##
 *Ja, akkor nem a szálakban inicializálok.* Kerüljük el, hogy minden szál
-külö-külön is inicializálja a közös változót, tegyük meg ezt a szálak indítása
+külön-külön is inicializálja a közös változót, tegyük meg ezt a szálak indítása
 előtt!
 
 	found = false // Threadek inditasa elott

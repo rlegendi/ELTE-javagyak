@@ -1,5 +1,8 @@
 # TODO #
 
+## Jelölések ##
+* `$`: command prompt
+
 ## Eldöntendő ##
 * Mi legyen a README-ben, és mi az intróban? És mi a Wikiben?
 * Mit tudok csinálni a képekkel? A Githubos Markdown megjelenítő baszik

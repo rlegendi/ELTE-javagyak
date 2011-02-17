@@ -8,8 +8,9 @@ amely Creative Commons Attribution-Non Commercial-Share Alike 3.0 licenc alatt
 Remélem lesz, aki haszonnal tudja forgatni, minden észrevételt szívesen fogadok!
 
 ## Errata, Kontributálás ##
-Ha találsz valamit, ami technikailag rossz, vagy bármilyen szempontból javításra
-szorulna, kevésbé érthető, kérlek írj egy e-mailt a <legendi@inf.elte.hu> címre!
+Ha találsz valamit, ami technikailag rossz, vagy bármilyen szempontból
+megkérdőjelezhető, javításra szorulna, kevésbé érthető, kérlek írj egy e-mailt
+a <legendi@inf.elte.hu> címre!
 
 A projectet klónozd, írd át, használd, commitolj, és ha gondolod, dobj egy pull
 requestet!
@@ -21,8 +22,10 @@ Legéndi Richárd Olivér
 
 ### Szerkesztők ###
 A feladatgyűjtemény nem létezhetne jelen formájában az alábbi szerzők hathatós
-segítsége nélkül:
+segítsége nélkül (nagyjából időrendben):
 
 * Kozsik Tamás
 * Szabó Attila (*kisuf*)
 * Koroknai László Áron (2010-2011-I typok kigyűjtése, Sunos linkek frissítése)
+* Szabó Balázs (2010-2011-I a környezet beállításáról szóló melléklet fordítása)
+

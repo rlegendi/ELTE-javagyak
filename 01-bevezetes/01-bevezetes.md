@@ -44,7 +44,7 @@ Hozzatok létre egy `HelloWorldApp.java` nevű állományt a következő tartalo
 * Escape sequences `\r`, `\n`, `\t`, `\b`, stb.
   Részletesen: <http://download.oracle.com/javase/tutorial/java/data/characters.html>
 * Kilépés `System.exit( 0 );`
-* Egyéb függvények a `System` osztály leírásában: < http://download.oracle.com/javase/6/docs/api/java/lang/System.html>
+* Egyéb függvények a `System` osztály leírásában: <http://download.oracle.com/javase/6/docs/api/java/lang/System.html>
 * Konzol kezelése `java.io.Console` osztály segítségével: <http://download.oracle.com/javase/6/docs/api/java/io/Console.html>
 
 ## Környezet beállítása ##

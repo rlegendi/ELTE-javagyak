@@ -121,5 +121,114 @@ Gratulálunk! Működik a program!
 
 Ha problémákba ütköztél, vess egy pillantást a következő fejezetre, ahol a gyakoribb hibákat és magyarázatukat találod.
 
-# #
+# Gyakran előforduló hibák #
+## Fordítási hibák ##
+### Általános hiba üzenetek Microsoft Windows rendszeren ###
+
+	'javac' is not recognized as an internal or external command, operable program or batch file
+
+Ha ezt a hibát kapod, a Windows nem találja a fordítót (`javac`).
+
+Itt egy megoldás a problémára. Tegyük fel, hogy a telepített JDK a `C:\jdk6` könyvtárban található. A konzolba írd be a következő parancsot: `C:\jdk6\bin\javac HelloWorldApp.java`. Így minden alkalommal be kell írni ezt a parancsot, ha fordítani vagy futtatni akarod az alkalmazást. A felesleges gépelés elkerülése végett, olvasd el a JDK telepítési útmutatót (*vagy nézd meg az első gyak anyagát :P*). 
+
+	Class names, 'HelloWorldApp', are only accepted if annotation processing is explicitly requested 
+
+Elfelejtetted a `.java` postfixet a fordítás során. Ne feledd, a használandó parancs `javac HelloWorldApp.java` nem pedig `javac HelloWorldApp`.
+
+### Általános hibaüzenetek UNIX rendszeren ###
+
+	javac: Command not found 
+
+Ha ezt a hibát kapod, a UNIX nem találja a fordítót (`javac`).
+
+Itt egy megoldás a problémára. Tegyük fel, hogy a telepített JDK a `/usr/local/jdk6` könyvtárban található. A konzolba írd be a következő parancsot: `/usr/local/jdk6/javac HelloWorldApp.java`. Így minden alkalommal be kell írni ezt a parancsot, ha fordítani vagy futtatni akarod az alkalmazást. A felesleges gépelés elkerülése végett, olvasd el a JDK telepítési útmutatót (*vagy nézd meg az első gyak anyagát :P*). 
+
+	Class names, 'HelloWorldApp', are only accepted if annotation processing is explicitly requested
+
+Elfelejtetted a `.java` postfixet a fordítás során. Ne feledd, a használandó parancs `javac HelloWorldApp.java` nem pedig `javac HelloWorldApp`.
+
+### Szintaktikai hibák (minden platformon)  ###
+Akkor jelentkezik, mikor hiba van a program kódjában. A hiba üzenet leírja, hogy milyen típusú hiba lépett fel, és hol található a kódban. Így néz ki, ha elhagyod a sort záró jelet (;):
+
+	at the end of a statement: testing.java:14: `;` expected. 
+	System.out.println("Input has " + count + " chars.") ^ 1 error 
+
+Néha a fordító nem tudja kitalálni, hogy mi a szándékod, ezért megtévesztő hibaüzenetet adhat vissza. Például ebből a kód részletből hiányzik egy (;) a vastaggal szedett résznél:
+
+	while (System.in.read() != -1) {
+		count++ System.out.println("Input has " + count + " chars.");
+	}
+
+Ebben az esetben a fordító két hibával tér vissza: 
+
+	testing.java:13: Invalid type expression. count++ ^
+	testing.java:14: Invalid declaration. System.out.println("Input has " + count + " chars."); ^
+	2 errors 
+
+A fordító két hibaüzenetet ír ki, mert a `count++` elérése után, a fordító azt hiszi, hogy ez egy kifejezés közepén van. A pontosvessző nélkül a fordító nem tudhatja, hogy az állítás teljes. 
+
+Ha compiler error-okat látsz, akkor a programodnak nem sikerült lefordulnia, és a fordító nem hozta létre a .class fájlt. Nézd át a kódot, javítsd ki a hibákat és próbáld újra.
+
+### Szemantikai Hibák ###
+
+Azon felül, hogy ellenőrzi, hogy a programod szintaktikailag helyes, más alapvető hibák is jelentkezhetnek. Például a fordító minden alkalommal figyelmeztet, mikor olyan változó használsz ami nincs inicializálva: 
+
+	testing.java:13: Variable count may not have been initialized. count++ ^
+	testing.java:14: Variable count may not have been initialized. System.out.println("Input has " + count + " chars."); ^
+	2 errors
+
+Még egyszer, a program nem fordult le, nem jött létre a `.class` fájl. Javítsd ki a hibákat és próbáld újra.
+
+## Futási idejű hibák ##
+### Hibaüzenetek Microsoft Windows rendszeren ###
+
+	Exception in thread "main" java.lang.NoClassDefFoundError: HelloWorldApp
+
+A `java` nem találja a `HelloWorldApp.class` bájtkódot.  
+
+Az egyik hely, ahol a `java` keresi a `.class` fájlt, az a jelenlegi könyvtár. Tehát ha a `.class` a `C:\java` könyvtárban található, válts át a következő paranccsal:
+
+	cd c:\java 
+
+Ha most kiadod a `dir` parancsot, láthatod a `.java` és `.class` fájlokat. Most írd be újra a `java HelloWorldApp` parancsot.
+
+Ha még mindig hibába ütközöl, lehet, hogy meg kell változtatnod a `CLASSPATH` változót. Hogy lásd, hogy ez valóban szükséges, üsd ki a `CLASSPATH` változót ezzel a paranccsal:
+
+	set CLASSPATH= 
+
+Most írd be újra a `java HelloWorldApp` parancsot. Ha a program most működik, meg kell változtatnod a `CLASSPATH` változót. Hogy átállítsd ezt a változót, olvasd el a JDK telepítési útmutatót. 
+
+	Exception in thread "main" java.lang.NoClassDefFoundError: HelloWorldApp/class 
+
+Általános hiba a kezdő programozók részéről, mikor a java futtató alkalmazást a fordító által létrehozott `.class` fájlon próbálják alkalmazni. Ezt a hibát akkor kapod, ha példálul `java HelloWorldApp.class` parancsot adsz ki be `java HelloWorldApp` helyett. Ne feledd, az argumentum az osztály neve, amit használni akarsz, és nem a fájl neve. 
+
+	Exception in thread "main" java.lang.NoSuchMethodError: main 
+
+A Java VM-nek szüksége egy main metódusra, ahol elkezdheti az alkalmazásod végrehajtását. Biztos megfelel a szignatúra, nem írtad el a függvénydefiníciót?
+
+### Hibaüzenetek UNIX rendszeren ###
+
+	Exception in thread "main" java.lang.NoClassDefFoundError: HelloWorldApp 
+
+A `java` nem találja a `HelloWorldApp.class` bájtkódot.  
+
+Az egyik hely, ahol a `java` keresi a `.class` fájlt, az a jelenlegi könyvtár. Tehát ha a `.class` a `/home/jdoe/java` könyvtárban található, válts át a következő paranccsal: 
+
+	cd /home/jdoe/java 
+
+Ha most kiadod a `pwd` parancsot, láthatod a `.java` és `.class` fájlokat. Most írd be újra `java HelloWorldApp` parancsot.
+
+Ha még mindig hibába ütközöl, lehet, hogy meg kell változtatnod a `CLASSPATH` változót. Hogy lásd, hogy ez valóban szükséges, üsd ki a `CLASSPATH` változót ezzel a paranccsal:
+
+	unset CLASSPATH 
+
+Most írd be újra a `java HelloWorldApp` parancsot. Ha a program most működik, meg kell változtatnod a `CLASSPATH` változót. Hogy átállítsd ezt a változót, olvasd el a JDK telepítési útmutatót.
+
+	Exception in thread "main" java.lang.NoClassDefFoundError: HelloWorldApp/class 
+
+Általános hiba a kezdő programozók részéről, mikor a java futtató alkalmazást a fordító által létrehozott `.class` fájlon próbálják alkalmazni. Ezt a hibát akkor kapod, ha példálul `java HelloWorldApp.class` parancsot adsz ki be `java HelloWorldApp` helyett. Ne feledd, az argumentum az osztály neve, amit használni akarsz, és nem a fájl neve. 
+
+	Exception in thread "main" java.lang.NoSuchMethodError: main 
+
+A Java VM-nek szüksége egy main metódusra, ahol elkezdheti az alkalmazásod végrehajtását. Biztos megfelel a szignatúra, nem írtad el a függvénydefiníciót?
 

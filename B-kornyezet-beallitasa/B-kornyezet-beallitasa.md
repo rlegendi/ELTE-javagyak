@@ -1,6 +1,6 @@
 # "Hello World!" Microsoft Windowson#
 
-> **Megjegyzés** Az alábbi fejezetetek a Java Tutorial egy bevezető fejezetének (kissé átdolgozott) magyar fordítását tartalmazza. A fordítást köszönjük Szabó Balázsnak!
+> **Megjegyzés** Az alábbi fejezetetek a Java Tutorial egy bevezető fejezetének (kissé átdolgozott) magyar fordítását tartalmazza. A fordítást köszönjük Szabó-Demény Balázsnak!
 > <http://download.oracle.com/javase/tutorial/getStarted/cupojava/win32.html>
 
 Itt az ideje, hogy megírd az első alkalmazásod! A most következő utasítások Windows XP Professional, Windows XP Home, Windows Server 2003, Windows 2000 Professional, és Windows Vista használóknak szól. Más platformokhoz leírást a ["Hello World!" for Solaris OS and Linux](http://download.oracle.com/javase/tutorial/getStarted/cupojava/unix.html) és ["Hello World!" for the NetBeans IDE](http://download.oracle.com/javase/tutorial/getStarted/cupojava/netbeans.html) cikkekben találsz.

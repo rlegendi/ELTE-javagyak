@@ -211,7 +211,7 @@ logikai feltétel, de kellemetlen helyzetek így is adódhatnak:
 	    // ...
 	}
 
-Igyekezzunk baloldalra konstansokat írni.
+Igyekezzünk baloldalra konstansokat írni.
 
 ## Vezérlési szerkezetek ##
 A nyitó, záró `{`, `}` párok kirakása nem kötelező, ellenben javallott.

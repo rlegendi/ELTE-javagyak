@@ -278,7 +278,7 @@ megengedett (sőt, ajánlott is).
   másik pedig egy `double[][]` paramétert kapjon! Mátrixokat lehessen összeadni,
   és adott valós számmal beszorozni, valamint lekérdezni, hogy négyzetes-e.
 
-* Egészítsd ki az előző feladatot az általános, `Object` osztályből örökölt
+* Egészítsd ki az előző feladatot az általános, `Object` osztályból örökölt
   függvényeket (`equals()`, `hashCode()`, `toString()`).
 
 * Egészítsd ki az előző feladatot a következő funkciókkal:

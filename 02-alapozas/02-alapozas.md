@@ -24,7 +24,7 @@ figyeljetek!).
 * Minden `T` típushoz van `T[]`
 * Referencia: null értéke lehet!
 * Indexelés nullától
-* Túl-, ill. alulindexelés: `ArrayIndexOutOfBoundsException` (futásidejű
+* Túl-, ill. alul indexelés: `ArrayIndexOutOfBoundsException` (futásidejű
   kivétel)
 * Inicializáció:
 
@@ -218,7 +218,7 @@ használjátok azt a függvényt, amit az adott feladatban megírtatok!
 8. Készíts egy függvényt, amely képes meghatározni két paraméterként kapott tömb
    skaláris szorzatát!
 9. (?) Készíts egy függvényt, amely képes meghatározni két paraméterként kapott
-   tömb vektoriális szorzatát! % TODO: 2 dimenziora!
+   tömb vektoriális szorzatát! % TODO: 2 dimenzióra!
 10. Készítsetek egy kódoló függvényt, amely egy `char[]` paraméterként
     megadott szöveget úgy kódol, hogy minden karaktert egy konstans értékkel
     XOR-ol (használjátok a `^` operátort!).
@@ -282,7 +282,7 @@ ez az új String!
 4. Készítsétek el az előző függvény fordított változatát: az első karaktert
 cserélje kisbetűre!
 
-5. Készítseget egy függvényt, ami 2 String paramétert kap, és megmondja, hogy az
+5. Készítsetek egy függvényt, ami 2 String paramétert kap, és megmondja, hogy az
 első a másodikkal kezdődik-e. Az összehasonlításnál a kisbetű, nagybetű eltérés
 nem számít (azaz pl. `"Windows 7"`, `"win"`) paraméterekre adjon vissza igaz
 értéket!).

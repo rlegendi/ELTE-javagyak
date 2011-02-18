@@ -42,7 +42,7 @@ hivatkozhatunk, pl. `java.util.Vector`):
 A fordítás nehézkes, nincs rekurzív `javac -R *.java`. Leképezés a
 fájlrendszerre: minden `.` karakterrel szeparált rész egy könyvtárat jelent,
 fordítás a gyökérkönyvtárból történik. Static importot csak offtosan
-(struktúráltság, enkapszuláció, egysébge zárás ellen hat - használjatok helyette
+(strukturáltság, enkapszuláció, egységbezárás ellen hat - használjatok helyette
 dedikált osztályt vagy interfészt). Csomag definíciója a Java fájl legelején:
 
 	package pkg;
@@ -79,7 +79,7 @@ osztálybetöltés van).
 	    ...
 	}
 
-Paraméterátadás érték szerint történik (még a referenciák is!).
+Paraméter átadás érték szerint történik (még a referenciák is!).
 
 * Módosítószavak:
 	* Láthatóság: `public`, `protected`, `private`. Ha nem definiált, akkor ún.
@@ -95,7 +95,7 @@ Paraméterátadás érték szerint történik (még a referenciák is!).
 	* `void`: eljárás
 	* Minden egyéb: függvény
 * Metódusnév: _lowerCamelCase_ formátumban
-* Paraméterátadás: minden paraméter érték szerint adódik át
+* Paraméter átadás: minden paraméter érték szerint adódik át
 _még a referenciák is_.
 
 **Szignatúra** a függvény neve és paramétereinek típusa -- más **nem**. Például:
@@ -245,6 +245,6 @@ függvény definíciója legyen a következő:
 A függvény dobjon _nem ellenőrzött és ellenőrzött kivételeket is_ (pl.
 `IllegalArgumentException` és egy saját), ha `a == 0`, vagy a diszkrimináns
 negatív! A függvény által dobott kivételeket kezeld is le a `main()`
-függvényben! A paramétereket a parancsori argumentumok határozzák meg, és az
+függvényben! A paramétereket a parancssori argumentumok határozzák meg, és az
 `Integer.parseInt()` függvény által dobott `NumberFormatException` kivételt is
 kezeljétek le ugyanabban a kivételkezelő ágban!

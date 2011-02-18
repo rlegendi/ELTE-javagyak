@@ -78,7 +78,7 @@ vs. hatékonyság), ehhez a következő két függvényt kell "felüldefiniálni
 
 Nem biztos, hogy az alapértelmezett viselkedést akarjuk megváltoztatni
 (`defaultReadObject()`, `defaultWriteObject()`), de pl. így tranziens
-attribbútumokat is kiírhatunk, vagy köthetünk eseményeket a szerializáció
+attribútumokat is kiírhatunk, vagy köthetünk eseményeket a szerializáció
 eseményéhez. Pl. ha a fenti szálat szeretnénk elindítani:
 
 	private void writeObject(ObjectOutputStream out)
@@ -118,11 +118,11 @@ jobb módszer, mint kivételt dobni:
 		obj.value = 1; // Hiaba allitjuk at, ha elotte nem 1 volt
 		oos.writeObject(obj); // akkor itt az eredeti erteke lesz
 
-* Verizókezelés:
+* Verziókezelés:
  
 		private static final long serialVersionUID = <ronda_nagy_generalt_szam>L;
 	
-* Teljesítmény: a default Java szerializáiónál vannak hatékonyabb frameworkök!
+* Teljesítmény: a default Java szerializációnál vannak hatékonyabb frameworkök!
 
 ## Feladatok ##
 * Írjatok egy kör osztályt, ami a középpontjának `x`, `y` koordinátáit

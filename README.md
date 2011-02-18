@@ -25,7 +25,8 @@ A feladatgyűjtemény nem létezhetne jelen formájában az alábbi szerzők hat
 segítsége nélkül (nagyjából időrendben):
 
 * Kozsik Tamás
-* Szabó Attila (*kisuf*)
+* Szabó Attila, *kisuf*
 * Koroknai László Áron (2010-2011-I typok kigyűjtése, Sunos linkek frissítése)
 * Szabó-Demény Balázs (2010-2011-I a környezet beállításáról szóló melléklet fordítása)
+* Herendi Andor, *floody* (2010-2011-I apróbb észrevételek)
 

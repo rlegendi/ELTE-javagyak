@@ -13,7 +13,7 @@ akkor `AssertionError` kivétel váltódik ki, aminek a második paraméter lesz
 
 *Mire használható?* Futtatási idejű ellenőrzésekre, feltételezések
 biztosítására, azonban könnyen ki-, és bekapcsolhatók (esetenként
-erőforrásigényes lehet a kiértékelés, mint pl. minimum elem meghatározása egy
+erőforrás igényes lehet a kiértékelés, mint pl. minimum elem meghatározása egy
 komplex, rendezetlen adatszerkezetben). Fejlesztés során rendkívül hasznosak.
 
 ## Mikor ne használjuk? ##
@@ -84,7 +84,7 @@ Alapból kikapcsolt, bekapcsolni a következő Java kapcsolóval lehet:
 **Nem** egy out-of-the-box DbC eszköz, mert:
 
 * Nem transzparens a felhasználónak, összefolyik a tényleges kóddal
-* Nincs kódújrafelhasználhatóság, nincsenek benne OO elvek
+* Nincs kód újrafelhasználhatóság, nincsenek benne OO elvek
 * ... 
 
 > **Részletesen** <http://java.sun.com/j2se/1.4.2/docs/guide/lang/assert.html>

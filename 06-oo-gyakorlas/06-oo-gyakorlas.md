@@ -94,7 +94,7 @@ A megvalósítandó funkciók a következők:
   felvételekor adjunk hibaüzenetet! A jelszó beolvasásához használd a `Console`
   osztály `readPassword()` metódusát!
 
-A párosító algoritmus az ajánlatok beérkezésének sorrandjében működik. Ha egy
+A párosító algoritmus az ajánlatok beérkezésének sorrendjében működik. Ha egy
 ajánlat mennyisége nullára csökken, eltávolítjuk. Ha két ajánlat párosítása
 során az egyik ajánlat nem teljes mennyiséggel kerül felhasználásra, akkor az
 ajánlatból megmaradt mennyiség alapján ún. maradékajánlattal kell helyettesíteni
@@ -102,7 +102,7 @@ az eredeti ajánlatot (azaz a részteljesítés megengedett).
 
 ### Moziműsorok ###
 Készíts egy programot, amely moziműsorokat képes nyilvántartani! Minden
-kihírdetett előadásról a következő információkat tároljuk:
+kihirdetett előadásról a következő információkat tároljuk:
 
 * a film azonosítóját
 * a film forgalmazójának azonosítóját

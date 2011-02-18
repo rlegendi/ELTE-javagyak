@@ -2,7 +2,7 @@
 
 ## Tree ##
 Készíts egy alkalmazást, amely faszerkezetű megjelenítéssel képes kiírni a
-konzolra egy konyvtárban található fájlokat.
+konzolra egy könyvtárban található fájlokat.
 
 Példa:
 

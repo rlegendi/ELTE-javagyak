@@ -22,7 +22,7 @@ Fontos osztályok: `java.lang.reflect.*` csomag:
 * `Package` csomagok kezeléséhez
 * `Proxy` új osztályok létrehozásához
 * `Array` tömbök dinamikus létrehozása, lekérdezése
-* `Modifier` módosítók visszafejétsében segít (`public`, `protected`, etc.)
+* `Modifier` módosítók visszafejtésében segít (`public`, `protected`, etc.)
 
 ## Class ##
 Objektumreferencia megszerzése:
@@ -80,7 +80,7 @@ teljes hivatkozási nevét (*fully qualified name*), és
   (*a sorrendre figyeljetek, mert az annotáció is interfésznek minősül*).
 * bejárja az osztályban deklarált összes adattagot, és kiírja azok nevét,
   típusát, és módosítószavait.
-* megkeresi az osztály összes publikus, deklarlált konstruktorát, valamint
+* megkeresi az osztály összes publikus, deklarált konstruktorát, valamint
   kiírja azok paramétereinek a számát.
 * lekérdezi az összes adattagot, és megnézi, hogy hányhoz van getter, setter
   függvény definiálva, valamint hány olyan van, amelyhez mindkettő definiálva

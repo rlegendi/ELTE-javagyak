@@ -132,7 +132,7 @@ Két lehetőség:
 > **Részletesen** <http://download.oracle.com/javase/6/docs/api/java/lang/Thread.html>
 
 > **Megjegyzés** Sok deprecated függvény, mert könnyen deadlockhoz vezethetnek
->  (pl. erőforrás lefoglalásának megsznüntetése). Mindig van kerülőút, pl. szál
+>  (pl. erőforrás lefoglalásának megszüntetése). Mindig van kerülőút, pl. szál
 >  leállítására:
 > 
 >		private volatile isRunning = true;
@@ -155,7 +155,7 @@ Két lehetőség:
   fér csak hozzá
 * **Versenyhelyzetek** amikor egy számítás helyessége függ a végrehajtó
   folyamatok sorrendjétől (pl. *check-then-act* blokkok)
-* **Nemdetirminisztikus végrehajtás** kétszer ugyanazt a viselkedést produkálni
+* **Nemdeterminisztikus végrehajtás** kétszer ugyanazt a viselkedést produkálni
   lehetetlen, debuggolás esélytelen
 
 A szinkronizációt ezen problémák elkerülésével kell megoldani.
@@ -378,7 +378,7 @@ párhuzamosan a vizsgálatot!
 
 ### Parallel keresőmotor ###
 Készítsünk egy saját WWW keresőmotort, amely egy cím &rarr; URL kereső
-adatbázist képesz készíteni! A program 5 szál használatával keressen az
+adatbázist képes készíteni! A program 5 szál használatával keressen az
 interneten, minden szám max. 50 weboldalt járjon végig, és írják ki egy közös
 fájlba soronként a weboldal címét (a `<meta name="title" content="xxx">`
 értékét), valamint az éppen vizsgált URL-t. Parancssori argumentumként kapjon

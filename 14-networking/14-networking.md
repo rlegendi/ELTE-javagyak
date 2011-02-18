@@ -29,7 +29,7 @@ A kliens működése általában:
 
 * Lefoglal egy TCP portot, ezen keresztül kommunikál a szerverrel
 * Kapcsolódik a másik végponton a szerverhez, azon a porton, amelyet az
-  kozzétett
+  közzétett
 * Lezajlik a kommunikáció
 * A kliens bontja a kapcsolatot a szerverrel
 
@@ -47,7 +47,7 @@ Hasznunkra válik az `InetAddress` osztály:
 
 * `getByName(String)`: név &rarr; cím
 * `getByAddress(byte[]):` IPv4/6 &rarr; cím
-* `getAllByName()`: név &rarr; címek (attól függ, hogy van beheggesztve a NS)
+* `getAllByName()`: név &rarr; címek (attól függ, hogy van behegesztve a NS)
 * `getLocalHost()`: &rarr; saját cím
 
 > **Részletesen** <http://download.oracle.com/javase/6/docs/api/java/net/InetAddress.html>
@@ -160,7 +160,7 @@ konzolon. Ennek szabványos kommunikációja így zajlik:
 
 	$
 
-> **Megjegyzés** A végén két újsor karakter van!
+> **Megjegyzés** A végén két új sor karakter van!
 
 ### Chat alkalmazás ###
 Készítsünk egy közös chat alkalmazást! Ti írjátok a kliens programot, amely

@@ -220,5 +220,5 @@ nyomógombot, amelyeken 1..8-ig számok szerepelnek, a kilencediken pedig egy
 (`Math.random()`, de az is elég, ha van egy beégetett összekevert kombináció).
 Ha egy számot tartalmazó nyomógombra kattintunk, akkor ha az szomszédos a `"*"`
 karakterrel, cseréljük fel a gombok szövegét! A cél, hogy a számokat
-sorfolytonosan kirakjuk, és a `"*"` karakter a jobb asó sarokban legyen. Ha ezt
+sorfolytonosan kirakjuk, és a `"*"` karakter a jobb alsó sarokban legyen. Ha ezt
 sikerült elérnie a felhasználónak, adjunk egy gratuláló üzenetet!

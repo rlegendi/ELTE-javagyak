@@ -29,7 +29,7 @@ Magyarul ha `S <= T =x=> G<S> <= G<T>` - ez pedig ellent mond az ember
 megérzésének. Castolni lehet (warning), `instanceof` tilos (fordítási hiba)!
 
 ## Wildcardok ##
-Probléma: általános megoldást szerenténk, amely minden collectiont elfogad,
+Probléma: általános megoldást szeretnénk, amely minden collectiont elfogad,
 függetlenül az azokban tárolt elemektől (pl. ki szeretnénk őket írni), vagy nem
 tudjuk azok konkrét típusát (pl. legacy code). `Collection<Object>` *nem* őse
 (ld. előző bekezdés). Ha nem használunk genericeket, megoldható, viszont

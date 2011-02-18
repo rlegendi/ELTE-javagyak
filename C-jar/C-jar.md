@@ -24,10 +24,10 @@ nélkül az std. inputról várja a bemenetet.
 * `miből` : Ezeket a fájlokat csomagoljuk be. Ezek lehetnek egész könyvtárak,
 könyvtárstruktúrák vagy csak 1 darab classfájl.
 
-Miután létrehoztuk az archívumot, még van egy apró dolgunk: módoítanunk kell a
+Miután létrehoztuk az archívumot, még van egy apró dolgunk: módosítanunk kell a
 manifestet (A manifest egy olyan fájl, ami automatikusan generálódik a
 létrehozásnál, de akár le is cserélhető. Az a lényege, hogy metainformációt
-tartalmaz az archívumról, pl. ki, mikor fordítota, milyen fordítóval, mi a
+tartalmaz az archívumról, pl. ki, mikor fordította, milyen fordítóval, mi a
 futtatandó osztály, milyen **classpath beállítások** tartoznak hozzá (ha van
 benne ilyen, mást nem is vesz figyelembe), etc.), hogy megmondjuk mely
 osztályból kell indítani a `main()` függvényt. Erre csak akkor van szükség, ha

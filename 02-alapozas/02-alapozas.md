@@ -29,9 +29,9 @@ figyeljetek!).
 * Inicializáció:
 
 		// barr1, barr2, barr3 ekvivalens definicio
-		boolean barr1 = { true, false };
-		boolean barr2 = new boolean[] { true, false }; // kifejezesben kotelezo!
-		boolean barr3 = new boolean[2];
+		boolean[] barr1 = { true, false };
+		boolean[] barr2 = new boolean[] { true, false }; // kifejezesben kotelezo!
+		boolean[] barr3 = new boolean[2];
 		barr3[0] = true; barr3[1] = false;
 
 * Tömbök elemei default értéket kapnak (pl. objektum nullt, int 0-t, boolean false-t, stb.)

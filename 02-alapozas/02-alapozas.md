@@ -191,7 +191,7 @@ dokumentációja <http://download.oracle.com/javase/6/docs/api/java/util/regex/P
 A feladat megoldásához használjatok függvényeket, és megfelelő hibakezelést (pl.
 `IllegalArgumentException`, saját típust még nem kell definiálnotok)! Egyelőre
 minden függvényt lássatok el a `public static` módosítószavakkal! Az összes
-megoldást rakjátok egy `java.basics` csomagba! A feladatok nem feltétlen
+megoldást rakjátok egy `javagyak.basics` csomagba! A feladatok nem feltétlen
 nehézségi sorrendben követik egymást!
 
 **+/- Feladat** Minden feladatcsoportból egy tetszőlegesen választott feladat.

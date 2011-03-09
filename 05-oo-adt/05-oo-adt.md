@@ -3,6 +3,44 @@
 Absztrakt adattípus = adatabsztrakció, absztrakt adattípus és a rajta
 értelmezett műveletek.
 
+# Emlékeztető: Object Függvények felüldefiniálása #
+
+	public class Student {
+	  private String name;
+	  private String ETR;
+	  private int yearsAtUni;
+	  
+	  // ...
+	  
+	  @Override
+	  public int hashCode() {
+	    return name.hashCode() + ETR.hashCode() + yearsAtUni;
+	  }
+	  
+	  @Override
+	  public boolean equals(final Object obj) {
+	    if (obj instanceof Student) {
+	      final Student other = (Student) obj;
+
+	      // Esetleges null ellenorzeseket tessek elvegezni!
+	      // Itt az attekinthetoseg kedveert ettol eltekintettem.	
+	      return ( name.equals( other.name) &&
+	            ETR.equals( other.ETR ) &&
+	            yearsAtUni == other.yearsAtUni );
+	    }
+	    
+	    return false;
+	  }
+	  
+	  @Override
+	  public String toString() {
+	    return "Student [name=" + name + "," + "ETR=" + ETR + ", " +
+	        "yearsAtUni=" + yearsAtUni + "]";
+	  }
+	  
+	}
+
+
 ## Absztrakt osztályok ##
 Ősosztályok "közös nevezőre" hozzák leszármazottaikat: definiálnak egy
 interfészt (külső felületet), vagyis egy adat-, és metóduskészletet, amelyen
@@ -295,3 +333,4 @@ megengedett (sőt, ajánlott is).
 	* transzponálás
 	* nyom kiszámítása (átló elemeinek összege, ha négyzetes)
 	* mátrixok szorzása mátrixokkal (amennyiben lehetséges)
+

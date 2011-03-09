@@ -1,41 +1,5 @@
 # OO gyakorló feladatok #
 
-## Emlékeztető ##
-
-###Object Függvények felüldefiniálása ###
-	public class Student {
-	  private String name;
-	  private String ETR;
-	  private int yearsAtUni;
-	  
-	  // ...
-	  
-	  @Override
-	  public int hashCode() {
-	    return name.hashCode() + ETR.hashCode() + yearsAtUni;
-	  }
-	  
-	  @Override
-	  public boolean equals(final Object obj) {
-	    if (obj instanceof Student) {
-	      final Student other = (Student) obj;
-	      return ( name.equals( other.name) &&
-	            ETR.equals( other.ETR ) &&
-	            yearsAtUni == other.yearsAtUni );
-	    }
-	    
-	    return false;
-	  }
-	  
-	  @Override
-	  public String toString() {
-	    return "Student [name=" + name + "," +
-	        "ETR=" + ETR + ", " +
-	        "yearsAtUni=" + yearsAtUni + "]";
-	  }
-	  
-	}
-
 ## ZH gyakorló feladatok ##
 
 A feladatok a ZH-ra való felkészülést segítik, ennek okán kicsit bonyolultabbak

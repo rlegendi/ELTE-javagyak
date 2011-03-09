@@ -217,13 +217,23 @@ megengedett (sőt, ajánlott is).
   alapján az 1D, 2D, 3D pontok megvalósítását (tartalmazzák a szükséges `double`
   koordinátákat, valamint az absztrakt függvények implementációit).
 
+  Közös adattag legyen az első, `x` koordináta (ezzel minden származtatott osztály
+  rendelkezik). Az eltoláshoz használj változó számú paramétert (*vararg*), a
+  következő minta alapján:
+
+		public abstract void translate(double... coordinates);
+
+  A forgatást vedd úgy, hogy az origó kürül kell elforgatni a megadott pontot,
+  a paraméterként specifikált *alpha* szöggel (3D pont esetén elég valamelyik
+  tengely körül forgatni)!
+
   Készíts egy `Kirajzolható` interfészt! Ezt az 1D pont implementálja úgy, hogy
-  a koordinátáinak megfelelő szóköz után rajzoljon egy `#` karaktert a konzolra
-  (negatív esetben az # után rakjon szóközöket).
+  a koordinátáinak megfelelő számú szóköz után rajzoljon egy `#` karaktert a
+  konzolra (negatív esetben az `#` után rakjon szóközöket).
   
   Készíts egy `Frissitheto` interfészt! Ez egyetlen metódust írjon elő:
 
-	public void frissit();
+		public abstract void frissit();
 
   Ezzel a képernyőről, felhasználói interakció révén lehessen frissíteni az
   adott objektum értékeit! Minden implementáció valósítsa meg ezt az interfészt!

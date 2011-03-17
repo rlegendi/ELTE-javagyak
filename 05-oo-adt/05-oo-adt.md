@@ -184,7 +184,7 @@ amiknek implementációs szinten kell eldőlniük, használatuk ésszerűtlen le
 
 Főleg tulajdonságok, viselkedés hozzáadására. Például:
 
-	interface Beolvashato() {
+	interface Beolvashato {
 	  public abstract void beolvas();
 	}
 	

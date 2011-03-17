@@ -102,6 +102,11 @@ Iterátorokkal rendelkeznek, használhatók for-each-ben. Példa:
 	            vector.add( Math.random() );
 	        }
 	        
+		for (double act : vector) {
+	        	System.out.println(act);
+		}
+		
+		// Ellenorzeskeppen kiirhatjuk a teljes vektort az alabbi modon is: 
 	        System.out.println(vector);
 	    }
 	}
@@ -220,15 +225,16 @@ függvénnyel, és írjátok ki az eredményt!
 1. `java.util.Arrays#asList()`: tömbből listát csinál
 2. `java.util.Collections`
 	* `nCopies(int n, Object o)`: két paraméter, amely `n`-szer tartalmazza
-	  `o`-t.
+	  `o`-t
 	* Egyelemű, üres, módosíthatatlan, szinkronizált listák
 	* Algoritmusok:
 		* Rendezés, összefésüléses módszerrel (`n log(n)`, rendezett listát már
 		  nem rendez, szemben a quick sorttal): `sort()`
 		* Összekeveerés: `shuffle()`
 		* Megfordítás, feltöltés, másolás: `reverse()`, `fill()`, `copy()`
-		* Bináris keresés: `(-i-1)`-et ad vissza, ahol `i` az első olyan elem
-		  indexe, amely nagyobb az elemnél.
+		* Bináris keresés: a keresett elem első talált indexét adja vissza, vagy
+                  `(-i-1)`-et ad vissza, ahol `i` az első olyan elem indexe, amely nagyobb
+                  a keresett elemnél.
 		* Minimum, maximum elem: `min()`, `max()`
 
 #### Megjegyzések: ####
@@ -244,7 +250,9 @@ függvénnyel, és írjátok ki az eredményt!
 		Vector<Integer> v1 = new Vector<Integer>();  // vektorkent kezeles
 		List<Integer>   v2 = new Vector<Integer>();  // listakent kezeles
 
-> **Részletesen:** <http://download.oracle.com/javase/6/docs/api/java/util/package-summary.html>
+> **Részletesen:**
+> <http://download.oracle.com/javase/tutorial/collections/index.html>
+> <http://download.oracle.com/javase/6/docs/api/java/util/package-summary.html>
 
 #### Feladat ####
 Készítsünk egy sorozat rendező alkalmazást! A program inputja a következő

@@ -29,4 +29,5 @@ segítsége nélkül (nagyjából időrendben):
 * Koroknai László Áron (2010-2011-I typok kigyűjtése, Sunos linkek frissítése)
 * Szabó-Demény Balázs (2010-2011-I a környezet beállításáról szóló melléklet fordítása)
 * Herendi Andor, *floody* (2010-2011-I apróbb észrevételek)
+* Márton Dávid (2010-2011-II, a Java 1.5 újdonságainak teljes fordítása)
 

@@ -102,10 +102,30 @@ membernél használható. Példa:
 	        return second;
 	    }
 	    
+	    // Esetleges null ellenorzeseket tessek elvegezni!
+ 	    // Itt az attekinthetoseg kedveert ettol eltekintettem.
+	    @Override
+	    public boolean equals(final Object obj) {
+	        if (obj instanceof Pair) {
+	            Pair<?, ?> pair = (Pair<?, ?>) obj;
+	            return first.equals( pair.first ) && second.equals( pair.second );
+	        }
+	        
+	        return false;
+	    }
+
+	    // Esetleges null ellenorzeseket tessek elvegezni!
+ 	    // Itt az attekinthetoseg kedveert ettol eltekintettem.
+	    @Override
+	    public int hashCode() {
+        	return first.hashCode() + second.hashCode();
+	    }
+
 	    @Override
 	    public String toString() {
 	        return "(" + first + ", " + second + ")";
 	    }
+
 	}
 
 Generikus függvények esetén szintén a definícióban használható. Példa:
@@ -143,7 +163,7 @@ adatszerkezetet képes visszafelé kiírni a képernyőre!
 
 ### Fill ###
 Készíts egy generikus `fill()` függvényt, amely a paraméterként kapott,
-tetszőleges kollekció minden elemét lecseréli a megadott elemre.
+tetszőleges lista minden elemét lecseréli a megadott elemre.
 
 ### addAll() ###
 Készíts egy generikus `addAll()` függvényt, amely egy tetszőleges lista

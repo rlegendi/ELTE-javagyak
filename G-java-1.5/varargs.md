@@ -1,5 +1,4 @@
-Varargs
-=========
+# Varargs #
 
 ---
 
@@ -27,7 +26,7 @@ A három pont az utolsó paraméter típusa után azt jelzi, hogy az utolsó par
     		+ "{0,number,integer}.",
     		7, new Date(), "a disturbance in the Force");
 
-Az [autoboxing](./autoboxing.html "autoboxing") és a varargs igen erős eszközök a programozó kezében, ahogy azt az alábbi program is illusztrálja:
+Az [autoboxing](./autoboxing.md "autoboxing") és a varargs igen erős eszközök a programozó kezében, ahogy azt az alábbi program is illusztrálja:
 
     	// Simple test framework
     	public class Test {

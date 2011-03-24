@@ -1,11 +1,10 @@
-Autoboxing
-==========
+# Autoboxing #
 
 ---
 
-Mint azt minden Java programozó tudja, az `int` (vagy bármely más primitív típus) nem rakható be egy kollekcióba. A kollekciók csak objektumokra mutatató referenciákat tartalmazhatnak, ezért a primitív értékeket be kell "csomagolni" a megfelelő wrapper osztály segítségével (`int` esetén az [Integer](./Integer.html "Integer")-rel). Ha egy objektumot kiveszünk a fenti kollekcióból, a berakott `Integert` kapjunk vissza. Ha `int`-re van szükségünk, azt ki kell "bontani" az `Integer`-ből az `intValue` metódus segítségével. Ez a csomagolás-kibontás elég zsúfolttá teheti a kódot. Az autoboxing és unboxing lehetőségek arra szolgálnak, hogy automatizálják ezt a folyamatot, levéve ezzel a programozók válláról ennek terhét.
+Mint azt minden Java programozó tudja, az `int` (vagy bármely más primitív típus) nem rakható be egy kollekcióba. A kollekciók csak objektumokra mutatató referenciákat tartalmazhatnak, ezért a primitív értékeket be kell "csomagolni" a megfelelő wrapper osztály segítségével (`int` esetén az [Integer](http://download.oracle.com/javase/1.5.0/docs/api/java/lang/Integer.html "Integer")-rel). Ha egy objektumot kiveszünk a fenti kollekcióból, a berakott `Integert` kapjunk vissza. Ha `int`-re van szükségünk, azt ki kell "bontani" az `Integer`-ből az `intValue` metódus segítségével. Ez a csomagolás-kibontás elég zsúfolttá teheti a kódot. Az autoboxing és unboxing lehetőségek arra szolgálnak, hogy automatizálják ezt a folyamatot, levéve ezzel a programozók válláról ennek terhét.
 
-A következő példa az autoboxing és unboxing, valamint a [generic](./generics.html "generics")-ek és a [for-each](./for-each.html "for-each") ciklus működését illusztrálja. A tíz soros program létrehozza, és kiírja a parancssori paraméterként kapott szavak alfabetikusan rendezett gyakorisági táblázatát.
+A következő példa az autoboxing és unboxing, valamint a [generic](./generics.html "generics")-ek és a [for-each](./for-each.md "for-each") ciklus működését illusztrálja. A tíz soros program létrehozza, és kiírja a parancssori paraméterként kapott szavak alfabetikusan rendezett gyakorisági táblázatát.
 
     	import java.util.*;
 
@@ -28,7 +27,7 @@ A program először deklarál egy `String`-`Integer` map-et, amely segítségév
 
 Ennek a varázslatnak köszönhetően, nagyrészt figyelmen kívül hagyhatóak az `int` és `Integer` közti különbségek, némi fenntartással. Egy `Integer` kifejezés értéke lehet `null`. Ha a programod `null` értékű kifejezést próbál "autounboxolni", az `NullPointerException` kivételt fog eredményezni. Az == operátor referencia szerinti egyenlőséget vizsgál `Interger` és érték szerinti egyenlőséget vizsgál `int` kifejezések esetén. Végül, fontos megemlíteni, hogy az autoboxing és unboxing automatikusan történnek ugyan, de igencsak költségesek.
 
-Íme, még egy példa az autoboxing és az unboxing szemléltetésére. Egy statikus gyártó, amely egy `int` tömböt kap paraméterként, majd visszaad egy `Integer`-eket tartalmazó listát ([List](./List.html "List")) "mögötte" a tömbbel. A következő néhány soros metódus kényelmes, lista-szerű hozzéférést biztosít az `int` tömbhöz. Minden változtatás a listában megjelenik a tömbben, és fordítva. A sorok, ahol autoboxing vagy unboxing történik ki vannak emelve.
+Íme, még egy példa az autoboxing és az unboxing szemléltetésére. Egy statikus gyártó, amely egy `int` tömböt kap paraméterként, majd visszaad egy `Integer`-eket tartalmazó listát ([List](http://download.oracle.com/javase/1.5.0/docs/api/java/util/List.html "List")) "mögötte" a tömbbel. A következő néhány soros metódus kényelmes, lista-szerű hozzéférést biztosít az `int` tömbhöz. Minden változtatás a listában megjelenik a tömbben, és fordítva. A sorok, ahol autoboxing vagy unboxing történik ki vannak emelve.
 
     	**// List adapter for primitive int array**
     	public static List<Integer> asList(final int[] a) {

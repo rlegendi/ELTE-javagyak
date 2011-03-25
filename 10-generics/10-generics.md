@@ -152,6 +152,10 @@ Generikus függvények esetén szintén a definícióban használható. Példa:
 
 ## Feladatok ##
 
+A megoldáshoz készített osztályokat tegyétek a `javagyak.generics` csomagba,
+valamint a teszteléshez használt osztályokat (amik a `main()` definícióit is
+tartalmazzák) a `javagyak.test` csomagba!
+
 ### Triple ###
 Készíts el egy generikus `Triple` osztályt, amely 3 (nem feltétlen) különböző
 típuból alkotott rendezett hármas! Valósítsd meg vele a szokásos műveleteket
@@ -188,3 +192,4 @@ Készítsünk egy egyszerű, általános bináris keresőfa implementációt! A 
 lehessen elemet hozzáadni (`add()`), kiírni, valamint a minimum, maximum elemet
 megkeresni (`min()`, `max()`). A típusparaméterének összehasonlíthatónak kell
 lennie (`<T extends Comparable<T>>`).
+

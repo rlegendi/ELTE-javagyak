@@ -133,8 +133,7 @@ Generikus függvények esetén szintén a definícióban használható. Példa:
 	package generics;
 	
 	public class ArrayUtils {
-	    public static final <T, S extends T>
-	    boolean isIn(final T[] arr, final S element) {
+	    public static final <T, S extends T> boolean isIn(final T[] arr, final S element) {
 	        for (final T t : arr) {
 	            if (t.equals(element)) return true;
 	        }

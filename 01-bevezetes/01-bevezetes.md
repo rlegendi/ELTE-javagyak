@@ -167,6 +167,116 @@ Szövegkonverzió:
 * Stringgé: `String s = "" + 1;` (precedenciára figyelni!)
 * Stringből: `Integer.parseInt("1")`, `Double.parseDouble("2.0")`, ...
 
+### Valós számok ###
+
+A gépi számábrázolás rengeteg problémát vet fel, amik még egy tapasztaltabb programozónak is okozhatnak kellemetlen meglepetéseket. Ezt elkerülve igyekszem leírni pár olyan tipikus hibát, amikbe bele lehet esni, és igyekszem rávilágítani, hogy hogyan lehet azokat megoldani (amennyiben egyáltalán van rá lehetőség).
+
+**Ez az alfejezet nem csak és kizárólag Java programozóknak szól**: általában a programozási nyelvekben előjövő gyakorlati tanácsokat találhattok összefoglalva.
+
+Aki esetleg mélyebben érdeklődne, a *Numerikus Analízis c. tárgy* keretein belül részleteiben tárgyaljátok ezt a témakört.
+
+#### Approximáció ####
+
+A gépeken tárolt valós változók közelítések, approximációk. Alapvetően kétféle megközelítést használnak a programozási nyelvek: *fixpontos* ill. *lebegőpontos* ábrázolásmódot. Előbbit úgy képzeljétek el, hogy fix számú biten tárolják az előjelet, egészrészt valamint a törtrészt (ez már maga komoly numerikus hibákkal járhat), utóbbinál pedig a következő formában: `(-1)^s * m * 10^k`, ahol `0 <= |m| <= 10` a mantissza, *k* pedig a karakterisztika (ezt hívják *normál alaknak*, a bináris reprezentációban tízes alap helyett kettest használnak). Van nyelv, ami az egyiket, van, ami a másikat támogatja, és van, ami mindkettőt (pl. a Pascal, Ada).
+
+A legtöbb programozási nyelv az 1985-ben elfogadott IEE 754 szabvány szerint kezeli a számokat, ezek alól a Java sem kivétel.
+
+Ami a lényeg: ha leírsz egy számot, az *közelítés*, hiába gondolsz bármi mást. Mutatok egy példát:
+
+	// Az eredmenye: 1
+	System.out.println( 0.2 + 0.2 + 0.2 + 0.2 + 0.2 );
+
+Ez többé-kevésbé egybevág az ember intuitív elvárásával. Ez viszont teljesen véletlen, a csillagok állásának köszönhető: azon múlt, hogy a `0.2d` egyike azon ritka valós számoknak, amely *viszonylag kis numerikus hiba mellett ábrázolható*.
+
+Próbáljuk meg például a fenti kódot `0.1` értékekkel:
+
+	// Az eredmenye: 1.0000001
+	System.out.println( 0.1f + 0.1f + 0.1f + 0.1f + 0.1f + 0.1f + 0.1f + 0.1f + 0.1f + 0.1f );
+
+	// Az eredmenye: 0.9999999999999999
+	System.out.println( 0.1d + 0.1d + 0.1d + 0.1d + 0.1d + 0.1d + 0.1d + 0.1d + 0.1d + 0.1d );
+
+Ezzel sajnos nem tudsz mit csinálni. Sőt, további gondokhoz vezet. Nézzünk erre most néhány példát a következő alfejezetekben!
+
+#### Az == operátor ####
+
+A fenti pont egy következménye, hogy ha leírunk egy ilyen kifejezést:
+
+	// Akkor az bizony hamis lesz:
+	System.out.println( 0.3 == 0.1d + 0.1d + 0.1d );
+
+Ebbe a csapdába egy kezdő programozó könnyen beleeshet, vegyük például a következő számlálós ciklust:
+
+	for (double d=0.0; d != 0.3; d += 0.1) {
+		// Hopp! Vegtelen ciklus!
+	}
+
+Mit tudunk akkor hát ezekkel kezdeni? Nos, a legegyszerűbb megoldás az, ha a programozó felállít egy *önkényes hibahatárt*, amin belül egyezőnek vél két valós számot - azaz annak epszilon környezetébe való tartozást vizsgáljuk egyenlőség helyett. Például:
+	
+	final double DELTA = 1.0E-5; // Hibahatar
+	final double d1 = 0.3;
+	final double d2 = 0.1 + 0.1 + 0.1;
+
+	if ( Math.abs( d1 - d2 ) < DELTA ) {
+		System.out.println("d1 == d2");
+	}
+
+#### Túl-, és alulcsordulás #####
+
+Ilyet már valószínűleg az egyszerű egész típusosztály körében is láttatok: van minden típusnak egy maximális ill. minimális értéke (Java esetén ezt az `Integer.MIN_VALUE`, `Integer.MAX_VALUE`, stb. konstansok deklarálják).
+
+A valós számok esetén is előjönnek ezek a problémák, hatványozottan. Tekintsük a következő példát:
+
+	final double big = 1.0e307 * 2000 / 2000;
+	System.out.println( big == 1.0e307 ); // Hamis lesz!
+
+A programkódtól ránézésre intuitív módon az ember igaz értéket várna, azonban hamis lesz! Miért is? Beszorzok egy számot X értékkel, aztán azzal le is osztok, így az eredeti értéket kellene kapnom. Nos, a magyarázat jelen esetben a túlcsordulás: Java szigorú kiértékelési sorrendel rendelkezik (*balról jobbra azonos precedenciák esetében*). Mikor beszorozzuk a számot, kimegyünk az ábrázolható tartományból, kapunk valami teljesen más értéket (ami jelen esetben ez az `Infinity`), így azt elosztva X értékkel közel sem az eredeti számot kapjuk vissza. S minderről a programozó semmi visszajelzést nem kap...
+
+#### A túl kicsi és túl nagy számok esete ####
+A lebegőpontos számábrázolásnak van egy speciális problémája. Matematikában megszokhattátok, hogy adott `d1`, `d2` számok esetén `d1 + d2 > d1`. Nos, a lebegőpontos ábrázolás ezt is tönkrevághatja: mi van, ha az egyik szám olyan nagy, hogy a másik szám hozzáadása az ő bináris alakján semmi változtatást nem eredményez?
+
+Például:
+
+	System.out.println( 1234.0d + 1.0e-13d == 1234.0d ); // Igaz lesz!
+
+#### WYSINWYG - What You See Is Not What You Get ####
+Cseles módon, mikor kiírunk a konzolra egy valós számot, az *nem a reprezentációban használt közelített érték lesz*. Azt már tudjuk, hogy a `0.1` nincs tökéletesen ábrázolva, ugyanakkoor ha kiírjuk a képernyőre az értékét, a következőt látjuk:
+
+	System.out.println( 0.1d ); // Megjeleno ertek: 0.1
+
+Ajjjaj! Sőt, hogy bonyolítsuk a helyzetet, nézzük csak meg, mi lesz a következő kódrészlet eredménye:
+
+	System.out.println(0.1 == 0.099999999999999998); // Hamis
+	System.out.println(0.1 == 0.099999999999999999); // Igaz
+	System.out.println(0.1 == 0.100000000000000001); // Igaz
+
+Puff neki. Az első furcsaság, hogy kerekít a kód, ez teljesen jó, de `...998` felett? Nem `...995` körül kéne? *Nem.*
+
+A másik, hogy a 0.1 ugyanaz, mint 0.099999999999999999? *Igen.*
+
+Mi ennek az oka? Nos, hogy ezt kicsit megvilágítsuk, nézzük meg a közelített értéket egy speciális osztály segítségével:
+
+	// A kiirt ertek: 0.1000000000000000055511151231257827021181583404541015625
+	System.out.println( new BigDecimal(0.1) );
+
+Fura, mi?
+
+--------------------------------------------------------------------------------
+
+És akkor még a *nullával való osztásról*, a *végtelenről*, illetve a *NaN* (*Not a Number*) értékekről még nem is beszéltünk - de ezek már valamivel több ismeretet igénylő anyagok.
+
+> **Részletesen**
+>
+> <http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html> §3.10.2
+>
+> <http://blogs.sun.com/darcy/resource/Wecpskafpa-ACCU.pdf>
+>
+> <http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.22.6768>
+>
+> <http://firstclassthoughts.co.uk/java/traps/big_decimal_traps.html>
+>
+> <http://firstclassthoughts.co.uk/java/traps/java_double_traps.html>
+
 ## Tömbök ##
 * Minden `T` típushoz van `T[]`
 * Példakód:

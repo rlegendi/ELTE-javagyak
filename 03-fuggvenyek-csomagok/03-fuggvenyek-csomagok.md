@@ -248,3 +248,4 @@ negatív! A függvény által dobott kivételeket kezeld is le a `main()`
 függvényben! A paramétereket a parancssori argumentumok határozzák meg, és az
 `Integer.parseInt()` függvény által dobott `NumberFormatException` kivételt is
 kezeljétek le ugyanabban a kivételkezelő ágban!
+

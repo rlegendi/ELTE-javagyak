@@ -286,3 +286,4 @@ cserélje kisbetűre!
 első a másodikkal kezdődik-e. Az összehasonlításnál a kisbetű, nagybetű eltérés
 nem számít (azaz pl. `"Windows 7"`, `"win"`) paraméterekre adjon vissza igaz
 értéket!).
+

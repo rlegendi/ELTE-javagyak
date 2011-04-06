@@ -162,6 +162,19 @@ konzolon. Ennek szabványos kommunikációja így zajlik:
 
 > **Megjegyzés** A végén két új sor karakter van!
 
+### Port scanner ###
+Készítsetek egy minimális port scanner alkalmazást! A programnak egyetlen
+parancssori argumentuma legyen, a tesztelendő host címe. Ezután a program az
+`[1..1024]` intervallumban (ezek az ún. *well known* portok) tesztelje végig,
+hogy hol fogad kapcsolatot az adott gép (próbáljon meg egy TCP socket
+kapcsolatot létrehozni). Amennyiben ez sikeres, jelezzük a felhasználónak, majd
+írjuk ki, hogy milyen szolgáltatás fut valószínűleg a gépen. Localhoston
+teszteljétek. A host azonosításához használjátok az `InetAddress` osztályt!
+
+Egy lista, amely tartalmazza a szolgáltatások neveit: <http://www.iana.org/assignments/port-numbers>
+
+## Bonyolultabb feladatok ##
+
 ### Chat alkalmazás ###
 Készítsünk egy közös chat alkalmazást! Ti írjátok a kliens programot, amely
 csatlakozik a `pandora.inf.elte.hu` szerver `5000`-es portjára. A program
@@ -185,17 +198,6 @@ formában (pl. az adott nicknév ár foglalt, etc.).
 * A fenti programhoz készíts egy tetszőleges vezérlő felületet (lehet konzolos,
 lehet grafikus).
 
-### Port scanner ###
-Készítsetek egy minimális port scanner alkalmazást! A programnak egyetlen
-parancssori argumentuma legyen, a tesztelendő host címe. Ezután a program az
-`[1..1024]` intervallumban (ezek az ún. *well known* portok) tesztelje végig,
-hogy hol fogad kapcsolatot az adott gép (próbáljon meg egy TCP socket
-kapcsolatot létrehozni). Amennyiben ez sikeres, jelezzük a felhasználónak, majd
-írjuk ki, hogy milyen szolgáltatás fut valószínűleg a gépen. Localhoston
-teszteljétek. A host azonosításához használjátok az `InetAddress` osztályt!
-
-Egy lista, amely tartalmazza a szolgáltatások neveit: <http://www.iana.org/assignments/port-numbers>
-
 ### Tetszőleges protokoll megvalósítása ###
 Válassz ki egy tetszőleges alkalmazási protokollt (HTTP, SMTP, FTP, IRC, stb.).
 Készíts egy minimális kliens alkalmazást hozzá, amely egyszerű funkciók
@@ -204,3 +206,4 @@ ellátására képes. Nézz utána, hogy működik az adott protokoll, majd pró
 programot.
 
 > **Tipp** Google &rarr; FTP over telnet
+

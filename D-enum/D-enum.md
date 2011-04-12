@@ -80,7 +80,9 @@ További okosság: *constant-specific* függvények:
 `*java.util.EnumSet`, `java.util.EnumMap`.
 
 > **Részletesen**
+>
 > <http://java.sun.com/docs/books/tutorial/java/javaOO/enum.html>
+>
 > [Magyar fordítása mellékelve Molnár Szilvinek köszönhetően elérhető](enum-tutorial-full-hun.md)
 
 ## Feladat ##

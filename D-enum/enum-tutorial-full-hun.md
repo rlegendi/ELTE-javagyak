@@ -1,5 +1,9 @@
 # Enumok #
 
+> **Megjegyzés** Az alábbi fejezetet a Java 1.5 egy bevezetőjének (kissé átdolgozott) magyar fordítását tartalmazza. A fordítást köszönjük Molnár Szilvinek!
+> 
+> <http://download.oracle.com/javase/1.5.0/docs/guide/language/enums.html>
+
 A régebbi verziókban a felsoroló típusoknak a szabványos reprezentációja az *int enum pattern*:
 
 		//int Enum minta - komoly hibákkal küzd!

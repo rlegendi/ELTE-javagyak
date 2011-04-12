@@ -30,4 +30,5 @@ segítsége nélkül (nagyjából időrendben):
 * Szabó-Demény Balázs (2010-2011-I a környezet beállításáról szóló melléklet fordítása)
 * Herendi Andor, *floody* (2010-2011-I apróbb észrevételek)
 * Márton Dávid (2010-2011-II, a Java 1.5 újdonságainak teljes fordítása)
+* Molnár Szilvi (2010-2011-II, a Java 1.5 enum tutorial teljes fordítása)
 

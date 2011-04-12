@@ -79,7 +79,9 @@ További okosság: *constant-specific* függvények:
 *Igen* ritkán van rá szükség, de akkor hasznos, hogy van. További okosságok:
 `*java.util.EnumSet`, `java.util.EnumMap`.
 
-> **Részletesen** <http://java.sun.com/docs/books/tutorial/java/javaOO/enum.html>
+> **Részletesen**
+> <http://java.sun.com/docs/books/tutorial/java/javaOO/enum.html>
+> [Magyar fordítása mellékelve Molnár Szilvinek köszönhetően elérhető](enum-tutorial-full-hun.md)
 
 ## Feladat ##
 Készítsünk egy minimális BKV nyilvántartó programot! Az egyes járművekhez (Busz,

@@ -1,5 +1,9 @@
 # A For-Each ciklus #
 
+> **Megjegyzés** Az alábbi fejezetet a Java 1.5 egy bevezetőjének (kissé átdolgozott) magyar fordítását tartalmazza. A fordítást köszönjük Márton Dávidnak! 
+> 
+> <http://download.oracle.com/javase/1.5.0/docs/guide/language/foreach.html>
+
 ---
 
 Végigiterálni egy kollekción csúnyább mint lennie kéne. Lássuk a következő metódust, ami timer taskok egy kollekcióján halad végig és zárja be őket:

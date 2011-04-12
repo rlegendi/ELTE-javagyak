@@ -1,5 +1,9 @@
 # Static Import #
 
+> **Megjegyzés** Az alábbi fejezetet a Java 1.5 egy bevezetőjének (kissé átdolgozott) magyar fordítását tartalmazza. A fordítást köszönjük Márton Dávidnak! 
+> 
+> <http://download.oracle.com/javase/1.5.0/docs/guide/language/static-import.html>
+
 ---
 
 Ahhoz, hogy statikus tagokhoz hozzáférjünk, az őket tartalmazó osztály nevével kell hivatkoznunk rájuk. Például:

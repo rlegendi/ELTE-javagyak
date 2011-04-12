@@ -1,5 +1,9 @@
 # Autoboxing #
 
+> **Megjegyzés** Az alábbi fejezetet a Java 1.5 egy bevezetőjének (kissé átdolgozott) magyar fordítását tartalmazza. A fordítást köszönjük Márton Dávidnak! 
+> 
+> <http://download.oracle.com/javase/1.5.0/docs/guide/language/autoboxing.html>
+
 ---
 
 Mint azt minden Java programozó tudja, az `int` (vagy bármely más primitív típus) nem rakható be egy kollekcióba. A kollekciók csak objektumokra mutatató referenciákat tartalmazhatnak, ezért a primitív értékeket be kell "csomagolni" a megfelelő wrapper osztály segítségével (`int` esetén az [Integer](http://download.oracle.com/javase/1.5.0/docs/api/java/lang/Integer.html "Integer")-rel). Ha egy objektumot kiveszünk a fenti kollekcióból, a berakott `Integert` kapjunk vissza. Ha `int`-re van szükségünk, azt ki kell "bontani" az `Integer`-ből az `intValue` metódus segítségével. Ez a csomagolás-kibontás elég zsúfolttá teheti a kódot. Az autoboxing és unboxing lehetőségek arra szolgálnak, hogy automatizálják ezt a folyamatot, levéve ezzel a programozók válláról ennek terhét.

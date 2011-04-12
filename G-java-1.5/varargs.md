@@ -1,5 +1,9 @@
 # Varargs #
 
+> **Megjegyzés** Az alábbi fejezetet a Java 1.5 egy bevezetőjének (kissé átdolgozott) magyar fordítását tartalmazza. A fordítást köszönjük Márton Dávidnak! 
+> 
+> <http://download.oracle.com/javase/1.5.0/docs/guide/language/varargs.html>
+
 ---
 
 A korábbi verziókban, ha egy metódus tetszóleges számú paramétert várt, arra volt szükség, hogy egy tömböt hozzunk létre az adatok tárolására a metódus meghívása előtt. Vegyük például az üzeneteket formázottan kiíró [MessageFormat](./MessageFormat.html "MessageFormat") osztályt:

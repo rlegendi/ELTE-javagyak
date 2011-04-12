@@ -1,6 +1,4 @@
-Enumok
-======
-
+# Enumok #
 
 A régebbi verziókban a felsoroló típusoknak a szabványos reprezentációja az `int` Enum minta:
 
@@ -12,10 +10,10 @@ A régebbi verziókban a felsoroló típusoknak a szabványos reprezentációja 
 
 Ezzel a mintával sok probléma van, mint például:
 
-+ **Nem típusbiztos** - Mivel az évszak csak egy `int`, ezért bármilyen más `int` értéket megadhatunk neki, ahol egy évszakra van szükség, vagy összeadhatunk két évszakot (aminek nincs semmi értelme).
-+ **Nincs névtér** - Minden int enum-nak kell adnunk egy string előtagot, (ebben az esetben `SEASON_`) hogy elkerüljük a többi int enum típussal való ütközést.
-+ **Törékenység** - Mivel az int enum-ok fordítási idejű konstansok, kliensekbe fordulnak le, amik 	használják őket. Ha egy új konstansot hozunk létre két, már létező konstans közé vagy a sorrend	megváltozik, a klienseket újra kell fordítani. Ha ezt nem tesszük meg attól még a program futni fog, viszont a program nem-determinisztikussá válhat.
-+ **A kiírt értékek nem informatívak** -  Mivel csak egészek, ezért ha kiíratunk egyet csak egy számot fogunk látni, ami nem mond semmit a reprezentációjáról, de még a típusát se tudjuk belőle kikövetkeztetni.	
+* **Nem típusbiztos** - Mivel az évszak csak egy `int`, ezért bármilyen más `int` értéket megadhatunk neki, ahol egy évszakra van szükség, vagy összeadhatunk két évszakot (aminek nincs semmi értelme).
+* **Nincs névtér** - Minden int enum-nak kell adnunk egy string előtagot, (ebben az esetben `SEASON_`) hogy elkerüljük a többi int enum típussal való ütközést.
+* **Törékenység** - Mivel az int enum-ok fordítási idejű konstansok, kliensekbe fordulnak le, amik 	használják őket. Ha egy új konstansot hozunk létre két, már létező konstans közé vagy a sorrend	megváltozik, a klienseket újra kell fordítani. Ha ezt nem tesszük meg attól még a program futni fog, viszont a program nem-determinisztikussá válhat.
+* **A kiírt értékek nem informatívak** -  Mivel csak egészek, ezért ha kiíratunk egyet csak egy számot fogunk látni, ami nem mond semmit a reprezentációjáról, de még a típusát se tudjuk belőle kikövetkeztetni.	
 
 Lehetőség van elkerülni ezeket a problémákat a *Typesafe Enum* minta használatával (ld. [*Effective Java*](http://java.sun.com/docs/books/effective/) Item 21), de ennek a mintának is megvannak a saját hibái: Eléggé összetett, ezért hajlamos hibákra és ezeket az enum konstansokat nem lehet használni `switch` kifejezésben.
 

@@ -1,6 +1,6 @@
 # Enumok #
 
-A régebbi verziókban a felsoroló típusoknak a szabványos reprezentációja az `int` Enum minta:
+A régebbi verziókban a felsoroló típusoknak a szabványos reprezentációja az *int enum pattern*:
 
 		//int Enum minta - komoly hibákkal küzd!
 		public static final int SEASON_WINTER = 0;
@@ -12,18 +12,18 @@ Ezzel a mintával sok probléma van, mint például:
 
 * **Nem típusbiztos** - Mivel az évszak csak egy `int`, ezért bármilyen más `int` értéket megadhatunk neki, ahol egy évszakra van szükség, vagy összeadhatunk két évszakot (aminek nincs semmi értelme).
 * **Nincs névtér** - Minden int enum-nak kell adnunk egy string előtagot, (ebben az esetben `SEASON_`) hogy elkerüljük a többi int enum típussal való ütközést.
-* **Törékenység** - Mivel az int enum-ok fordítási idejű konstansok, kliensekbe fordulnak le, amik 	használják őket. Ha egy új konstansot hozunk létre két, már létező konstans közé vagy a sorrend	megváltozik, a klienseket újra kell fordítani. Ha ezt nem tesszük meg attól még a program futni fog, viszont a program nem-determinisztikussá válhat.
+* **Törékenység** - Mivel az int enum-ok fordítási idejű konstansok, kliensekbe fordulnak le, amik használják őket. Ha egy új konstansot hozunk létre két, már létező konstans közé vagy a sorrend megváltozik, a klienseket újra kell fordítani. Ha ezt nem tesszük meg attól még a program futni fog, viszont a program nem-determinisztikussá válhat.
 * **A kiírt értékek nem informatívak** -  Mivel csak egészek, ezért ha kiíratunk egyet csak egy számot fogunk látni, ami nem mond semmit a reprezentációjáról, de még a típusát se tudjuk belőle kikövetkeztetni.	
 
-Lehetőség van elkerülni ezeket a problémákat a *Typesafe Enum* minta használatával (ld. [*Effective Java*](http://java.sun.com/docs/books/effective/) Item 21), de ennek a mintának is megvannak a saját hibái: Eléggé összetett, ezért hajlamos hibákra és ezeket az enum konstansokat nem lehet használni `switch` kifejezésben.
+Lehetőség van elkerülni ezeket a problémákat a *Typesafe Enum* minta használatával (ld. [*Effective Java*](http://java.sun.com/docs/books/effective/) Item 21), de ennek a mintának is megvannak a saját hibái: eléggé összetett, ezért potenciális hibaforrás lehet, valamint ezeket az enum konstansokat nem lehet használni `switch` kifejezésben.
 
-Az 5.0-s verzióban a felsoroló típusok nyelvi támogatást kapnak. Legegyszerűbb alakjukban ezek a felsorolók ugyan úgy néznek ki mint a C, C++ vagy C# -ban levő megfelelőjük:
+Az 5.0-s verzióban a felsoroló típusok nyelvi támogatást kapnak. Legegyszerűbb alakjukban ezek a felsorolás típusok ugyanúgy néznek ki mint a C, C++ vagy C#-ban levő megfelelőjük:
 
 		`enum Season { WINTER, SPRING, SUMMER, FALL }`
 
-De a látszat megtévesztő lehet. A Javában a felsorolók sokkal hatékonyabbak mint a többi 	programozási nyelvben, amik kicsit többek mint dicsőített egészek. Az új `enum` deklaráció egy teljesen önálló osztályt (egy *enum típust*) definiál. Azon kívül, hogy megoldja a fentebb említett összes problémát, lehetővé teszi, hogy tetszőleges metódusokat, adat mezőket adjunk egy felsoroló típusnak, tetszőleges interfészeket implementáljunk és még sok másra is lehetőséget ad. A felsoroló típusok magas szintű implementációt biztosítanak az összes `Object` metódusnak. Összehasonlíthatók (`Comperable`) és szerializálhatók (`Serializable`). Ezeket úgy tervezték, hogy kiállják a tetszőleges változtatásokat.
+Ugyanakkor a látszat megtévesztő lehet. A Javaban a felsorolási típusok sokkal kifejezőbbek, mint a többi programozási nyelvben, ahol nem sokkal többek, mint az egyszerű egész értékek. Az új `enum` deklaráció egy teljesen önálló osztályt (egy *felsorolási típust*) definiál. Azon kívül, hogy megoldja a fentebb említett összes problémát, lehetővé teszi, hogy tetszőleges metódusokat, adat mezőket adjunk egy felsoroló típusnak, tetszőleges interfészeket implementáljunk, valamint számos más előnnyel is rendelkezik. A felsorolási típusok magas szintű implementációt biztosítanak az összes `Object` metódusnak. Összehasonlíthatók (`Comperable`) és szerializálhatók (`Serializable`). Ezeket úgy tervezték, hogy kiállják a tetszőleges változtatásokat (*hibatűrés*).
 
-Itt van egy kártya játék osztály példa, felépítve néhány egyszerű felsoroló típussal az elején. A `Card` osztály megváltoztathatatlan, és minden `Card`-nak csak egy példánya jön létre, tehát nincs szükség az `equals` vagy a `hashCode` túlterhelésére:
+Itt van egy kártya játék osztály példa, felépítve néhány egyszerű felsoroló típussal az elején. A `Card` osztály megváltoztathatatlan (*immutable*), és minden `Card`-nak csak egy példánya jön létre, tehát nincs szükség az `equals()` vagy a `hashCode()` függvények túlterhelésére:
  
 		import java.util.*;
 
@@ -46,7 +46,7 @@ Itt van egy kártya játék osztály példa, felépítve néhány egyszerű fels
 
 			private static final List<Card> protoDeck = new ArrayList<Card>();
 
-			//prototype deck inicializációja
+			// Prototype deck inicializációja
 			static {
 				for (Suit suit : Suit.values())
 					for (Rank rank : Rnk.values())
@@ -58,12 +58,11 @@ Itt van egy kártya játék osztály példa, felépítve néhány egyszerű fels
 			}
 		}
 
-A `Card toString` metódusa a `Rank` és a `Suit toString` metódusát használja .
-Vegyük észre, hogy a `Card` osztály rövid (kb 25 soros kód). Ha a típusbiztos felsorolók (`Rank` és `Suit`) kézzel lettek volna felépítve, akkor jelentősen hosszabbak lenének mint az egész `Card` osztály.
+A `Card toString()` metódusa a `Rank` és a `Suit toString()` metódusát használja. Vegyük észre, hogy a `Card` osztály rövid (kb 25 soros kód). Ha a típusbiztos felsorolók (`Rank` és `Suit`) kézzel lettek volna felépítve, akkor jelentősen hosszabbak lenének mint az egész `Card` osztály.
 
 A `Card` (privát) konstruktorának két paramétere van, egy `Rank` és egy `Suit`. Ha véletlenül felcseréljük a konstruktor paramétereit, a fordító udvariasan szólni fog miatta. Szemben az `int` enum mintával, amiben a program futási időben dobna hibát.
 
-Továbbá azt is vegyük észre, hogy mindegyik felsoroló típusnak van egy statikus `values` metódusa, amely egy olyan tömböt ad vissza, ami tartalmazza az összes felsoroló típus értékét a deklarálásuk sorrendjében. Gyakran használják ezt a metódust kombinálva a [for-each](http://download.oracle.com/javase/1.5.0/docs/guide/language/foreach.html) ciklussal, a felsoroló típusok értékeinek bejárására.
+Továbbá azt is vegyük észre, hogy mindegyik felsoroló típusnak van egy statikus `values()` metódusa, amely egy olyan tömböt ad vissza, ami tartalmazza az összes felsoroló típus értékét a deklarálásuk sorrendjében. Gyakran használják ezt a metódust kombinálva a [for-each](http://download.oracle.com/javase/1.5.0/docs/guide/language/foreach.html) ciklussal, a felsoroló típusok értékeinek bejárására.
 
 A következő példa egy egyszerű program (`Deal` osztály), ami a `Card` osztályt használja. Két számot olvas be a konzolból, az első a játékosok számát a második a kártyák számát jelenti játékosonként. Aztán létrehoz egy új kártyapaklit, megkeveri, kiosztja és kiírja a konzolba a kártyákat játékosonként.
 
@@ -116,7 +115,7 @@ Tegyük fel, hogy vmilyen adatot és viselkedés formát akarunk adni egy felsor
 			public double mass()   { return mass; }
 			public double radius() { return radius; }
 
-			// universal gravitational constant  (m3 kg-1 s-2)
+			// Universal gravitational constant  (m^3 kg^-1 s^-2)
 			public static final double G = 6.67300E-11;
 
 			public double surfaceGravity() {
@@ -151,7 +150,7 @@ Itt van egy hasonló program, ami veszi a súlyunkat a földön (bármilyen mér
 		Your weight on PLUTO is 11.703031
 
 
-Az elképzelést, hogy viselkedés formát adjunk egy enumnak még tovább fokozhatjuk. A konstans enumoknak néhány metódusához is adhatunk *különböző* viselkedési formát. Az egyik módja ennek, hogy egy switch ágban végigvizsgáljuk az enum konstansokat. A következő enum példában a konstansok reprezentálják a négy aritmetikai műveletet, és azok `eval` metódusa hajtja végre a műveletet:
+Az elképzelést, hogy viselkedés formát adjunk egy enumnak még tovább fokozhatjuk. A konstans enumoknak néhány metódusához is adhatunk *különböző* viselkedési formát. Az egyik módja ennek, hogy egy switch ágban végigvizsgáljuk az enum konstansokat. A következő enum példában a konstansok reprezentálják a négy aritmetikai műveletet, és azok `eval()` metódusa hajtja végre a műveletet:
 
 		public enum Operation {
 			PLUS, MINUS, TIMES, DIVIDE;
@@ -168,7 +167,7 @@ Az elképzelést, hogy viselkedés formát adjunk egy enumnak még tovább fokoz
 			}
 		}
 
-Ez jól működik, de nem fog lefordulni a `throw` kulcsszó nélkül, ami meg nem igazán előnyös. Ami még rosszabb, hogy nem felejthetjük el, hogy minden alkalommal mikor egy új konstansot adunk az `Operation` enumhoz, akkor hozzá kell adnunk egy új esetet a `switch` blokkhoz. Ha erről megfeledkezünk, akkor az `eval` metódus megbukik és végrehajtja a fent említett `throw` részt.
+Ez jól működik, de nem fog lefordulni a `throw` kulcsszó nélkül, ami nem feltétlen előnyös. Ami még rosszabb, hogy nem felejthetjük el, hogy minden alkalommal mikor egy új konstansot adunk az `Operation` enumhoz, akkor hozzá kell adnunk egy új esetet a `switch` blokkhoz. Ha erről megfeledkezünk, akkor az `eval()` metódus megbukik és végrehajtja a fent említett `throw` részt.
 
 Van egy másik megoldás, amivel elkerülhetjük ezeket a problémákat. Az enum típusban absztraktnak deklarálhatjuk a metódust és felüldefiniálhatjuk egy konkrét metódussal minden egyes konstansban. Néhány metódust csak úgy ismerünk, mint *konstans-specifikus* metódus. Itt van az előző példa átalakítva úgy, hogy ezt a technikát használja:
 
@@ -199,7 +198,7 @@ Itt van egy hasonló program ami az `Operation` osztályt használja. Két műve
 
 A konstans-specifikus metódusok meglehetősen mesterkéltek, és a legtöbb programozónak soha nem is lesz rá szüksége, de azért jó tudni, hogy ilyen is van.
 
-Az enumok támogatására két osztály lett hozzáadva a `java.util` csomaghoz: az [`EnumSet`](http://download.oracle.com/javase/1.5.0/docs/api/java/util/EnumSet.html) és az [`EnumMap`](http://download.oracle.com/javase/1.5.0/docs/api/java/util/EnumMap.html) egy speciális `Set` és `Map` implementációk. Az `EnumSet` egy hatékonyabb implementációja a `Set`-nek. Egy enum halmaz összes enum elemének a típusa meg kell, hogy egyezzen. Igazából ez egy bit-vektorként van reprezentálva, tipikusan egy egyszerű `long`-ként. Az enum halmazok enum típusain végig lehet iterálni egy adott tartományon. Például adott a következő enum deklaráció:
+A felsorolási típusok támogatására két új osztály található a `java.util` csomagban: az [`EnumSet`](http://download.oracle.com/javase/1.5.0/docs/api/java/util/EnumSet.html) és az [`EnumMap`](http://download.oracle.com/javase/1.5.0/docs/api/java/util/EnumMap.html) egy speciális `Set` és `Map` implementációk. Az `EnumSet` egy hatékonyabb implementációja a `Set` interfésznek. Egy enum halmaz összes enum elemének a típusa meg kell, hogy egyezzen. Igazából ez egy bit-vektorként van reprezentálva, tipikusan egy egyszerű `long`-ként. Az enum halmazok enum típusain végig lehet iterálni egy adott tartományon. Például adott a következő enum deklaráció:
 
 		enum Day { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY }
 
@@ -214,7 +213,7 @@ AZ Enum halmazok a hagyományos bit-flag-ekre is adnak egy gazdag és típusbizt
 
 Hasonlóan, az `EnumMap` is egy hatékonyabb implementációja a `Map`-nak, amit enum kulcsokkal tudunk használni. Az `EnumMap` igazából egy tömbként van implementálva. Az enum map-ek a `Map` interfésznek egy sokrétű és biztonságos kombinációja, megközelítőleg egy tömb gyorsaságával. Ha egy enumhoz egy értéket akarunk hozzárendelni, akkor mindig az `EnumMap`-ot kell használnunk és nem egy tömböt.
 
-A fenti `Card` osztály egy static factory-t tartalmaz, ami egy paklival tér vissza, és semmiféleképpen nem fogunk egy önálló kártyát a típusával és színével együtt visszakapni. Már a konstruktor felfedése is tönkretenné a singleton tulajdonságot (egy kártyának csak egy példánya létezhet). Itt van egy static factory példa, amivel meg tudjuk őrizni a singleton tulajdonságot egy nested `EnumMap`-et használva:
+A fenti `Card` osztály egy static factory függvényt tartalmaz, ami egy paklival tér vissza, és semmiféleképpen nem fogunk egy önálló kártyát a típusával és színével együtt visszakapni. Már a konstruktor felfedése is tönkretenné a singleton tulajdonságot (egy kártyának csak egy példánya létezhet). Itt van egy static factory példa, amivel meg tudjuk őrizni a singleton tulajdonságot egy beágyazott `EnumMap`-et használva:
 
 		private static Map<Suit, Map<Rank, Card>> table =
 			new EnumMap<Suit, Map<Rank, Card>>(Suit.class);
@@ -231,7 +230,7 @@ A fenti `Card` osztály egy static factory-t tartalmaz, ami egy paklival tér vi
 			return table.get(suit).get(rank);
 		}
 
-Az `EnumMap` (table) mindegyik suit-ot egy `EnumMap`-hoz társítja és ez az `EnumMap` meg az összes rank-hoz egy card-ot társít. A `valueOf` metódus által végrehajtott keresés valójában két tömb elérésével van megvalósítva, de a kód sokkal tisztább és biztonságosabb. A singleton tulajdonság megőrzése érdekében elkerülhetetlen, hogy a `Card` osztályban a prototype deck inicializációjánál a konstruktor hívását egy uj static factory hívással helyettesítsük:
+Az `EnumMap` (table) mindegyik suit-ot egy `EnumMap`-hoz társítja és ez az `EnumMap` meg az összes rank-hoz egy card-ot társít. A `valueOf()` metódus által végrehajtott keresés valójában két tömb elérésével van megvalósítva, de a kód sokkal tisztább és biztonságosabb. A singleton tulajdonság megőrzése érdekében elkerülhetetlen, hogy a `Card` osztályban a prototype deck inicializációjánál a konstruktor hívását egy uj static factory hívással helyettesítsük:
 
 		// Initialize prototype deck
 		static {
@@ -242,5 +241,5 @@ Az `EnumMap` (table) mindegyik suit-ot egy `EnumMap`-hoz társítja és ez az `E
 
 Szintén elkerülhetetlen az is, hogy a `table` inicializációja a `protoDeck` inicializációja elé kerüljön, mivel az utóbbi függ az előbbitől.
 
-Tehát mikor kéne enumokat használnunk? Bármikor amikor egy fix konstans halmazra van szükségünk. Ez magában foglalja a természetes felsoroló típusokat (mint például a bolygók, a hét napjai és egy kártyapakli színei), valamint más halmazokat, amiknek futási időben ismerjük az értékeit, mint például egy menü választéka, kerekítési módszerek, konzol flag-ek stb. *Nem* feltétlenül szükséges, hogy az enum típusú konstansok halmaza mindig fix maradjon. Ez a tulajdonság kifejezetten arra volt tervezve, hogy megengedjen kettős összeférhető fejlődést az enum típusoknak.
+Tehát mikor kéne enumokat használnunk? Bármikor amikor egy fix konstans halmazra van szükségünk. Ez magában foglalja a természetes felsorolási típusokat (mint például a bolygók, a hét napjai és egy kártyapakli színei), valamint más halmazokat, amiknek futási időben ismerjük az értékeit, mint például egy menü választéka, kerekítési módszerek, konzol flag-ek stb. *Nem* feltétlenül szükséges, hogy az enum típusú konstansok halmaza mindig fix maradjon. Az megvalósítást úgy tervezték, hogy a bináris kompatibilitás megmaradjon, mégha a felsorolási típus időben változik is.
 

@@ -1,10 +1,12 @@
 # Enumok #
 Motiváció az *"enum pattern"* kiváltása:
 
+``` java
 	public static final int OS_WINDOWS = 0;
 	public static final int OS_LINUX   = 1;
 	public static final int OS_BSD     = 2;
 	public static final int OS_VMS     = 3;
+```
 
 Problémák:
 
@@ -17,6 +19,7 @@ Problémák:
 
 Java 5.0 óta, egyszerű definíció:
 
+``` java
     // public, protected, private, static lehet csak
     public static enum Os { Windows, Linux, BSD, VMS };
 
@@ -44,9 +47,11 @@ Java 5.0 óta, egyszerű definíció:
             break;
         }
     }
+```
 
 > **Csel** Javaban viselkedés, adattag adható az enumokhoz. Pl.:
 
+``` java
 	public enum Guitar {
 	    Electronic(6),
 	    Acoustic(5),
@@ -64,9 +69,11 @@ Java 5.0 óta, egyszerű definíció:
 	        return strings;
 	    }
 	}
+```
 
 További okosság: *constant-specific* függvények:
 
+``` java
 	public enum Operation {
 	  PLUS   { double eval(double x, double y) { return x + y; } },
 	  MINUS  { double eval(double x, double y) { return x - y; } },
@@ -75,6 +82,7 @@ További okosság: *constant-specific* függvények:
 	
 	  abstract double eval(double x, double y);
 	}
+```
 
 *Igen* ritkán van rá szükség, de akkor hasznos, hogy van. További okosságok:
 `*java.util.EnumSet`, `java.util.EnumMap`.

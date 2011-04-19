@@ -2,6 +2,7 @@
 
 Egyszerűbb példák (`java.util `csomagból):
 
+``` java
 	public interface List<E> {
 	    void add(E x);
 	    Iterator<E> iterator();
@@ -11,6 +12,7 @@ Egyszerűbb példák (`java.util `csomagból):
 	    E next();
 	    boolean hasNext();
 	}
+```
 
 `E` - formális típusparaméter, amely aktuális értéket a kiértékelésnél vesz fel
 (pl. `Integer`, etc.).
@@ -18,12 +20,14 @@ Egyszerűbb példák (`java.util `csomagból):
 ## Altípusosság ##
 Nem konvertálhatók, ennek oka:
 
+``` java
 	List<String> l1 = new ArrayList<String>();
 	List<Object> l2 = l1; // error
 	
 	// Mert akkor lehetne ilyet csinalni:
 	l2.add(new Object());
 	l1.get(0); // reccs, Object -> String castolas
+```
 
 Magyarul ha `S <= T =x=> G<S> <= G<T>` - ez pedig ellent mond az ember
 megérzésének. Castolni lehet (warning), `instanceof` tilos (fordítási hiba)!
@@ -35,22 +39,28 @@ tudjuk azok konkrét típusát (pl. legacy code). `Collection<Object>` *nem* ős
 (ld. előző bekezdés). Ha nem használunk genericeket, megoldható, viszont
 warningot generál:
 
+``` java
 	void print(Collection c) {
 	    for (Object o : c) System.out.println(o);
 	}
+```
 
 A megoldás a wildcard használata: `Collection<?>` minden kollekcióra ráillik.
 Ilyenkor `Objectként` hivatkozhatunk az elemekre:
 
+``` java
 	void print(Collection<?> c) {
 	    for (Object o : c) System.out.println(o);
 	}
+```
 
 Vigyázat! A `? != Object`! Csak egy ismeretlen típust jelent. Így a következő
 kódrészlet is fordítási hibához vezet:
 
+``` java
 	List<?> c = ...;
 	l.add(new Object()); // forditasi hiba
+```
 
 Nem tudjuk, hogy mi van benne, lekérdezni viszont lehet (mert tudjuk, hogy
 minden objektum az `Object` leszármazottja).
@@ -59,23 +69,29 @@ minden objektum az `Object` leszármazottja).
 Amikor tudjuk, hogy adott helyen csak adott osztály leszármazottai
 szerepelhetnek, első (rossz) megközelítés:
 
+``` java
 	abstract class Super {}
 	class Sub1 extends Super {}
 	class Sub2 extends Super {}
 	...
 	void func(List<Super> l) {...} // Rossz!
+```
 
 Probléma: `func()` csak `List<Super>` paraméterrel hívható meg, `List<Sub1>`,
 `List<Sub2>` nem lehet paramétere (nem altípus). Megoldás: *bounded wildcard*:
 
+``` java
 	void func(List<? extends Super> l) {...}
+```
 
 Belepakolni ugyanúgy nem tudunk, mint a `?` esetén, azaz erre fordítási hibát
 kapunk:
 
+``` java
 	void func(List<? extends Super> l) {
 	    l.add(new Sub1()); // reccs
 	}
+```
 
 Felfelé is megköthető a wildcard a `<? super T>` jelöléssel.
 
@@ -83,6 +99,7 @@ Felfelé is megköthető a wildcard a `<? super T>` jelöléssel.
 Osztálydefinícióban bevezethető típusparaméter az osztályhoz, ez minden
 membernél használható. Példa:
 
+``` java
 	package generics;
 	
 	public class Pair<T, S> {
@@ -127,9 +144,11 @@ membernél használható. Példa:
 	    }
 
 	}
+```
 
 Generikus függvények esetén szintén a definícióban használható. Példa:
 
+``` java
 	package generics;
 	
 	public class ArrayUtils {
@@ -146,6 +165,7 @@ Generikus függvények esetén szintén a definícióban használható. Példa:
 	        System.out.println( isIn(sarr, "c") );
 	    }
 	}
+```
 
 > **Részletesen:** <http://java.sun.com/j2se/1.5/pdf/generics-tutorial.pdf>
 

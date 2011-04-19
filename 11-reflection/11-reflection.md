@@ -29,21 +29,30 @@ Objektumreferencia megszerzése:
 
 * Objektumtól lekérdezhető:
 
+``` java
 		Class<?> clazz = this.getClass();
+```
 
 * Osztálytól lekérdezhető:
 
+``` java
 		Class<?> intClazz = int.class;
+```
 
 * Közvetlenül név szerint lekérdezhető:
 
+``` java
 		Class<?> clazz = Class.forName("java.lang.Boolean");
+```
 
 * Új osztály létrehozása:
 
-		Proxy.getProxyClass(clazz.getClassLoader(), clazz.getInterfaces())
+``` java
+		Proxy.getProxyClass(clazz.getClassLoader(), clazz.getInterfaces());
+```
 
 ## Példa ##
+``` java
 	package reflection;
 	
 	import java.lang.reflect.Method;
@@ -70,6 +79,7 @@ Objektumreferencia megszerzése:
 	        analyze( ReflectionTest.class );
 	    }
 	}
+```
 
 ### Feladatok ###
 Készíts egy programot, amely egyetlen parancssori argumentumot kap, egy osztály
@@ -104,6 +114,7 @@ Az `Array` osztály segítségével manipulálhatók az elemek (getter, setter
 függvények), új tömbök hozhatók létre (`newInstance()`), ill. a `Class`
 osztálynak vannak hasznos függvényei, pl.:
 
+``` java
 	package reflection;
 	
 	public class ReflectionArrayTest {
@@ -129,12 +140,15 @@ osztálynak vannak hasznos függvényei, pl.:
 	        arrayTest( new int[][] { {1, 2}, {3}}.getClass() );
 	    }
 	}
+```
 
 > **Megjegyzés** Hülye jelölés, nem szívrohamot kapni:
+``` java
 		int[][] arr = { {1, 2}, {3} };
 		System.out.println( arr );
 		
 		// Eredmeny: [[I@42e816
+```
 
 Ok: `B` - `byte`, `C` - `char`, `D` - `double`, `F` - `float`, `I`- `int`,
 `J` - `long`, `Losztálynév` - osztály vagy interfész, `S` - `short`,
@@ -161,6 +175,7 @@ Függvényeket meg is tudunk hívni, ld. `Method#invoke(Object o, Object... args
 függvény. Ha a függvény statikus, akkor az első paraméter lehet `null` (különben
 reccs), paraméterlista lehet üres, visszatérési értéke egy `Object`. Példa:
 
+``` java
 	package reflection;
 	
 	import java.lang.reflect.Method;
@@ -179,6 +194,7 @@ reccs), paraméterlista lehet üres, visszatérési értéke egy `Object`. Péld
 	        System.out.println( method.invoke(null, 1, 2) );
 	    }
 	}
+```
 
 ### Feladat ###
 Készíts egy tetszőleges objektumot, majd reflection segítségével keresd meg az
@@ -193,11 +209,13 @@ előállítani, valamint meg tudja mondani, hogy pontosan milyen interfészeket
 implementál (az ősosztályok által implementáltakat is)! Az osztály nevét
 parancssori argumentumként kapjuk. Példa:
 
+``` java
 	interface I1 {}
 	interface I2 extends I1 {}
 	
 	class A implements I2 {}
 	class B extends A {}
+```
 
 A `B` osztály vizsgálata esetén a következő listát adja vissza a program:
 

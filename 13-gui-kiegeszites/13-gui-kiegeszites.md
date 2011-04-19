@@ -3,6 +3,7 @@
 ## Listenerek egyéb megvalósításai##
 Saját listener megvalósítása:
 
+``` java
 	public class GUI1 {
 	    private final JButton ok = new JButton("Ok");
 	    
@@ -18,11 +19,13 @@ Saját listener megvalósítása:
 	        ok.addActionListener(listener);
 	    }
 	}
+```
 
 vagy maga az osztály implementálja az interfészt, mindenre rá lehet aggatni,
 majd `setActionCommand()` ill. `getActionCommand()` függvény használható a
 megkülönböztetésre:
 
+``` java
 	public class GUI2 implements ActionListener {
 	    private final JButton ok = new JButton("Ok");
 	    private final JButton cancel = new JButton("Ok");
@@ -46,6 +49,7 @@ megkülönböztetésre:
 	        }
 	    }
 	}
+```
 
 ## Komplexebb grafikus felület##
 Containerekkel (`Panel`, `JPanel`).
@@ -55,21 +59,26 @@ TODO: kép
 ## JOptionPane ##
 Ha `super != null`, akkor modális, pl.:
 
+``` java
 	JFrame frame = ...;
 	...
 	JOptionPane.showMessageDialog( frame, "Modalis uzenet");
+```
 
 ## MVC ##
 Model-View-Controller. Egyes GUI komponensek nem direkt módon tárolják az
 adatokat (többféle reprezentáció), ilyenkor modelleket kell használni (pl.
 `JProgressBar`, `JNumberSpinner`, `JTable`, stb.). Példa:
 
+``` java
 	int val = progressBar.getModel().getValue();
 	progressBar.getModel().setValue(++val);
+```
 
 ## BorderLayout ##
 Használatra példa:
 
+``` java
 	JPanle panel = new JPanel( new BorderLayou() );
 	
 	panel.add( new JLabel("North"),  BorderLayout.NORTH  );
@@ -77,10 +86,12 @@ Használatra példa:
 	panel.add( new JLabel("East"),   BorderLayout.EAST   );
 	panel.add( new JLabel("West"),   BorderLayout.WEST   );
 	panel.add( new JLabel("Center"), BorderLayout.CENTER );
+```
 
 ## CardLayout ##
 Példa:
 
+``` java
 	final static String APANEL = "Panel 1";
 	final static String BPANEL = "Panel 2";
 	
@@ -97,26 +108,31 @@ Példa:
 	
 	layout.first(cards);
 	layout.last(cards);
+```
 
 ## JRadioButton##
 `ButtonGroup` használata kell, ha szeretnénk, hogy egyszerre csak választható ki közülük:
 
+``` java
 	JRadioButton button1 = new JRadioButton("A");
 	JRadioButton button2 = new JRadioButton("B");
 	
 	ButtonGroup group = new ButtonGroup();
 	group.add( button1 );
 	group.add( button2 );
+```
 
 ## JFileChooser ##
 Használatnál figyeljünk a visszatérési értékre!
 
+``` java
 	final JFileChooser fc = new JFileChooser();
 	...
 	int ret = fc.showOpenDialog( frame );
 	if ( JFileChooser.APPROVE_OPTION == ret ) {
 	    ...
 	}
+```
 
 ## Feladatok ##
 ### Hex editor ###

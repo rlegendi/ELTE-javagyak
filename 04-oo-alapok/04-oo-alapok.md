@@ -6,6 +6,7 @@ Alapvető fogalmak:
 * Hatókör: Ahol a változó használható
 * Élettartam: Ahol a változó még _"él"_
 
+``` java
 		class A {
 		  static x = 0;
 		  
@@ -14,6 +15,7 @@ Alapvető fogalmak:
 		    System.out.println( A.x ); // osztaly valtozo
 		  }
 		}
+```
 
   Hol deklarálhatok változót?
 
@@ -30,6 +32,7 @@ Egységbe zárás, adatelrejtés, absztrakt adattípus = adatabsztrakció, adatt
 _és_ a rajta értelmezett műveletek.
 
 ### Példa ###
+``` java
 	class Koordinata {
 	  public int x, y;
 	
@@ -38,13 +41,16 @@ _és_ a rajta értelmezett műveletek.
 	    y += dy;
 	  }
 	}
+```
 
 A tagok elérése:
 
+``` java
 	Koordinata k = new Koordinata();
 	k.x = 10;
 	k.y = 20;
 	k.eltol(10, 0);
+```
 
 ### Módosítószavak ###
 * `static`: Osztályszintű tag: _minden_ példány rendelkezik vele, és ugyanazt a
@@ -54,22 +60,25 @@ változót, függvényt látják.
 	> függvényeket érhetünk el! _Miért?_ V.ö. eddigi függvénydefiníciókkal!
 	
 	Példa: adott osztály példányainak számolása:
-	
+
+``` java
 		public class Foo {
-	    	private static int ctr = 0;
-	    	private final int idx;
-	    	...
+		    	private static int ctr = 0;
+		    	private final int idx;
+		    	...
 	    
-	    	public Foo() {
-	        	...
-	        	idx = ctr++;
-	    	}
+	    		public Foo() {
+		        	...
+	        		idx = ctr++;
+		    	}
 		}
+```
 	
 * `final`: _Ha változó_, akkor az adott referencia nem állítható át (azonban ha
 az egy objektum, tömb, akkor az elemei igen! V.ö. C++ `const`). _Ha függvény_,
 akkor nem lehet felüldefiniálni (ld. később!).
 
+``` java
 		public class Main {
 			public static final int DEBUG = true;  
 			
@@ -80,6 +89,7 @@ akkor nem lehet felüldefiniálni (ld. később!).
 				...
 			}
 		}
+```
 
 * Láthatósági módosítószavak:
 	* `public` Minden más osztályból elérhető (függvény, adattag, vagy osztály)
@@ -98,6 +108,7 @@ Osztályok definiálhatók azonos forrásállományban (de csak egy public lehet
 másik osztályban (belső osztályok), függvényen belül (lokális osztályok).
 Például:
 
+``` java
 	package oo.basics;
 	
 	class A { ... }
@@ -111,6 +122,7 @@ Például:
 	        ...
 	    }
 	}
+```
 
 Beágyazott osztályok lehetnek `static`-ok, ekkor nincs szükség a befoglaló
 osztály egy példányára (így a példányváltozókhoz sem férnek hozzá). Ha egy
@@ -134,6 +146,7 @@ Kódmegosztás, kódkomplexitás csökkentése, karbantarthatóság, modularizá
 
 ### Példa ###
 
+``` java
 	abstract class Sikidom {
 		public static final double PI = 3.1415;
 		
@@ -168,13 +181,16 @@ Kódmegosztás, kódkomplexitás csökkentése, karbantarthatóság, modularizá
 			return a * b;
 		}
 	}
+```
 
 Javaban csak egyszeres öröklődés van, kivéve az interfészek esetében. Általános
 forma:
 
+``` java
 	class Foo extends Bar implements Baz1, Baz2, ... {
 	    ...
 	}
+```
 
 ### Felüldefiniálás, túlterhelés ###
 
@@ -191,6 +207,7 @@ specializálni (hasznos pl. a `clone()` függvénynél - kovariáns kötés).
 
 A kivétel lista nem lényeges ebből a szempontból.
 
+``` java
 	abstract class A {
 	    public abstract int f(int a, int b);
 	    public abstract int g() throws Exception;
@@ -211,6 +228,7 @@ A kivétel lista nem lényeges ebből a szempontból.
 	    @Override
 	    B   h() { return null; }; 			// OK: Visszateresi ertekre specializal
 	}
+```
 
 ### A `this` pszeudováltozó. ###
 
@@ -221,6 +239,7 @@ lehessen megváltoztatni.
 
 Azaz az adattagok elérése getter és setter függvényeken keresztül történjen:
 
+``` java
 	class Koordinata {
 		private int x, y; // private lett, csak belul hasznalhato
 		...
@@ -232,6 +251,7 @@ Azaz az adattagok elérése getter és setter függvényeken keresztül történ
 			this.x = x;
 		}
 	}
+```
 
 ### Konstruktorok ###
 Objektum létrehozásáért felelnek, _"speciális függvények"_. Általános forma:
@@ -242,6 +262,7 @@ Objektum létrehozásáért felelnek, _"speciális függvények"_. Általános f
 
 Például:
 
+``` java
 	class Koordinata {
 	  private int x, y;
 	
@@ -251,6 +272,7 @@ Például:
 	  }
 	  ...
 	}
+```
 
 Ha származtatás is játszik a történetben, az kicsit bonyolultabbá teheti.
 Konstruktorban a szülőre a `super()`, az aktuális példány valamely
@@ -259,6 +281,7 @@ függvény visszatérési értéke lehet, az csak statikus függvény lehet.
 
 Példa:
 
+``` java
 	class A {
 	    protected int size;
 	
@@ -273,11 +296,14 @@ Példa:
 	    public B(int size) { super(size); } // A(int) hivasa
 	    ...
 	}
+```
 
 ### Létrehozás, életciklus ###
 Objektum létrehozása a `new` operátorral történik:
 
+``` java
 	A a = new A(5); // Konstruktorhívás
+```
 
 Felszabadítással nem kell foglalkozni, azt megoldja a Garbage Collector
 (`finalize`). Memória: dinamikus/statikus/stack (utóbbihoz nem fértek hozzá),
@@ -287,14 +313,18 @@ automatikusan felügyelt (_eden_, stb.), `System.gc()`, `finalize()`. Az aktuál
 Statikus/dinamikus típus: statikus, amivel definiálva lett, dinamikus, amilyen
 referenciára éppen mutat.
 
+``` java
 	A a = new B(5);
+```
 
 A fenti példában az `a` változó statikus típusa `A`, dinamikus típusa `B`
 (megengedett, altípusos polimorfizmus, ld. Liskov-féle szubsztitúciós elv). A
 dinamikus típus leellenőrizhető az `instanceof` operátorral:
 
+``` java
 	if (a instanceof B) { ... }
 	else if (a instanceof C) { ... }
+```
 
 ### Object ###
 
@@ -314,7 +344,8 @@ többszörös öröklődés (kivéve interfészeknél). Fontosabb függvények:
       (ld. *hash collision*).
       
 	Példa:
-	
+
+``` java
 		class Sample {
 		    private int i = 0;
 		    private String str = "str";
@@ -325,6 +356,7 @@ többszörös öröklődés (kivéve interfészeknél). Fontosabb függvények:
 				return (i * 31 + str.hashCode() );
 			}
 		}
+```
 
 * `toString()` Az objektum szöveges reprezentációját adja vissza (Stringként).
 * Egyéb függvények: `clone()`, `finalize()`, `notify()`, `wait()`, `getClass()`

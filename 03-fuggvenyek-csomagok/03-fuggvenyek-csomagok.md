@@ -25,6 +25,7 @@ Alapértelmezetten látszik a `java.lang.*` csomag minden eleme, minden mást
 importálni kell (anélkül ún. _fully qualified classname_ segítségével
 hivatkozhatunk, pl. `java.util.Vector`):
 
+``` java
 	import java.util.Vector;	// 1 tipushoz
 	import java.math.*;			// Minden package-beli tipus lathatova valik
 	
@@ -38,6 +39,7 @@ hivatkozhatunk, pl. `java.util.Vector`):
 	// static import: minden static konstans lathato az adott osztalybol
 	// fenntartasokkal hasznalni
 	import static java.lang.Math.*;
+```
 
 A fordítás nehézkes, nincs rekurzív `javac -R *.java`. Leképezés a
 fájlrendszerre: minden `.` karakterrel szeparált rész egy könyvtárat jelent,
@@ -45,6 +47,7 @@ fordítás a gyökérkönyvtárból történik. Static importot csak offtosan
 (strukturáltság, enkapszuláció, egységbezárás ellen hat - használjatok helyette
 dedikált osztályt vagy interfészt). Csomag definíciója a Java fájl legelején:
 
+``` java
 	package pkg;
 	
 	// Import utasitasok
@@ -54,6 +57,7 @@ dedikált osztályt vagy interfészt). Csomag definíciója a Java fájl legelej
 	        System.out.println("Hello World!");
 	    }
 	};
+```
 
 Fordítás teljes útvonal megadásával:
 
@@ -100,13 +104,16 @@ _még a referenciák is_.
 
 **Szignatúra** a függvény neve és paramétereinek típusa -- más **nem**. Például:
 
+``` java
 	eredmenyMeghatarozasa( double, int, int )
+```
 
 Overloading, overriding.
 
 # Kivételek #
 Általános forma:
 
+``` java
 	try {
 	    ... // Kritikus utasitasok
 	} catch (Exception1 e1) {
@@ -116,9 +123,11 @@ Overloading, overriding.
 	} finally {
 	    
 	}
+```
 
 A finally opcionális, de elképzelhető csak `try-catch`, `try-finally` blokk is:
 
+``` java
 	try {
 	    ...
 	} finally {
@@ -130,6 +139,7 @@ A finally opcionális, de elképzelhető csak `try-catch`, `try-finally` blokk i
 	} catch (Throwable t) {
 	    ....
 	}
+```
 
 Az első ág, amelybe a kivétel osztályhierarchia szerint beleillik, lekezeli.
 Újradobás lehetséges: `throw e1;`, stb.
@@ -156,6 +166,7 @@ paramétere!).
 ## Példa ##
 ### Egyszerű kivételkezelés ###
 
+``` java
 	public static void main(String[] args) {
 	    try {
 	        int res = Integer.parseInt(args[0]);
@@ -165,10 +176,12 @@ paramétere!).
 	        nfe.printStackTrace();
 	    }
 	}
+```
 	
 > **Megjegyzés** Kivételek neve általában `e`, de igazából ízlés kérdése. 
 
 ### Függvénydefiníció ###
+``` java
 	// Egyszerubb forma, ha nem akartok uzeneteket
 	//class ZeroParameterException extends Exception {}
 	
@@ -201,6 +214,7 @@ paramétere!).
 	        System.err.println("vege");
 	    }
 	}
+```
 
 > **Részletesen** <http://download.oracle.com/javase/tutorial/essential/exceptions/>
 
@@ -237,10 +251,12 @@ Készítsd el a függvény rekurzív változatát is!
 Készítsetek egy függvényt, amely megadja egy másodfokú egyenlet gyökeit! A
 függvény definíciója legyen a következő:
 
+``` java
 	private static double[] sqroots(final double a, final double b,
 	        final double c) {
 	    // ...
 	}
+```
 
 A függvény dobjon _nem ellenőrzött és ellenőrzött kivételeket is_ (pl.
 `IllegalArgumentException` és egy saját), ha `a == 0`, vagy a diszkrimináns

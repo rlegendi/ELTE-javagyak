@@ -27,6 +27,7 @@ A Java nyelvről, általánosan.
 ## Hello World ##
 Hozzatok létre egy `HelloWorldApp.java` nevű állományt a következő tartalommal:
 
+``` java
 	/**
 	 * Hello world program.
 	 */
@@ -35,6 +36,7 @@ Hozzatok létre egy `HelloWorldApp.java` nevű állományt a következő tartalo
 	        System.out.println("Hello World!");
 	    }
 	}
+```
 
 * **Fontos**, hogy a fájl neve megegyezzen a benne definiált publikus osztály
   nevével (tehát ha `XXX.java` a fájl neve, akkor benne egy darab publikus
@@ -85,6 +87,7 @@ Használható `*.java` a default package fordítására.
 
 
 ## Kódolási konvenciók ##
+``` java
 	package java.blah; // top-level domain, kisbetus karakterek
 	
 	/**
@@ -135,6 +138,7 @@ Használható `*.java` a default package fordítására.
 	      // ...
 	   }
 	}
+```
 
 > **Egyelőre ökölszabály** Osztály név = fájl név, nagybetűvel kezdődik. Csomag
 > név = könyvtár név, kisbetűvel kezdődik (később lesz több osztály is egy
@@ -183,18 +187,22 @@ A legtöbb programozási nyelv az 1985-ben elfogadott IEE 754 szabvány szerint 
 
 Ami a lényeg: ha leírsz egy számot, az *közelítés*, hiába gondolsz bármi mást. Mutatok egy példát:
 
+``` java
 	// Az eredmenye: 1
 	System.out.println( 0.2 + 0.2 + 0.2 + 0.2 + 0.2 );
+```
 
 Ez többé-kevésbé egybevág az ember intuitív elvárásával. Ez viszont teljesen véletlen, a csillagok állásának köszönhető: azon múlt, hogy a `0.2d` egyike azon ritka valós számoknak, amely *viszonylag kis numerikus hiba mellett ábrázolható*.
 
 Próbáljuk meg például a fenti kódot `0.1` értékekkel:
 
+``` java
 	// Az eredmenye: 1.0000001
 	System.out.println( 0.1f + 0.1f + 0.1f + 0.1f + 0.1f + 0.1f + 0.1f + 0.1f + 0.1f + 0.1f );
 
 	// Az eredmenye: 0.9999999999999999
 	System.out.println( 0.1d + 0.1d + 0.1d + 0.1d + 0.1d + 0.1d + 0.1d + 0.1d + 0.1d + 0.1d );
+```
 
 Ezzel sajnos nem tudsz mit csinálni. Sőt, további gondokhoz vezet. Nézzünk erre most néhány példát a következő alfejezetekben!
 
@@ -202,17 +210,22 @@ Ezzel sajnos nem tudsz mit csinálni. Sőt, további gondokhoz vezet. Nézzünk 
 
 A fenti pont egy következménye, hogy ha leírunk egy ilyen kifejezést:
 
+``` java
 	// Akkor az bizony hamis lesz:
 	System.out.println( 0.3 == 0.1d + 0.1d + 0.1d );
+```
 
 Ebbe a csapdába egy kezdő programozó könnyen beleeshet, vegyük például a következő számlálós ciklust:
 
+``` java
 	for (double d=0.0; d != 0.3; d += 0.1) {
 		// Hopp! Vegtelen ciklus!
 	}
+```
 
 Mit tudunk akkor hát ezekkel kezdeni? Nos, a legegyszerűbb megoldás az, ha a programozó felállít egy *önkényes hibahatárt*, amin belül egyezőnek vél két valós számot - azaz annak epszilon környezetébe való tartozást vizsgáljuk egyenlőség helyett. Például:
-	
+
+``` java
 	final double DELTA = 1.0E-5; // Hibahatar
 	final double d1 = 0.3;
 	final double d2 = 0.1 + 0.1 + 0.1;
@@ -220,6 +233,7 @@ Mit tudunk akkor hát ezekkel kezdeni? Nos, a legegyszerűbb megoldás az, ha a 
 	if ( Math.abs( d1 - d2 ) < DELTA ) {
 		System.out.println("d1 == d2");
 	}
+```
 
 #### Túl-, és alulcsordulás #####
 
@@ -227,8 +241,10 @@ Ilyet már valószínűleg az egyszerű egész típusosztály körében is látt
 
 A valós számok esetén is előjönnek ezek a problémák, hatványozottan. Tekintsük a következő példát:
 
+``` java
 	final double big = 1.0e307 * 2000 / 2000;
 	System.out.println( big == 1.0e307 ); // Hamis lesz!
+```
 
 A programkódtól ránézésre intuitív módon az ember igaz értéket várna, azonban hamis lesz! Miért is? Beszorzok egy számot X értékkel, aztán azzal le is osztok, így az eredeti értéket kellene kapnom. Nos, a magyarázat jelen esetben a túlcsordulás: Java szigorú kiértékelési sorrendel rendelkezik (*balról jobbra azonos precedenciák esetében*). Mikor beszorozzuk a számot, kimegyünk az ábrázolható tartományból, kapunk valami teljesen más értéket (ami jelen esetben ez az `Infinity`), így azt elosztva X értékkel közel sem az eredeti számot kapjuk vissza. S minderről a programozó semmi visszajelzést nem kap...
 
@@ -237,18 +253,24 @@ A lebegőpontos számábrázolásnak van egy speciális problémája. Matematik�
 
 Például:
 
+``` java
 	System.out.println( 1234.0d + 1.0e-13d == 1234.0d ); // Igaz lesz!
+```
 
 #### WYSINWYG - What You See Is Not What You Get ####
 Cseles módon, mikor kiírunk a konzolra egy valós számot, az *nem a reprezentációban használt közelített érték lesz*. Azt már tudjuk, hogy a `0.1` nincs tökéletesen ábrázolva, ugyanakkoor ha kiírjuk a képernyőre az értékét, a következőt látjuk:
 
+``` java
 	System.out.println( 0.1d ); // Megjeleno ertek: 0.1
+```
 
 Ajjjaj! Sőt, hogy bonyolítsuk a helyzetet, nézzük csak meg, mi lesz a következő kódrészlet eredménye:
 
+``` java
 	System.out.println(0.1 == 0.099999999999999998); // Hamis
 	System.out.println(0.1 == 0.099999999999999999); // Igaz
 	System.out.println(0.1 == 0.100000000000000001); // Igaz
+```
 
 Puff neki. Az első furcsaság, hogy kerekít a kód, ez teljesen jó, de `...998` felett? Nem `...995` körül kéne? *Nem.*
 
@@ -256,8 +278,10 @@ A másik, hogy a 0.1 ugyanaz, mint 0.099999999999999999? *Igen.*
 
 Mi ennek az oka? Nos, hogy ezt kicsit megvilágítsuk, nézzük meg a közelített értéket egy speciális osztály segítségével:
 
+``` java
 	// A kiirt ertek: 0.1000000000000000055511151231257827021181583404541015625
 	System.out.println( new BigDecimal(0.1) );
+```
 
 Fura, mi?
 
@@ -281,6 +305,7 @@ Fura, mi?
 * Minden `T` típushoz van `T[]`
 * Példakód:
 
+``` java
 		int[] arr1 = new int[5];
 		int arr2[]; 
 		
@@ -289,6 +314,7 @@ Fura, mi?
 		for (int i=0; i<arr3.length; ++i) {
 		   	System.out.println(arr3[i]);
 		}
+```
 
 * Inicializálásnál az 1. dimenzió megadása kötelező (pl.
 `int[][] arr = new int[5][];` teljesen legális definíció!)
@@ -307,19 +333,23 @@ végez csak, nem tartalom szerintit.
 ### Stringek összehasonlítása###
 Mint az objektumokat, ugyanúgy az `equals()` függvény segítségével.
 
+``` java
 	boolean b1 = "a" == "a";      // lehet hamis!
 	boolean b2 = "a".equals("a"); // mindig megfeleloen mukodik
+```
 
 ### Összehasonlító operátor feltételekben ###
 Baloldalra lehetőleg konstanst írjunk. C++ probléma itt nem lehet, mert `0`,
 `!= 0` nem szerepelhet elágazás, ciklus terminálási feltételében, kizárólag
 logikai feltétel, de kellemetlen helyzetek így is adódhatnak:
 
+``` java
 	boolean b = false;
 	
 	if ( b = true ) {
 	    // ...
 	}
+```
 
 Igyekezzünk baloldalra konstansokat írni.
 
@@ -327,6 +357,7 @@ Igyekezzünk baloldalra konstansokat írni.
 A nyitó, záró `{`, `}` párok kirakása nem kötelező, ellenben javallott.
 
 ### Elágazások ###
+``` java
 	if ( ... ) {
 	    ...
 	} else if (...) {
@@ -336,11 +367,13 @@ A nyitó, záró `{`, `}` párok kirakása nem kötelező, ellenben javallott.
 	} else {
 	    ...
 	}
+```
 
 #### Switch ####
 `byte`, `short`, `char`, `int` típusokra (ill. ezek csomagoló osztályaira:
 `Character`, `Byte`, `Short`, `Integer`) használható (`long` típusra *nem*).
 
+``` java
 	final int month = 8;
 	switch (month) {
 	    case 1:  System.out.println("Jan"); break;
@@ -351,8 +384,10 @@ A nyitó, záró `{`, `}` párok kirakása nem kötelező, ellenben javallott.
 	    case 6:  System.out.println("Apr, Maj vagy Jun"); break;
 	    default: System.out.println("Egyeb honap");break;
 	}
+```
 
 ### Ciklusok ###
+``` java
 	while ( true ) {
 	     ...
 	}
@@ -372,10 +407,13 @@ A nyitó, záró `{`, `}` párok kirakása nem kötelező, ellenben javallott.
 	for (String act : args) {      // tombokre, iteralhato adatszerkezetekre
 	    System.out.println(act);
 	}
+```
 
 ### Branching kifejezések ###
 
+``` java
 	break, continue, return
+```
 
 `goto` van, de fenntartott szó, nem működik...
 

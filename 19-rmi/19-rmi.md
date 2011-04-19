@@ -23,9 +23,11 @@ A távoli objektumoknak egy távoli interfészt kell megvalósítaniuk
 deklaráltan dobnia kell a `java.rmi.RemoteException` kivételt. Ami ebben az
 interfészben nincs definiálva, az a kliensek felé *nem fog látszani*.
 
+``` java
 	public interface IEchoRemote extends Remote {
 	    public abstract String hi() throws RemoteException;
 	}
+```
 
 ## Paraméter átadás ##
 Szerializáció segítségével minden. Az elemi adattípusok JVM-ben történő
@@ -63,6 +65,7 @@ Származtassunk a `java.rmi.server.UnicastRemoteObject` osztályt, ez elérhető
 teszi az osztályunkat (megjegyzés: ez nem kötelező, de akkor kézzel kell mindent
 csinálni, pl. `toString()`, `hashCode()`, `equals()` megfelelő implementálása). 
 
+``` java
 	import java.io.File;
 	import java.net.MalformedURLException;
 	import java.rmi.AlreadyBoundException;
@@ -95,8 +98,10 @@ csinálni, pl. `toString()`, `hashCode()`, `equals()` megfelelő implementálás
 	        Naming.rebind(ADDRESS, server);
 	    }
 	}
+```
 
 ## A kliens implementációja ##
+``` java
 	public class EchoClient {
 	    public static void main(final String[] args)
 	            throws MalformedURLException,
@@ -107,6 +112,7 @@ csinálni, pl. `toString()`, `hashCode()`, `equals()` megfelelő implementálás
 	        System.out.println( remote.hi() );
 	    }
 	}
+```
 
 ## Futtatás ##
 1. El kell indítani egy registry szolgáltatást a szerver gépen:

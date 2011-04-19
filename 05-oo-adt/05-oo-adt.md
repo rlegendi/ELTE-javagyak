@@ -5,6 +5,7 @@ Absztrakt adattípus = adatabsztrakció, absztrakt adattípus és a rajta
 
 # Emlékeztető: Object Függvények felüldefiniálása #
 
+``` java
 	public class Student {
 	  private String name;
 	  private String ETR;
@@ -39,6 +40,7 @@ Absztrakt adattípus = adatabsztrakció, absztrakt adattípus és a rajta
 	  }
 	  
 	}
+```
 
 
 ## Absztrakt osztályok ##
@@ -57,6 +59,7 @@ ekkor a leszármazottnak is absztraktnak kell lennie).
 > **Részletesen** <http://download.oracle.com/javase/tutorial/java/IandI/abstract.html>
 
 Példa:
+``` java
 	abstract class Sikidom {
 	  protected boolean tukorszimmetrikus;
 	
@@ -113,9 +116,11 @@ Példa:
 	    return a * b;
 	  }
 	}
+```
 
 Használatra példa:
 
+``` java
 	public class Main {
 	  public static void keruletKiir(Sikidom sikidom) {
 	    System.out.println( sikidom.kerulet() );
@@ -126,6 +131,7 @@ Használatra példa:
 	    keruletKiir( s );
 	  }
 	}
+```
 
 ## Interfészek ##
 Új referencia típus, absztrakt függvények és konstansok gyűjteménye
@@ -149,13 +155,17 @@ Eltérés az osztályoktól:
 ### Deklaráció ###
 Mint az osztályoké:
 
+``` java
 	interface A {}
 	
 	public interface B {}
+```
 
 Öröklődési reláció neve itt _kiterjesztés_, lehet többszörös:
 
+``` java
 	interface C extends A, B {}
+```
 
 Körkörös kiterjesztés fordítási hibát eredményez.
 
@@ -172,10 +182,12 @@ Előbbiből következik, hogy minden adattagot inicializálni kell (különben
 fordítási hibát kapunk), és ez csak már ismert érték lehet
 (_forward referencing_ tilos):
 
+``` java
 	interface I {
 	    int A = B; // Hibas definicio!
 	    int B = 0;
 	}
+```
 
 Nem szerepelhet `this`, `super` sem. Módosítószavak között nem szerepelhet
 `synchronized`, `transient`, `volatile` -  ezek olyan dolgokat kötnek meg,
@@ -184,6 +196,7 @@ amiknek implementációs szinten kell eldőlniük, használatuk ésszerűtlen le
 
 Főleg tulajdonságok, viselkedés hozzáadására. Például:
 
+``` java
 	interface Beolvashato {
 	  public abstract void beolvas();
 	}
@@ -196,6 +209,7 @@ Főleg tulajdonságok, viselkedés hozzáadására. Például:
 	    r = Integer.parseInt( sor );
 	  }
 	}
+```
 
 ## Summarium ##
 *It boils down to this.* Amit *mindenképp* meg kell jegyezni, az a következő:
@@ -204,16 +218,21 @@ Főleg tulajdonságok, viselkedés hozzáadására. Például:
 * *Absztrakt osztály* pedig megvalósítást is tartalmazhat
 
 ### Interfész ###
+``` java
 	public interface GroupedInterface
 	    extends Interface1, Interface2, Interface3 { ... }
+```
 
 vagy például:
 
+``` java
 	class A extends B implements I1, I2 { ... }
+```
 
 > **Részletesen** <http://download.oracle.com/javase/tutorial/java/IandI/interfaceDef.html>
 
 ### Absztrakt osztályra példa ###
+``` java
 	public abstract class Point {
 	    private int x = 1, y = 1;
 	    
@@ -225,6 +244,7 @@ vagy például:
 	    
 	    abstract void alert();
 	}
+```
 
 > **Részletesen** <http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#34944>
 
@@ -259,7 +279,9 @@ megengedett (sőt, ajánlott is).
   rendelkezik). Az eltoláshoz használj változó számú paramétert (*vararg*), a
   következő minta alapján:
 
+``` java
 		public abstract void translate(double... coordinates);
+```
 
   A forgatást vedd úgy, hogy az origó kürül kell elforgatni a megadott pontot,
   a paraméterként specifikált *alpha* szöggel (3D pont esetén elég valamelyik
@@ -271,7 +293,9 @@ megengedett (sőt, ajánlott is).
   
   Készíts egy `Frissitheto` interfészt! Ez egyetlen metódust írjon elő:
 
+``` java
 		public abstract void frissit();
+```
 
   Ezzel a képernyőről, felhasználói interakció révén lehessen frissíteni az
   adott objektum értékeit! Minden implementáció valósítsa meg ezt az interfészt!
@@ -281,10 +305,12 @@ megengedett (sőt, ajánlott is).
 * Készítsetek egy kódoló alkalmazást! Hozzátok létre a kódolóalgoritmusok
   absztrakt osztályát (`AKodolo`), amely a következő definíciókat tartalmazza:
 
+``` java
 		public abstract class AKodolo {
 		  public abstract String kodol(String eredeti);
 		  public abstract String dekodol(String kodolt);
 		}
+```
 
   A különböző megvalósítások a kapott eredeti szöveget kódolják ill. fejtik
   vissza (kódolás előtt alakítsátok nagybetűssé a kapott szöveget).
@@ -310,6 +336,7 @@ megengedett (sőt, ajánlott is).
 
   Készíts egy `Util` osztályt, amely a következő definíciót tartalmazza:
 
+``` java
 		public final class Util {
 		  public static ASorozat beolvas() {
 		    //...
@@ -317,6 +344,7 @@ megengedett (sőt, ajánlott is).
 		
 		  private Util() {}
 		}
+```
 
   Ez a felhasználótól kérdezze meg, hogy milyen sorozatot szeretne megadni,
   segítsen neki létrehozni egyet, és ezt a létrehozott sorozatot adja is vissza.

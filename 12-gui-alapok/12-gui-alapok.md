@@ -10,6 +10,7 @@ Ill. `C:/Program Files/Java/jdk1.6/demo/jfc` alatt `SwingSet2` és `SwingSet3`
 példa alkalmazások.
 
 ## Példakód ##
+``` java
 	package gui.basics;
 
 	import java.awt.*;
@@ -29,9 +30,11 @@ példa alkalmazások.
 	        AWTTest test = new AWTTest();
 	    }
 	}
+```
 
 ## Életciklus ##
 1. Felület felépítése. Egyszerű példa alkalmazás
+``` java
 		package gui.basics;
 		
 		import java.awt.*;
@@ -58,9 +61,11 @@ példa alkalmazások.
 		        AWTTest test = new AWTTest();
 		    }
 		}
+```
 		
 1. Használata (eseményfigyelők)
 
+``` java
         button.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent ae) {
@@ -75,15 +80,18 @@ példa alkalmazások.
                 
             }
         });
+```
 
 1. Bezárása
-		
+
+``` java
 		frame.addWindowListener( new WindowAdapter() {
 		    @Override
 		    public void windowClosing(WindowEvent e) {
 		        System.exit(0);
 		    }
 		});
+```
 
 ## Adapterek, Listenerek ###
 `XXXListener` interfész, ha nem kell az összes esemény, használható az
@@ -94,25 +102,32 @@ Fontosabb Listenerek:
 
 * ActionListener: menü, gombnyomás, `Enter` egy `TextField` objektumon
 
+``` java
 		public void actionPerformed(ActionEvent e) { ... }
+```
 
 * `KeyListener`: Billentyű leütése
 
+``` java
 		public void keyTyped(KeyEvent e)    { ... }
 		public void keyPressed(KeyEvent e)  { ... }
 		public void keyReleased(KeyEvent e) { ... }
+```
 
 * `MouseListener`: Egérlenyomás (van `MouseMotionListener`,
 `MouseWheelListener` is)
 
+``` java
 		public void mousePressed(MouseEvent e)  { ... }
 		public void mouseReleased(MouseEvent e) { ... }
 		public void mouseEntered(MouseEvent e)  { ... }
 		public void mouseExited(MouseEvent e)   { ... }
 		public void mouseClicked(MouseEvent e)  { ... }
+```
 
 * `WindowListener`: ablak eseményeinek kezelése
 
+``` java
 		public void windowActivated(WindowEvent e)   { ... }
 		public void windowClosed(WindowEvent e)      { ... }
 		public void windowClosing(WindowEvent e)     { ... }
@@ -120,6 +135,7 @@ Fontosabb Listenerek:
 		public void windowDeiconified(WindowEvent e) { ... }
 		public void windowIconified(WindowEvent e)   { ... }
 		public void windowOpened(WindowEvent e)      { ... }
+```
 
 * Stb., lásd referenciát.
 
@@ -160,6 +176,7 @@ megvan. A `javax.swing.*` csomagban (*Java extended*). További előnyök:
 `frame.setMenuBar()`, `MenuBar` -> `Menu`, `Menu` -> `Menu`, `MenuItem`. Van
 szeparátor is.
 
+``` java
 	JMenuBar menuBar = new JMenuBar();
 	
 	JMenu fileMenu = new JMenu("File");
@@ -170,21 +187,26 @@ szeparátor is.
 	exitMenu.addActionListener( ... )
 	
 	frame.setJMenuBar(menuBar);
+```
 
 ## Üzenetablakok ##
 `JOptionPane.showXXXDialog()`, pl.:
 
+``` java
 	JOptionPane.showMessageDialog(null, // ki az ose, ha van, akkor modalis
 	    "alert",                        // uzenet
 	    "alert",                        // title
 	    JOptionPane.ERROR_MESSAGE       // tipus
 	);
+```
 
 > **Részletesen** <http://download.oracle.com/javase/6/docs/api/javax/swing/JOptionPane.html>
 
 ## Scrollozható komponensek ##
 
+``` java
 	frame.add( new JScrollPane(textArea) );
+```
 
 ## Linkek ##
 * <http://community.java.net/javadesktop>

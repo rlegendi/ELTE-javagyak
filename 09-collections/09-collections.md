@@ -14,10 +14,13 @@ heterogén adatszerkezeteket használ, megérdemli.
 
 Collectionöknél aktívan használjuk őket:
 
+``` java
 	Vector<String> s = new Vector<String>();
+```
 
 Az előnyük:
 
+``` java
 	// Pre-1.5 era:
 	Vector v = new Vector();
 	
@@ -38,6 +41,7 @@ Az előnyük:
 	    Integer act = v.get(i);
 	    System.out.println(act);
 	}
+```
 
 ## Autoboxing-unboxing ##
 Csak objektum referenciákat tárolhatnak, ezért _primitív típusok helyett_ ún.
@@ -48,6 +52,7 @@ unboxing NullPointerException-nel jár.
 
 Példa:
 
+``` java
 	v.add(1);
 	// Implicit a kovetkezot jelenti:
 	v.add( new Integer(1) );
@@ -57,6 +62,7 @@ Példa:
 	
 	v.add(null);
 	for (int act : v) { ... } // RECCS!
+```
 
 **Megjegyzés** A `(*)`-gal jelölt rész speciel pont mindig igaz lesz, de ez
 **mágia műve**: a -127-126 intervallumon lévő számok wrapper objektumait
@@ -83,13 +89,16 @@ konstruktorok vannak (egyik a másikra konvertálható). Műveletek 3 csoportja:
    `clear()`, `retainAll()`
 3. Tömbbé konvertálás - gány:
 
+``` java
 		A[] arr = (A[]) list.toArray(new A[list.size()]);
 		
 		// Kicsit egyszerubb, bar kevesbe hatekony, biztonsagos:
 		A[] arr = (A[]) list.toArray();
+```
 
 Iterátorokkal rendelkeznek, használhatók for-each-ben. Példa:
 
+``` java
 	package collections;
 	
 	import java.util.Vector;
@@ -110,6 +119,7 @@ Iterátorokkal rendelkeznek, használhatók for-each-ben. Példa:
 	        System.out.println(vector);
 	    }
 	}
+```
 
 ### Halmaz ###
 Duplikált elemeket nem tartalmazhat, kell hozzá az objektumon az `equals()` és
@@ -203,12 +213,14 @@ eredménye `int` típusú:
 
 Implementáció:
 
+``` java
 	class Foo implements Comparable<Foo> {
 	    ...
 	    public int compareTo(final Foo foo) {
 	        return ...;
 	    }
 	}
+```
 
 Ha ennek használatára nincs lehetőség, marad egy saját `Comparator` készítése
 (pl. egyazon objektumot több szempont szerint kell rendezni).
@@ -246,9 +258,11 @@ függvénnyel, és írjátok ki az eredményt!
 * További adatszerkezetek: `Dequeue`, `Stack`, `BitSet`, `Vector`, etc.
 * Felhasználás: paraméterként, változódeklarációként célszerű minél általánosabb
   interfészt megadni (a collections framework előnye a rugalmassága):
-  
+
+``` java
 		Vector<Integer> v1 = new Vector<Integer>();  // vektorkent kezeles
 		List<Integer>   v2 = new Vector<Integer>();  // listakent kezeles
+```
 
 > **Részletesen:**
 > <http://download.oracle.com/javase/tutorial/collections/index.html>

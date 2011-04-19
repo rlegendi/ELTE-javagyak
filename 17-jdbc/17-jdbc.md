@@ -44,7 +44,9 @@ Elérhető az alábbi címen: <http://www.oracle.com/technetwork/java/javadb/ove
 Ehhez a következő osztály dinamikus betöltésére van szükség (ő implementálja a
 `Driver` interfészt):
 
+``` java
 	Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+```
 
 A driverek specifikáció szerint osztálybetöltéskor egy statikus inicializátor
 blokkban bejegyzik magukat a `DriverManager` osztályban, így rendelkezésre
@@ -63,6 +65,7 @@ karakterekkel választhatjuk el):
 
 Példa a használatára:
 
+``` java
 	Connection dbConnection = null;
 	String strUrl = "jdbc:derby:DefaultAddressBook;user=dbuser;password=dbuserpwd";
 	try {
@@ -70,10 +73,12 @@ Példa a használatára:
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
+```
 
 Másik megoldás (kicsit biztonságosabb), ha property-kbe rakjuk a felhasználó
 nevét és jelszavát:
 
+``` java
 	Connection dbConnection = null;
 	String strUrl = "jdbc:derby:DefaultAddressBook";
 	
@@ -85,11 +90,14 @@ nevét és jelszavát:
 	} catch(SQLException sqle) {
 	    sqle.printStackTrace();
 	}
+```
 
 Hova kerül a DB? A `derby.system.home` system property által beállított érték
 határozza meg. Ezt vagy kódból lehet beállítani:
 
+``` java
 	System.setProperty("derby.system.home", "/tmp");
+```
 
 vagy futtatásnál lehet megadni:
 
@@ -124,6 +132,7 @@ Három lehetőség:
   áttekinthetőség érdekében a `String` literál lezáró `"` jeleket és a
   konkatenációt elhagytam):
 
+``` java
 		String strCreateTable = "CREATE TABLE inventory
 		(
 		   id INT PRIMARY KEY,
@@ -134,10 +143,12 @@ Három lehetőség:
 		
 		statement = dbConnection.createStatement();
 		statement.execute(strCreateTable);
+```
 
 * `executeQuery(String)`: lekérdezéshez, az eredmény egy `ResultSet` objektum
   lesz. %Mindig olvassátok végig az eredményt, mert addig nem záródik. Pl.:
-  
+
+``` java
 		ResultSet rs = statement.executeQuery("SELECT * FROM inventory");
 		while (rs.next()) {
 		    String p = rs.getString("product");
@@ -145,23 +156,28 @@ Három lehetőség:
 		    double d = rs.getDouble("price");
 		    ...
 		}
+```
 
 * `executeUpdate(String)`: insert, update, delete, és adatdefiníciós
   utasításokhoz, az eredmény a módosított sorok száma (vagy 0). Pl.:
 
+``` java
 		statement.executeUpdate("DELETE WHERE id=0");
+```
 
 ## Kötegelt végrehajtás ##
 Van rá lehetőség, hogy parancsokat összefogjunk, és egyszerre küldjünk el a
 szervernek feldolgozásra, így sok kis adatmódosító utasítás gyorsabban lefuthat,
 mintha külön-külön futtattatnánk le őket. Pl.:
 
+``` java
 	statement.addBatch("Create TABLE ...");
 	statement.addBatch("INSERT INTO ...");
 	statement.addBatch("INSERT INTO ...");
 	statement.addBatch("INSERT INTO ...");
 	...
 	statement.executeBatch();
+```
 
 Az `executeBatch()` egy tömbbel tér vissza, hogy az egyes utasítások hány sort
 változtattak a DB-ben (itt `[0, 1, 1, 1, ...]` lesz).

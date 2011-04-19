@@ -43,6 +43,7 @@ Itt két lehetőséged van:
 
 Indítsd el a szövegszerkesztőt. A Notepad alkalmazást a *Start menüből* indíthatod el. Egy új dokumentumba írd be az alábbiakat:
 
+``` java
 	/**
 	 * The HelloWorldApp class implements an application that
 	 * simply prints "Hello World!" to standard output.
@@ -52,6 +53,7 @@ Indítsd el a szövegszerkesztőt. A Notepad alkalmazást a *Start menüből* in
 		System.out.println("Hello World!"); // Display the string.
 	    }
 	}
+```
 
 > **Megjegyzés** Minden kódot, utasítást és fájlnevet pontosan másolj le. Mind a futtató (`java`), mind a fordító alkalmazás (`javac`) megkülönbözteti a kis-, és nagybetűket. 
 > `HelloWorldApp != helloworldapp`
@@ -155,9 +157,11 @@ Akkor jelentkezik, mikor hiba van a program kódjában. A hiba üzenet leírja, 
 
 Néha a fordító nem tudja kitalálni, hogy mi a szándékod, ezért megtévesztő hibaüzenetet adhat vissza. Például ebből a kód részletből hiányzik egy (;) a vastaggal szedett résznél:
 
+``` java
 	while (System.in.read() != -1) {
 		count++ System.out.println("Input has " + count + " chars.");
 	}
+```
 
 Ebben az esetben a fordító két hibával tér vissza: 
 

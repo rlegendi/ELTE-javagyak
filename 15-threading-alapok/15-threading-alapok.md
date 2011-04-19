@@ -54,6 +54,7 @@ Két lehetőség:
    
    Példa:
 
+``` java
 		package threading;
 		
 		class TestThread extends Thread {
@@ -69,21 +70,25 @@ Két lehetőség:
 		        test.start();
 		    }
 		}
+```
 
    Névtelen osztállyal ugyanez:
-   
+
+``` java
 		new Thread() {
 		    @Override
 		    public void run() {
 		        System.out.println("TestThread");
 		    }
 		}.start();
+```
 
 2. `Runnable` interfész implementálása: ha a származtatás nem lehetséges (pl. a
    fő osztály egy `JFrame`, `Applet`, stb.). Egyetlen függvényt ír elő: `run()`,
    melyet meg kell valósítani. Indítani úgy lehet, ha egy `Thread` objektumnak
    megadod paraméterként, és arra meghívjuk a `start()` eljárást:
 
+``` java
 		package threading;
 		
 		class TestRunnable implements Runnable {
@@ -99,15 +104,18 @@ Két lehetőség:
 		        thread.start();
 		    }
 		}
+```
 
   Ugyanez névtelen osztállyal:
 
+``` java
 		new Thread( new Runnable() {
 		    @Override
 		    public void run() {
 		        System.out.println("TestRunnable");
 		    }
 		}).start();
+```
 
 ## Szálak függvényei ##
 
@@ -163,14 +171,17 @@ A szinkronizációt ezen problémák elkerülésével kell megoldani.
 ## Kölcsönös kizárás ##
 Javaban ún. *szinkronizációs burok* van:
 
+``` java
 	synchronized ( resource ) {
 	    ...
 	}
+```
 
 Ez garantálja, hogy az azonos lockhoz tartozó blokkokban egyszerre egy szál
 lehet csak (gond - kódblokkot védünk, nem erőforrást). A `synchronized`
 használható példány-, és osztályfüggvény  módosítószavaként, ekkor a jelentése:
 
+``` java
 	public synchronized void f() {
 	    ...
 	}
@@ -181,9 +192,11 @@ használható példány-, és osztályfüggvény  módosítószavaként, ekkor a
 	        ...
 	    }
 	}
+```
 
 Illetve osztályfüggvények esetén:
 
+``` java
 	class MyClass {
 	    public static synchronized void s() {
 	        ....
@@ -196,6 +209,7 @@ Illetve osztályfüggvények esetén:
 	        }
 	    }
 	}
+```
 
 > **Megjegyzés** ha csak egy szál változtathat egy változót, a többi csak
 > olvassa, akkor jöhet jól a `volatile` kulcsszó, amely garantálja, hogy a
@@ -213,6 +227,7 @@ teljesül (`notify()`).
 
 Használatához *mindig* egy monitor szükséges, különben futásidejű hibát kapunk!
 
+``` java
 	synchronized (monitor) {
 	    monitor.wait();
 	}
@@ -220,8 +235,10 @@ Használatához *mindig* egy monitor szükséges, különben futásidejű hibát
 	synchronized (monitor) {
 	    monitor.notify();
 	}
+```
 
 ## Deadlockra példa ##
+``` java
 	package threading;
 	
 	public class Deadlock {
@@ -266,6 +283,7 @@ Használatához *mindig* egy monitor szükséges, különben futásidejű hibát
 	        }.start();
 	    }
 	}
+```
 
 ## Szálak állapotai ##
 
@@ -282,6 +300,7 @@ Szinkronizált vs. nem szinkronizált adatszerkezetek (pl. `Vector` vs.
 módosítják az adatszerkezetet, reccsen egy
 `java.util.ConcurrentModificationException` kivétellel:
 
+``` java
 	package threading;
 	
 	import java.util.ArrayList;
@@ -312,11 +331,14 @@ módosítják az adatszerkezetet, reccsen egy
 	        list.remove(50);
 	    }
 	}
+```
 
 Szinkronizált adatszerkezetek készítése wrapperekkel, példa listára, másra
 analóg módon:
 
+``` java
 	final List<T> list = Collections.synchronizedList(new ArrayList<T>(...));
+```
 	
 ## Java Concurrency - Java 1.6 ##
 A `java.util.concurrent.*`, `java.util.concurrent.atomic.*`,
@@ -363,9 +385,11 @@ A `java.util.concurrent.*`, `java.util.concurrent.atomic.*`,
    aktuális idővel. A panelen található információt másodpercenként frissítsd! Az
    osztály definíciója nézzen ki a következőképpen:
 
+``` java
 		public class ... extends JFrame implements Runnable {
 		    ...
 		}
+```
 		
 9. Egészítsd ki az előző feladatot úgy, hogy ha ráklikkel a felhasználó a
    megjelenített `JLabel`-re, akkor szüneteltesse a frissítést a program. Ha újra

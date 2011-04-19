@@ -13,11 +13,13 @@
   A `this` minden esetben az aktuális példányt jelenti (ami példányonként
   nyilván különbözik), az `i` változó pedig mindnél ugyanaz.  
 
+``` java
 		static int i = 0;
 		
 		class T extends Thread {
 		    public void run() { synchronized(this) { i++; }
 		}
+```
 
 
 **Feladat** Adott `v_1`, `v_2`, ..., `v_n` vektorok, amelyen `n` szál dolgozik.
@@ -31,11 +33,13 @@ olyan `j` indexet, ahol ez a szám megtalálható, vagyis `v_i[j] = e`,
 ## 1. kísérlet ##
 Indítsunk két szálat. Közös változó a `found`, lokális változó a `v, i`.
 
+``` java
 	found = false; i = 0;    // A
 	while (!found) {         // B
 	  found = v.get(i) == e; // C
 	  i++;                   // D
-	}     
+	}
+```
 
 ### FAIL ###
 Tegyük fel, hogy az egyes szál elindult, az `i.` elem épp `e`, `C` végrehajtása
@@ -47,13 +51,15 @@ ismét hamis lesz **végtelen ciklus**.
 külön-külön is inicializálja a közös változót, tegyük meg ezt a szálak indítása
 előtt!
 
+``` java
 	found = false // Threadek inditasa elott
 	
 	i = 0;                   // A
 	while (!found) {         // B
 	  found = v.get(i) == e; // C
 	  i++;                   // D
-	}     
+	}
+```
 
 ### FAIL ###
 Tegyük fel, hogy az egyes szál `C`-hez ér, végrehajtja, és épp megtalálja az
@@ -65,11 +71,13 @@ eredmény **végtelen ciklus**.
 *Ouch, tényleg!* Csak akkor adjunk új értéket a `found` változónak, ha
 megtaláltuk az elemet.
 
+``` java
 	i = 0;                      // A
 	while (!found) {            // B
 	  if (e == v[i]) b = true;  // C
 	  i++;                      // D
 	}
+```
 
 ### FAIL ###
 Tegyük fel hogy az első szál az első elemében rögtön fel is fedezi az `e`
@@ -82,21 +90,25 @@ eredmény **végtelen várakozás**.
 melyik szál futhat a `while` ciklusba való belépés után! A feltételhez kötött
 várakozást `await` szimbólummal jelölve, az első szál definíciója:
 
+``` java
 	i = 0;                            // A
 	while (!found) {                  // B
 	  await (1 == next) { next = 2; } // C
 	  if (e == v[i]) b = true;        // D
 	  i++;                            // E
 	}
+```
 
 valamint a második szál definíciója legyen a következő:
 
+``` java
 	j = 0;                            // A
 	while (!found) {                  // B
 	  await (2 == next) { next = 1; } // C
 	  if (e == v[j]) b = true;        // D
 	  j++;                            // E
 	}
+```
 
 ### FAIL ###
 Tegyük fel, hogy az első szál eljut `D` végrehajtásáig, majd ezután a második
@@ -109,6 +121,7 @@ eredmény **holtpont**.
 *Ooooh! És ha terminálásnál is jelzek?!* A szálak terminálásánál is figyeljünk a
 `next` változóra! Az első szál kódját módosítsuk a következőképp:
 
+``` java
 	i = 0;                            // A
 	while (!found) {                  // B
 	  await (1 == next) { next = 2; } // C
@@ -116,9 +129,11 @@ eredmény **holtpont**.
 	  i++;                            // E
 	}
 	next = 2;                         // F
+```
 
 a másodikét pedig az alábbi módon:
 
+``` java
 	j = 0;                            // A
 	while (!found) {                  // B
 	  await (2 == next) { next = 1; } // C
@@ -126,6 +141,7 @@ a másodikét pedig az alábbi módon:
 	  j++;                            // E
 	}
 	next = 1;                         // F
+```
 
 * Na ez már menni fog.* :-)
 
@@ -141,6 +157,7 @@ Peterson-féle algoritmus kölcsönös kizárás megoldására, vektorértékad�
 ## Kliens-szerver architektúra ##
 A szerveroldali kód:
 
+``` java
 	// Raakaszkodas a portra
 	ServerSocket ss = new ServerSocket( port );
 	// Fuss, amig...
@@ -151,6 +168,7 @@ A szerveroldali kód:
 	    // Kapcsolat kezelese
 	    // ...
 	}
+```
 
 ## Feladat ##
 Készítsetek egy többszálú chat szerveralkalmazást, valamint egy klienst hozzá!
@@ -161,10 +179,12 @@ csatlakozzanak a kliensek is!
 A szerveralkalmazás minden egyes bejövő kapcsolatot külön szállal kezeljen, a
 váza valahogy így nézzen ki:
 
+``` java
 	ServerSocket socket = new ServerSocket(PORT);
 	while (true) {
 	    new Handler(socket.accept()).start();
 	}
+```
 
 A kliensek is legyenek többszálú alkalmazások: az egyik szál folyamatosan
 figyelje, hogy nem jön-e új üzenet a csatornán, miközben a másik szál írjon a

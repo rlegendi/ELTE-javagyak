@@ -9,6 +9,7 @@ szerializáció minden adattagot kiment (amennyiben az ős nem szerializálható
 akkor abban lennie kell egy nullary konstruktornak; az `Object` ennek a
 kritériumnak megfelel):
 
+``` java
 	package serialization;
 	
 	import java.io.FileInputStream;
@@ -48,6 +49,7 @@ kritériumnak megfelel):
 	        System.out.println(loaded);
 	    }
 	}
+```
 
 Rekurzív adatszerkezeteknél (oda-vissza hivatkozások) ebből gond lehet.
 
@@ -59,28 +61,33 @@ is tudjuk menteni), azonban nem mind,  például az oprendszer szintű osztályo
 Ha van egy adattagunk, amit nem szeretnénk szerializálni, használhatjuk a
 `transient` kulcsszót:
 
+``` java
 	public class PersistentDate implements Serializable {
 	    private final Date date = new Date();
 	    private transient Thread updater;
 	    ...
 	}
+```
 
 ## A default protokoll módosítása ##
 Írhatunk saját szerializációs módszert is (kézzel írva hatékonyabb - kényelem
 vs. hatékonyság), ehhez a következő két függvényt kell "felüldefiniálni":
 
+``` java
 	private void writeObject(ObjectOutputStream out)
 	     throws IOException;
 	 private void readObject(ObjectInputStream in)
 	     throws IOException, ClassNotFoundException;
 	 private void readObjectNoData() 
 	     throws ObjectStreamException;
+```
 
 Nem biztos, hogy az alapértelmezett viselkedést akarjuk megváltoztatni
 (`defaultReadObject()`, `defaultWriteObject()`), de pl. így tranziens
 attribútumokat is kiírhatunk, vagy köthetünk eseményeket a szerializáció
 eseményéhez. Pl. ha a fenti szálat szeretnénk elindítani:
 
+``` java
 	private void writeObject(ObjectOutputStream out)
 	        throws IOException {
 	    out.defaultWriteObject(); 
@@ -91,6 +98,7 @@ eseményéhez. Pl. ha a fenti szálat szeretnénk elindítani:
 	     in.defaultReadObject();
 	    updater.start();
 	}
+```
 
 > **Megjegyzés** Amennyiben teljesen mi szeretnénk felügyelni, használjuk a
 `Externalizable` interfészt, így semmit nem kapunk (ősosztályok szerializációját
@@ -100,6 +108,7 @@ sem!).
 Ha egy származtatott osztályban le akarjuk tiltani a sorosíthatóságot, nincs
 jobb módszer, mint kivételt dobni:
 
+``` java
 	private void writeObject(ObjectOutputStream out)
 	        throws IOException {
 	    throw new NotSerializableException("Nem!");
@@ -109,18 +118,23 @@ jobb módszer, mint kivételt dobni:
 	        throws IOException, ClassNotFoundException {
 	    throw new NotSerializableException("Nem!");
 	}
+```
 
 ## Gotchas ##
 * Az `ObjectOutputStream` cache-el! Amint kapott egy referenciát, azt megjegyzi,
 és a többiről nem is akar tudni:
 
+``` java
 		oos.writeObject( obj );
 		obj.value = 1; // Hiaba allitjuk at, ha elotte nem 1 volt
 		oos.writeObject(obj); // akkor itt az eredeti erteke lesz
+```
 
 * Verziókezelés:
- 
+
+``` java
 		private static final long serialVersionUID = <ronda_nagy_generalt_szam>L;
+```
 	
 * Teljesítmény: a default Java szerializációnál vannak hatékonyabb frameworkök!
 
@@ -130,6 +144,7 @@ jobb módszer, mint kivételt dobni:
 * A kör legyen képes megmondani a kerületét! A kerületszámolás legyen lusta
   kiértékelésű:
 
+``` java
 		private Double c = null;
 		
 		public double getCircumference() {
@@ -139,6 +154,7 @@ jobb módszer, mint kivételt dobni:
 		    
 		    return c.doubleValue();
 		}
+```
 
   A program a szerializáció során kezelje ezt az attribútumot nem perzisztens
   attribútumnak!

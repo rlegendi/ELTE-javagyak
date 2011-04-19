@@ -10,6 +10,7 @@ Mint azt minden Java programozó tudja, az `int` (vagy bármely más primitív t
 
 A következő példa az autoboxing és unboxing, valamint a [generic](./generics.html "generics")-ek és a [for-each](./for-each.md "for-each") ciklus működését illusztrálja. A tíz soros program létrehozza, és kiírja a parancssori paraméterként kapott szavak alfabetikusan rendezett gyakorisági táblázatát.
 
+``` java
     	import java.util.*;
 
     	// Prints a frequency table of the words on the command line
@@ -23,6 +24,7 @@ A következő példa az autoboxing és unboxing, valamint a [generic](./generics
           		System.out.println(m);
        		}
     	}
+```
 
     	java Frequency if it is to be it is up to me to do the watusi
     	{be=1, do=1, if=1, is=2, it=2, me=1, the=1, to=3, up=1, watusi=1}
@@ -33,7 +35,8 @@ Ennek a varázslatnak köszönhetően, nagyrészt figyelmen kívül hagyhatóak 
 
 Íme, még egy példa az autoboxing és az unboxing szemléltetésére. Egy statikus gyártó, amely egy `int` tömböt kap paraméterként, majd visszaad egy `Integer`-eket tartalmazó listát ([List](http://download.oracle.com/javase/1.5.0/docs/api/java/util/List.html "List")) "mögötte" a tömbbel. A következő néhány soros metódus kényelmes, lista-szerű hozzéférést biztosít az `int` tömbhöz. Minden változtatás a listában megjelenik a tömbben, és fordítva. A sorok, ahol autoboxing vagy unboxing történik ki vannak emelve.
 
-    	**// List adapter for primitive int array**
+``` java
+    	// List adapter for primitive int array
     	public static List<Integer> asList(final int[] a) {
     		return new AbstractList<Integer>() {
     			public Integer get(int i) { return a[i]; }			//return a[i]; (zöld)
@@ -46,6 +49,7 @@ Ennek a varázslatnak köszönhetően, nagyrészt figyelmen kívül hagyhatóak 
     			public int size() { return a.length; }
     		};
     	}
+```
 
 A kapott lista teljesítménye igen gyenge, mivel minden egyes `get` és `set` híváskor boxol/unboxol. Ez megfelelő alkalmankénti használatra, de könnyelműség lenne teljesítmény szempontból kritikus belső ciklusban használni.
 

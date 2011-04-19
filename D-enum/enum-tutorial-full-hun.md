@@ -6,11 +6,13 @@
 
 A régebbi verziókban a felsoroló típusoknak a szabványos reprezentációja az *int enum pattern*:
 
+``` java
 		//int Enum minta - komoly hibákkal küzd!
 		public static final int SEASON_WINTER = 0;
 		public static final int SEASON_SPRING = 1;
 		public static final int SEASON_SUMMER = 2;
 		public static final int SEASON_FALL   = 3;
+```
 
 Ezzel a mintával sok probléma van, mint például:
 
@@ -28,7 +30,8 @@ Az 5.0-s verzióban a felsoroló típusok nyelvi támogatást kapnak. Legegyszer
 Ugyanakkor a látszat megtévesztő lehet. A Javaban a felsorolási típusok sokkal kifejezőbbek, mint a többi programozási nyelvben, ahol nem sokkal többek, mint az egyszerű egész értékek. Az új `enum` deklaráció egy teljesen önálló osztályt (egy *felsorolási típust*) definiál. Azon kívül, hogy megoldja a fentebb említett összes problémát, lehetővé teszi, hogy tetszőleges metódusokat, adat mezőket adjunk egy felsoroló típusnak, tetszőleges interfészeket implementáljunk, valamint számos más előnnyel is rendelkezik. A felsorolási típusok magas szintű implementációt biztosítanak az összes `Object` metódusnak. Összehasonlíthatók (`Comperable`) és szerializálhatók (`Serializable`). Ezeket úgy tervezték, hogy kiállják a tetszőleges változtatásokat (*hibatűrés*).
 
 Itt van egy kártya játék osztály példa, felépítve néhány egyszerű felsoroló típussal az elején. A `Card` osztály megváltoztathatatlan (*immutable*), és minden `Card`-nak csak egy példánya jön létre, tehát nincs szükség az `equals()` vagy a `hashCode()` függvények túlterhelésére:
- 
+
+``` java
 		import java.util.*;
 
 		public class Card {
@@ -61,6 +64,7 @@ Itt van egy kártya játék osztály példa, felépítve néhány egyszerű fels
 				return new ArrayList<Card> (protoDeck);   //a protoype deck másolatát adja vissza
 			}
 		}
+```
 
 A `Card toString()` metódusa a `Rank` és a `Suit toString()` metódusát használja. Vegyük észre, hogy a `Card` osztály rövid (kb 25 soros kód). Ha a típusbiztos felsorolók (`Rank` és `Suit`) kézzel lettek volna felépítve, akkor jelentősen hosszabbak lenének mint az egész `Card` osztály.
 
@@ -70,6 +74,7 @@ Továbbá azt is vegyük észre, hogy mindegyik felsoroló típusnak van egy sta
 
 A következő példa egy egyszerű program (`Deal` osztály), ami a `Card` osztályt használja. Két számot olvas be a konzolból, az első a játékosok számát a második a kártyák számát jelenti játékosonként. Aztán létrehoz egy új kártyapaklit, megkeveri, kiosztja és kiírja a konzolba a kártyákat játékosonként.
 
+``` java
 		import java.util.*;
 
 		public class Deal {
@@ -90,6 +95,7 @@ A következő példa egy egyszerű program (`Deal` osztály), ami a `Card` oszt�
 				return hand;
 			}
 		}
+```
 
 		$ java Deal 4 5
 		[FOUR of HEARTS, NINE of DIAMONDS, QUEEN of SPADES, ACE of SPADES, NINE of SPADES]
@@ -99,6 +105,7 @@ A következő példa egy egyszerű program (`Deal` osztály), ami a `Card` oszt�
 
 Tegyük fel, hogy vmilyen adatot és viselkedés formát akarunk adni egy felsorolónak. Például nézzük a Naprendszer bolygóit. Minden bolygónak van tömege és sugara, ki lehet számolni a felszíni gravitációt és a bolygón lévő tárgyak a tömegét. Így néz ki:
 
+``` java
 		public enum Planet {
 			MERCURY (3.303e+23, 2.4397e6),
 			VENUS   (4.869e+24, 6.0518e6),
@@ -129,11 +136,13 @@ Tegyük fel, hogy vmilyen adatot és viselkedés formát akarunk adni egy felsor
 				return otherMass * surfaceGravity();
 			}
 		}
+```
 
 A `Planet` enum típus tartalmaz egy konstruktort, és minden enum konstans deklarálva van a paramétereivel, amik át lesznek adva a konstruktornak annak meghívásakor.
 
 Itt van egy hasonló program, ami veszi a súlyunkat a földön (bármilyen mértékegységben) és kiszámolja, majd kiírja a különböző bolygókon mért súlyunkat (ugyanabban a mértékegységben):
 
+``` java
 		public static void main(String[] args) {
 			double earthWeight = Double.parseDouble(args[0]);
 			double mass = earthWeight/EARTH.surfaceGravity();
@@ -141,6 +150,7 @@ Itt van egy hasonló program, ami veszi a súlyunkat a földön (bármilyen mér
 				System.out.printf("Your weight on %s is %f%n",
 								p, p.surfaceWeight(mass));
 		}
+```
 
 		$ java Planet 175
 		Your weight on MERCURY is 66.107583
@@ -156,6 +166,7 @@ Itt van egy hasonló program, ami veszi a súlyunkat a földön (bármilyen mér
 
 Az elképzelést, hogy viselkedés formát adjunk egy enumnak még tovább fokozhatjuk. A konstans enumoknak néhány metódusához is adhatunk *különböző* viselkedési formát. Az egyik módja ennek, hogy egy switch ágban végigvizsgáljuk az enum konstansokat. A következő enum példában a konstansok reprezentálják a négy aritmetikai műveletet, és azok `eval()` metódusa hajtja végre a műveletet:
 
+``` java
 		public enum Operation {
 			PLUS, MINUS, TIMES, DIVIDE;
 
@@ -170,11 +181,13 @@ Az elképzelést, hogy viselkedés formát adjunk egy enumnak még tovább fokoz
 				throw new AssertionError("Unknown op: " + this);
 			}
 		}
+```
 
 Ez jól működik, de nem fog lefordulni a `throw` kulcsszó nélkül, ami nem feltétlen előnyös. Ami még rosszabb, hogy nem felejthetjük el, hogy minden alkalommal mikor egy új konstansot adunk az `Operation` enumhoz, akkor hozzá kell adnunk egy új esetet a `switch` blokkhoz. Ha erről megfeledkezünk, akkor az `eval()` metódus megbukik és végrehajtja a fent említett `throw` részt.
 
 Van egy másik megoldás, amivel elkerülhetjük ezeket a problémákat. Az enum típusban absztraktnak deklarálhatjuk a metódust és felüldefiniálhatjuk egy konkrét metódussal minden egyes konstansban. Néhány metódust csak úgy ismerünk, mint *konstans-specifikus* metódus. Itt van az előző példa átalakítva úgy, hogy ezt a technikát használja:
 
+``` java
 		public enum Operation {
 			PLUS   { double eval(double x, double y) { return x + y; } },
 			MINUS  { double eval(double x, double y) { return x - y; } },
@@ -184,15 +197,18 @@ Van egy másik megoldás, amivel elkerülhetjük ezeket a problémákat. Az enum
 			// Ezt a konstansot használva végez aritmetikai műveletet
 			abstract double eval(double x, double y);
 		}
+```
 
 Itt van egy hasonló program ami az `Operation` osztályt használja. Két műveletet vár a konzolból, végigmegy az összes műveleten és mindegyik műveletet végrehajtja, majd kiíratja a kapott egyenleteket.
 
+``` java
 		public static void main(String args[]) {
 			double x = Double.parseDouble(args[0]);
 			double y = Double.parseDouble(args[1]);
 			for (Operation op : Operation.values())
 				System.out.printf("%f %s %f = %f%n", x, op, y, op.eval(x, y));
 		}
+```
 
 		$ java Operation 4 2
 		4.000000 PLUS 2.000000 = 6.000000
@@ -204,21 +220,28 @@ A konstans-specifikus metódusok meglehetősen mesterkéltek, és a legtöbb pro
 
 A felsorolási típusok támogatására két új osztály található a `java.util` csomagban: az [`EnumSet`](http://download.oracle.com/javase/1.5.0/docs/api/java/util/EnumSet.html) és az [`EnumMap`](http://download.oracle.com/javase/1.5.0/docs/api/java/util/EnumMap.html) egy speciális `Set` és `Map` implementációk. Az `EnumSet` egy hatékonyabb implementációja a `Set` interfésznek. Egy enum halmaz összes enum elemének a típusa meg kell, hogy egyezzen. Igazából ez egy bit-vektorként van reprezentálva, tipikusan egy egyszerű `long`-ként. Az enum halmazok enum típusain végig lehet iterálni egy adott tartományon. Például adott a következő enum deklaráció:
 
+``` java
 		enum Day { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY }
+```
 
 itt végig lehet iterálni a hétköznapokon. Az `EnumSet` osztály egy static factory-t generál, ami megkönnyíti  a helyzetet:
 
+``` java
 		for (Day d : EnumSet.range(Day.MONDAY, Day.FRIDAY))
 			System.out.println(d);
+```
 
-AZ Enum halmazok a hagyományos bit-flag-ekre is adnak egy gazdag és típusbiztosabb helyettesítést:
+Az Enum halmazok a hagyományos bit-flag-ekre is adnak egy gazdag és típusbiztosabb helyettesítést:
 
+``` java
 		EnumSet.of(Style.BOLD, Style.ITALIC)
+```
 
 Hasonlóan, az `EnumMap` is egy hatékonyabb implementációja a `Map`-nak, amit enum kulcsokkal tudunk használni. Az `EnumMap` igazából egy tömbként van implementálva. Az enum map-ek a `Map` interfésznek egy sokrétű és biztonságos kombinációja, megközelítőleg egy tömb gyorsaságával. Ha egy enumhoz egy értéket akarunk hozzárendelni, akkor mindig az `EnumMap`-ot kell használnunk és nem egy tömböt.
 
 A fenti `Card` osztály egy static factory függvényt tartalmaz, ami egy paklival tér vissza, és semmiféleképpen nem fogunk egy önálló kártyát a típusával és színével együtt visszakapni. Már a konstruktor felfedése is tönkretenné a singleton tulajdonságot (egy kártyának csak egy példánya létezhet). Itt van egy static factory példa, amivel meg tudjuk őrizni a singleton tulajdonságot egy beágyazott `EnumMap`-et használva:
 
+``` java
 		private static Map<Suit, Map<Rank, Card>> table =
 			new EnumMap<Suit, Map<Rank, Card>>(Suit.class);
 		static {
@@ -233,15 +256,18 @@ A fenti `Card` osztály egy static factory függvényt tartalmaz, ami egy pakliv
 		public static Card valueOf(Rank rank, Suit suit) {
 			return table.get(suit).get(rank);
 		}
+```
 
 Az `EnumMap` (table) mindegyik suit-ot egy `EnumMap`-hoz társítja és ez az `EnumMap` meg az összes rank-hoz egy card-ot társít. A `valueOf()` metódus által végrehajtott keresés valójában két tömb elérésével van megvalósítva, de a kód sokkal tisztább és biztonságosabb. A singleton tulajdonság megőrzése érdekében elkerülhetetlen, hogy a `Card` osztályban a prototype deck inicializációjánál a konstruktor hívását egy uj static factory hívással helyettesítsük:
 
+``` java
 		// Initialize prototype deck
 		static {
 			for (Suit suit : Suit.values())
 				for (Rank rank : Rank.values())
 					protoDeck.add(Card.valueOf(rank, suit));
 		}
+```
 
 Szintén elkerülhetetlen az is, hogy a `table` inicializációja a `protoDeck` inicializációja elé kerüljön, mivel az utóbbi függ az előbbitől.
 

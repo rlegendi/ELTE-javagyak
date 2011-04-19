@@ -52,6 +52,7 @@ Futtatni vagy klikkeléssel, vagy a következő paranccsal lehet:
 Készíts egy futtatható jar fájlt a következő `HelloWorld` programból! A package
 struktúra megtartására figyelj!
 
+``` java
 	package jars;
 	
 	public class HelloWorldApp {
@@ -59,3 +60,4 @@ struktúra megtartására figyelj!
 	        System.out.println("Hello World!");
 	    }
 	}
+```

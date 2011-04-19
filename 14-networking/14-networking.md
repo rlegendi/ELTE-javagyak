@@ -55,6 +55,7 @@ Hasznunkra válik az `InetAddress` osztály:
 ## Példa ##
 
 ### Szerveralkalmazás ###
+``` java
 	package networking;
 	
 	import java.io.BufferedReader;
@@ -96,11 +97,13 @@ Hasznunkra válik az `InetAddress` osztály:
 	        server.close();
 	    }
 	}
+```
 
 #### Használat ####
 	$ java SimpleServer 5000
 
 ### Kliens alkalmazás ###
+``` java
 	package networking;
 	
 	import java.io.BufferedReader;
@@ -131,6 +134,7 @@ Hasznunkra válik az `InetAddress` osztály:
 	        socket.close();
 	    }
 	}
+```
 
 ### Használat ###
 	$ java SimpleClient localhost 5000 mentegetnem

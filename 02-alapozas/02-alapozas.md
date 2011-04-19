@@ -7,17 +7,21 @@
 * Kifejezések? Kiértékelési sorrend? Szigorúan balról jobbra (v.ö. C++)
 * Prefix és postfix operátorok (`++i`, `i++`)
 
+``` java
 		int i = 0;
 		System.out.println(i++); // kiir, megnovel: "0"
 		System.out.println(++i); // megnovel, kiir: "2"
+```
 
 ## Felhasználói interakció ##
 Használjátok a `java.io.Console` osztályt (JDK 1.6 óta van csak, erre
 figyeljetek!).
 
+``` java
 	java.io.Console c = System.console();
 	String line = c.readLine();
 	int lineAsInt = Integer.parseInt( line );
+```
 
 ## Tömbök ##
 
@@ -28,23 +32,28 @@ figyeljetek!).
   kivétel)
 * Inicializáció:
 
+``` java
 		// barr1, barr2, barr3 ekvivalens definicio
 		boolean[] barr1 = { true, false };
 		boolean[] barr2 = new boolean[] { true, false }; // kifejezesben kotelezo!
 		boolean[] barr3 = new boolean[2];
 		barr3[0] = true; barr3[1] = false;
+```
 
 * Tömbök elemei default értéket kapnak (pl. objektum nullt, int 0-t, boolean false-t, stb.)
 * Bejárás: tömb tudja a méretét
 
+``` java
 		int iarr[] = { 1, 2, 3, 4, 5 };
 		
 		for (int i=0; i<iarr.length; ++i) {
 		   	System.out.println(iarr[i]);
 		}
+```
 
 * Többdimenziós példa:
 
+``` java
 		public static void enumerate(int[][] arr) {
 		    for (int i=0; i < arr.length; ++i) {		
 		        for (int j=0; j < arr[i].length; ++j) {
@@ -57,6 +66,7 @@ figyeljetek!).
 		    {0, 1},
 		    {2, 3}
 		});
+```
 
 * Inicializálásnál az 1. dimenzió megadása kötelező (pl.
 `int[][] arr = new int[5][];` teljesen legális definíció!)
@@ -66,11 +76,13 @@ Inicializálásnál elég a { e_1, e_2, ... } forma. DE! Mindenhol máshol, ahol
 típusú kifejezést szeretnénk leírni (`new`), a fordítási hibák kiszűrése miatt a
 típust is meg kell jelölnünk. Pl.:
 
+``` java
 	public static int sum(int[] arr) { ... }
 	
 	public static void main(String[] args) {
 	    int result = sum( new int[] {1, 2, 3} );
 	}
+```
 
 ### Tömb segédosztály ###
 `java.util.Arrays`, hasznos pl. a `toString()`, `binarySearch()`, `fill()`, etc.
@@ -89,6 +101,7 @@ megírod kézzel).
 * Vararg paraméterek: tetszőleges számú formális paraméter, kezelés mintha tömb
   lenne:
 
+``` java
 		public static void printMessages(String... messages) {
 		    System.out.println("# of params: " + messages.length);
 		    for (String act : messages) {
@@ -97,25 +110,31 @@ megírod kézzel).
 		}
 		...
 		printMessages( "hello", "hi", "bye");
+```
 
 Ha minden függvényben szükséges egy érték:
 
+``` java
 	public class A {
 	   public static int X = 1;
 	
 	   public static void inc() { X++; }
 	   public static void dec() { X--; }
 	}
+```
 
 ## Stringek ##
 
 * Létrehozás:
 
+``` java
 	String s = "hai!";
+```
 
 * Objektum, így lehet az értéke `null`! Ha `null` értéket próbáljátok feloldani
 akkor az eredmény egy `NullPointerException` lesz.
 
+``` java
 		String nullString = null;
 		
 		if (nullString != null) { // Helyes ellenorzes
@@ -123,9 +142,11 @@ akkor az eredmény egy `NullPointerException` lesz.
 		}
 		
 		nullString.isEmpty(); // NPE!
+```
 
 * Rengeteg hasznos szolgálgatás:
 
+``` java
 		int length = s.length;
 		char firstChar = s.charAt(0);
 		char[] carr = s.toCharArray();
@@ -139,11 +160,13 @@ akkor az eredmény egy `NullPointerException` lesz.
 		String hai = s.substring(1, 3);
 		String haiThere = hai + " there".
 		String[] haiThereArr = haiThere.split(" ");
+```
 	
 > **Részletesen** <http://download.oracle.com/javase/6/docs/api/java/lang/String.html>
 
 * Karakterenkénti bejárás:
 
+``` java
 		for (int i=0; i<s.length(); ++i) {
 		    char act = s.charAt(i);
 		    ...
@@ -153,20 +176,24 @@ akkor az eredmény egy `NullPointerException` lesz.
 		for (char act : s.toCharArray()) {
 		   ...
 		}
+```
 
 * `replaceAll()`, `split()` használható regexp (ld. Pattern osztály
 dokumentációja <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>)
 
 * Immutable (megváltoztathatatlan) adatszerkezet
 
+``` java
 		String string = "AAAxAAA";
 		string.replace('x', 'A');
 		System.out.println(string); // "AAAxAAA"
 		string = string.replace('x', 'A');
 		System.out.println(string); // "AAAAAAA"
+```
 
    Vagy `StringBuilder`, `StringBuffer` használható:
 
+``` java
 		StringBuffer sb = new StringBuffer();
 		sb.append("Hello ").append("World");
 		sb.reverse();
@@ -178,12 +205,15 @@ dokumentációja <http://download.oracle.com/javase/6/docs/api/java/util/regex/P
 		System.out.println( sb.toString() ); // "HelloWorld"
 		sb.delete(0, sb.length() );
 		System.out.println( sb.toString() ); // ""
+```
 
 * Összehasonlítás: `equals()` metódussal (az `==` operátor referencia szerinti
 összehasonlítást végez csak, nem tartalom szerintit).
 
+``` java
 		boolean b1 = "a" == "a";      // lehet hamis!
 		boolean b2 = "a".equals("a"); // mindig megfeleloen mukodik
+```
 
 > **Részletesen** <http://download.oracle.com/javase/6/docs/api/java/lang/StringBuilder.html>
 
@@ -232,10 +262,12 @@ használjátok azt a függvényt, amit az adott feladatban megírtatok!
 dimenziós tömböt!
 
 		Példa (az `asMatrix` függvényt csak visszaadja Stringet!):
-	
+
+``` java
 		doule[][] arr = new double[3][3];
 		arr[1][1] = 1
 		System.out.println( asMatrix( arr) );
+```
 
 	Eredmény:
 

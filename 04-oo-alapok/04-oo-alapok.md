@@ -7,14 +7,13 @@ Alapvető fogalmak:
 * Élettartam: Ahol a változó még _"él"_
 
 ``` java
-		class A {
-		  static x = 0;
-		  
-		  static void f(int x) {
-		    System.out.println( x );   // parameter
-		    System.out.println( A.x ); // osztaly valtozo
-		  }
-		}
+class A {
+	static x = 0;
+	static void f(int x) {
+		System.out.println( x );   // parameter
+		System.out.println( A.x ); // osztaly valtozo
+	}
+}
 ```
 
   Hol deklarálhatok változót?
@@ -33,23 +32,23 @@ _és_ a rajta értelmezett műveletek.
 
 ### Példa ###
 ``` java
-	class Koordinata {
-	  public int x, y;
-	
-	  public void eltol(int dx, int dy) {
-	    x += dx;
-	    y += dy;
-	  }
+class Koordinata {
+	public int x, y;
+
+	public void eltol(int dx, int dy) {
+		x += dx;
+		y += dy;
 	}
+}
 ```
 
 A tagok elérése:
 
 ``` java
-	Koordinata k = new Koordinata();
-	k.x = 10;
-	k.y = 20;
-	k.eltol(10, 0);
+Koordinata k = new Koordinata();
+k.x = 10;
+k.y = 20;
+k.eltol(10, 0);
 ```
 
 ### Módosítószavak ###
@@ -62,16 +61,16 @@ változót, függvényt látják.
 	Példa: adott osztály példányainak számolása:
 
 ``` java
-		public class Foo {
-		    	private static int ctr = 0;
-		    	private final int idx;
-		    	...
-	    
-	    		public Foo() {
-		        	...
-	        		idx = ctr++;
-		    	}
-		}
+public class Foo {
+	private static int ctr = 0;
+	private final int idx;
+	...
+
+	public Foo() {
+		...
+		idx = ctr++;
+	}
+}
 ```
 	
 * `final`: _Ha változó_, akkor az adott referencia nem állítható át (azonban ha
@@ -79,16 +78,16 @@ az egy objektum, tömb, akkor az elemei igen! V.ö. C++ `const`). _Ha függvény
 akkor nem lehet felüldefiniálni (ld. később!).
 
 ``` java
-		public class Main {
-			public static final int DEBUG = true;  
-			
-			public sum(int[] arr) {
-				if ( DEBUG ) {
-					System.out.println( "Sum params: " + Arrays.toString( arr ) );
-				}
-				...
-			}
+public class Main {
+	public static final int DEBUG = true;
+
+	public sum(int[] arr) {
+		if ( DEBUG ) {
+			System.out.println( "Sum params: " + Arrays.toString( arr ) );
 		}
+		...
+	}
+}
 ```
 
 * Láthatósági módosítószavak:
@@ -109,18 +108,18 @@ másik osztályban (belső osztályok), függvényen belül (lokális osztályok
 Például:
 
 ``` java
-	package oo.basics;
+package oo.basics;
 	
 	class A { ... }
 	
 	public class B {
-	    ...
-	    class C { ... }
-	    
-	    void f() {
-	        class D { ... }
-	        ...
-	    }
+		...
+		class C { ... }
+
+		void f() {
+			class D { ... }
+			...
+			}
 	}
 ```
 
@@ -147,49 +146,49 @@ Kódmegosztás, kódkomplexitás csökkentése, karbantarthatóság, modularizá
 ### Példa ###
 
 ``` java
-	abstract class Sikidom {
-		public static final double PI = 3.1415;
+abstract class Sikidom {
+	public static final double PI = 3.1415;
+
+	public abstract double kerulet();
+	public abstract double terulet();
+}
+
+class Kor extends Sikidom {
+	private double r = 1.0;
+
+	@Override
+	public double kerulet() {
+		return 2 * r * PI;
+	}
 		
-		public abstract double kerulet();
-		public abstract double terulet();
+	@Override
+	public double terulet() {
+		return Math.pow( r, 2 ) * PI;
+		}
 	}
 	
-	class Kor extends Sikidom {
-		private double r = 1.0;
+class Teglalap extends Sikidom {
+	private double a = 1, b = 1;
 		
-		@Override
-		public double kerulet() {
-			return 2 * r * PI;
-		}
-		
-		@Override
-		public double terulet() {
-			return Math.pow( r, 2 ) * PI;
-		}
+	@Override
+	public double kerulet() {
+		return 2 * ( a + b );
 	}
 	
-	class Teglalap extends Sikidom {
-		private double a = 1, b = 1;
-		
-		@Override
-		public double kerulet() {
-			return 2 * ( a + b );
-		}
-	
-		@Override
-		public double terulet() {
-			return a * b;
-		}
+	@Override
+	public double terulet() {
+		return a * b;
 	}
+}
 ```
 
 Javaban csak egyszeres öröklődés van, kivéve az interfészek esetében. Általános
 forma:
 
 ``` java
-	class Foo extends Bar implements Baz1, Baz2, ... {
-	    ...
-	}
+class Foo extends Bar implements Baz1, Baz2, ... {
+    ...
+}
 ```
 
 ### Felüldefiniálás, túlterhelés ###
@@ -208,26 +207,26 @@ specializálni (hasznos pl. a `clone()` függvénynél - kovariáns kötés).
 A kivétel lista nem lényeges ebből a szempontból.
 
 ``` java
-	abstract class A {
-	    public abstract int f(int a, int b);
-	    public abstract int g() throws Exception;
-	    public abstract A h();
-	}
+abstract class A {
+    public abstract int f(int a, int b);
+    public abstract int g() throws Exception;
+    public abstract A h();
+}
 	
-	class B extends A {
-	    @Override
-	    int f(int a, int b) { return 0; }	// Feluldefinialas
+class B extends A {
+    @Override
+    int f(int a, int b) { return 0; }	// Feluldefinialas
 	
-	    void f(int a, int b) {};			// Hibas: visszateresi ertek nem kompatibilis
-	    int f(int a) { return f(a, 0); }    // Tulterheles (parameterek szama)
-	    int f(Integer a, Integer b) { ... } // Tulterheles (parameterek tipusa)
+    void f(int a, int b) {};			// Hibas: visszateresi ertek nem kompatibilis
+    int f(int a) { return f(a, 0); }    // Tulterheles (parameterek szama)
+    int f(Integer a, Integer b) { ... } // Tulterheles (parameterek tipusa)
 	
-	    @Override
-	    int g() { return 0; }     			// OK: Exception lista nem szamit
+    @Override
+    int g() { return 0; }     			// OK: Exception lista nem szamit
 	
-	    @Override
-	    B   h() { return null; }; 			// OK: Visszateresi ertekre specializal
-	}
+    @Override
+    B   h() { return null; }; 			// OK: Visszateresi ertekre specializal
+}
 ```
 
 ### A `this` pszeudováltozó. ###
@@ -240,17 +239,17 @@ lehessen megváltoztatni.
 Azaz az adattagok elérése getter és setter függvényeken keresztül történjen:
 
 ``` java
-	class Koordinata {
-		private int x, y; // private lett, csak belul hasznalhato
-		...
-		public int getX() {
-			return x;
-		}
-	
-		public void setX(int x) {
-			this.x = x;
-		}
+class Koordinata {
+	private int x, y; // private lett, csak belul hasznalhato
+	...
+	public int getX() {
+		return x;
 	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+}
 ```
 
 ### Konstruktorok ###
@@ -263,15 +262,15 @@ Objektum létrehozásáért felelnek, _"speciális függvények"_. Általános f
 Például:
 
 ``` java
-	class Koordinata {
-	  private int x, y;
+class Koordinata {
+	private int x, y;
 	
-	  public Koordinata(int x, int y) {
-	    this.x = x;
-	    this.y = y;
-	  }
-	  ...
+	public Koordinata(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
+	...
+}
 ```
 
 Ha származtatás is játszik a történetben, az kicsit bonyolultabbá teheti.
@@ -282,27 +281,27 @@ függvény visszatérési értéke lehet, az csak statikus függvény lehet.
 Példa:
 
 ``` java
-	class A {
-	    protected int size;
+class A {
+	protected int size;
 	
-	    public A(int size) {
-	        this.size = size;
-	    }
-	    ...
+	public A(int size) {
+		this.size = size;
 	}
+	...
+}
 	
-	class B extends A {
-	    public B()         { this(0); }     // B(int) hivasa
-	    public B(int size) { super(size); } // A(int) hivasa
-	    ...
-	}
+class B extends A {
+	public B()         { this(0); }     // B(int) hivasa
+	public B(int size) { super(size); } // A(int) hivasa
+	...
+}
 ```
 
 ### Létrehozás, életciklus ###
 Objektum létrehozása a `new` operátorral történik:
 
 ``` java
-	A a = new A(5); // Konstruktorhívás
+A a = new A(5); // Konstruktorhívás
 ```
 
 Felszabadítással nem kell foglalkozni, azt megoldja a Garbage Collector
@@ -314,7 +313,7 @@ Statikus/dinamikus típus: statikus, amivel definiálva lett, dinamikus, amilyen
 referenciára éppen mutat.
 
 ``` java
-	A a = new B(5);
+A a = new B(5);
 ```
 
 A fenti példában az `a` változó statikus típusa `A`, dinamikus típusa `B`
@@ -322,8 +321,8 @@ A fenti példában az `a` változó statikus típusa `A`, dinamikus típusa `B`
 dinamikus típus leellenőrizhető az `instanceof` operátorral:
 
 ``` java
-	if (a instanceof B) { ... }
-	else if (a instanceof C) { ... }
+if (a instanceof B) { ... }
+else if (a instanceof C) { ... }
 ```
 
 ### Object ###
@@ -346,16 +345,16 @@ többszörös öröklődés (kivéve interfészeknél). Fontosabb függvények:
 	Példa:
 
 ``` java
-		class Sample {
-		    private int i = 0;
-		    private String str = "str";
-		    private boolean b = false;
+class Sample {
+	private int i = 0;
+	private String str = "str";
+	private boolean b = false;
 			
-			@Override
-			public int hashCode() {
-				return (i * 31 + str.hashCode() );
-			}
-		}
+	@Override
+	public int hashCode() {
+		return (i * 31 + str.hashCode() );
+	}
+}
 ```
 
 * `toString()` Az objektum szöveges reprezentációját adja vissza (Stringként).

@@ -26,19 +26,19 @@ importálni kell (anélkül ún. _fully qualified classname_ segítségével
 hivatkozhatunk, pl. `java.util.Vector`):
 
 ``` java
-	import java.util.Vector;	// 1 tipushoz
-	import java.math.*;			// Minden package-beli tipus lathatova valik
+import java.util.Vector;	// 1 tipushoz
+import java.math.*;			// Minden package-beli tipus lathatova valik
 	
-	import java.awt.*;			// GUI
-	import java.awt.event.*;	// GUI - esemenykezeles
-	import javax.swing.*;		// Advancedebb GUI
-	import java.util.*;			// Adatstrukturak
-	import java.io.*;			// IO
-	import java.util.regex.*;	// Regexp
+import java.awt.*;			// GUI
+import java.awt.event.*;	// GUI - esemenykezeles
+import javax.swing.*;		// Advancedebb GUI
+import java.util.*;			// Adatstrukturak
+import java.io.*;			// IO
+import java.util.regex.*;	// Regexp
 	
-	// static import: minden static konstans lathato az adott osztalybol
-	// fenntartasokkal hasznalni
-	import static java.lang.Math.*;
+// static import: minden static konstans lathato az adott osztalybol
+// fenntartasokkal hasznalni
+import static java.lang.Math.*;
 ```
 
 A fordítás nehézkes, nincs rekurzív `javac -R *.java`. Leképezés a
@@ -48,15 +48,15 @@ fordítás a gyökérkönyvtárból történik. Static importot csak offtosan
 dedikált osztályt vagy interfészt). Csomag definíciója a Java fájl legelején:
 
 ``` java
-	package pkg;
+package pkg;
 	
-	// Import utasitasok
+// Import utasitasok
 	
-	public class HelloWorldApp {
-	    public static void main(String args[]) {
-	        System.out.println("Hello World!");
-	    }
-	};
+public class HelloWorldApp {
+    public static void main(String args[]) {
+        System.out.println("Hello World!");
+    }
+};
 ```
 
 Fordítás teljes útvonal megadásával:
@@ -105,7 +105,7 @@ _még a referenciák is_.
 **Szignatúra** a függvény neve és paramétereinek típusa -- más **nem**. Például:
 
 ``` java
-	eredmenyMeghatarozasa( double, int, int )
+eredmenyMeghatarozasa( double, int, int )
 ```
 
 Overloading, overriding.
@@ -114,31 +114,31 @@ Overloading, overriding.
 Általános forma:
 
 ``` java
-	try {
-	    ... // Kritikus utasitasok
-	} catch (Exception1 e1) {
-	    ...
-	} catch (Exception2 e2) {
-	    ...
-	} finally {
+try {
+	... // Kritikus utasitasok
+} catch (Exception1 e1) {
+	...
+} catch (Exception2 e2) {
+	...
+} finally {
 	    
-	}
+}
 ```
 
 A finally opcionális, de elképzelhető csak `try-catch`, `try-finally` blokk is:
 
 ``` java
-	try {
-	    ...
-	} finally {
-	    ...
-	}
+try {
+	...
+} finally {
+	...
+}
 	
-	try {
-	    ....
-	} catch (Throwable t) {
-	    ....
-	}
+try {
+	....
+} catch (Throwable t) {
+	....
+}
 ```
 
 Az első ág, amelybe a kivétel osztályhierarchia szerint beleillik, lekezeli.
@@ -167,53 +167,53 @@ paramétere!).
 ### Egyszerű kivételkezelés ###
 
 ``` java
-	public static void main(String[] args) {
-	    try {
-	        int res = Integer.parseInt(args[0]);
-	        // ...
-	    } catch (NumberFormatException nfe) {
-	        System.err.println("Hibas input: " + args[0]);
-	        nfe.printStackTrace();
-	    }
+public static void main(String[] args) {
+	try {
+		int res = Integer.parseInt(args[0]);
+		// ...
+	} catch (NumberFormatException nfe) {
+		System.err.println("Hibas input: " + args[0]);
+		nfe.printStackTrace();
 	}
+}
 ```
 	
 > **Megjegyzés** Kivételek neve általában `e`, de igazából ízlés kérdése. 
 
 ### Függvénydefiníció ###
 ``` java
-	// Egyszerubb forma, ha nem akartok uzeneteket
-	//class ZeroParameterException extends Exception {}
+// Egyszerubb forma, ha nem akartok uzeneteket
+//class ZeroParameterException extends Exception {}
 	
-	class ZeroParameterException extends Exception {
-	    public ZeroParameterException() {
-	        super();
-	    }
-	
-	    public ZeroParameterException(final String msg) {
-	        super(msg);
-	    }
+class ZeroParameterException extends Exception {
+	public ZeroParameterException() {
+		super();
 	}
-	
-	static double divide(int a, int b) trhows ZeroParameterException {
-	    if (0 == b) {
-	        throw new ZeroParameterException("b erteke nem lehet 0!");
-	    }
-	    
-	    return (double) a / b;
+
+	public ZeroParameterException(final String msg) {
+		super(msg);
 	}
+}
 	
-	public static void main(String[] args) {
-	    try {
-	        double res = divide(1, 0);
-	    } catch (ZeroParameterException e) {
-	        System.err.println(e.getMessage());
-	    } catch (Exception e) {
-	        System.err.println(e.getMessage());
-	    } finally {
-	        System.err.println("vege");
-	    }
+static double divide(int a, int b) throws ZeroParameterException {
+	if (0 == b) {
+		throw new ZeroParameterException("b erteke nem lehet 0!");
 	}
+
+	return (double) a / b;
+}
+	
+public static void main(String[] args) {
+	try {
+		double res = divide(1, 0);
+	} catch (ZeroParameterException e) {
+		System.err.println(e.getMessage());
+	} catch (Exception e) {
+		System.err.println(e.getMessage());
+	} finally {
+		System.err.println("vege");
+	}
+}
 ```
 
 > **Részletesen** <http://download.oracle.com/javase/tutorial/essential/exceptions/>
@@ -252,10 +252,10 @@ Készítsetek egy függvényt, amely megadja egy másodfokú egyenlet gyökeit! 
 függvény definíciója legyen a következő:
 
 ``` java
-	private static double[] sqroots(final double a, final double b,
-	        final double c) {
-	    // ...
-	}
+private static double[] sqroots(final double a, final double b,
+	final double c) {
+	// ...
+}
 ```
 
 A függvény dobjon _nem ellenőrzött és ellenőrzött kivételeket is_ (pl.

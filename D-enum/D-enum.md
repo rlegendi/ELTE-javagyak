@@ -2,10 +2,10 @@
 Motiváció az *"enum pattern"* kiváltása:
 
 ``` java
-	public static final int OS_WINDOWS = 0;
-	public static final int OS_LINUX   = 1;
-	public static final int OS_BSD     = 2;
-	public static final int OS_VMS     = 3;
+public static final int OS_WINDOWS = 0;
+public static final int OS_LINUX   = 1;
+public static final int OS_BSD     = 2;
+public static final int OS_VMS     = 3;
 ```
 
 Problémák:
@@ -20,68 +20,68 @@ Problémák:
 Java 5.0 óta, egyszerű definíció:
 
 ``` java
-    // public, protected, private, static lehet csak
-    public static enum Os { Windows, Linux, BSD, VMS };
+// public, protected, private, static lehet csak
+public static enum Os { Windows, Linux, BSD, VMS };
 
-    public static void main(final String[] args) {
-        System.out.println("Elements:");
-        for (final Os act : Os.values()) {
-            System.out.println(act.ordinal() + " ->" + act.name());
-        }
+public static void main(final String[] args) {
+	System.out.println("Elements:");
+	for (final Os act : Os.values()) {
+		System.out.println(act.ordinal() + " ->" + act.name());
+	}
 
-        // String -> Os
-        final Os os = Os.valueOf(System.console().readLine());
+	// String -> Os
+	final Os os = Os.valueOf(System.console().readLine());
 
-        switch (os) {
-        case Windows:
-            System.out.println("Windows");
-            break;
+	switch (os) {
+	case Windows:
+		System.out.println("Windows");
+		break;
 
-        case Linux:
-        case BSD:
-            System.out.println("Unix");
-            break;
+	case Linux:
+	case BSD:
+		System.out.println("Unix");
+		break;
 
-        default:
-            System.out.println("Other");
-            break;
-        }
-    }
+	default:
+		System.out.println("Other");
+		break;
+	}
+}
 ```
 
 > **Csel** Javaban viselkedés, adattag adható az enumokhoz. Pl.:
 
 ``` java
-	public enum Guitar {
-	    Electronic(6),
-	    Acoustic(5),
-	    Bass(4); // elem definiciok vege
+public enum Guitar {
+	Electronic(6),
+	Acoustic(5),
+	Bass(4); // elem definiciok vege
 	    
-	    // Tulajdonsag leirasa (adattagok, fuggvenyek)
+	// Tulajdonsag leirasa (adattagok, fuggvenyek)
 	
-	    private final int strings;
+	private final int strings;
 	    
-	    private Guitar(final int strings) {
-	        this.strings = strings;
-	    }
-	    
-	    public int getNumberOfStrings() {
-	        return strings;
-	    }
+	private Guitar(final int strings) {
+		this.strings = strings;
 	}
+	    
+	public int getNumberOfStrings() {
+		return strings;
+	}
+}
 ```
 
 További okosság: *constant-specific* függvények:
 
 ``` java
-	public enum Operation {
-	  PLUS   { double eval(double x, double y) { return x + y; } },
-	  MINUS  { double eval(double x, double y) { return x - y; } },
-	  TIMES  { double eval(double x, double y) { return x * y; } },
-	  DIVIDE { double eval(double x, double y) { return x / y; } };
+public enum Operation {
+	PLUS   { double eval(double x, double y) { return x + y; } },
+	MINUS  { double eval(double x, double y) { return x - y; } },
+	TIMES  { double eval(double x, double y) { return x * y; } },
+	DIVIDE { double eval(double x, double y) { return x / y; } };
 	
-	  abstract double eval(double x, double y);
-	}
+	abstract double eval(double x, double y);
+}
 ```
 
 *Igen* ritkán van rá szükség, de akkor hasznos, hogy van. További okosságok:

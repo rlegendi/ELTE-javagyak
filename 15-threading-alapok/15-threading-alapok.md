@@ -55,32 +55,32 @@ Két lehetőség:
    Példa:
 
 ``` java
-		package threading;
+package threading;
 		
-		class TestThread extends Thread {
-		    @Override
-		    public void run() {
-		        System.out.println("TestThread");
-		    }
-		}
-		
-		public class Create1 {
-		    public static void main(String[] args) {
-		        TestThread test = new TestThread();
-		        test.start();
-		    }
-		}
+class TestThread extends Thread {
+	@Override
+	public void run() {
+		System.out.println("TestThread");
+	}
+}
+
+public class Create1 {
+	public static void main(String[] args) {
+		TestThread test = new TestThread();
+		test.start();
+	}
+}
 ```
 
    Névtelen osztállyal ugyanez:
 
 ``` java
-		new Thread() {
-		    @Override
-		    public void run() {
-		        System.out.println("TestThread");
-		    }
-		}.start();
+new Thread() {
+	@Override
+	public void run() {
+		System.out.println("TestThread");
+	}
+}.start();
 ```
 
 2. `Runnable` interfész implementálása: ha a származtatás nem lehetséges (pl. a
@@ -89,32 +89,32 @@ Két lehetőség:
    megadod paraméterként, és arra meghívjuk a `start()` eljárást:
 
 ``` java
-		package threading;
+package threading;
 		
-		class TestRunnable implements Runnable {
-		    @Override
-		    public void run() {
-		        System.out.println("TestRunnable");
-		    }
-		}
+class TestRunnable implements Runnable {
+	@Override
+	public void run() {
+		System.out.println("TestRunnable");
+	}
+}
 		
-		public class Create2 {
-		    public static void main(String[] args) {
-		        Thread thread = new Thread( new TestRunnable() );
-		        thread.start();
-		    }
-		}
+public class Create2 {
+	public static void main(String[] args) {
+		Thread thread = new Thread( new TestRunnable() );
+		thread.start();
+	}
+}
 ```
 
   Ugyanez névtelen osztállyal:
 
 ``` java
-		new Thread( new Runnable() {
-		    @Override
-		    public void run() {
-		        System.out.println("TestRunnable");
-		    }
-		}).start();
+new Thread( new Runnable() {
+	@Override
+	public void run() {
+		System.out.println("TestRunnable");
+	}
+}).start();
 ```
 
 ## Szálak függvényei ##
@@ -143,16 +143,18 @@ Két lehetőség:
 >  (pl. erőforrás lefoglalásának megszüntetése). Mindig van kerülőút, pl. szál
 >  leállítására:
 > 
->		private volatile isRunning = true;
+> ``` java
+> private volatile isRunning = true;
+>
+> public void stopRunning() {
+> 	isRunning = false;
+> }
 >		
->		public void stopRunning() {
->		    isRunning = false;
->		}
->		
->		@Override
->		public void run() {
->		    while ( isRunning ) { ... }
->		}
+> @Override
+> public void run() {
+> 	while ( isRunning ) { ... }
+> }
+> ```
 
 ## Felmerülő problémák ##
 
@@ -172,9 +174,9 @@ A szinkronizációt ezen problémák elkerülésével kell megoldani.
 Javaban ún. *szinkronizációs burok* van:
 
 ``` java
-	synchronized ( resource ) {
-	    ...
-	}
+synchronized ( resource ) {
+	...
+}
 ```
 
 Ez garantálja, hogy az azonos lockhoz tartozó blokkokban egyszerre egy szál
@@ -182,33 +184,33 @@ lehet csak (gond - kódblokkot védünk, nem erőforrást). A `synchronized`
 használható példány-, és osztályfüggvény  módosítószavaként, ekkor a jelentése:
 
 ``` java
-	public synchronized void f() {
-	    ...
-	}
+public synchronized void f() {
+	...
+}
 	
-	// Ekvivalens:
-	public void f() {
-	    synchronized ( this )  {
-	        ...
-	    }
+// Ekvivalens:
+public void f() {
+	synchronized ( this )  {
+		...
 	}
+}
 ```
 
 Illetve osztályfüggvények esetén:
 
 ``` java
-	class MyClass {
-	    public static synchronized void s() {
-	        ....
-	    }
-	    
-	    // Ekvivalens:
-	    public static void s() {
-	        synchronized ( MyClass.class ) {
-	            ...
-	        }
-	    }
+class MyClass {
+	public static synchronized void s() {
+		....
 	}
+	    
+	// Ekvivalens:
+	public static void s() {
+		synchronized ( MyClass.class ) {
+		...
+		}
+	}
+}
 ```
 
 > **Megjegyzés** ha csak egy szál változtathat egy változót, a többi csak
@@ -228,61 +230,59 @@ teljesül (`notify()`).
 Használatához *mindig* egy monitor szükséges, különben futásidejű hibát kapunk!
 
 ``` java
-	synchronized (monitor) {
-	    monitor.wait();
-	}
+synchronized (monitor) {
+	monitor.wait();
+}
 	
-	synchronized (monitor) {
-	    monitor.notify();
-	}
+synchronized (monitor) {
+	monitor.notify();
+}
 ```
 
 ## Deadlockra példa ##
 ``` java
-	package threading;
+package threading;
 	
-	public class Deadlock {
-	    public static void main(String[] args) {
-	        final Object res1 = new Object();
-	        final Object res2 = new Object();
+public class Deadlock {
+	public static void main(String[] args) {
+		final Object res1 = new Object();
+		final Object res2 = new Object();
 	        
-	        new Thread() {
-	            @Override
-	            public void run() {
-	                synchronized (res1) {
-	                    System.out.println("1 - Got res1");
-	                    try {
-	                        Thread.sleep(1000);
-	                    } catch (InterruptedException e) {
-	                        e.printStackTrace();
-	                    }
-	                    synchronized (res2) {
-	                        System.out.println("1 - Got res2");
-	                    }
-	
-	                }
-	            }
-	        }.start();
+		new Thread() {
+			@Override
+			public void run() {
+				synchronized (res1) {
+					System.out.println("1 - Got res1");
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					synchronized (res2) {
+						System.out.println("1 - Got res2");
+					}
+				}
+			}
+		}.start();
 	        
-	        new Thread() {
-	            @Override
-	            public void run() {
-	                synchronized (res2) {
-	                    System.out.println("2 - Got res2");
-	                    try {
-	                        Thread.sleep(1000);
-	                    } catch (InterruptedException e) {
-	                        e.printStackTrace();
-	                    }
-	                    synchronized (res1) {
-	                        System.out.println("2 - Got res1");
-	                    }
-	
-	                }
-	            }
-	        }.start();
-	    }
+		new Thread() {
+			@Override
+			public void run() {
+				synchronized (res2) {
+					System.out.println("2 - Got res2");
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					synchronized (res1) {
+						System.out.println("2 - Got res1");
+					}
+				}
+			}
+		}.start();
 	}
+}
 ```
 
 ## Szálak állapotai ##
@@ -301,43 +301,43 @@ módosítják az adatszerkezetet, reccsen egy
 `java.util.ConcurrentModificationException` kivétellel:
 
 ``` java
-	package threading;
+package threading;
 	
-	import java.util.ArrayList;
+import java.util.ArrayList;
 	
-	public class FailFast {
-	    public static void main(final String[] args)
-	            throws InterruptedException {
-	        final ArrayList<String> list = new ArrayList<String>();
-	        for (int i=0; i<100; ++i) list.add("" + i);
+public class FailFast {
+	public static void main(final String[] args)
+		throws InterruptedException {
+		final ArrayList<String> list = new ArrayList<String>();
+		for (int i=0; i<100; ++i) list.add("" + i);
 	        
-	        final Thread reader = new Thread() {
-	            @Override
-	            public void run() {
-	                try {
-	                    for (final String act : list) {
-	                        System.out.println(act);
-	                            Thread.sleep(100);
-	                    }
-	                } catch (final InterruptedException e) {
-	                    e.printStackTrace();
-	                }
-	            }
-	        };
-	        
-	        reader.start();
-	        Thread.sleep(500);
-	        
-	        list.remove(50);
-	    }
+		final Thread reader = new Thread() {
+			@Override
+			public void run() {
+				try {
+					for (final String act : list) {
+						System.out.println(act);
+						Thread.sleep(100);
+					}
+				} catch (final InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+
+		reader.start();
+		Thread.sleep(500);
+
+		list.remove(50);
 	}
+}
 ```
 
 Szinkronizált adatszerkezetek készítése wrapperekkel, példa listára, másra
 analóg módon:
 
 ``` java
-	final List<T> list = Collections.synchronizedList(new ArrayList<T>(...));
+final List<T> list = Collections.synchronizedList(new ArrayList<T>(...));
 ```
 	
 ## Java Concurrency - Java 1.6 ##
@@ -386,9 +386,9 @@ A `java.util.concurrent.*`, `java.util.concurrent.atomic.*`,
    osztály definíciója nézzen ki a következőképpen:
 
 ``` java
-		public class ... extends JFrame implements Runnable {
-		    ...
-		}
+public class ... extends JFrame implements Runnable {
+	...
+}
 ```
 		
 9. Egészítsd ki az előző feladatot úgy, hogy ha ráklikkel a felhasználó a

@@ -3,15 +3,15 @@
 Egyszerűbb példák (`java.util `csomagból):
 
 ``` java
-	public interface List<E> {
-	    void add(E x);
-	    Iterator<E> iterator();
-	}
+public interface List<E> {
+	void add(E x);
+	Iterator<E> iterator();
+}
 	
-	public interface Iterator<E> {
-	    E next();
-	    boolean hasNext();
-	}
+public interface Iterator<E> {
+	E next();
+	boolean hasNext();
+}
 ```
 
 `E` - formális típusparaméter, amely aktuális értéket a kiértékelésnél vesz fel
@@ -21,12 +21,12 @@ Egyszerűbb példák (`java.util `csomagból):
 Nem konvertálhatók, ennek oka:
 
 ``` java
-	List<String> l1 = new ArrayList<String>();
-	List<Object> l2 = l1; // error
+List<String> l1 = new ArrayList<String>();
+List<Object> l2 = l1; // error
 	
-	// Mert akkor lehetne ilyet csinalni:
-	l2.add(new Object());
-	l1.get(0); // reccs, Object -> String castolas
+// Mert akkor lehetne ilyet csinalni:
+l2.add(new Object());
+l1.get(0); // reccs, Object -> String castolas
 ```
 
 Magyarul ha `S <= T =x=> G<S> <= G<T>` - ez pedig ellent mond az ember
@@ -40,26 +40,26 @@ tudjuk azok konkrét típusát (pl. legacy code). `Collection<Object>` *nem* ős
 warningot generál:
 
 ``` java
-	void print(Collection c) {
-	    for (Object o : c) System.out.println(o);
-	}
+void print(Collection c) {
+	for (Object o : c) System.out.println(o);
+}
 ```
 
 A megoldás a wildcard használata: `Collection<?>` minden kollekcióra ráillik.
 Ilyenkor `Objectként` hivatkozhatunk az elemekre:
 
 ``` java
-	void print(Collection<?> c) {
-	    for (Object o : c) System.out.println(o);
-	}
+void print(Collection<?> c) {
+	for (Object o : c) System.out.println(o);
+}
 ```
 
 Vigyázat! A `? != Object`! Csak egy ismeretlen típust jelent. Így a következő
 kódrészlet is fordítási hibához vezet:
 
 ``` java
-	List<?> c = ...;
-	l.add(new Object()); // forditasi hiba
+List<?> c = ...;
+l.add(new Object()); // forditasi hiba
 ```
 
 Nem tudjuk, hogy mi van benne, lekérdezni viszont lehet (mert tudjuk, hogy
@@ -70,27 +70,27 @@ Amikor tudjuk, hogy adott helyen csak adott osztály leszármazottai
 szerepelhetnek, első (rossz) megközelítés:
 
 ``` java
-	abstract class Super {}
-	class Sub1 extends Super {}
-	class Sub2 extends Super {}
-	...
-	void func(List<Super> l) {...} // Rossz!
+abstract class Super {}
+class Sub1 extends Super {}
+class Sub2 extends Super {}
+...
+void func(List<Super> l) {...} // Rossz!
 ```
 
 Probléma: `func()` csak `List<Super>` paraméterrel hívható meg, `List<Sub1>`,
 `List<Sub2>` nem lehet paramétere (nem altípus). Megoldás: *bounded wildcard*:
 
 ``` java
-	void func(List<? extends Super> l) {...}
+void func(List<? extends Super> l) {...}
 ```
 
 Belepakolni ugyanúgy nem tudunk, mint a `?` esetén, azaz erre fordítási hibát
 kapunk:
 
 ``` java
-	void func(List<? extends Super> l) {
-	    l.add(new Sub1()); // reccs
-	}
+void func(List<? extends Super> l) {
+	l.add(new Sub1()); // reccs
+}
 ```
 
 Felfelé is megköthető a wildcard a `<? super T>` jelöléssel.
@@ -100,71 +100,71 @@ Osztálydefinícióban bevezethető típusparaméter az osztályhoz, ez minden
 membernél használható. Példa:
 
 ``` java
-	package generics;
+package generics;
 	
-	public class Pair<T, S> {
-	    private final T first;
-	    private final S second;
+public class Pair<T, S> {
+	private final T first;
+	private final S second;
 	    
-	    public Pair(final T first, final S second) {
-	        super();
-	        this.first = first;
-	        this.second = second;
-	    }
-	    
-	    public T getFirst() {
-	        return first;
-	    }
-	    public S getSecond() {
-	        return second;
-	    }
-	    
-	    // Esetleges null ellenorzeseket tessek elvegezni!
- 	    // Itt az attekinthetoseg kedveert ettol eltekintettem.
-	    @Override
-	    public boolean equals(final Object obj) {
-	        if (obj instanceof Pair) {
-	            Pair<?, ?> pair = (Pair<?, ?>) obj;
-	            return first.equals( pair.first ) && second.equals( pair.second );
-	        }
-	        
-	        return false;
-	    }
-
-	    // Esetleges null ellenorzeseket tessek elvegezni!
- 	    // Itt az attekinthetoseg kedveert ettol eltekintettem.
-	    @Override
-	    public int hashCode() {
-        	return first.hashCode() + second.hashCode();
-	    }
-
-	    @Override
-	    public String toString() {
-	        return "(" + first + ", " + second + ")";
-	    }
-
+	public Pair(final T first, final S second) {
+		super();
+		this.first = first;
+		this.second = second;
 	}
+	    
+	public T getFirst() {
+		return first;
+	}
+	public S getSecond() {
+		return second;
+	}
+	    
+	// Esetleges null ellenorzeseket tessek elvegezni!
+	// Itt az attekinthetoseg kedveert ettol eltekintettem.
+	@Override
+	public boolean equals(final Object obj) {
+		if (obj instanceof Pair) {
+			Pair<?, ?> pair = (Pair<?, ?>) obj;
+			return first.equals( pair.first ) && second.equals( pair.second );
+		}
+	        
+		return false;
+	}
+
+	// Esetleges null ellenorzeseket tessek elvegezni!
+	// Itt az attekinthetoseg kedveert ettol eltekintettem.
+	@Override
+	public int hashCode() {
+		return first.hashCode() + second.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return "(" + first + ", " + second + ")";
+	}
+
+}
 ```
 
 Generikus függvények esetén szintén a definícióban használható. Példa:
 
 ``` java
-	package generics;
+package generics;
 	
-	public class ArrayUtils {
-	    public static final <T, S extends T> boolean isIn(final T[] arr, final S element) {
-	        for (final T t : arr) {
-	            if (t.equals(element)) return true;
-	        }
+public class ArrayUtils {
+	public static final <T, S extends T> boolean isIn(final T[] arr, final S element) {
+		for (final T t : arr) {
+			if (t.equals(element)) return true;
+		}
 	        
-	        return false;
-	    }
-	    
-	    public static void main(final String[] args) {
-	        final String[] sarr = {"a", "b", "c"};
-	        System.out.println( isIn(sarr, "c") );
-	    }
+		return false;
 	}
+	    
+	public static void main(final String[] args) {
+		final String[] sarr = {"a", "b", "c"};
+		System.out.println( isIn(sarr, "c") );
+	}
+}
 ```
 
 > **Részletesen:** <http://java.sun.com/j2se/1.5/pdf/generics-tutorial.pdf>

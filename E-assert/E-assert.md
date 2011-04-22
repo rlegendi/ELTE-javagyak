@@ -25,8 +25,8 @@ komplex, rendezetlen adatszerkezetben). Fejlesztés során rendkívül hasznosak
 * Mellékhatással ne járjon! Pl.:
 
 ``` java
-		boolean b = false;
-		assert b = true; // Broken!
+boolean b = false;
+assert b = true; // Broken!
 ```
 
 ## Mikor használjuk? ##
@@ -34,46 +34,46 @@ komplex, rendezetlen adatszerkezetben). Fejlesztés során rendkívül hasznosak
 * *Belső invariánsok* Ha commentbe állítunk invariáns tulajdonságot, pl.:
 
 ``` java
-	    if (i % 3 == 0) {
-	        ...
-	    } else if (i % 3 == 1) {
-	        ...
-	    } else { // i % 3 == 2
-	        ...
-	    }
+if (i % 3 == 0) {
+	...
+} else if (i % 3 == 1) {
+	...
+} else { // i % 3 == 2
+	...
+}
 ```
 	
 	Ebből:
 
 ``` java
-	    if (i % 3 == 0) {
-	        ...
-	    } else if (i % 3 == 1) {
-	        ...
-	    } else {
-	        assert i % 3 == 2 : "Hiba: " + i;
-	        ...
-	    }
+if (i % 3 == 0) {
+	...
+} else if (i % 3 == 1) {
+	...
+} else {
+	assert i % 3 == 2 : "Hiba: " + i;
+	...
+}
 ```
 
 * *Control flow invariant* Feltételezhetően elérhetetlen kódrészletekhez, pl.:
 
 ``` java
-		try {
-		    ...
-		} catch (Exception e) {
-		    // Never happens - Hi Ray! :D
-		}
+try {
+	...
+} catch (Exception e) {
+	// Never happens - Hi Ray! :D
+}
 ```
 
 	Helyett:
 
 ``` java
-		try {
-		    ...
-		} catch (Exception e) {
-		    assert false : "Never happens";
-		}
+try {
+	...
+} catch (Exception e) {
+	assert false : "Never happens";
+}
 ```
 
 * *Elő-, utófeltételek, invariánsok* Nem egy teljes *design-by-contract* eszköz,

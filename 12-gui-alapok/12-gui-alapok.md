@@ -11,86 +11,86 @@ példa alkalmazások.
 
 ## Példakód ##
 ``` java
-	package gui.basics;
+package gui.basics;
 
-	import java.awt.*;
+import java.awt.*;
 	
-	public class AWTTest {
-	    Frame frame = new Frame("AWTTest");
-	    Label label = new Label("Hello AWT!"); 
+public class AWTTest {
+    Frame frame = new Frame("AWTTest");
+    Label label = new Label("Hello AWT!");
 	    
-	    public AWTTest() {
-	        frame.add(label);
-	        frame.setSize(200, 100);
-	        frame.setLocation(300, 300);
-	        frame.setVisible(true);
-	    }
+    public AWTTest() {
+        frame.add(label);
+        frame.setSize(200, 100);
+        frame.setLocation(300, 300);
+        frame.setVisible(true);
+    }
 	    
-	    public static void main(String[] args) {
-	        AWTTest test = new AWTTest();
-	    }
-	}
+    public static void main(String[] args) {
+        AWTTest test = new AWTTest();
+    }
+}
 ```
 
 ## Életciklus ##
 1. Felület felépítése. Egyszerű példa alkalmazás
 ``` java
-		package gui.basics;
+package gui.basics;
 		
-		import java.awt.*;
+import java.awt.*;
 		
-		public class AWTTest {
-		    Frame frame = new Frame("GUI Test");
-		    TextField textField = new TextField("10");
-		    Button button = new Button("Ok");
-		    Label label = new Label("=");
+public class AWTTest {
+    Frame frame = new Frame("GUI Test");
+    TextField textField = new TextField("10");
+    Button button = new Button("Ok");
+    Label label = new Label("=");
 		    
-		    public AWTTest() {
-		        frame.setLayout(new FlowLayout());
+    public AWTTest() {
+        frame.setLayout(new FlowLayout());
 		        
-		        frame.add(textField);
-		        frame.add(button);
-		        frame.add(label);
+        frame.add(textField);
+        frame.add(button);
+        frame.add(label);
 		        
-		        frame.setVisible(true);
-		        frame.setSize(200, 100);
-		        frame.setLocation(300, 300);
-		    }
+        frame.setVisible(true);
+        frame.setSize(200, 100);
+        frame.setLocation(300, 300);
+    }
 		    
-		    public static void main(String[] args) {
-		        AWTTest test = new AWTTest();
-		    }
-		}
+    public static void main(String[] args) {
+        AWTTest test = new AWTTest();
+    }
+}
 ```
 		
 1. Használata (eseményfigyelők)
 
 ``` java
-        button.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent ae) {
-                try {
-                    final int N = Integer.parseInt(textField.getText());
-                    int res = 1;
-                    for (int i=2; i<=N; ++i) res *= i;
-                    label.setText("= " + res);
-                } catch (final NumberFormatException e) {
-                    label.setText(e.getMessage());
-                }
-                
-            }
-        });
+button.addActionListener( new ActionListener() {
+	@Override
+	public void actionPerformed(final ActionEvent ae) {
+		try {
+			final int N = Integer.parseInt(textField.getText());
+			int res = 1;
+			for (int i=2; i<=N; ++i) res *= i;
+			label.setText("= " + res);
+		} catch (final NumberFormatException e) {
+			label.setText(e.getMessage());
+		}
+
+	}
+});
 ```
 
 1. Bezárása
 
 ``` java
-		frame.addWindowListener( new WindowAdapter() {
-		    @Override
-		    public void windowClosing(WindowEvent e) {
-		        System.exit(0);
-		    }
-		});
+frame.addWindowListener( new WindowAdapter() {
+	@Override
+	public void windowClosing(WindowEvent e) {
+		System.exit(0);
+	}
+});
 ```
 
 ## Adapterek, Listenerek ###
@@ -103,38 +103,38 @@ Fontosabb Listenerek:
 * ActionListener: menü, gombnyomás, `Enter` egy `TextField` objektumon
 
 ``` java
-		public void actionPerformed(ActionEvent e) { ... }
+public void actionPerformed(ActionEvent e) { ... }
 ```
 
 * `KeyListener`: Billentyű leütése
 
 ``` java
-		public void keyTyped(KeyEvent e)    { ... }
-		public void keyPressed(KeyEvent e)  { ... }
-		public void keyReleased(KeyEvent e) { ... }
+public void keyTyped(KeyEvent e)    { ... }
+public void keyPressed(KeyEvent e)  { ... }
+public void keyReleased(KeyEvent e) { ... }
 ```
 
 * `MouseListener`: Egérlenyomás (van `MouseMotionListener`,
 `MouseWheelListener` is)
 
 ``` java
-		public void mousePressed(MouseEvent e)  { ... }
-		public void mouseReleased(MouseEvent e) { ... }
-		public void mouseEntered(MouseEvent e)  { ... }
-		public void mouseExited(MouseEvent e)   { ... }
-		public void mouseClicked(MouseEvent e)  { ... }
+public void mousePressed(MouseEvent e)  { ... }
+public void mouseReleased(MouseEvent e) { ... }
+public void mouseEntered(MouseEvent e)  { ... }
+public void mouseExited(MouseEvent e)   { ... }
+public void mouseClicked(MouseEvent e)  { ... }
 ```
 
 * `WindowListener`: ablak eseményeinek kezelése
 
 ``` java
-		public void windowActivated(WindowEvent e)   { ... }
-		public void windowClosed(WindowEvent e)      { ... }
-		public void windowClosing(WindowEvent e)     { ... }
-		public void windowDeactivated(WindowEvent e) { ... }
-		public void windowDeiconified(WindowEvent e) { ... }
-		public void windowIconified(WindowEvent e)   { ... }
-		public void windowOpened(WindowEvent e)      { ... }
+public void windowActivated(WindowEvent e)   { ... }
+public void windowClosed(WindowEvent e)      { ... }
+public void windowClosing(WindowEvent e)     { ... }
+public void windowDeactivated(WindowEvent e) { ... }
+public void windowDeiconified(WindowEvent e) { ... }
+public void windowIconified(WindowEvent e)   { ... }
+public void windowOpened(WindowEvent e)      { ... }
 ```
 
 * Stb., lásd referenciát.
@@ -177,27 +177,27 @@ megvan. A `javax.swing.*` csomagban (*Java extended*). További előnyök:
 szeparátor is.
 
 ``` java
-	JMenuBar menuBar = new JMenuBar();
-	
-	JMenu fileMenu = new JMenu("File");
-	menuBar.add(fileMenu);
-	
-	JMenuItem exitMenu = new JMenuItem("Exit");
-	fileMenu.add(exitMenu);
-	exitMenu.addActionListener( ... )
-	
-	frame.setJMenuBar(menuBar);
+JMenuBar menuBar = new JMenuBar();
+
+JMenu fileMenu = new JMenu("File");
+menuBar.add(fileMenu);
+
+JMenuItem exitMenu = new JMenuItem("Exit");
+fileMenu.add(exitMenu);
+exitMenu.addActionListener( ... )
+
+frame.setJMenuBar(menuBar);
 ```
 
 ## Üzenetablakok ##
 `JOptionPane.showXXXDialog()`, pl.:
 
 ``` java
-	JOptionPane.showMessageDialog(null, // ki az ose, ha van, akkor modalis
-	    "alert",                        // uzenet
-	    "alert",                        // title
-	    JOptionPane.ERROR_MESSAGE       // tipus
-	);
+JOptionPane.showMessageDialog(null, // ki az ose, ha van, akkor modalis
+	"alert",                        // uzenet
+	"alert",                        // title
+	JOptionPane.ERROR_MESSAGE       // tipus
+);
 ```
 
 > **Részletesen** <http://download.oracle.com/javase/6/docs/api/javax/swing/JOptionPane.html>
@@ -205,7 +205,7 @@ szeparátor is.
 ## Scrollozható komponensek ##
 
 ``` java
-	frame.add( new JScrollPane(textArea) );
+frame.add( new JScrollPane(textArea) );
 ```
 
 ## Linkek ##

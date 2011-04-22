@@ -14,11 +14,11 @@
   nyilván különbözik), az `i` változó pedig mindnél ugyanaz.  
 
 ``` java
-		static int i = 0;
-		
-		class T extends Thread {
-		    public void run() { synchronized(this) { i++; }
-		}
+static int i = 0;
+
+class T extends Thread {
+	public void run() { synchronized(this) { i++; }
+}
 ```
 
 
@@ -34,11 +34,11 @@ olyan `j` indexet, ahol ez a szám megtalálható, vagyis `v_i[j] = e`,
 Indítsunk két szálat. Közös változó a `found`, lokális változó a `v, i`.
 
 ``` java
-	found = false; i = 0;    // A
-	while (!found) {         // B
-	  found = v.get(i) == e; // C
-	  i++;                   // D
-	}
+found = false; i = 0;    // A
+while (!found) {         // B
+  found = v.get(i) == e; // C
+  i++;                   // D
+}
 ```
 
 ### FAIL ###
@@ -52,13 +52,13 @@ külön-külön is inicializálja a közös változót, tegyük meg ezt a szála
 előtt!
 
 ``` java
-	found = false // Threadek inditasa elott
-	
-	i = 0;                   // A
-	while (!found) {         // B
-	  found = v.get(i) == e; // C
-	  i++;                   // D
-	}
+found = false // Threadek inditasa elott
+
+i = 0;                   // A
+while (!found) {         // B
+  found = v.get(i) == e; // C
+  i++;                   // D
+}
 ```
 
 ### FAIL ###
@@ -72,11 +72,11 @@ eredmény **végtelen ciklus**.
 megtaláltuk az elemet.
 
 ``` java
-	i = 0;                      // A
-	while (!found) {            // B
-	  if (e == v[i]) b = true;  // C
-	  i++;                      // D
-	}
+i = 0;                      // A
+while (!found) {            // B
+  if (e == v[i]) b = true;  // C
+  i++;                      // D
+}
 ```
 
 ### FAIL ###
@@ -91,23 +91,23 @@ melyik szál futhat a `while` ciklusba való belépés után! A feltételhez kö
 várakozást `await` szimbólummal jelölve, az első szál definíciója:
 
 ``` java
-	i = 0;                            // A
-	while (!found) {                  // B
-	  await (1 == next) { next = 2; } // C
-	  if (e == v[i]) b = true;        // D
-	  i++;                            // E
-	}
+i = 0;                            // A
+while (!found) {                  // B
+  await (1 == next) { next = 2; } // C
+  if (e == v[i]) b = true;        // D
+  i++;                            // E
+}
 ```
 
 valamint a második szál definíciója legyen a következő:
 
 ``` java
-	j = 0;                            // A
-	while (!found) {                  // B
-	  await (2 == next) { next = 1; } // C
-	  if (e == v[j]) b = true;        // D
-	  j++;                            // E
-	}
+j = 0;                            // A
+while (!found) {                  // B
+  await (2 == next) { next = 1; } // C
+  if (e == v[j]) b = true;        // D
+  j++;                            // E
+}
 ```
 
 ### FAIL ###
@@ -122,25 +122,25 @@ eredmény **holtpont**.
 `next` változóra! Az első szál kódját módosítsuk a következőképp:
 
 ``` java
-	i = 0;                            // A
-	while (!found) {                  // B
-	  await (1 == next) { next = 2; } // C
-	  if (e == v[i]) b = true;        // D
-	  i++;                            // E
-	}
-	next = 2;                         // F
+i = 0;                            // A
+while (!found) {                  // B
+  await (1 == next) { next = 2; } // C
+  if (e == v[i]) b = true;        // D
+  i++;                            // E
+}
+next = 2;                         // F
 ```
 
 a másodikét pedig az alábbi módon:
 
 ``` java
-	j = 0;                            // A
-	while (!found) {                  // B
-	  await (2 == next) { next = 1; } // C
-	  if (e == v[j]) b = true;        // D
-	  j++;                            // E
-	}
-	next = 1;                         // F
+j = 0;                            // A
+while (!found) {                  // B
+  await (2 == next) { next = 1; } // C
+  if (e == v[j]) b = true;        // D
+  j++;                            // E
+}
+next = 1;                         // F
 ```
 
 * Na ez már menni fog.* :-)
@@ -158,16 +158,16 @@ Peterson-féle algoritmus kölcsönös kizárás megoldására, vektorértékad�
 A szerveroldali kód:
 
 ``` java
-	// Raakaszkodas a portra
-	ServerSocket ss = new ServerSocket( port );
-	// Fuss, amig...
-	while (true) {
-	    // Egy bejovo kapcsolat elkapasa
-	    Socket newSocket = ss.accept();
-	
-	    // Kapcsolat kezelese
-	    // ...
-	}
+// Raakaszkodas a portra
+ServerSocket ss = new ServerSocket( port );
+// Fuss, amig...
+while (true) {
+    // Egy bejovo kapcsolat elkapasa
+    Socket newSocket = ss.accept();
+
+    // Kapcsolat kezelese
+    // ...
+}
 ```
 
 ## Feladat ##
@@ -180,10 +180,10 @@ A szerveralkalmazás minden egyes bejövő kapcsolatot külön szállal kezeljen
 váza valahogy így nézzen ki:
 
 ``` java
-	ServerSocket socket = new ServerSocket(PORT);
-	while (true) {
-	    new Handler(socket.accept()).start();
-	}
+ServerSocket socket = new ServerSocket(PORT);
+while (true) {
+	new Handler(socket.accept()).start();
+}
 ```
 
 A kliensek is legyenek többszálú alkalmazások: az egyik szál folyamatosan

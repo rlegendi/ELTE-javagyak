@@ -30,55 +30,55 @@ Objektumreferencia megszerzése:
 * Objektumtól lekérdezhető:
 
 ``` java
-		Class<?> clazz = this.getClass();
+Class<?> clazz = this.getClass();
 ```
 
 * Osztálytól lekérdezhető:
 
 ``` java
-		Class<?> intClazz = int.class;
+Class<?> intClazz = int.class;
 ```
 
 * Közvetlenül név szerint lekérdezhető:
 
 ``` java
-		Class<?> clazz = Class.forName("java.lang.Boolean");
+Class<?> clazz = Class.forName("java.lang.Boolean");
 ```
 
 * Új osztály létrehozása:
 
 ``` java
-		Proxy.getProxyClass(clazz.getClassLoader(), clazz.getInterfaces());
+Proxy.getProxyClass(clazz.getClassLoader(), clazz.getInterfaces());
 ```
 
 ## Példa ##
 ``` java
-	package reflection;
+package reflection;
 	
-	import java.lang.reflect.Method;
-	import java.lang.reflect.Modifier;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 	
-	public class ReflectionTest {
-	    public static void analyze(final Class<?> clazz) {
-	        System.out.println("Osztaly neve: " +
-	                 clazz.getName());
-	        System.out.println("Csomagja: " +
-	                clazz.getPackage());
-	        System.out.println("Osossztalyanak neve: " +
-	                clazz.getSuperclass());
-	        
-	        System.out.println("Deklaralt public fuggvenyek:");
-	        for ( final Method act : clazz.getDeclaredMethods() ) {
-	            if ( Modifier.isPublic( act.getModifiers() ) ) {
-	                System.out.println(act.getName());
-	            }
-	        }
-	    }
+public class ReflectionTest {
+    public static void analyze(final Class<?> clazz) {
+        System.out.println("Osztaly neve: " +
+                 clazz.getName());
+        System.out.println("Csomagja: " +
+                clazz.getPackage());
+        System.out.println("Osossztalyanak neve: " +
+                clazz.getSuperclass());
+
+        System.out.println("Deklaralt public fuggvenyek:");
+        for ( final Method act : clazz.getDeclaredMethods() ) {
+            if ( Modifier.isPublic( act.getModifiers() ) ) {
+                System.out.println(act.getName());
+            }
+        }
+    }
 	    
-	    public static void main(final String[] args) {
-	        analyze( ReflectionTest.class );
-	    }
-	}
+    public static void main(final String[] args) {
+        analyze( ReflectionTest.class );
+    }
+}
 ```
 
 ### Feladatok ###
@@ -115,39 +115,39 @@ függvények), új tömbök hozhatók létre (`newInstance()`), ill. a `Class`
 osztálynak vannak hasznos függvényei, pl.:
 
 ``` java
-	package reflection;
+package reflection;
 	
-	public class ReflectionArrayTest {
-	    public static void arrayTest(final Class<?> clazz) {
-	        if ( ! clazz.isArray()) {
-	            System.out.println("Nem tomb");
-	            return;
-	        }
+public class ReflectionArrayTest {
+    public static void arrayTest(final Class<?> clazz) {
+        if ( ! clazz.isArray()) {
+            System.out.println("Nem tomb");
+            return;
+        }
 	        
-	        Class<?> act = clazz;
-	        int dim = 0;
-	        while (act.isArray()) {
-	            act = act.getComponentType();
-	            dim++;
-	        }
+        Class<?> act = clazz;
+        int dim = 0;
+        while (act.isArray()) {
+            act = act.getComponentType();
+            dim++;
+        }
 	        
-	        System.out.println( dim + " dimenzios");
-	        System.out.println( "Belso tipusa: " +
-	                act.getSimpleName());
-	    }
+        System.out.println( dim + " dimenzios");
+        System.out.println( "Belso tipusa: " +
+                act.getSimpleName());
+    }
 	    
-	    public static void main(final String[] args) {
-	        arrayTest( new int[][] { {1, 2}, {3}}.getClass() );
-	    }
-	}
+    public static void main(final String[] args) {
+        arrayTest( new int[][] { {1, 2}, {3}}.getClass() );
+    }
+}
 ```
 
 > **Megjegyzés** Hülye jelölés, nem szívrohamot kapni:
 ``` java
-		int[][] arr = { {1, 2}, {3} };
-		System.out.println( arr );
+int[][] arr = { {1, 2}, {3} };
+System.out.println( arr );
 		
-		// Eredmeny: [[I@42e816
+// Eredmeny: [[I@42e816
 ```
 
 Ok: `B` - `byte`, `C` - `char`, `D` - `double`, `F` - `float`, `I`- `int`,
@@ -176,24 +176,24 @@ függvény. Ha a függvény statikus, akkor az első paraméter lehet `null` (k�
 reccs), paraméterlista lehet üres, visszatérési értéke egy `Object`. Példa:
 
 ``` java
-	package reflection;
+package reflection;
 	
-	import java.lang.reflect.Method;
+import java.lang.reflect.Method;
 	
-	public class Invoking {
-	    public static int add(final int a, final int b) {
-	        return a + b;
-	    }
-	    
-	    public static void main(final String[] args) throws Exception {
-	        final Method method = Invoking.class.getMethod("add",
-	                new Class[] {
-	                    Integer.TYPE, Integer.TYPE
-	                });
-	        
-	        System.out.println( method.invoke(null, 1, 2) );
-	    }
+public class Invoking {
+	public static int add(final int a, final int b) {
+		return a + b;
 	}
+	    
+	public static void main(final String[] args) throws Exception {
+		final Method method = Invoking.class.getMethod("add",
+			new Class[] {
+				Integer.TYPE, Integer.TYPE
+			});
+	        
+		System.out.println( method.invoke(null, 1, 2) );
+	}
+}
 ```
 
 ### Feladat ###
@@ -210,11 +210,11 @@ implementál (az ősosztályok által implementáltakat is)! Az osztály nevét
 parancssori argumentumként kapjuk. Példa:
 
 ``` java
-	interface I1 {}
-	interface I2 extends I1 {}
+interface I1 {}
+interface I2 extends I1 {}
 	
-	class A implements I2 {}
-	class B extends A {}
+class A implements I2 {}
+class B extends A {}
 ```
 
 A `B` osztály vizsgálata esetén a következő listát adja vissza a program:

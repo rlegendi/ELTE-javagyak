@@ -22,16 +22,16 @@ Felhasználási lehetőségek:
 * `@Override` Felüldefiniált metódusok jelzésére, fordítási idejű ellenőrzéshez.
 
 ``` java
-		@Override
-		public String toString() { ... }
+@Override
+public String toString() { ... }
 ```
 
 * `@Deprecated` Elavult, ám *reverse compatibility* miatt fontos függvények
 jelölésére. Fordítási idejű ellenőrzés, warningot generál.
 
 ``` java
-		@Deprecated
-		public void someChaoticMethod { ... }
+@Deprecated
+public void someChaoticMethod { ... }
 ```
 
 * `@SuppressWarnings` Adott kódrészletben a fordítási idejű figyelmeztetések
@@ -40,11 +40,11 @@ kikapcsolása (kódrészlet = `TYPE`, `FIELD`, `METHOD`, `PARAMETER`,
 `"unchecked"`, `"unused"`.
 
 ``` java
-		@SuppressWarnings("deprecation")
-		public int someChaoticFunction() { ... }
+@SuppressWarnings("deprecation")
+public int someChaoticFunction() { ... }
 		
-		@SuppressWarnings({ "deprecation", "unchecked" }) // ld. kesobb
-		public int someVeryChaoticFunction() { ... }
+@SuppressWarnings({ "deprecation", "unchecked" }) // ld. kesobb
+public int someVeryChaoticFunction() { ... }
 ```
 
 ## Definiálás ##
@@ -52,70 +52,70 @@ Kiterjeszthető: saját változatokat is lehet definiálni, `@interface` kulcssz
 Paraméter nélkül *marker*:
 
 ``` java
-	@interface MayBeNull {}
+@interface MayBeNull {}
 	
-	class PersonalData {
-	    @MayBeNull private String maidenName;
-	}
+class PersonalData {
+	@MayBeNull private String maidenName;
+}
 ```
 
 Ha egyetlen értéke van, azt érdemes `value()`-nak hívni, mert rövidebb
 használni:
 
 ``` java
-	@interface MayBeNull {
-	    String value();
-	}
+@interface MayBeNull {
+	String value();
+}
 	
-	class PersonalData {
-	    @MayBeNull("if (gender == male)")
-	    String private maidenName;
-	}
+class PersonalData {
+	@MayBeNull("if (gender == male)")
+	String private maidenName;
+}
 ```
 
 Ha a `value()` `String[]` típusú, akkor használható egyszerűen a `""` vagy
 `{ "", "" }` forma is:
 
 ``` java
-	@interface MayBeNull {
-	    String[] value();
-	}
+@interface MayBeNull {
+	String[] value();
+}
 	
-	class PersonalData {
-	    @MayBeNull("if (gender == male)")
-	    private String maidenName;
+class PersonalData {
+	@MayBeNull("if (gender == male)")
+	private String maidenName;
 	
-	    @MayBeNull({"agreed to term of usage", "specified value"})
-	    private int salary;
-	}
+	@MayBeNull({"agreed to term of usage", "specified value"})
+	private int salary;
+}
 ```
 
 Különben ki kell írni az annotáció használatánál a `tag = érték` párokat:
 
 ``` java
-	@interface MayBeNull {
-	    String description();
-	}
+@interface MayBeNull {
+	String description();
+}
 	
-	class PersonalData {
-	    @MayBeNull(description = "if (gender == male)")
-	    private String maidenName;
-	}
+class PersonalData {
+	@MayBeNull(description = "if (gender == male)")
+	private String maidenName;
+}
 ```
 
 Több tag is megadható, vesszővel elválasztva. Alapértelmezett érték is
 definiálható:
 
 ``` java
-	@interface MayBeNull {
-	    String description();
-	    boolean managed() default false;
-	}
+@interface MayBeNull {
+	String description();
+	boolean managed() default false;
+}
 	
-	class PersonalData {
-	    @MayBeNull(description = "if (gender == male)")
-	    private String maidenName;
-	}
+class PersonalData {
+	@MayBeNull(description = "if (gender == male)")
+	private String maidenName;
+}
 ```
 
 ## Megszorítások ##
@@ -152,27 +152,27 @@ A API-ban a `java.lang.annotation.*` csomag
 ### Példa ###
 
 ``` java
-	@Retention(RetentionPolicy.SOURCE)
-	@Target( { ElementType.FIELD, ElementType.PARAMETER,
-	           ElementType.LOCAL_VARIABLE } )
-	@interface MayBeNull {
-	    String value();
-	}
+@Retention(RetentionPolicy.SOURCE)
+@Target( { ElementType.FIELD, ElementType.PARAMETER,
+	ElementType.LOCAL_VARIABLE } )
+@interface MayBeNull {
+	String value();
+}
 ```
 
 ## Felhasználás ##
 
 ``` java
-	@SuppressWarnings("deprecation")
-	public void deprecatedFunction() {
-	    JFrame frame = new JFrame();
-	    frame.show(); // deprecated
-	}
+@SuppressWarnings("deprecation")
+public void deprecatedFunction() {
+	JFrame frame = new JFrame();
+	frame.show(); // deprecated
+}
 	
-	@SuppressWarnings("unchecked")
-	public void supressedFunction() {
-	    Vector v = new Vector(); // warning
-	}
+@SuppressWarnings("unchecked")
+public void supressedFunction() {
+	Vector v = new Vector(); // warning
+}
 ```
 
 Futási időben való elemzés: később, a reflection tárgyalásánál.

@@ -53,11 +53,11 @@ Készíts egy futtatható jar fájlt a következő `HelloWorld` programból! A p
 struktúra megtartására figyelj!
 
 ``` java
-	package jars;
+package jars;
 	
-	public class HelloWorldApp {
-	    public static void main(String args[]) {
-	        System.out.println("Hello World!");
-	    }
-	}
+public class HelloWorldApp {
+    public static void main(String args[]) {
+        System.out.println("Hello World!");
+    }
+}
 ```

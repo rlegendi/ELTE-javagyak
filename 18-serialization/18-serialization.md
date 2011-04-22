@@ -10,45 +10,45 @@ akkor abban lennie kell egy nullary konstruktornak; az `Object` ennek a
 kritériumnak megfelel):
 
 ``` java
-	package serialization;
+package serialization;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.Date;
+
+public class PersistentDate implements Serializable {
+	private final Date date = new Date();
 	
-	import java.io.FileInputStream;
-	import java.io.FileOutputStream;
-	import java.io.IOException;
-	import java.io.ObjectInputStream;
-	import java.io.ObjectOutputStream;
-	import java.io.Serializable;
-	import java.util.Date;
-	
-	public class PersistentDate implements Serializable {
-	    private final Date date = new Date();
-	    
-	    public Date getDate() {
-	        return date;
-	    }
-	    
-	    @Override
-	    public String toString() {
-	        return "" + date;
-	    }
-	    
-	    public static void save() throws IOException {
-	        final ObjectOutputStream oos = new ObjectOutputStream(
-	                new FileOutputStream("date.dat"));
-	        oos.writeObject( new PersistentDate() );
-	        oos.flush();
-	        oos.close();
-	    }
-	    
-	    public static void load()
-	            throws IOException, ClassNotFoundException {
-	        final ObjectInputStream ios = new ObjectInputStream(
-	                new FileInputStream("date.dat"));
-	        final PersistentDate loaded = (PersistentDate) ios.readObject();
-	        
-	        System.out.println(loaded);
-	    }
+	public Date getDate() {
+		return date;
 	}
+
+	@Override
+	public String toString() {
+		return "" + date;
+	}
+	
+	public static void save() throws IOException {
+		final ObjectOutputStream oos = new ObjectOutputStream(
+			new FileOutputStream("date.dat"));
+		oos.writeObject( new PersistentDate() );
+		oos.flush();
+		oos.close();
+	}
+
+	public static void load()
+		throws IOException, ClassNotFoundException {
+		final ObjectInputStream ios = new ObjectInputStream(
+			new FileInputStream("date.dat"));
+		final PersistentDate loaded = (PersistentDate) ios.readObject();
+
+		System.out.println(loaded);
+	}
+}
 ```
 
 Rekurzív adatszerkezeteknél (oda-vissza hivatkozások) ebből gond lehet.
@@ -62,11 +62,11 @@ Ha van egy adattagunk, amit nem szeretnénk szerializálni, használhatjuk a
 `transient` kulcsszót:
 
 ``` java
-	public class PersistentDate implements Serializable {
-	    private final Date date = new Date();
-	    private transient Thread updater;
-	    ...
-	}
+public class PersistentDate implements Serializable {
+	private final Date date = new Date();
+	private transient Thread updater;
+	...
+}
 ```
 
 ## A default protokoll módosítása ##
@@ -74,12 +74,12 @@ Ha van egy adattagunk, amit nem szeretnénk szerializálni, használhatjuk a
 vs. hatékonyság), ehhez a következő két függvényt kell "felüldefiniálni":
 
 ``` java
-	private void writeObject(ObjectOutputStream out)
-	     throws IOException;
-	 private void readObject(ObjectInputStream in)
-	     throws IOException, ClassNotFoundException;
-	 private void readObjectNoData() 
-	     throws ObjectStreamException;
+private void writeObject(ObjectOutputStream out)
+	throws IOException;
+private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException;
+private void readObjectNoData()
+	throws ObjectStreamException;
 ```
 
 Nem biztos, hogy az alapértelmezett viselkedést akarjuk megváltoztatni
@@ -88,16 +88,16 @@ attribútumokat is kiírhatunk, vagy köthetünk eseményeket a szerializáció
 eseményéhez. Pl. ha a fenti szálat szeretnénk elindítani:
 
 ``` java
-	private void writeObject(ObjectOutputStream out)
-	        throws IOException {
-	    out.defaultWriteObject(); 
-	}
+private void writeObject(ObjectOutputStream out)
+	throws IOException {
+	out.defaultWriteObject();
+}
 	
-	private void readObject(ObjectInputStream in)
-	        throws IOException, ClassNotFoundException {
-	     in.defaultReadObject();
-	    updater.start();
-	}
+private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException {
+	in.defaultReadObject();
+	updater.start();
+}
 ```
 
 > **Megjegyzés** Amennyiben teljesen mi szeretnénk felügyelni, használjuk a
@@ -109,15 +109,15 @@ Ha egy származtatott osztályban le akarjuk tiltani a sorosíthatóságot, ninc
 jobb módszer, mint kivételt dobni:
 
 ``` java
-	private void writeObject(ObjectOutputStream out)
-	        throws IOException {
-	    throw new NotSerializableException("Nem!");
+private void writeObject(ObjectOutputStream out)
+	throws IOException {
+		throw new NotSerializableException("Nem!");
 	}
 	
-	private void readObject(ObjectInputStream in)
-	        throws IOException, ClassNotFoundException {
-	    throw new NotSerializableException("Nem!");
-	}
+private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException {
+	throw new NotSerializableException("Nem!");
+}
 ```
 
 ## Gotchas ##
@@ -125,15 +125,15 @@ jobb módszer, mint kivételt dobni:
 és a többiről nem is akar tudni:
 
 ``` java
-		oos.writeObject( obj );
-		obj.value = 1; // Hiaba allitjuk at, ha elotte nem 1 volt
-		oos.writeObject(obj); // akkor itt az eredeti erteke lesz
+oos.writeObject( obj );
+obj.value = 1; // Hiaba allitjuk at, ha elotte nem 1 volt
+oos.writeObject(obj); // akkor itt az eredeti erteke lesz
 ```
 
 * Verziókezelés:
 
 ``` java
-		private static final long serialVersionUID = <ronda_nagy_generalt_szam>L;
+private static final long serialVersionUID = <ronda_nagy_generalt_szam>L;
 ```
 	
 * Teljesítmény: a default Java szerializációnál vannak hatékonyabb frameworkök!
@@ -145,15 +145,15 @@ jobb módszer, mint kivételt dobni:
   kiértékelésű:
 
 ``` java
-		private Double c = null;
+private Double c = null;
 		
-		public double getCircumference() {
-		    if (null == c) {
-		        c = new Double(...);
-		    }
+public double getCircumference() {
+	if (null == c) {
+		c = new Double(...);
+	}
 		    
-		    return c.doubleValue();
-		}
+	return c.doubleValue();
+}
 ```
 
   A program a szerializáció során kezelje ezt az attribútumot nem perzisztens

@@ -56,47 +56,47 @@ Hasznunkra válik az `InetAddress` osztály:
 
 ### Szerveralkalmazás ###
 ``` java
-	package networking;
-	
-	import java.io.BufferedReader;
-	import java.io.IOException;
-	import java.io.InputStreamReader;
-	import java.io.PrintWriter;
-	import java.net.ServerSocket;
-	import java.net.Socket;
-	
-	public class SimpleServer {
-	    public static void main(final String[] args) throws IOException {
-	        final int port = Integer.parseInt(args[0]);
-	        final ServerSocket server = new ServerSocket(port);
-	        
-	        Socket client = null;
-	        
-	        while (true) {
-	            client = server.accept();
-	            final BufferedReader br = new BufferedReader(
-	                new InputStreamReader(client.getInputStream()));
-	            final PrintWriter pw = new PrintWriter(client.getOutputStream());
+package networking;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class SimpleServer {
+	public static void main(final String[] args) throws IOException {
+		final int port = Integer.parseInt(args[0]);
+		final ServerSocket server = new ServerSocket(port);
+
+		Socket client = null;
+
+		while (true) {
+			client = server.accept();
+			final BufferedReader br = new BufferedReader(
+				new InputStreamReader(client.getInputStream()));
+			final PrintWriter pw = new PrintWriter(client.getOutputStream());
+
+			final String line = br.readLine();
+			System.out.println("Got message: " + line);
 	            
-	            final String line = br.readLine();
-	            System.out.println("Got message: " + line);
+			final String ret = new StringBuilder(line).reverse().toString();
+			System.out.println("Sending reply: " + ret);
 	            
-	            final String ret = new StringBuilder(line).reverse().toString();
-	            System.out.println("Sending reply: " + ret);
-	            
-	            pw.println( ret );
-	            pw.flush();
-	            
-	            client.close();
-	            
-	            if (line.equals("exit")) {
-	                break;
-	            }
-	        }
-	        
-	        server.close();
-	    }
+			pw.println( ret );
+			pw.flush();
+
+			client.close();
+
+			if (line.equals("exit")) {
+				break;
+			}
+		}
+
+		server.close();
 	}
+}
 ```
 
 #### Használat ####
@@ -104,36 +104,36 @@ Hasznunkra válik az `InetAddress` osztály:
 
 ### Kliens alkalmazás ###
 ``` java
-	package networking;
+package networking;
 	
-	import java.io.BufferedReader;
-	import java.io.IOException;
-	import java.io.InputStreamReader;
-	import java.io.PrintWriter;
-	import java.net.Socket;
-	import java.net.UnknownHostException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 	
-	public class SimpleClient {
-	    public static void main(String[] args)
-	            throws UnknownHostException, IOException {
-	        String host = args[0];
-	        int port = Integer.parseInt(args[1]);
-	        String value = args[2];
+public class SimpleClient {
+    public static void main(String[] args)
+	throws UnknownHostException, IOException {
+	String host = args[0];
+	int port = Integer.parseInt(args[1]);
+	String value = args[2];
 	        
-	        Socket socket = new Socket(host, port);
+        Socket socket = new Socket(host, port);
 	        
-	        BufferedReader br = new BufferedReader(
-	            new InputStreamReader(socket.getInputStream()));
-	        PrintWriter pw = new PrintWriter(socket.getOutputStream());
+        BufferedReader br = new BufferedReader(
+		new InputStreamReader(socket.getInputStream()));
+	PrintWriter pw = new PrintWriter(socket.getOutputStream());
 	        
-	        System.out.println("Message: " + value);
-	        pw.println(value);
-	        pw.flush();
+        System.out.println("Message: " + value);
+        pw.println(value);
+        pw.flush();
 	        
-	        System.out.println( "Response:" + br.readLine() );
-	        socket.close();
-	    }
-	}
+        System.out.println( "Response:" + br.readLine() );
+        socket.close();
+    }
+}
 ```
 
 ### Használat ###

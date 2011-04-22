@@ -45,7 +45,7 @@ Ehhez a következő osztály dinamikus betöltésére van szükség (ő implemen
 `Driver` interfészt):
 
 ``` java
-	Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 ```
 
 A driverek specifikáció szerint osztálybetöltéskor egy statikus inicializátor
@@ -66,37 +66,37 @@ karakterekkel választhatjuk el):
 Példa a használatára:
 
 ``` java
-	Connection dbConnection = null;
-	String strUrl = "jdbc:derby:DefaultAddressBook;user=dbuser;password=dbuserpwd";
-	try {
-	    dbConnection = DriverManager.getConnection(strUrl);
-	} catch (SQLException e) {
-	    e.printStackTrace();
-	}
+Connection dbConnection = null;
+String strUrl = "jdbc:derby:DefaultAddressBook;user=dbuser;password=dbuserpwd";
+try {
+    dbConnection = DriverManager.getConnection(strUrl);
+} catch (SQLException e) {
+    e.printStackTrace();
+}
 ```
 
 Másik megoldás (kicsit biztonságosabb), ha property-kbe rakjuk a felhasználó
 nevét és jelszavát:
 
 ``` java
-	Connection dbConnection = null;
-	String strUrl = "jdbc:derby:DefaultAddressBook";
+Connection dbConnection = null;
+String strUrl = "jdbc:derby:DefaultAddressBook";
 	
-	Properties props = new Properties();
-	props.put("user", "dbuser");
-	props.put("password", "dbuserpwd");
-	try {
-	    dbConnection = DriverManager.getConnection(strUrl, props);
-	} catch(SQLException sqle) {
-	    sqle.printStackTrace();
-	}
+Properties props = new Properties();
+props.put("user", "dbuser");
+props.put("password", "dbuserpwd");
+try {
+    dbConnection = DriverManager.getConnection(strUrl, props);
+} catch(SQLException sqle) {
+    sqle.printStackTrace();
+}
 ```
 
 Hova kerül a DB? A `derby.system.home` system property által beállított érték
 határozza meg. Ezt vagy kódból lehet beállítani:
 
 ``` java
-	System.setProperty("derby.system.home", "/tmp");
+System.setProperty("derby.system.home", "/tmp");
 ```
 
 vagy futtatásnál lehet megadni:
@@ -133,36 +133,36 @@ Három lehetőség:
   konkatenációt elhagytam):
 
 ``` java
-		String strCreateTable = "CREATE TABLE inventory
-		(
-		   id INT PRIMARY KEY,
-		   product VARCHAR(50),
-		   quantity INT,
-		   price DECIMAL
-		)";
+String strCreateTable = "CREATE TABLE inventory
+	(
+	id INT PRIMARY KEY,
+	product VARCHAR(50),
+	quantity INT,
+	price DECIMAL
+	)";
 		
-		statement = dbConnection.createStatement();
-		statement.execute(strCreateTable);
+statement = dbConnection.createStatement();
+statement.execute(strCreateTable);
 ```
 
 * `executeQuery(String)`: lekérdezéshez, az eredmény egy `ResultSet` objektum
   lesz. %Mindig olvassátok végig az eredményt, mert addig nem záródik. Pl.:
 
 ``` java
-		ResultSet rs = statement.executeQuery("SELECT * FROM inventory");
-		while (rs.next()) {
-		    String p = rs.getString("product");
-		    int q = rs.getInt("quantity");
-		    double d = rs.getDouble("price");
-		    ...
-		}
+ResultSet rs = statement.executeQuery("SELECT * FROM inventory");
+while (rs.next()) {
+    String p = rs.getString("product");
+    int q = rs.getInt("quantity");
+    double d = rs.getDouble("price");
+    ...
+}
 ```
 
 * `executeUpdate(String)`: insert, update, delete, és adatdefiníciós
   utasításokhoz, az eredmény a módosított sorok száma (vagy 0). Pl.:
 
 ``` java
-		statement.executeUpdate("DELETE WHERE id=0");
+statement.executeUpdate("DELETE WHERE id=0");
 ```
 
 ## Kötegelt végrehajtás ##
@@ -171,12 +171,12 @@ szervernek feldolgozásra, így sok kis adatmódosító utasítás gyorsabban le
 mintha külön-külön futtattatnánk le őket. Pl.:
 
 ``` java
-	statement.addBatch("Create TABLE ...");
-	statement.addBatch("INSERT INTO ...");
-	statement.addBatch("INSERT INTO ...");
-	statement.addBatch("INSERT INTO ...");
-	...
-	statement.executeBatch();
+statement.addBatch("Create TABLE ...");
+statement.addBatch("INSERT INTO ...");
+statement.addBatch("INSERT INTO ...");
+statement.addBatch("INSERT INTO ...");
+...
+statement.executeBatch();
 ```
 
 Az `executeBatch()` egy tömbbel tér vissza, hogy az egyes utasítások hány sort

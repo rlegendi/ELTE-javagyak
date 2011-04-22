@@ -6,40 +6,40 @@ Absztrakt adattípus = adatabsztrakció, absztrakt adattípus és a rajta
 # Emlékeztető: Object Függvények felüldefiniálása #
 
 ``` java
-	public class Student {
-	  private String name;
-	  private String ETR;
-	  private int yearsAtUni;
+public class Student {
+	private String name;
+	private String ETR;
+	private int yearsAtUni;
 	  
-	  // ...
+	// ...
 	  
-	  @Override
-	  public int hashCode() {
-	    return name.hashCode() + ETR.hashCode() + yearsAtUni;
-	  }
-	  
-	  @Override
-	  public boolean equals(final Object obj) {
-	    if (obj instanceof Student) {
-	      final Student other = (Student) obj;
-
-	      // Esetleges null ellenorzeseket tessek elvegezni!
-	      // Itt az attekinthetoseg kedveert ettol eltekintettem.	
-	      return ( name.equals( other.name) &&
-	            ETR.equals( other.ETR ) &&
-	            yearsAtUni == other.yearsAtUni );
-	    }
-	    
-	    return false;
-	  }
-	  
-	  @Override
-	  public String toString() {
-	    return "Student [name=" + name + "," + "ETR=" + ETR + ", " +
-	        "yearsAtUni=" + yearsAtUni + "]";
-	  }
-	  
+	@Override
+	public int hashCode() {
+		return name.hashCode() + ETR.hashCode() + yearsAtUni;
 	}
+	  
+	@Override
+	public boolean equals(final Object obj) {
+		if (obj instanceof Student) {
+			final Student other = (Student) obj;
+
+			// Esetleges null ellenorzeseket tessek elvegezni!
+			// Itt az attekinthetoseg kedveert ettol eltekintettem.
+			return ( name.equals( other.name) &&
+				ETR.equals( other.ETR ) &&
+				yearsAtUni == other.yearsAtUni );
+		}
+	    
+		return false;
+	}
+	  
+	@Override
+	public String toString() {
+		return "Student [name=" + name + "," + "ETR=" + ETR + ", " +
+		"yearsAtUni=" + yearsAtUni + "]";
+	}
+
+}
 ```
 
 
@@ -59,78 +59,79 @@ ekkor a leszármazottnak is absztraktnak kell lennie).
 > **Részletesen** <http://download.oracle.com/javase/tutorial/java/IandI/abstract.html>
 
 Példa:
+
 ``` java
-	abstract class Sikidom {
-	  protected boolean tukorszimmetrikus;
+abstract class Sikidom {
+	protected boolean tukorszimmetrikus;
 	
-	  public Sikidom(boolean tukorszimmetrikus) {
-	    this.tukorszimmetrikus = tukorszimmetrikus;
-	  }
-	
-	  public abstract double kerulet();
-	  public abstract double terulet();
-	
-	  public void isTukorszimmetrikus() {
-	    return tukorszimmetrikus;
-	  }
-	
-	  public void kiir() {
-	    System.out.println( "K: " + kerulet() );
-	    System.out.println( "T: " + terulet() );
-	  }
+	public Sikidom(boolean tukorszimmetrikus) {
+		this.tukorszimmetrikus = tukorszimmetrikus;
 	}
 	
-	class Kor extends Sikidom {
-	  private static final double PI = 3.1415;
-	  private double r = 1.0;
+	public abstract double kerulet();
+	public abstract double terulet();
 	
-	  public Kor() {
-	    super( true );
-	  }
-	  
-	  @Override
-	  public double kerulet() {
-	    return 2 * r * PI;
-	  }
-	  
-	  @Override
-	  public double terulet() {
-	    return Math.pow( r, 2 ) * PI;
-	  }
+	public void isTukorszimmetrikus() {
+		return tukorszimmetrikus;
 	}
 	
-	class Teglalap extends Sikidom {
-	  private double a = 1, b = 1;
-	  
-	  public Teglalap() {
-	    super( true );
-	  }
-	  
-	  @Override
-	  public double kerulet() {
-	    return 2 * ( a + b );
-	  }
-	  
-	  @Override
-	  public double terulet() {
-	    return a * b;
-	  }
+	public void kiir() {
+		System.out.println( "K: " + kerulet() );
+		System.out.println( "T: " + terulet() );
 	}
+}
+	
+class Kor extends Sikidom {
+	private static final double PI = 3.1415;
+	private double r = 1.0;
+	
+	public Kor() {
+		super( true );
+	}
+	  
+	@Override
+	public double kerulet() {
+		return 2 * r * PI;
+	}
+	  
+	@Override
+	public double terulet() {
+		return Math.pow( r, 2 ) * PI;
+	}
+}
+	
+class Teglalap extends Sikidom {
+	private double a = 1, b = 1;
+	  
+	public Teglalap() {
+		super( true );
+	}
+	  
+	@Override
+	public double kerulet() {
+		return 2 * ( a + b );
+	}
+	  
+	@Override
+	public double terulet() {
+		return a * b;
+	}
+}
 ```
 
 Használatra példa:
 
 ``` java
-	public class Main {
-	  public static void keruletKiir(Sikidom sikidom) {
-	    System.out.println( sikidom.kerulet() );
-	  }
-	
-	  public static void main(String[] args) {
-	    Sikidom s = new Kor(); // v.o. statikus-dinamikus tipus
-	    keruletKiir( s );
-	  }
+public class Main {
+	public static void keruletKiir(Sikidom sikidom) {
+		System.out.println( sikidom.kerulet() );
 	}
+	
+	public static void main(String[] args) {
+		Sikidom s = new Kor(); // v.o. statikus-dinamikus tipus
+		keruletKiir( s );
+	}
+}
 ```
 
 ## Interfészek ##
@@ -156,15 +157,15 @@ Eltérés az osztályoktól:
 Mint az osztályoké:
 
 ``` java
-	interface A {}
+interface A {}
 	
-	public interface B {}
+public interface B {}
 ```
 
 Öröklődési reláció neve itt _kiterjesztés_, lehet többszörös:
 
 ``` java
-	interface C extends A, B {}
+interface C extends A, B {}
 ```
 
 Körkörös kiterjesztés fordítási hibát eredményez.
@@ -183,10 +184,10 @@ fordítási hibát kapunk), és ez csak már ismert érték lehet
 (_forward referencing_ tilos):
 
 ``` java
-	interface I {
-	    int A = B; // Hibas definicio!
-	    int B = 0;
-	}
+interface I {
+	int A = B; // Hibas definicio!
+	int B = 0;
+}
 ```
 
 Nem szerepelhet `this`, `super` sem. Módosítószavak között nem szerepelhet
@@ -197,18 +198,18 @@ amiknek implementációs szinten kell eldőlniük, használatuk ésszerűtlen le
 Főleg tulajdonságok, viselkedés hozzáadására. Például:
 
 ``` java
-	interface Beolvashato {
-	  public abstract void beolvas();
+interface Beolvashato {
+	public abstract void beolvas();
 	}
 	
-	class Kor implements Beolvashato {
-	  ...
+class Kor implements Beolvashato {
+	...
 	
-	  public void beolvas() {
-	    String sor = Console.readLine("r = ?");
-	    r = Integer.parseInt( sor );
-	  }
+	public void beolvas() {
+		String sor = Console.readLine("r = ?");
+		r = Integer.parseInt( sor );
 	}
+}
 ```
 
 ## Summarium ##
@@ -219,31 +220,31 @@ Főleg tulajdonságok, viselkedés hozzáadására. Például:
 
 ### Interfész ###
 ``` java
-	public interface GroupedInterface
-	    extends Interface1, Interface2, Interface3 { ... }
+public interface GroupedInterface
+	extends Interface1, Interface2, Interface3 { ... }
 ```
 
 vagy például:
 
 ``` java
-	class A extends B implements I1, I2 { ... }
+class A extends B implements I1, I2 { ... }
 ```
 
 > **Részletesen** <http://download.oracle.com/javase/tutorial/java/IandI/interfaceDef.html>
 
 ### Absztrakt osztályra példa ###
 ``` java
-	public abstract class Point {
-	    private int x = 1, y = 1;
-	    
-	    void move(final int dx, final int dy) {
-	        x += dx;
-	        y += dy;
-	        alert();
-	    }
-	    
-	    abstract void alert();
+public abstract class Point {
+	private int x = 1, y = 1;
+
+	void move(final int dx, final int dy) {
+		x += dx;
+		y += dy;
+		alert();
 	}
+
+	abstract void alert();
+}
 ```
 
 > **Részletesen** <http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#34944>
@@ -280,7 +281,7 @@ megengedett (sőt, ajánlott is).
   következő minta alapján:
 
 ``` java
-		public abstract void translate(double... coordinates);
+public abstract void translate(double... coordinates);
 ```
 
   A forgatást vedd úgy, hogy az origó kürül kell elforgatni a megadott pontot,
@@ -294,7 +295,7 @@ megengedett (sőt, ajánlott is).
   Készíts egy `Frissitheto` interfészt! Ez egyetlen metódust írjon elő:
 
 ``` java
-		public abstract void frissit();
+public abstract void frissit();
 ```
 
   Ezzel a képernyőről, felhasználói interakció révén lehessen frissíteni az
@@ -306,10 +307,10 @@ megengedett (sőt, ajánlott is).
   absztrakt osztályát (`AKodolo`), amely a következő definíciókat tartalmazza:
 
 ``` java
-		public abstract class AKodolo {
-		  public abstract String kodol(String eredeti);
-		  public abstract String dekodol(String kodolt);
-		}
+public abstract class AKodolo {
+	public abstract String kodol(String eredeti);
+	public abstract String dekodol(String kodolt);
+}
 ```
 
   A különböző megvalósítások a kapott eredeti szöveget kódolják ill. fejtik
@@ -337,13 +338,13 @@ megengedett (sőt, ajánlott is).
   Készíts egy `Util` osztályt, amely a következő definíciót tartalmazza:
 
 ``` java
-		public final class Util {
-		  public static ASorozat beolvas() {
-		    //...
-		  }
+public final class Util {
+	public static ASorozat beolvas() {
+		//...
+	}
 		
-		  private Util() {}
-		}
+	private Util() {}
+}
 ```
 
   Ez a felhasználótól kérdezze meg, hogy milyen sorozatot szeretne megadni,

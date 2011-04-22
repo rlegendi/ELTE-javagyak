@@ -24,9 +24,9 @@ deklaráltan dobnia kell a `java.rmi.RemoteException` kivételt. Ami ebben az
 interfészben nincs definiálva, az a kliensek felé *nem fog látszani*.
 
 ``` java
-	public interface IEchoRemote extends Remote {
-	    public abstract String hi() throws RemoteException;
-	}
+public interface IEchoRemote extends Remote {
+    public abstract String hi() throws RemoteException;
+}
 ```
 
 ## Paraméter átadás ##
@@ -66,52 +66,52 @@ teszi az osztályunkat (megjegyzés: ez nem kötelező, de akkor kézzel kell mi
 csinálni, pl. `toString()`, `hashCode()`, `equals()` megfelelő implementálása). 
 
 ``` java
-	import java.io.File;
-	import java.net.MalformedURLException;
-	import java.rmi.AlreadyBoundException;
-	import java.rmi.Naming;
-	import java.rmi.RMISecurityManager;
-	import java.rmi.RemoteException;
-	import java.rmi.server.UnicastRemoteObject;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.rmi.AlreadyBoundException;
+import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 	
-	public class EchoServer
-	        extends UnicastRemoteObject
-	        implements IEchoRemote {
-	    public static final String ADDRESS = "rmi://localhost:1099/echo";
-	
-	    protected EchoServer() throws RemoteException {
-	        super();
-	    }
-	
-	    @Override
-	    public void hi() throws RemoteException {
-	        return "Hoi!";
-	    }
-	    
-	    public static void main(final String[] args)
-	            throws RemoteException, MalformedURLException {
-	        if (null == System.getSecurityManager() ) {
-	            System.setSecurityManager(new RMISecurityManager());
-	        }
-	        
-	        final EchoServer server = new EchoServer();
-	        Naming.rebind(ADDRESS, server);
-	    }
+public class EchoServer
+	extends UnicastRemoteObject
+	implements IEchoRemote {
+	public static final String ADDRESS = "rmi://localhost:1099/echo";
+
+	protected EchoServer() throws RemoteException {
+		super();
 	}
+	
+	@Override
+	public void hi() throws RemoteException {
+		return "Hoi!";
+	}
+	    
+	public static void main(final String[] args)
+		throws RemoteException, MalformedURLException {
+		if (null == System.getSecurityManager() ) {
+			System.setSecurityManager(new RMISecurityManager());
+		}
+	        
+		final EchoServer server = new EchoServer();
+		Naming.rebind(ADDRESS, server);
+	}
+}
 ```
 
 ## A kliens implementációja ##
 ``` java
-	public class EchoClient {
-	    public static void main(final String[] args)
-	            throws MalformedURLException,
-	                   RemoteException,
-	                   NotBoundException {
-	        final IEchoRemote remote = (IEchoRemote)
-	                Naming.lookup(EchoServer.ADDRESS);
-	        System.out.println( remote.hi() );
-	    }
+public class EchoClient {
+	public static void main(final String[] args)
+		throws MalformedURLException,
+			RemoteException,
+			NotBoundException {
+		final IEchoRemote remote = (IEchoRemote);
+		Naming.lookup(EchoServer.ADDRESS);
+		System.out.println( remote.hi() );
 	}
+}
 ```
 
 ## Futtatás ##

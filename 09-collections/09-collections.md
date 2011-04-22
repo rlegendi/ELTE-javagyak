@@ -15,32 +15,32 @@ heterogén adatszerkezeteket használ, megérdemli.
 Collectionöknél aktívan használjuk őket:
 
 ``` java
-	Vector<String> s = new Vector<String>();
+Vector<String> s = new Vector<String>();
 ```
 
 Az előnyük:
 
 ``` java
-	// Pre-1.5 era:
-	Vector v = new Vector();
+// Pre-1.5 era:
+Vector v = new Vector();
+
+v.add( new Integer(1) );
+v.add( new Integer(2) );
 	
-	v.add( new Integer(1) );
-	v.add( new Integer(2) );
+for (int i=0, n=v.size(); i<n; ++i) {
+	Integer act = (Integer) v.get(i);
+	System.out.println(act);
+}
 	
-	for (int i=0, n=v.size(); i<n; ++i) {
-	    Integer act = (Integer) v.get(i);
-	    System.out.println(act);
-	}
+// Uj:
+Vector<Integer> v = new Vector<Integer>();
+v.add(1);
+v.add(2);
 	
-	// Uj:
-	Vector<Integer> v = new Vector<Integer>();
-	v.add(1);
-	v.add(2);
-	
-	for (int i=0, n=v.size(); i<n; ++i) {
-	    Integer act = v.get(i);
-	    System.out.println(act);
-	}
+for (int i=0, n=v.size(); i<n; ++i) {
+	Integer act = v.get(i);
+	System.out.println(act);
+}
 ```
 
 ## Autoboxing-unboxing ##
@@ -53,15 +53,15 @@ unboxing NullPointerException-nel jár.
 Példa:
 
 ``` java
-	v.add(1);
-	// Implicit a kovetkezot jelenti:
-	v.add( new Integer(1) );
+v.add(1);
+// Implicit a kovetkezot jelenti:
+v.add( new Integer(1) );
 	
-	v.add(1);
-	boolean eq = v.get(0) == v.get(1); // LEHET hamis! (*)
+v.add(1);
+boolean eq = v.get(0) == v.get(1); // LEHET hamis! (*)
 	
-	v.add(null);
-	for (int act : v) { ... } // RECCS!
+v.add(null);
+for (int act : v) { ... } // RECCS!
 ```
 
 **Megjegyzés** A `(*)`-gal jelölt rész speciel pont mindig igaz lesz, de ez
@@ -90,35 +90,35 @@ konstruktorok vannak (egyik a másikra konvertálható). Műveletek 3 csoportja:
 3. Tömbbé konvertálás - gány:
 
 ``` java
-		A[] arr = (A[]) list.toArray(new A[list.size()]);
+A[] arr = (A[]) list.toArray(new A[list.size()]);
 		
-		// Kicsit egyszerubb, bar kevesbe hatekony, biztonsagos:
-		A[] arr = (A[]) list.toArray();
+// Kicsit egyszerubb, bar kevesbe hatekony, biztonsagos:
+A[] arr = (A[]) list.toArray();
 ```
 
 Iterátorokkal rendelkeznek, használhatók for-each-ben. Példa:
 
 ``` java
-	package collections;
+package collections;
 	
-	import java.util.Vector;
+import java.util.Vector;
 	
-	public class VectorTest {
-	    public static void main(String[] args) {
-	        Vector<Double> vector = new Vector<Double>();
+public class VectorTest {
+	public static void main(String[] args) {
+		Vector<Double> vector = new Vector<Double>();
 	        
-	        for (int i=0; i<5; ++i) {
-	            vector.add( Math.random() );
-	        }
+		for (int i=0; i<5; ++i) {
+			vector.add( Math.random() );
+		}
 	        
 		for (double act : vector) {
-	        	System.out.println(act);
+			System.out.println(act);
 		}
 		
 		// Ellenorzeskeppen kiirhatjuk a teljes vektort az alabbi modon is: 
-	        System.out.println(vector);
-	    }
+		System.out.println(vector);
 	}
+}
 ```
 
 ### Halmaz ###
@@ -214,12 +214,12 @@ eredménye `int` típusú:
 Implementáció:
 
 ``` java
-	class Foo implements Comparable<Foo> {
-	    ...
-	    public int compareTo(final Foo foo) {
-	        return ...;
-	    }
+class Foo implements Comparable<Foo> {
+	...
+	public int compareTo(final Foo foo) {
+		return ...;
 	}
+}
 ```
 
 Ha ennek használatára nincs lehetőség, marad egy saját `Comparator` készítése
@@ -260,8 +260,8 @@ függvénnyel, és írjátok ki az eredményt!
   interfészt megadni (a collections framework előnye a rugalmassága):
 
 ``` java
-		Vector<Integer> v1 = new Vector<Integer>();  // vektorkent kezeles
-		List<Integer>   v2 = new Vector<Integer>();  // listakent kezeles
+Vector<Integer> v1 = new Vector<Integer>();  // vektorkent kezeles
+List<Integer>   v2 = new Vector<Integer>();  // listakent kezeles
 ```
 
 > **Részletesen:**

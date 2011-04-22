@@ -4,21 +4,21 @@
 Saját listener megvalósítása:
 
 ``` java
-	public class GUI1 {
-	    private final JButton ok = new JButton("Ok");
-	    
-	    private class OkButtonActionListener implements ActionListener {
-	        @Override
-	        public void actionPerformed(ActionEvent e) {
-	            System.out.println("Ok pressed");
-	        }
-	    }
-	    
-	    public GUI1() {
-	        OkButtonActionListener listener = new OkButtonActionListener();
-	        ok.addActionListener(listener);
-	    }
+public class GUI1 {
+	private final JButton ok = new JButton("Ok");
+
+	private class OkButtonActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Ok pressed");
+		}
 	}
+
+	public GUI1() {
+		OkButtonActionListener listener = new OkButtonActionListener();
+		ok.addActionListener(listener);
+	}
+}
 ```
 
 vagy maga az osztály implementálja az interfészt, mindenre rá lehet aggatni,
@@ -26,29 +26,29 @@ majd `setActionCommand()` ill. `getActionCommand()` függvény használható a
 megkülönböztetésre:
 
 ``` java
-	public class GUI2 implements ActionListener {
-	    private final JButton ok = new JButton("Ok");
-	    private final JButton cancel = new JButton("Ok");
-	    
-	    private final String OK_COMMAND     = "ok";
-	    private final String CANCEL_COMMAND = "cancel";
-	    
-	    public GUI2() {
-	        ok.addActionListener(this);
-	        ok.setActionCommand(OK_COMMAND);
-	        
-	        cancel.addActionListener(this);
-	        cancel.setActionCommand(CANCEL_COMMAND);
-	    }
-	    
-	    public void actionPerformed(ActionEvent e) {
-	        if (OK_COMMAND.equals(e.getActionCommand())) {
-	            System.out.println("Ok pressed");
-	        } else if (CANCEL_COMMAND.equals(e.getActionCommand())) {
-	            System.out.println("Cancel oressed");
-	        }
-	    }
+public class GUI2 implements ActionListener {
+	private final JButton ok = new JButton("Ok");
+	private final JButton cancel = new JButton("Ok");
+
+	private final String OK_COMMAND     = "ok";
+	private final String CANCEL_COMMAND = "cancel";
+
+	public GUI2() {
+		ok.addActionListener(this);
+		ok.setActionCommand(OK_COMMAND);
+
+		cancel.addActionListener(this);
+		cancel.setActionCommand(CANCEL_COMMAND);
 	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (OK_COMMAND.equals(e.getActionCommand())) {
+			System.out.println("Ok pressed");
+		} else if (CANCEL_COMMAND.equals(e.getActionCommand())) {
+			System.out.println("Cancel pressed");
+		}
+	}
+}
 ```
 
 ## Komplexebb grafikus felület##
@@ -60,9 +60,9 @@ TODO: kép
 Ha `super != null`, akkor modális, pl.:
 
 ``` java
-	JFrame frame = ...;
-	...
-	JOptionPane.showMessageDialog( frame, "Modalis uzenet");
+JFrame frame = ...;
+...
+JOptionPane.showMessageDialog( frame, "Modalis uzenet");
 ```
 
 ## MVC ##
@@ -71,67 +71,67 @@ adatokat (többféle reprezentáció), ilyenkor modelleket kell használni (pl.
 `JProgressBar`, `JNumberSpinner`, `JTable`, stb.). Példa:
 
 ``` java
-	int val = progressBar.getModel().getValue();
-	progressBar.getModel().setValue(++val);
+int val = progressBar.getModel().getValue();
+progressBar.getModel().setValue(++val);
 ```
 
 ## BorderLayout ##
 Használatra példa:
 
 ``` java
-	JPanle panel = new JPanel( new BorderLayou() );
-	
-	panel.add( new JLabel("North"),  BorderLayout.NORTH  );
-	panel.add( new JLabel("South"),  BorderLayout.SOUTH  );
-	panel.add( new JLabel("East"),   BorderLayout.EAST   );
-	panel.add( new JLabel("West"),   BorderLayout.WEST   );
-	panel.add( new JLabel("Center"), BorderLayout.CENTER );
+JPanle panel = new JPanel( new BorderLayou() );
+
+panel.add( new JLabel("North"),  BorderLayout.NORTH  );
+panel.add( new JLabel("South"),  BorderLayout.SOUTH  );
+panel.add( new JLabel("East"),   BorderLayout.EAST   );
+panel.add( new JLabel("West"),   BorderLayout.WEST   );
+panel.add( new JLabel("Center"), BorderLayout.CENTER );
 ```
 
 ## CardLayout ##
 Példa:
 
 ``` java
-	final static String APANEL = "Panel 1";
-	final static String BPANEL = "Panel 2";
-	
-	JPanel card1 = new JPanel();
-	JPanel card2 = new JPanel();
-	
-	CardLayoult layout = new new CardLayout();
-	cards = new JPanel( layout );
-	cards.add(card1, APANEL);
-	cards.add(card2, BPANEL);
-	
-	layout.show(cards, APANEL );
-	layout.show(cards, BPANEL );
-	
-	layout.first(cards);
-	layout.last(cards);
+final static String APANEL = "Panel 1";
+final static String BPANEL = "Panel 2";
+
+JPanel card1 = new JPanel();
+JPanel card2 = new JPanel();
+
+CardLayoult layout = new new CardLayout();
+cards = new JPanel( layout );
+cards.add(card1, APANEL);
+cards.add(card2, BPANEL);
+
+layout.show(cards, APANEL );
+layout.show(cards, BPANEL );
+
+layout.first(cards);
+layout.last(cards);
 ```
 
 ## JRadioButton##
 `ButtonGroup` használata kell, ha szeretnénk, hogy egyszerre csak választható ki közülük:
 
 ``` java
-	JRadioButton button1 = new JRadioButton("A");
-	JRadioButton button2 = new JRadioButton("B");
-	
-	ButtonGroup group = new ButtonGroup();
-	group.add( button1 );
-	group.add( button2 );
+JRadioButton button1 = new JRadioButton("A");
+JRadioButton button2 = new JRadioButton("B");
+
+ButtonGroup group = new ButtonGroup();
+group.add( button1 );
+group.add( button2 );
 ```
 
 ## JFileChooser ##
 Használatnál figyeljünk a visszatérési értékre!
 
 ``` java
-	final JFileChooser fc = new JFileChooser();
+final JFileChooser fc = new JFileChooser();
+...
+int ret = fc.showOpenDialog( frame );
+if ( JFileChooser.APPROVE_OPTION == ret ) {
 	...
-	int ret = fc.showOpenDialog( frame );
-	if ( JFileChooser.APPROVE_OPTION == ret ) {
-	    ...
-	}
+}
 ```
 
 ## Feladatok ##

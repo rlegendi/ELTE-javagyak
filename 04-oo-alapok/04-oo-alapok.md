@@ -9,6 +9,7 @@ Alapvető fogalmak:
 ``` java
 class A {
 	static x = 0;
+
 	static void f(int x) {
 		System.out.println( x );   // parameter
 		System.out.println( A.x ); // osztaly valtozo
@@ -110,17 +111,17 @@ Például:
 ``` java
 package oo.basics;
 	
-	class A { ... }
+class A { ... }
 	
-	public class B {
-		...
-		class C { ... }
+public class B {
+	...
+	class C { ... }
 
-		void f() {
-			class D { ... }
-			...
-			}
+	void f() {
+		class D { ... }
+		...
 	}
+}
 ```
 
 Beágyazott osztályok lehetnek `static`-ok, ekkor nincs szükség a befoglaló

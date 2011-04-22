@@ -65,7 +65,7 @@ public static void enumerate(int[][] arr) {
 enumerate( new int[][] {
 	    {0, 1},
 	    {2, 3}
-	});
+});
 ```
 
 * Inicializálásnál az 1. dimenzió megadása kötelező (pl.
@@ -261,7 +261,7 @@ használjátok azt a függvényt, amit az adott feladatban megírtatok!
 1. Készíts egy függvényt, amely megfelelően formázva kiír a képernyőre egy 2
 dimenziós tömböt!
 
-		Példa (az `asMatrix` függvényt csak visszaadja Stringet!):
+   Példa (az `asMatrix` függvényt csak visszaadja Stringet!):
 
 ``` java
 doule[][] arr = new double[3][3];

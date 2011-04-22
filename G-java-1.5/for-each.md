@@ -11,7 +11,7 @@ Végigiterálni egy kollekción csúnyább mint lennie kéne. Lássuk a követke
 ``` java
 void cancelAll(Collection<TimerTask> c) {
 	for (Iterator<TimerTask> i = c.iterator(); i.hasNext(); )	//Iterator<TimerTask> i = c.iterator(); i.hasNext(); (piros)
-	i.next().cancel();					//i.next() (piros)
+		i.next().cancel();					//i.next() (piros)
 }
 ```
 
@@ -20,7 +20,7 @@ Az iterátor használata eléggé megbonyolítja a cikust, illetve, minden egyes
 ``` java
 void cancelAll(Collection<TimerTask> c) {
 	for (TimerTask t : c)			//TimerTask t : c (zöld)
-	t.cancel();
+		t.cancel();
 }
 ```
 

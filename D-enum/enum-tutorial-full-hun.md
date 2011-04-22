@@ -56,8 +56,8 @@ public class Card {
 	// Prototype deck inicializációja
 	static {
 		for (Suit suit : Suit.values())
-		for (Rank rank : Rnk.values())
-			protoDeck.add(new Card(rank, suit));
+			for (Rank rank : Rnk.values())
+				protoDeck.add(new Card(rank, suit));
 	}
 
 	public static ArrayList<Card> newDeck() {
@@ -265,7 +265,7 @@ Az `EnumMap` (table) mindegyik suit-ot egy `EnumMap`-hoz társítja és ez az `E
 static {
 	for (Suit suit : Suit.values())
 		for (Rank rank : Rank.values())
-		protoDeck.add(Card.valueOf(rank, suit));
+			protoDeck.add(Card.valueOf(rank, suit));
 }
 ```
 

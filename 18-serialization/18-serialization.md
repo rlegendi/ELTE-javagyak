@@ -62,6 +62,8 @@ Ha van egy adattagunk, amit nem szeretnénk szerializálni, használhatjuk a
 `transient` kulcsszót:
 
 ``` java
+import java.rmi.*;
+
 public class PersistentDate implements Serializable {
 	private final Date date = new Date();
 	private transient Thread updater;

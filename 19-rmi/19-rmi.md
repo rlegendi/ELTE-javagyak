@@ -24,6 +24,9 @@ deklaráltan dobnia kell a `java.rmi.RemoteException` kivételt. Ami ebben az
 interfészben nincs definiálva, az a kliensek felé *nem fog látszani*.
 
 ``` java
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 public interface IEchoRemote extends Remote {
     public abstract String hi() throws RemoteException;
 }
@@ -58,7 +61,7 @@ speciális problémák:
 
 Probléma: nem tudhatjuk, hogy meddig jutott el a feldolgozásban a szerver, ha
 nem kapunk tőle választ. Az ilyen esetekre külön fel kell készülni (pl.
-nyugtázással). Elv: *idempotens műveletek* (ne legyen káros mellékhatása).
+nyugtázással). Elv: *idempotens műveletek* (ne legyen felesleges mellékhatása).
 
 ## A távoli objektum implementációja ##
 Származtassunk a `java.rmi.server.UnicastRemoteObject` osztályt, ez elérhetővé
@@ -77,6 +80,8 @@ import java.rmi.server.UnicastRemoteObject;
 public class EchoServer
 	extends UnicastRemoteObject
 	implements IEchoRemote {
+
+	private static final long serialVersionUID = 1L;
 	public static final String ADDRESS = "rmi://localhost:1099/echo";
 
 	protected EchoServer() throws RemoteException {
@@ -84,7 +89,7 @@ public class EchoServer
 	}
 	
 	@Override
-	public void hi() throws RemoteException {
+	public String hi() throws RemoteException {
 		return "Hoi!";
 	}
 	    
@@ -102,13 +107,15 @@ public class EchoServer
 
 ## A kliens implementációja ##
 ``` java
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 public class EchoClient {
 	public static void main(final String[] args)
-		throws MalformedURLException,
-			RemoteException,
-			NotBoundException {
-		final IEchoRemote remote = (IEchoRemote);
-		Naming.lookup(EchoServer.ADDRESS);
+			throws MalformedURLException, RemoteException, NotBoundException {
+		final IEchoRemote remote = (IEchoRemote) Naming.lookup( EchoServer.ADDRESS );
 		System.out.println( remote.hi() );
 	}
 }
@@ -133,7 +140,9 @@ public class EchoClient {
 4. Futtatni kell a szervert, a következő paraméterekkel:
 
 		-Djava.security.policy=server.policy
-		-Djava.rmi.server.codebase=file://<path_a_classfile_okhoz>
+		-Djava.rmi.server.codebase=file:/<path_a_classfile_okhoz>
+
+   > **Megjegyzés** Figyelni, itt **nem** `file://` kell!
 
 5. Futtassuk a klienst!
 

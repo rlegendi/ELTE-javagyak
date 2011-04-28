@@ -318,15 +318,15 @@ public abstract class AKodolo {
 
   Készítsetek legalább két különböző kódoló algoritmus implementációt:
 
-	* Caesar-kódolás: 3 betűvel legyenek eltolva a karakterek (A = D, B = E,
-	  ..., X = A, Y = B, Z = C)
-	* Monoalfabetikus kódolás: a karakterek megfeleltethetők egymásnak az alábbi
-	  szabályok szerint:
+  * Caesar-kódolás: 3 betűvel legyenek eltolva a karakterek (A = D, B = E,
+    ..., X = A, Y = B, Z = C)
+  * Monoalfabetikus kódolás: a karakterek megfeleltethetők egymásnak az alábbi
+    szabályok szerint:
 	
 			Eredeti: ABCDEFGHIJKLMNOPQRSTUVWXYZ
 			Kodolt:  ZEBRASCDFGHIJKLMNOPQTUVWXY
 
-	> **Tipp/Csel**  Nehogy switch-case szerkezetet használjatok! :-)
+  > **Tipp/Csel**  Nehogy switch-case szerkezetet használjatok! :-)
 
 * Készítsd el a sorozatok absztrakt osztályát (`ASorozat`)! Sorozatoknak
   általánosan lehessen lekérdezni az első `n` tagját, az `n` tag

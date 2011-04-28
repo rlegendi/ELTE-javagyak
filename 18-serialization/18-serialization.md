@@ -4,10 +4,11 @@ Objektumok "sorosítása", hogy túléljék a JVM-et: elmenthetők, Socketen
 átküldhetők, DB-ben tárolhatók, etc. Az objektum állapotát bájtokba toljuk ki.
 
 ## Alapvető működés ##
-Implementálni kell a `java.io.Serializable` interfészt. Ilyenkor a default
-szerializáció minden adattagot kiment (amennyiben az ős nem szerializálható,
-akkor abban lennie kell egy nullary konstruktornak; az `Object` ennek a
-kritériumnak megfelel):
+Implementálni kell a `java.io.Serializable` interfészt (ún. *marker interfész*).
+Ilyenkor a default szerializáció minden adattagot kiment (amennyiben az ős nem
+szerializálható, akkor abban lennie kell egy nullary konstruktornak, különben
+kézzel az adattagokat neked kell szerializálni; az `Object` ennek a kritériumnak
+megfelel):
 
 ``` java
 package serialization;
@@ -56,7 +57,7 @@ Rekurzív adatszerkezeteknél (oda-vissza hivatkozások) ebből gond lehet.
 ## "Múlandó" adattagok ##
 A Java Core API-ban a legtöbb osztály szerializálható (így ha adattag, akkor ki
 is tudjuk menteni), azonban nem mind,  például az oprendszer szintű osztályok
-(thread + saját memóriakezelés, etc.).
+(pl. thread + saját memóriakezelés).
 
 Ha van egy adattagunk, amit nem szeretnénk szerializálni, használhatjuk a
 `transient` kulcsszót:
@@ -71,7 +72,7 @@ public class PersistentDate implements Serializable {
 
 ## A default protokoll módosítása ##
 Írhatunk saját szerializációs módszert is (kézzel írva hatékonyabb - kényelem
-vs. hatékonyság), ehhez a következő két függvényt kell "felüldefiniálni":
+vs. hatékonyság), ehhez a következő két függvényeket lehet "felüldefiniálni":
 
 ``` java
 private void writeObject(ObjectOutputStream out)
@@ -83,9 +84,9 @@ private void readObjectNoData()
 ```
 
 Nem biztos, hogy az alapértelmezett viselkedést akarjuk megváltoztatni
-(`defaultReadObject()`, `defaultWriteObject()`), de pl. így tranziens
-attribútumokat is kiírhatunk, vagy köthetünk eseményeket a szerializáció
-eseményéhez. Pl. ha a fenti szálat szeretnénk elindítani:
+(`defaultReadObject()`, `defaultWriteObject()`, ezek használhatók is!),
+de pl. így tranziens attribútumokat is kiírhatunk, vagy eseményeket köthetünk
+a szerializációhoz. Pl. ha a fenti szálat el szeretnénk indítani:
 
 ``` java
 private void writeObject(ObjectOutputStream out)
@@ -158,6 +159,7 @@ public double getCircumference() {
 
   A program a szerializáció során kezelje ezt az attribútumot nem perzisztens
   attribútumnak!
+
 * Készítsz egy egyszerű programot, amely egy tetszőleges `String`
   adatszerkezettel rendelkezik (tömb, lista, halmaz, etc.). Oldd meg az osztály
   szerializációját saját implementációval is! Készíts egy minimális benchmarkot
@@ -165,5 +167,7 @@ public double getCircumference() {
   `System.currentTimeMilis()` függvényt)
 
 > **Részletesen**
+>
 > <http://download.oracle.com/javase/6/docs/api/java/io/Serializable.html>
+>
 > <http://download.oracle.com/javase/6/docs/api/java/io/Externalizable.html>

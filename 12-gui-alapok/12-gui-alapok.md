@@ -10,6 +10,7 @@ Ill. `C:/Program Files/Java/jdk1.6/demo/jfc` alatt `SwingSet2` és `SwingSet3`
 példa alkalmazások.
 
 ## Példakód ##
+
 ``` java
 package gui.basics;
 
@@ -34,6 +35,7 @@ public class AWTTest {
 
 ## Életciklus ##
 1. Felület felépítése. Egyszerű példa alkalmazás
+
 ``` java
 package gui.basics;
 		
@@ -63,7 +65,7 @@ public class AWTTest {
 }
 ```
 		
-1. Használata (eseményfigyelők)
+2. Használata (eseményfigyelők)
 
 ``` java
 button.addActionListener( new ActionListener() {
@@ -82,7 +84,7 @@ button.addActionListener( new ActionListener() {
 });
 ```
 
-1. Bezárása
+3. Bezárása
 
 ``` java
 frame.addWindowListener( new WindowAdapter() {
@@ -220,7 +222,7 @@ frame.add( new JScrollPane(textArea) );
 Készítsünk egy egyszerű szövegszerkesztő alkalmazást! A programból a menüből 
 lehessen szöveges állományt megnyitni, elmenteni, valamint kilépni.
 
-Ezen kívül az alábbi funkciók közül legalább hármat valósíts meg!
+Ezen kívül az alábbi funkciók közül legalább kettőt valósíts meg!
 
 * Használj tooltipeket, amikben HTML formázott szöveg van
   (`setToolTipText("<html> ...")`)!
@@ -237,10 +239,11 @@ Ezen kívül az alábbi funkciók közül legalább hármat valósíts meg!
 
 ## Tic-Tac-Toe ##
 Készítsünk egy egyszerű, 3x3-as kirakós játékot! A fő panel tartalmazzon 9
-nyomógombot, amelyeken 1..8-ig számok szerepelnek, a kilencediken pedig egy
+nyomógombot, amelyeken `1..8`-ig számok szerepelnek, a kilencediken pedig egy
 `"*"` karakter. A számokat kezdetben véletlenszerűen helyezzük el
 (`Math.random()`, de az is elég, ha van egy beégetett összekevert kombináció).
 Ha egy számot tartalmazó nyomógombra kattintunk, akkor ha az szomszédos a `"*"`
 karakterrel, cseréljük fel a gombok szövegét! A cél, hogy a számokat
 sorfolytonosan kirakjuk, és a `"*"` karakter a jobb alsó sarokban legyen. Ha ezt
 sikerült elérnie a felhasználónak, adjunk egy gratuláló üzenetet!
+

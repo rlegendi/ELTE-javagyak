@@ -6,7 +6,7 @@ részek módosítása (pl. láthatóság).
 
 A *Java Core Reflection* erősen típusos, biztonságos felület osztályok,
 objektumok vizsgálatára, használható a következőkre (amennyiben a biztonsági
-szabályok engedélyezik):
+szabályok ezt lehetővé teszik):
 
 * új objektumok, tömbök létrehozása
 * adattagok lekérdezése, módosítása
@@ -16,13 +16,13 @@ szabályok engedélyezik):
 
 Fontos osztályok: `java.lang.reflect.*` csomag:
 
-* `Field`, `Method`, `Constructor` adattagok, függvények (`invoke(...)`},
+* `Field`, `Method`, `Constructor` adattagok, függvények (`invoke(...)`),
   konstruktorok (`newInstance(...)`) lekérdezéséhez
 * `Class` osztály-, ill. interfész információk eléréséhez
 * `Package` csomagok kezeléséhez
 * `Proxy` új osztályok létrehozásához
 * `Array` tömbök dinamikus létrehozása, lekérdezése
-* `Modifier` módosítók visszafejtésében segít (`public`, `protected`, etc.)
+* `Modifier` módosítók visszafejtésében segít (`public`, `protected`, `final`, etc.)
 
 ## Class ##
 Objektumreferencia megszerzése:
@@ -60,12 +60,9 @@ import java.lang.reflect.Modifier;
 	
 public class ReflectionTest {
     public static void analyze(final Class<?> clazz) {
-        System.out.println("Osztaly neve: " +
-                 clazz.getName());
-        System.out.println("Csomagja: " +
-                clazz.getPackage());
-        System.out.println("Osossztalyanak neve: " +
-                clazz.getSuperclass());
+        System.out.println("Osztaly neve: " + clazz.getName());
+        System.out.println("Csomagja: " + clazz.getPackage());
+        System.out.println("Osossztalyanak neve: " + clazz.getSuperclass());
 
         System.out.println("Deklaralt public fuggvenyek:");
         for ( final Method act : clazz.getDeclaredMethods() ) {
@@ -143,6 +140,7 @@ public class ReflectionArrayTest {
 ```
 
 > **Megjegyzés** Hülye jelölés, nem szívrohamot kapni:
+
 ``` java
 int[][] arr = { {1, 2}, {3} };
 System.out.println( arr );

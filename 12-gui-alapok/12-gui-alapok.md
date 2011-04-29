@@ -175,8 +175,7 @@ megvan. A `javax.swing.*` csomagban (*Java extended*). További előnyök:
 * Egyszerűen módosítható megjelenés
 
 ## Menük ##
-`frame.setMenuBar()`, `MenuBar` -> `Menu`, `Menu` -> `Menu`, `MenuItem`. Van
-szeparátor is.
+`frame.setMenuBar()`, `MenuBar` &rarr; `Menu`, `Menu` &rarr; `Menu` vagy `MenuItem`. Van szeparátor is.
 
 ``` java
 JMenuBar menuBar = new JMenuBar();
@@ -218,7 +217,7 @@ frame.add( new JScrollPane(textArea) );
 
 ## Feladatok ##
 
-## Szövegszerkesztő ##
+### Szövegszerkesztő ###
 Készítsünk egy egyszerű szövegszerkesztő alkalmazást! A programból a menüből 
 lehessen szöveges állományt megnyitni, elmenteni, valamint kilépni.
 
@@ -237,7 +236,7 @@ Ezen kívül az alábbi funkciók közül legalább kettőt valósíts meg!
 * Használj egy `JTabbedPane` panelt, amivel egyszerre több állomány is
   megnyitható!
 
-## Tic-Tac-Toe ##
+### Tic-Tac-Toe ###
 Készítsünk egy egyszerű, 3x3-as kirakós játékot! A fő panel tartalmazzon 9
 nyomógombot, amelyeken `1..8`-ig számok szerepelnek, a kilencediken pedig egy
 `"*"` karakter. A számokat kezdetben véletlenszerűen helyezzük el

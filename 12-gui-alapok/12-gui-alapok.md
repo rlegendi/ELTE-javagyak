@@ -102,7 +102,7 @@ frame.addWindowListener( new WindowAdapter() {
 
 Fontosabb Listenerek:
 
-* ActionListener: menü, gombnyomás, `Enter` egy `TextField` objektumon
+* `ActionListener`: menü, gombnyomás, `Enter` egy `TextField` objektumon
 
 ``` java
 public void actionPerformed(ActionEvent e) { ... }

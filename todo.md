@@ -94,6 +94,9 @@ kivételkezelést, konstruktorokat
 ### 11-reflection ###
 * `Modifier.toString()`
 
+### 12-gui-alapok ###
+* Tic-Tac-Toe feladat (régen volt?)
+
 ### D-assert ###
 * DbC szekciót kiegészíteni
 

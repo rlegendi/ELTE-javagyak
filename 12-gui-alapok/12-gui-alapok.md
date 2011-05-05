@@ -236,7 +236,7 @@ Ezen kívül az alábbi funkciók közül legalább kettőt valósíts meg!
 * Használj egy `JTabbedPane` panelt, amivel egyszerre több állomány is
   megnyitható!
 
-### Tic-Tac-Toe ###
+### Kirakós ###
 Készítsünk egy egyszerű, 3x3-as kirakós játékot! A fő panel tartalmazzon 9
 nyomógombot, amelyeken `1..8`-ig számok szerepelnek, a kilencediken pedig egy
 `"*"` karakter. A számokat kezdetben véletlenszerűen helyezzük el

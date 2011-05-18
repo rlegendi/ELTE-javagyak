@@ -102,9 +102,9 @@ teljes hivatkozási nevét (*fully qualified name*), és
 
 > **Részletek** <http://download.oracle.com/javase/6/docs/api/java/lang/reflect/package-frame.html>
 
-> **Megjegyzés** Primitív (+`void`) típusok, pl. boolean reprezentációjának
-  `Class` példánya `java.lang.Boolean.TYPE`, rövidebb formája `boolean.class`,
-  többinél ugyanígy.
+> **Megjegyzés** Primitív típusok (+`void`), pl. `boolean` reprezentációjának
+  `Class` példánya `java.lang.Boolean.TYPE` (ezeknek van egy rövidebb formája
+  is, jelen esetben ez a `boolean.class`, többinél ugyanígy).
 
 ## Tömbök ##
 Az `Array` osztály segítségével manipulálhatók az elemek (getter, setter
@@ -170,8 +170,9 @@ függvényt újabb feldolgozásra!
 
 ## Függvények ##
 Függvényeket meg is tudunk hívni, ld. `Method#invoke(Object o, Object... args)`
-függvény. Ha a függvény statikus, akkor az első paraméter lehet `null` (különben
-reccs), paraméterlista lehet üres, visszatérési értéke egy `Object`. Példa:
+függvény. Ha a függvény statikus, akkor az első paraméter lehet `null`
+(*különben reccs*), paraméterlista lehet üres, visszatérési értéke egy
+`Object`. Példa:
 
 ``` java
 package reflection;
@@ -201,7 +202,7 @@ segítségével, és az eredményüket írd ki a képernyőre!
 
 ## Feladatok ##
 
-### 1. Feladat ###
+### Osztályhierarchia ###
 Készítsünk egy programot, amely képes egy adott osztály osztályhierarchiáját
 előállítani, valamint meg tudja mondani, hogy pontosan milyen interfészeket
 implementál (az ősosztályok által implementáltakat is)! Az osztály nevét
@@ -220,7 +221,7 @@ A `B` osztály vizsgálata esetén a következő listát adja vissza a program:
 	[class reflection.B, class reflection.A, interface reflection.I2,
 	  interface reflection.I1, class java.lang.Object]
 
-### 2. Feladat ###
+### Here be dragons! ###
 Bizonyítsd be, hogy a `String` osztály csak gyengén tekinthető *immutable*
 osztálynak (azaz reflection segítségével kiügyeskedhető az általa reprezentált
 szöveg megváltoztatása)!
@@ -236,3 +237,4 @@ reprezentációban turkálunk, anélkül, hogy figyelnénk az objektum
 konzisztenciájának megőrzésére, gondok lehetnek a használatából (pl. a
 `String#hashCode()` is lazy instantiationnel cache-eli az eredményt)! Ugyanakkor
 - sajnos - néha elkerülhetetlen, ilyenkor rendkívül hasznos tud lenni ez a csel.
+

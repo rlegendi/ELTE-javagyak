@@ -145,6 +145,7 @@ megnyomják a modify gombot, akkor az adott értéket írjuk ki a file-ba
 szövegmező tartalmát!
 
 ![Hex editor](https://github.com/rlegendi/ELTE-javagyak/raw/master/13-gui-kiegeszites/hex_editor.png "Hex editor")
+
 **Képernyőterv** - Hex editor
 
 ### Kvíz alkalmazás ###
@@ -184,6 +185,7 @@ következő:
 A játék képernyőterve az alábbi ábrán található.
 
 ![Kvíz alkalmazás](https://github.com/rlegendi/ELTE-javagyak/raw/master/13-gui-kiegeszites/quiz.png "Kvíz alkalmazás")
+
 **Képernyőterv** - Kvíz alkalmazás
 
 A program a következő funkciókat biztosítsa:

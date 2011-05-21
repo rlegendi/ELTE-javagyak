@@ -67,6 +67,7 @@ Mentsd el a kódot `HelloWorldApp.java` néven. Ehhez válaszd a *Fájl &rarr; M
 Miután végeztél így kell kinéznie:
 
 ![Mentés másként](https://github.com/rlegendi/ELTE-javagyak/raw/master/B-kornyezet-beallitasa/saveas.png "Mentés másként")
+
 **Ábra** A *Mentés másként* dialógusablak, közvetlenül a *Mentés* gomb megnyomása előtt
  
 Ments, és lépj ki a Notepad alkalmazásból!

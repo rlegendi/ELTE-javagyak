@@ -195,7 +195,7 @@ lekérdezést lehet megadni, egy `JTextArea` komponenst, ahol megjeleníti az
 eredményt, valamint egy gombot, amivel le lehet futtatni a megadott SQL
 utasítást.
 
-![JDBC alkalmazás](jdbc_application.png "JDBC alkalmazás")
+![JDBC alkalmazás](https://github.com/rlegendi/ELTE-javagyak/raw/master/17-jdbc/jdbc_application.png "JDBC alkalmazás")
 
 **Képernyőkép** - A program grafikus szerkezete
 

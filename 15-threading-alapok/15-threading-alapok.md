@@ -289,7 +289,7 @@ public class Deadlock {
 
 Lásd az alábbi ábrát.
 
-![Szálak állapotai](threads.png "Szállak állapotai")
+![Szálak állapotai](https://github.com/rlegendi/ELTE-javagyak/raw/master/15-threading-alapok/threads.png "Szállak állapotai")
 
 **Ábra** - Szálak állapotai
 

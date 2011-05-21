@@ -76,6 +76,7 @@ Ments, és lépj ki a Notepad alkalmazásból!
 Indítsd el a parancsértelmezőt (`cmd.exe`), ehhez a *Start menüben* kattints a futtatásra, és írd be `"cmd"`. Ennek az ablaknak így kell kinéznie.
  
 ![Parancsértelmező ablak](https://github.com/rlegendi/ELTE-javagyak/raw/master/B-kornyezet-beallitasa/cmd.png "Parancsértelmező ablak")
+
 **Ábra** Parancsértelmező ablak
  
 A parancsértelmező mutatja az *aktuális könyvtárat*. Ez alapértelmezés szerint általában a felhasználó saját könyvtára (*home directory*), mint a képen is látható egy Windows XP esetén.
@@ -89,11 +90,13 @@ Az aktuális könyvtárad most a `C:\java`, amelyet a parancsértelmező *prompt
 > **Megjegyzés** Ahhoz, hogy meghajtót válts, szükség van egy másik utasításra is: a meghajtó nevére. Például ha a `D:` meghajtón lévő `java` könyvtárba tudj váltani, írd be a megható nevét és egy `":"` karaktert. Például: 
  
 ![Másik meghajtóra váltás](https://github.com/rlegendi/ELTE-javagyak/raw/master/B-kornyezet-beallitasa/extrastep.png "Másik meghajtóra váltás")
+
 **Ábra** Másik meghajtóra váltás 
  
 Ha beírod a `dir` parancsot, láthatod a forrás fájlt, ahogy azt az alábbi ábra is mutatja.
  
 ![Mappa tartalmának listázása](https://github.com/rlegendi/ELTE-javagyak/raw/master/B-kornyezet-beallitasa/dir.png "Mappa tartalmának listázása")
+
 **Ábra** Mappa tartalmának listázása
  
 Most már készen állsz a fordításra. Ehhez a következőt kell begépelned:  
@@ -103,6 +106,7 @@ Most már készen állsz a fordításra. Ehhez a következőt kell begépelned:
 A fordító létrehozta a bytecode állományt, egy `HelloWorldApp.class` fájlt. A `dir` paranccsal hatására látható is a megjelenő listán az állományok között.
  
 ![Könyvtár lista, amely tartalmazza a generált class fájlt](https://github.com/rlegendi/ELTE-javagyak/raw/master/B-kornyezet-beallitasa/class.png "Könyvtár lista, amely tartalmazza a generált class fájlt")
+
 **Ábra** Könyvtár lista, amely tartalmazza a generált `class` fájlt
  
 Most már futtathatod a programot. 
@@ -116,6 +120,7 @@ Gépeld be a következő parancsot abban a könyvtárban, ahol az alkalmazásod 
 A lenti képen találhatod az eredményt.
  
 ![A program eredménye](https://github.com/rlegendi/ELTE-javagyak/raw/master/B-kornyezet-beallitasa/result.png "A program eredménye")
+
 **Ábra** A program eredménye
  
 A program kiírja a `"Hello World!"` üzenetet.

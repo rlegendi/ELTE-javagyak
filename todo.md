@@ -105,3 +105,95 @@ kivételkezelést, konstruktorokat
   bekezdések az összefésülés, újraformázás során.
 * Lehet lopni szerkezeti ötleteket a srácoktól: <https://github.com/mojombo/ernie>
   (Github alapító srác egyik projectje, LICENSE directory, stb.)
+
+# Kivételes részhez valami példa #
+Hali! Elvileg minden beadandót megnéztem, amit kaptam, err&#245;l szokás szerint
+mindenki külön levelet kapott. Adminisztráltam a dolgot az oldalamon, aki valami
+problémát észlel, jelezze plz minél hamarabb!
+
+Azokat a beadandókat, amiket még nem kaptam meg, szerda estig lehet pótolni,
+csütörtökön fogok csak tudni ezekkel foglalkozni.
+
+Általános megjegyzéseim nem nagyon vannak, talán az, hogy Stringet még mindig
+nem hasonlítunk össze == operátorral, illetve a kivételkezelést még sokan
+if-then-else-szer&#251;en használjátok - pedig pont annak a kiváltására találták
+ki. Ezt fontosnak tartom átbeszélni még egyszer.
+
+Ha írsz egy kódot, akkor ne kelljen soronként azzal foglalkozni, hogy mi van, ha
+nem jó értéket ad vissza az a függvény, nem jó inputot kap, nem lehetett
+végrehajtani az adott utasítást, etc., hanem te csak megírod a kódot, ami az
+esetek 90%-ban fog lefutni, és *utána* foglalkozol azzal, hogy mi van, ha valami
+gáz van, és megírod a hibakezelést a különböző hibaosztályokra.
+
+Nézzünk egy példát, mondjuk a szerver bindot!
+
+ int port = -1;
+
+ try {
+ port = Integer.parseInt(serverPort);
+ } catch (NumberFormatException e) {
+ e.printStackTrace();
+ return;
+ }
+
+ ServerSocket server = null;
+
+ try {
+ server = new ServerSocket(port);
+ } catch (IOException e) {
+ e.printStackTrace();
+ return;
+ }
+
+ try {
+ System.out.println("Server listening @" + InetAddress.getLocalHost());
+ } catch(UnknownHostException e) {
+ e.printStackTrace();
+ }
+
+ Socket client = null;
+
+ while (true) {
+ try {
+ client = server.accept();
+ ...
+ } catch (IOException e) {
+ e.printStackTrace();
+ }
+ }
+
+Nos, miért is gázos ez?
+
+i) Össze-vissza van keverve a tényleges kód és a hibakezel&#245; kód.
+ii) Gyakorlatilag az egész nem más, mint egy csomó if (error) { hibaüzenet,
+return } vizsgálat.
+iii) Ha valahol elfelejtjük a return utasítást (pl. bevezetünk egy új
+ellen&#245;rzést), akkor reccsenés lesz, mint ahogy én azt meg is tettem pl. az
+InetAddress-es sornál. Na kinek tünt fel ránézésre, hogy ott gáz van?
+iv) Így ránézésre nem lehet tudni, hogy a program adott pontján egy változónak
+most milyen értéke van (helyesen inicializált, vagy valami default-null értéke
+van-e).
+
+Nézzük meg, hogy néz ez ki, ha proper exception handlinget használunk!
+
+ try {
+ int port = Integer.parseInt(serverPort);
+ ServerSocket server = new ServerSocket(port);
+ System.out.println("Server listening @" + InetAddress.getLocalHost());
+
+ Socket client = null;
+
+ while (true) {
+ client = server.accept();
+ ...
+ }
+ } catch (NumberFormatException e) {
+ e.printStackTrace();
+ } catch (IOException e) {
+ e.printStackTrace();
+ } catch(UnknownHostException e) {
+ e.printStackTrace();
+ }
+
+Remélem sikerült egy kicsit segíteni a megértést ezen a példán keresztül.
+

@@ -200,7 +200,7 @@ utasítást.
 **Képernyőkép** - A program grafikus szerkezete
 
 * A megvalósításhoz használjátok a következő címen elérhető `derby.jar` fájlt:
-  <http://people.inf.elte.hu/legendi/java/res/derby.jar>
+  <http://people.inf.elte.hu/legendi/resources/java/materials/derby.jar>
 * A program az aktuális könyvtár alá, egy `derby` könyvtárba tegye az adatbázis
   fájlokat!
 * Egy statikus inicializáló blokkban próbáljuk meg betölteni a szükséges

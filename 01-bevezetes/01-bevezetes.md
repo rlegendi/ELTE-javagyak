@@ -324,7 +324,31 @@ Szokásos operátorok (`==`, `!=`, `&&`, `||`, `%`, `++`, `--` (prefix, postfix)
 ...), részletes táblázat itt található: <http://download.oracle.com/javase/tutorial/java/nutsandbolts/operators.html>.
 
 *Fontos* Az operátorok eredményének típusa _mindig_ a bővebb paraméter típusa
-(`double d = 1 / 2;` eredménye `0.0` lesz!).
+(`double d = 1 / 2;` eredménye `0.0` lesz!), de minimum `int` (pl. `byte b = 1+2` nem megy
+explicit típuskényszerítés nélkül, mert itt 3 egy `int` értékként szerepel)
+
+* Prefix és postfix operátorok (`++i`, `i++`)
+
+	``` java
+	int i = 0;
+	System.out.println(i++); // kiir, megnovel: "0"
+	System.out.println(++i); // megnovel, kiir: "2"
+	```
+
+	* Mi az eredménye (v.ö. C++)?
+	``` java
+	int i = 0;
+	System.out.println("" + i++ + ++i); // C++: architektura fuggo
+	```
+
+	* Szintén, mi lesz az eredménye?
+	```java
+	int i=0; 
+	i=i++; 
+	i=i++; 
+	i=++i; 
+	System.out.println(i);
+	```
 
 ### Objektumok összehasonlítása ###
 Az `equals()` metódussal: az `==` operátor referencia szerinti összehasonlítást

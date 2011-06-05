@@ -5,13 +5,6 @@
 * Kezdeti érték?
 * Primitív típus, érték? Objektum, referencia?
 * Kifejezések? Kiértékelési sorrend? Szigorúan balról jobbra (v.ö. C++)
-* Prefix és postfix operátorok (`++i`, `i++`)
-
-``` java
-int i = 0;
-System.out.println(i++); // kiir, megnovel: "0"
-System.out.println(++i); // megnovel, kiir: "2"
-```
 
 ## Felhasználói interakció ##
 Használjátok a `java.io.Console` osztályt (JDK 1.6 óta van csak, erre

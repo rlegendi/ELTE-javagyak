@@ -1,5 +1,9 @@
 # TODO #
 
+# Aktuális #
+* Contribution guide: lehetőleg darabokban, ne egyben, legalább külön fejezetenként (a commit olcsó!)
+* Java 7 újdonságok
+
 ## Jelölések ##
 * `$`: command prompt
 

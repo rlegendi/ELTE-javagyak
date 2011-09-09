@@ -452,6 +452,7 @@ hárommal oszthatók, a szám helyett `"Fizz"`-t írjon ki, és azok helyett, am
 <http://www.codinghorror.com/blog/2007/02/why-cant-programmers-program.html>
 
 Példa:
+
 	1
 	2
 	Fizz
@@ -487,25 +488,24 @@ Részletesen: <http://mathworld.wolfram.com/CollatzProblem.html>
 paramétert. Ha az első szám 0, konvertáljuk a második paramétert celsiusról
 fahrenheit fokra az alábbi képlet alapján (egyébként fahrenheitről celsiusra):
 
-	C = (F-32) * 5 / 9
+		C = (F-32) * 5 / 9
 
 2. Készítsünk egy minimális konzolos számológépet! Olvassunk be három szám
 paramétert! Ha az első szám:
 
-	* 1, akkor adjuk össze
-	* 2, akkor vonjuk ki
-	* 3, akkor szorozzuk össze
-	* 4, akkor osszuk el a másik két paramétert egymással!
+	* `1`, akkor adjuk össze
+	* `2`, akkor vonjuk ki
+	* `3`, akkor szorozzuk össze
+	* `4`, akkor osszuk el a másik két paramétert egymással!
 	* Minden egyéb esetben írjuk ki, hogy _nem értelmezett művelet_!
 
-A megoldáshoz használjunk `switch-case` szerkezetet!
-
+  A megoldáshoz használjunk `switch-case` szerkezetet!
 3. Készítsünk programot, amely egy beolvasott számra eldönti, hogy az egy
 tökéletes szám-e! _Tökéletes számnak_ nevezzük azokat az egész számokat, amelyek
 megegyeznek osztóik összegével (1-et beleértve, önmagukat kivéve). A négy
 legkisebb ilyen szám 6, 28, 496, és 8128.
-
 4. Egészítsük ki az előző feladatot úgy, hogy 1-től a paraméterként megadott
 határig minden számot ellenőrizzen le, hogy tökéletes szám-e, valamint adja meg,
 hogy hány ilyen számot talált! Ha nem talált egyetlen számot sem, írja ki, hogy
 *"Egyetlen szám sincs a megadott intervallumban."*!
+

@@ -500,6 +500,7 @@ paramétert! Ha az első szám:
 	* Minden egyéb esetben írjuk ki, hogy _nem értelmezett művelet_!
 
   A megoldáshoz használjunk `switch-case` szerkezetet!
+
 3. Készítsünk programot, amely egy beolvasott számra eldönti, hogy az egy
 tökéletes szám-e! _Tökéletes számnak_ nevezzük azokat az egész számokat, amelyek
 megegyeznek osztóik összegével (1-et beleértve, önmagukat kivéve). A négy

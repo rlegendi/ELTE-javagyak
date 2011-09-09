@@ -16,8 +16,8 @@ A Java nyelvről, általánosan.
 	* Java Language Specification Harmadik kiadás, rendes specifikáció, HTML, PDF
 	  formátumban. <http://java.sun.com/docs/books/jls/>
 * Közösségi oldalak, levlisták, fórumok, stb.
-	* Java levlista <http://javagrund.hu/mailman/listinfo/javalist>
-	* Javagrund <http://javagrund.hu/web/java/index>
+	* Java levlista <http://lists.javaforum.hu/mailman/listinfo/javalist>
+	* Javagrund <http://javagrund.hu/web/java/index> (*pillanatnyilag offline, amíg az Oracle-lel nem rendeződnek a dolgok*)
 	* Javaforum <http://www.javaforum.hu/javaforum>
 * Környezetek ízlés szerint
 	* Konzol (ld. a megfelelő mellékletet)

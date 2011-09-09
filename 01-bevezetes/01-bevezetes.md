@@ -499,7 +499,7 @@ paramétert! Ha az első szám:
 	* `4`, akkor osszuk el a másik két paramétert egymással!
 	* Minden egyéb esetben írjuk ki, hogy _nem értelmezett művelet_!
 
-  A megoldáshoz használjunk `switch-case` szerkezetet!
+	A megoldáshoz használjunk `switch-case` szerkezetet!
 
 3. Készítsünk programot, amely egy beolvasott számra eldönti, hogy az egy
 tökéletes szám-e! _Tökéletes számnak_ nevezzük azokat az egész számokat, amelyek

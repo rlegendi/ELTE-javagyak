@@ -19,7 +19,7 @@ int lineAsInt = Integer.parseInt( line );
 ## Tömbök ##
 
 * Minden `T` típushoz van `T[]`
-* Referencia: null értéke lehet!
+* Referencia: `null` értéke lehet!
 * Indexelés nullától
 * Túl-, ill. alul indexelés: `ArrayIndexOutOfBoundsException` (futásidejű
   kivétel)
@@ -33,7 +33,7 @@ boolean[] barr3 = new boolean[2];
 barr3[0] = true; barr3[1] = false;
 ```
 
-* Tömbök elemei default értéket kapnak (pl. objektum nullt, int 0-t, boolean false-t, stb.)
+* Tömbök elemei default értéket kapnak (pl. objektum `null`-t, `int` `0`-t, `boolean` `false`-t, stb.)
 * Bejárás: tömb tudja a méretét
 
 ``` java
@@ -65,7 +65,7 @@ enumerate( new int[][] {
 `int[][] arr = new int[5][];` teljesen legális definíció!)
 
 ### Tömb értékű kifejezések ###
-Inicializálásnál elég a { e_1, e_2, ... } forma. DE! Mindenhol máshol, ahol tömb
+Inicializálásnál elég az `{ e_1, e_2, ... }` forma. DE! Mindenhol máshol, ahol tömb
 típusú kifejezést szeretnénk leírni (`new`), a fordítási hibák kiszűrése miatt a
 típust is meg kell jelölnünk. Pl.:
 

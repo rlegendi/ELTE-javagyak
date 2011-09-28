@@ -8,7 +8,7 @@ Alapvető fogalmak:
 
 ``` java
 class A {
-	static x = 0;
+	static int x = 0;
 
 	static void f(int x) {
 		System.out.println( x );   // parameter

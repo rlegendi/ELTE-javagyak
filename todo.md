@@ -3,6 +3,8 @@
 # Aktuális #
 * Contribution guide: lehetőleg darabokban, ne egyben, legalább külön fejezetenként (a commit olcsó!)
 * Java 7 újdonságok
+* Jó kis feladatok ebben a cikkben:
+	http://www.ibm.com/developerworks/java/library/j-ft1/
 
 ## Jelölések ##
 * `$`: command prompt

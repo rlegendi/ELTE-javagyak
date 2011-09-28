@@ -69,7 +69,7 @@ Fordítás teljes útvonal megadásával:
 	C:\tmp>
 
 Ha esetleg névütközés van (2 azonos nevű osztály), akkor minősített névvel
-érhetjük el az egyiket (pl. java.util.List, java.awt.List). Importokat
+érhetjük el az egyiket (pl. `java.util.List`, `java.awt.List`). Importokat
 használjatok nyugodtan, nem gáz, nem emészt erőforrást (nem C++, dinamikus
 osztálybetöltés van).
 
@@ -88,10 +88,10 @@ Paraméter átadás érték szerint történik (még a referenciák is!).
 * Módosítószavak:
 	* Láthatóság: `public`, `protected`, `private`. Ha nem definiált, akkor ún.
 	  _package-private_ láthatóság.
-	* Lehet abstract: ekkor nincs implementáció (mint a C++ _pure virtual_
+	* Lehet `abstract`: ekkor nincs implementáció (mint a C++ _pure virtual_
 	  függvényei) leszármazottban kötelezően felüldefiniálandó
-	* Lehet final: felüldefiniálhatóság letiltására
-	* Lehet static: osztály szintű függvény (**Fontos:** static kontextusból
+	* Lehet `final`: felüldefiniálhatóság letiltására
+	* Lehet `static`: osztály szintű függvény (**Fontos:** static kontextusból
 	  csak static módosítóval ellátott hivatkozás szerepelhet)
 	* Egyéb, pl. `strictfp`, `native`, `synchronized`, `transient`, `volatile`
 	  (utóbbi kettő **csak** fieldekre). Ezekről később.

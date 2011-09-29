@@ -104,7 +104,7 @@ public class Main {
 Az osztálydefiníció tartalmazhat adattagokat, függvényeket, és egyéb osztályokat.
 Függvénydefiníció tartalmazhat újabb, lokális osztályokat.
 
-Osztályok definiálhatók azonos forrásállományban (de csak egy public lehet),
+Osztályok definiálhatók azonos forrásállományban (de csak egy `public` lehet),
 másik osztályban (belső osztályok), függvényen belül (lokális osztályok).
 Például:
 
@@ -134,7 +134,7 @@ Mikor melyiket használjuk?
   osztályt
 * Ha úgy logikusabb, akkor beágyazott statikus osztály
 * Ha más osztályban nincs rá szükség, de közvetlen nem függ össze a
-  reprezentációval, akkor a public osztállyal azonos forrásállományba
+  reprezentációval, akkor a `public` osztállyal azonos forrásállományba
 * Ha általános osztályt készítünk, akkor saját fordítási egységbe
 
 Ha bizonytalan vagy, tégy minden minden osztályt külön fordítási egységbe!
@@ -165,7 +165,6 @@ class Kor extends Sikidom {
 	@Override
 	public double terulet() {
 		return Math.pow( r, 2 ) * PI;
-		}
 	}
 	
 class Teglalap extends Sikidom {
@@ -392,3 +391,4 @@ az `oo.basics` csomagba!
   megoldáshoz használd a `java.util.Random` osztályt, a felhasználói
   interakcióhoz pedig a `java.io.Console` osztályt! A program addig kérjen újabb
   és újabb értékeket a felhasználótól, amíg üres stringet nem kap az inputról!
+

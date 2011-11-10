@@ -303,7 +303,7 @@ public abstract void frissit();
 Ezzel a képernyőről, felhasználói interakció révén lehessen frissíteni az
 adott objektum értékeit! Minden implementáció valósítsa meg ezt az interfészt!
 
-	> **Tipp/Csel** Használhatjátok a későbbiekben leírt mátrix osztályt!
+> **Tipp/Csel** Használhatjátok a későbbiekben leírt mátrix osztályt!
 
 #### Monoalfabetikus kódolások #####
 Készítsetek egy kódoló alkalmazást! Hozzátok létre a kódolóalgoritmusok

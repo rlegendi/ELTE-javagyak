@@ -6,7 +6,7 @@ Absztrakt adattípus = adatabsztrakció, absztrakt adattípus és a rajta
 # Emlékeztető: Object Függvények felüldefiniálása #
 
 ``` java
-public class Student {
+public class Student { // extends Object - ha nincs megadva, implicit ez lesz
 	private String name;
 	private String ETR;
 	private int yearsAtUni;
@@ -213,7 +213,7 @@ class Kor implements Beolvashato {
 ```
 
 ## Summarium ##
-*It boils down to this.* Amit *mindenképp* meg kell jegyezni, az a következő:
+*It boils down to this. *Amit *mindenképp* meg kell jegyezni, az a következő:
 
 * *Interfész* használatával megoldható a többszörös öröklődés
 * *Absztrakt osztály* pedig megvalósítást is tartalmazhat
@@ -271,40 +271,43 @@ többi a `oo.adt.fx.data` csomagban (ahol `x` a feladat sorszámát jelöli)! A
 megadott példakódokat használjátok, azokat szűkíteni nem, de bővíteni
 megengedett (sőt, ajánlott is). 
 
-* Készítsd el a többdimenziós pontok absztrakt osztályát (`APont`). Pontokat
-  lehessen eltolni, forgatni és tükrözni! Készítsd el ez alapján az ősosztály
-  alapján az 1D, 2D, 3D pontok megvalósítását (tartalmazzák a szükséges `double`
-  koordinátákat, valamint az absztrakt függvények implementációit).
+#### Koordináták ####
 
-  Közös adattag legyen az első, `x` koordináta (ezzel minden származtatott osztály
-  rendelkezik). Az eltoláshoz használj változó számú paramétert (*vararg*), a
-  következő minta alapján:
+Készítsd el a többdimenziós pontok absztrakt osztályát (`APont`). Pontokat
+lehessen eltolni, forgatni és tükrözni! Készítsd el ez alapján az ősosztály
+alapján az 1D, 2D, 3D pontok megvalósítását (tartalmazzák a szükséges `double`
+koordinátákat, valamint az absztrakt függvények implementációit).
+
+Közös adattag legyen az első, `x` koordináta (ezzel minden származtatott osztály
+rendelkezik). Az eltoláshoz használj változó számú paramétert (*vararg*), a
+következő minta alapján:
 
 ``` java
 public abstract void translate(double... coordinates);
 ```
 
-  A forgatást vedd úgy, hogy az origó kürül kell elforgatni a megadott pontot,
-  a paraméterként specifikált *alpha* szöggel (3D pont esetén elég valamelyik
-  tengely körül forgatni)!
+A forgatást vedd úgy, hogy az origó kürül kell elforgatni a megadott pontot,
+a paraméterként specifikált *alpha* szöggel (3D pont esetén elég valamelyik
+tengely körül forgatni)!
 
-  Készíts egy `Kirajzolható` interfészt! Ezt az 1D pont implementálja úgy, hogy
-  a koordinátáinak megfelelő számú szóköz után rajzoljon egy `#` karaktert a
-  konzolra (negatív esetben az `#` után rakjon szóközöket).
+Készíts egy `Kirajzolható` interfészt! Ezt az 1D pont implementálja úgy, hogy
+a koordinátáinak megfelelő számú szóköz után rajzoljon egy `#` karaktert a
+konzolra (negatív esetben az `#` után rakjon szóközöket).
   
-  Készíts egy `Frissitheto` interfészt! Ez egyetlen metódust írjon elő:
+Készíts egy `Frissitheto` interfészt! Ez egyetlen metódust írjon elő:
 
 ``` java
 public abstract void frissit();
 ```
 
-  Ezzel a képernyőről, felhasználói interakció révén lehessen frissíteni az
-  adott objektum értékeit! Minden implementáció valósítsa meg ezt az interfészt!
+Ezzel a képernyőről, felhasználói interakció révén lehessen frissíteni az
+adott objektum értékeit! Minden implementáció valósítsa meg ezt az interfészt!
 
 	> **Tipp/Csel** Használhatjátok a későbbiekben leírt mátrix osztályt!
 
-* Készítsetek egy kódoló alkalmazást! Hozzátok létre a kódolóalgoritmusok
-  absztrakt osztályát (`AKodolo`), amely a következő definíciókat tartalmazza:
+#### Monoalfabetikus kódolások #####
+Készítsetek egy kódoló alkalmazást! Hozzátok létre a kódolóalgoritmusok
+absztrakt osztályát (`AKodolo`), amely a következő definíciókat tartalmazza:
 
 ``` java
 public abstract class AKodolo {
@@ -313,29 +316,30 @@ public abstract class AKodolo {
 }
 ```
 
-  A különböző megvalósítások a kapott eredeti szöveget kódolják ill. fejtik
-  vissza (kódolás előtt alakítsátok nagybetűssé a kapott szöveget).
+A különböző megvalósítások a kapott eredeti szöveget kódolják ill. fejtik
+vissza (kódolás előtt alakítsátok nagybetűssé a kapott szöveget).
 
-  Készítsetek legalább két különböző kódoló algoritmus implementációt:
+Készítsetek legalább két különböző kódoló algoritmus implementációt:
 
-  * Caesar-kódolás: 3 betűvel legyenek eltolva a karakterek (A = D, B = E,
-    ..., X = A, Y = B, Z = C)
-  * Monoalfabetikus kódolás: a karakterek megfeleltethetők egymásnak az alábbi
-    szabályok szerint:
+* Caesar-kódolás: 3 betűvel legyenek eltolva a karakterek (A = D, B = E,
+  ..., X = A, Y = B, Z = C)
+* Eltolás: A karakterek megfeleltethetők egymásnak az alábbi
+  szabályok szerint:
 	
-			Eredeti: ABCDEFGHIJKLMNOPQRSTUVWXYZ
-			Kodolt:  ZEBRASCDFGHIJKLMNOPQTUVWXY
+		Eredeti: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+		Kodolt:  ZEBRASCDFGHIJKLMNOPQTUVWXY
 
-  > **Tipp/Csel**  Nehogy switch-case szerkezetet használjatok! :-)
+> **Tipp/Csel**  Nehogy switch-case szerkezetet használjatok! :-)
 
-* Készítsd el a sorozatok absztrakt osztályát (`ASorozat`)! Sorozatoknak
-  általánosan lehessen lekérdezni az első `n` tagját, az `n` tag
-  részletösszegét, valamint hogy monoton növekvő-e, csökkenő-e a sorozat.
-  Készítsd el ez alapján az ősosztály alapján a számtani és mértani sorozatok
-  megvalósítását (tartalmazzák a specifikus adatokat, mint pl. az első szám, és
-  kvóciens vagy differencia).
+#### Sorozatok ####
+Készítsd el a sorozatok absztrakt osztályát (`ASorozat`)! Sorozatoknak
+általánosan lehessen lekérdezni az első `n` tagját, az `n` tag
+részletösszegét, valamint hogy monoton növekvő-e, csökkenő-e a sorozat.
+Készítsd el ez alapján az ősosztály alapján a számtani és mértani sorozatok
+megvalósítását (tartalmazzák a specifikus adatokat, mint pl. az első szám, és
+kvóciens vagy differencia).
 
-  Készíts egy `Util` osztályt, amely a következő definíciót tartalmazza:
+Készíts egy `Util` osztályt, amely a következő definíciót tartalmazza:
 
 ``` java
 public final class Util {
@@ -347,18 +351,19 @@ public final class Util {
 }
 ```
 
-  Ez a felhasználótól kérdezze meg, hogy milyen sorozatot szeretne megadni,
-  segítsen neki létrehozni egyet, és ezt a létrehozott sorozatot adja is vissza.
+Ez a felhasználótól kérdezze meg, hogy milyen sorozatot szeretne megadni,
+segítsen neki létrehozni egyet, és ezt a létrehozott sorozatot adja is vissza.
 
-* Valósítsd meg a mátrixok típusát Javaban! Két konstruktor legyen: az egyik a
-  méretet adja meg (négyzetes mátrixot hozzon létre, és minden elem 0 legyen), a
-  másik pedig egy `double[][]` paramétert kapjon! Mátrixokat lehessen összeadni,
-  és adott valós számmal beszorozni, valamint lekérdezni, hogy négyzetes-e.
+#### Mátrixok ####
+Valósítsd meg a mátrixok típusát Javaban! Két konstruktor legyen: az egyik a
+méretet adja meg (négyzetes mátrixot hozzon létre, és minden elem 0 legyen), a
+másik pedig egy `double[][]` paramétert kapjon! Mátrixokat lehessen összeadni,
+és adott valós számmal beszorozni, valamint lekérdezni, hogy négyzetes-e.
 
-* Egészítsd ki az előző feladatot az általános, `Object` osztályból örökölt
-  függvényeket (`equals()`, `hashCode()`, `toString()`).
+Egészítsd ki az osztálydefinícióót az általános, `Object` osztályból örökölt
+függvényeket (`equals()`, `hashCode()`, `toString()`).
 
-* Egészítsd ki az előző feladatot a következő funkciókkal:
+Egy mátrix típus rendelkezzen a fentieken túl a következő funkciókkal is:
 	* transzponálás
 	* nyom kiszámítása (átló elemeinek összege, ha négyzetes)
 	* mátrixok szorzása mátrixokkal (amennyiben lehetséges)

@@ -64,10 +64,10 @@ v.add(null);
 for (int act : v) { ... } // RECCS!
 ```
 
-**Megjegyzés** A `(*)`-gal jelölt rész speciel pont mindig igaz lesz, de ez
-**mágia műve**: a -127-126 intervallumon lévő számok wrapper objektumait
-cache-eli a virtuális gép, azok mindig ugyanazok a példányok lesznek. Így itt
-tapasztalható probléma nem lép fel, de általában ezzel gond lehet.
+> **Megjegyzés** A `(*)`-gal jelölt rész speciel pont mindig igaz lesz, de ez
+> **mágia műve**: a -127-126 intervallumon lévő számok wrapper objektumait
+> cache-eli a virtuális gép, azok mindig ugyanazok a példányok lesznek. Így itt
+> tapasztalható probléma nem lép fel, de általában ezzel gond lehet.
 
 ## Gyűjtemény keretrendszer ##
 Collections Framework, `java.util.*` csomag, objektumok memóriában tárolására,
@@ -89,12 +89,12 @@ konstruktorok vannak (egyik a másikra konvertálható). Műveletek 3 csoportja:
    `clear()`, `retainAll()`
 3. Tömbbé konvertálás - gány:
 
-``` java
-A[] arr = (A[]) list.toArray(new A[list.size()]);
-		
-// Kicsit egyszerubb, bar kevesbe hatekony, biztonsagos:
-A[] arr = (A[]) list.toArray();
-```
+	``` java
+	A[] arr = (A[]) list.toArray(new A[list.size()]);
+			
+	// Kicsit egyszerubb, bar kevesbe hatekony, biztonsagos:
+	A[] arr = (A[]) list.toArray();
+	```
 
 Iterátorokkal rendelkeznek, használhatók for-each-ben. Példa:
 
@@ -304,10 +304,10 @@ for (Account account : necronomicon) {
 * Felhasználás: paraméterként, változódeklarációként célszerű minél általánosabb
   interfészt megadni (a collections framework előnye a rugalmassága):
 
-``` java
-Vector<Integer> v1 = new Vector<Integer>();  // vektorkent kezeles
-List<Integer>   v2 = new Vector<Integer>();  // listakent kezeles
-```
+	``` java
+	Vector<Integer> v1 = new Vector<Integer>();  // vektorkent kezeles
+	List<Integer>   v2 = new Vector<Integer>();  // listakent kezeles
+	```
 
 > **Részletesen:**
 > <http://download.oracle.com/javase/tutorial/collections/index.html>
@@ -341,3 +341,4 @@ funkcionalitásokkal rendelkezzen:
 * Adott epizód adatainak módosítása
 * Epizódok listázása a képernyőre
 * Kilépés
+

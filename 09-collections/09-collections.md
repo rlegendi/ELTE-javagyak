@@ -323,7 +323,7 @@ formátumú fájl legyen:
 	8:13:Cartman's Incredible Gift
 	10:8:Make Love, Not Warcraft
 
-A # karakterrel kezdődő sorokat hagyjuk figyelmen kívül (használjuk a vizsgálat
+A `#` karakterrel kezdődő sorokat hagyjuk figyelmen kívül (használjuk a vizsgálat
 előtt a `String#trim()`)! Készítsünk egy `Sitcom` osztályt a megfelelő
 adattagokkal (`season`, `episode`, `title`), és implementáljuk vele a
 `Comparable<Sitcom>` interfészt! A `compareTo()` működjön úgy, hogy elsődleges

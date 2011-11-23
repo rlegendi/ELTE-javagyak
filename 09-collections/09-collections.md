@@ -233,6 +233,51 @@ objektumot, és tároljátok el ezeket egy tetszőleges lista adatszerkezetben.
 Ezt aztán rendezzétek le kronológiai sorrend szerint a `Collections#sort()`
 függvénnyel, és írjátok ki az eredményt!
 
+### Bejárás ###
+Saját típus is *"iterálhatóvá"* tehető a megfelelő interfész megvalósításával:
+
+``` java
+public class Necronomicon implements Iterable<Account> { 
+	public static final String author = "Abdul 'Mad Arab' Alhazred";
+	
+	private List<Account> accountsOfTheOldOnes;
+
+	public Iterator<Account> iterator() {        
+		Iterator<Account> itr = accountsOfTheOldOnes.iterator();
+		return itr;
+	}
+	...
+}
+```
+
+Bejárás:
+
+``` java  
+Necronomicon necronomicon = Necronomicon.getInstance();
+
+Iterator<Account> itr = necronomicon.iterator();
+while (itr.hasNext()) {  
+	Account account = itr.next();
+	account.summonOldOne();
+}
+```
+
+vagy:
+
+``` java
+for (Iterator<Account> itr = necronomicon.iterator(); it.hasNext(); ) {
+	account.decreaseReaderSanity();
+}
+```
+
+vagy Java 1.5 óta:
+
+``` java
+for (Account account : necronomicon) {
+	account.suppressAndBurnReader();
+}
+```
+
 ### Kényelmi lehetőségek ###
 1. `java.util.Arrays#asList()`: tömbből listát csinál
 2. `java.util.Collections`

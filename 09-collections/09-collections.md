@@ -48,7 +48,7 @@ Csak objektum referenciákat tárolhatnak, ezért _primitív típusok helyett_ �
 csomagoló (_wrapper_) osztályokat (`Integer`, `Character`, `Double`, etc.) kell
 használnunk - azonban ezek ilyen esetekben automatikusan konvertálódnak (ld.
 fenti példa). **Amire figyelni kell:** teljesítmény, `==` operátor, `null`
-unboxing NullPointerException-nel jár.
+unboxing `NullPointerException`-nel jár.
 
 Példa:
 
@@ -66,8 +66,9 @@ for (int act : v) { ... } // RECCS!
 
 > **Megjegyzés** A `(*)`-gal jelölt rész speciel pont mindig igaz lesz, de ez
 > **mágia műve**: a -127-126 intervallumon lévő számok wrapper objektumait
-> cache-eli a virtuális gép, azok mindig ugyanazok a példányok lesznek. Így itt
-> tapasztalható probléma nem lép fel, de általában ezzel gond lehet.
+> cache-eli a virtuális gép (az Oracle JVM legalábbis), azok mindig ugyanazok
+> a példányok lesznek. Így itt tapasztalható probléma nem lép fel, de általában
+> ezzel gond lehet.
 
 ## Gyűjtemény keretrendszer ##
 Collections Framework, `java.util.*` csomag, objektumok memóriában tárolására,
@@ -310,8 +311,12 @@ for (Account account : necronomicon) {
 	```
 
 > **Részletesen:**
+>
 > <http://download.oracle.com/javase/tutorial/collections/index.html>
+>
 > <http://download.oracle.com/javase/6/docs/api/java/util/package-summary.html>
+>
+> Microbenchmark az adatszerkezetekről: <http://www.ibm.com/developerworks/java/library/j-benchmark2/index.html>
 
 #### Feladat ####
 Készítsünk egy sorozat rendező alkalmazást! A program inputja a következő

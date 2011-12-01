@@ -45,6 +45,18 @@ void print(Collection c) {
 }
 ```
 
+Első próba: használjunk Objectet:
+
+``` java
+void print(Collection<Object> c) {
+	for (Object o : c) System.out.println(o);
+}
+```
+
+Fordul? Fordul! Működik? Néha... **Fail!** A gond az, hogy mivel `Collection<X>`
+nem leszármazottja a `Collection<Object>` típusnak, kizárólag `Collection<Object>`
+paraméterrel hívható meg. Nem túl hasznos...
+
 A megoldás a wildcard használata: `Collection<?>` minden kollekcióra ráillik.
 Ilyenkor `Objectként` hivatkozhatunk az elemekre:
 
@@ -63,7 +75,9 @@ l.add(new Object()); // forditasi hiba
 ```
 
 Nem tudjuk, hogy mi van benne, lekérdezni viszont lehet (mert tudjuk, hogy
-minden objektum az `Object` leszármazottja).
+minden objektum az `Object` leszármazottja). Ha lehetne belepakolni, az 
+veszélyeztetné a program típusbiztonságát. Az egyetlen kivétel ezalól a
+`null` érték (ez mindennek értékül adható).
 
 ## Bounded wildcard ##
 Amikor tudjuk, hogy adott helyen csak adott osztály leszármazottai

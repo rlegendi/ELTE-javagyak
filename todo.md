@@ -62,6 +62,16 @@ Függőségek:
 * Garbage Collector (GC): szemétgyűjtő
 
 ## Gyakok ##
+### 01-bevezetes ###
+Új feladat: konvertálj fokokat! Forrás: http://en.wikipedia.org/wiki/Celsius (2011.11.29.)
+
+from Celsius	to Celsius
+Fahrenheit	[°F] = [°C] × 9⁄5 + 32	[°C] = ([°F] − 32) × 5⁄9
+Kelvin	[K] = [°C] + 273.15	[°C] = [K] − 273.15
+Rankine	[°R] = ([°C] + 273.15) × 9⁄5	[°C] = ([°R] − 491.67) × 5⁄9
+For temperature intervals rather than specific temperatures,
+ 1 °C = 1 K = 1.8 °F = 1.8 °R
+
 ### 02-fuggvenyek-csomagok ###
 * default konstruktor, main is dobhat kivételt, nem a szignatúra része
 * csomagokat, láthatóságot, felsorolási típusokat, interfészeket,

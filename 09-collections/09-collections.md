@@ -82,7 +82,8 @@ lekérdezése, manipulálása (v.ö. C++ STL). Általános célú adatszerkezete
 	* Map
     	* SortedMap
 
-Nem megvalósított művelet `UnsupportedOperationException` kivételt dob. Copy
+Nem megvalósított művelet `UnsupportedOperationException` kivételt dob (például ha egy
+*unmodifiable* adatszerkezetre hívod meg az `add()` vagy `put()` függvényeket). Copy
 konstruktorok vannak (egyik a másikra konvertálható). Műveletek 3 csoportja:
 
 1. Alapvető műveletek: `size()`, `isEmpty()`, `contains()`, `add()`, `remove()`

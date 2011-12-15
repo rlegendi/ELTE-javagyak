@@ -33,12 +33,12 @@ másfelől különböző konzolos platformokat (van neve, gyártója és generá
 
 Példa:
 
-	CIKK-001	Baldur's Gate I		Black Isle		RPG			95%
-	CIKK-002	Dragon Age		THQ			RPG			93%
-	CIKK-003	Mass Effect 2		BioWare			Nézdahátam		91%
-	CIKK-004	Trine			Frozenbyte		Platform		84%
-	KONZ-001	PlayStation 3		Sony			7th generation		75%
-	KONZ-002	Game Boy		Nintendo		4th generation		45%
+	CIKK-001    Baldur's Gate I    Black Isle    RPG              95%
+	CIKK-002    Dragon Age         THQ           RPG              93%
+	CIKK-003    Mass Effect 2      BioWare       Nézdahátam       91%
+	CIKK-004    Trine              Frozenbyte    Platform         84%
+	KONZ-001    PlayStation 3      Sony          7th generáció    75%
+	KONZ-002    Game Boy           Nintendo      4th generáció    45%
 
 Ha a felhasználó egy új értékelést szeretne regisztrálni a rendszerben, akkor a
 következőt kell tennünk:
@@ -48,7 +48,7 @@ következőt kell tennünk:
 * ha a megadott cikkszám még nem létezik, akkor be kell kérni az értékelni
   kívánt játék vagy konzol adatait, majd az első meghatározó értékelést
 
-##### Inputkezelés #####
+#### Inputkezelés ####
 * Az azonosító formátumát tetszőlegesen választhatod, de erősen ajánlott, hogy
   ne használd benne a `:` karaktert.
 * Játék neve nem tartalmazhat `:` karaktert.
@@ -57,7 +57,7 @@ következőt kell tennünk:
   kezeld le! Ez a kivétel legyen egy nem felügyelt kivétel (azaz a `RuntimeException`
   leszármazottja).
 
-##### Átlagszámítás #####
+#### Átlagszámítás ####
 Erre több megoldás van, legegyszerűbb az eddigi összes értékelést tárolni,
 viszont az eddigi értékelések száma, átlaga, valamint az új értékelés alapján
 konstans időben meghatározható.
@@ -67,13 +67,20 @@ A program listázza ki az általa aktuálisan felügyelt értékeléseket, a sz�
 értékelések szerinti csökkenő sorrendben.
 
 Ehhez használd a *Java Collections Framework* által kínált szolgáltatásokat
-(`java.util.Collections`)!
+(`java.util.Collections`)! Ehhez persze szükséges a `Comparable` interfész
+megfelelő implementációja!
 
 #### Perzisztencia ####
 Mentsük el a felhasználó által megadott aktuális értékelések listáját az általa
 megadott fájlba (az egyes adattagokat `:` karakterrel válasszuk el egymástól).
 
 A program legyen képes ezeket az adatokat visszatölteni, azonban ha hibás az
-input, keletkezzen egy saját felügyelt kivétel! Legyen ez az `IOException`
+input, keletkezzen egy *saját felügyelt kivétel*! Legyen ez az `IOException`
 leszármazottja.
+
+#### Típusok ####
+Vegyük észre, hogy bizonyos tulajdonságok kiemelhetők egy közös ősbe! Melyek ezek?
+Használhatjuk esetleg ezt valahogy az értékelések generikus típusának korlátjaként?
+Mit lenne érdemesebb használni, egy interfészt, vagy egy absztrakt osztályt? Miért?
+A `Comparable` megvalósítása hogy változik ebben a tekintetben?
 

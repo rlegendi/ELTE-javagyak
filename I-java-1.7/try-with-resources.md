@@ -4,6 +4,8 @@
 > 
 > <http://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html>
 
+---
+
 A `try-with-resources` állítás egy vagy több forrást deklarál. A forrás egy objektum, amit be kell zárni, miután a program befejezte vele a munkát. A `try-with-resources` állítás biztosítja, hogy minden forrás be legyen zárva az állítás végén. Bármely objektum, ami implementálja a `java.lang.AutoCloseable` interfészt, ami már implementál minden `java.io.Closeable` interfészt használó objektumot, lehet forrásként használni.
 
 A következő példa egy fájl első sorát olvassa be. Egy `BufferedReader` példányt használ az adatbeolvasáshoz a fájlból. A `BufferedReader` egy forrás, amit be kell zárni, miután a programnak nincs rá szüksége:

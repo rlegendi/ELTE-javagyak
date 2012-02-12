@@ -33,7 +33,7 @@ hajtják végre:
 		throw ex;
 	}
 
-A 7-es kiadás előtt nehez lett volna megúszni a többszöri kódolást -- még
+A 7-es kiadás előtt nehez lett volna megúszni a többszöri kódolást - még
 függvénybe sem tudtuk kiszervezni a többször felhasznált részletet, mivel
 az `ex` típusa a két `catch`-blokkban eltérő.
 
@@ -46,8 +46,8 @@ kell kétszer kódolnunk.
 	}
 
 A `catch` által bevezetett kódrészlet két, különböző fajta
-kivételt kap el -- a különböző típusok elválasztására az új
-szabályok a függőleges vonalat (|) írják elő.
+kivételt kap el - a különböző típusok elválasztására az új
+szabályok a függőleges vonalat (`|`) írják elő.
 
 *Megjegyzés:* Ha egyetlen `catch`-blokk eltérő típusú kivételeket kap el,
 az argumentumként megadott változó mindenképpen `final` lesz. A fenti
@@ -57,7 +57,7 @@ tudunk másik értéket rendelni.
 Amikor olyan kódot fordítunk, melyben egyetlen `catch`-blokk több különböző
 kivételt kezel, az előálló bájtkód kisebb lesz, mintha a fordítást olyan
 kódon végeztük volna, melyben `catch`-blokkok sorozata állt, és mindegyikük
-csak egyfajta kivételt kezelt le -- az új szolgáltatás tehát hatékonyabb
+csak egyfajta kivételt kezelt le - az új szolgáltatás tehát hatékonyabb
 is. Ha tehát a `catch`-blokk egyidejűleg kezel többfajta kivételt, a fordító
 által előállított bájtkódban is csökken a redundancia, hiszen a bájtkódban sem
 ismétlődnek a kivételkezelést végző kódszakaszok.
@@ -115,11 +115,10 @@ megérti, hogy az elkapott példányok valójában a `FirstException` vagy a
 	}
 
 Ha a `catch`-kifejezés paraméterét a `catch`-blokkban később egy másik
-változóhoz rendeljük (!!!to review: This analysis is disabled if the catch
-parameter is assigned to another value in the catch block. ), a
-részletesebb elemzés nem történik meg. Ha tehát a `catch`-kifejezés
-paraméterét egy másik változóhoz rendeljük, a függvénydeklaráció
-`throws`-kifejezésében csak az `Exception`-t jelölhetjük meg.
+változónak értékül adjuk, a részletesebb elemzés nem történik meg. Ha
+tehát a `catch`-kifejezés paraméterét egy másik változóhoz rendeljük, a
+függvénydeklaráció `throws`-kifejezésében csak az `Exception`-t
+jelölhetjük meg.
 
 Részletesebben: a Java 7-től kezdődően, amikor egy `catch`-kifejezésben
 megadunk egy (vagy több) kivételtípust, majd ezt a kezelés során
@@ -129,23 +128,23 @@ teljesülnek-e a következő feltételek:
  *	valóban érkezhet ilyen típusú kivétel a `try`-blokkból
  *	a jelen `try`--`catch`-blokk korábbi `catch`-kifejezései nem
  	kezelnék a kivételt
- *	a dobott kivétel al- vagy szupertípusa a `catch`-kifejezésben
+ *	a dobott kivétel al- vagy őstípusa a `catch`-kifejezésben
  	argumentumként szereplő kivételek valamelyikének
 
 A Java 7 SE fordító azért engedi meg, hogy a `rethrowException` függvény
 deklarációjában szereplő `throws`-kifejezésben a `FirstException`t és a
 `SecondException`t nevezzük meg, mert az `Exception` a
 `throws`-kifejezésben említett kivételtípusok közül legalább az egyiknek
--- valójában itt persze mindkettőnek -- szupertípusa.
+- valójában itt persze mindkettőnek - őstípusa.
 
 A Java fordító korábbi változatai nem engedték, hogy olyan kivételt
-dobjunk, mely szupertípusa a `catch`-kifejezés kivételparamétereinek. Egy
+dobjunk, mely őstípusa a `catch`-kifejezés kivételparamétereinek. Egy
 ilyen fordító kódunk `throw e` részletéhez érve az "unreported
 exception Exception; must be caught or declared to be thrown" hibaüzenettel
 térne vissza. Az ilyen fordítók ugyanis a `throw e` részlethez érve
 ellenőrzik, hogy a kivétel, melyet dobni szeretnénk, megfelel-e a
 `rethrowException` függvény deklarálciójában lévő `throws`-kifejezésben
 felsorolt típusok valamelyikének. Az `Exception` azonban nem al-, hanem
-szupertípusa a `FirstException` és a `SecondException`nek; a régebbi
+őstípusa a `FirstException` és a `SecondException`nek; a régebbi
 fordítók csak ezeket az osztályokat, vagy ezek leszármazottait fogadnák el.
 

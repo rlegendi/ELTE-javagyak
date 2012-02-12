@@ -9,9 +9,9 @@ A `try-with-resources` állítás egy vagy több forrást deklarál. A forrás e
 A következő példa egy fájl első sorát olvassa be. Egy `BufferedReader` példányt használ az adatbeolvasáshoz a fájlból. A `BufferedReader` egy forrás, amit be kell zárni, miután a programnak nincs rá szüksége:
 
 	static String readFirstLineFromFile(String path) throws IOException {
-	  try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-	    return br.readLine();
-	  }
+		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+			return br.readLine();
+		}
 	}
 
 Ebben a példában a forrás, ami egy `try-with-resources` példában van deklarálva, egy `BufferedReader`. A deklarációs állítás zárójelben jelenik meg, közvetlenül a `try` kulcsszó után. A `BufferedReader` osztály, a Java SE 7-ben és az újabb verziókban, implementálja a `java.lang.AutoCloseable` interfészt. Mivel a `BufferedReader` egy `try-with-resources` állításban van deklarálva, be fog zárulni, függetlenül attól, hogy a `try` állítás normál módon vagy hirtelen ér véget (Annak eredményeként, hogy a `BufferedReader`.readLine metódus dob egy IOException kivételt).
@@ -19,70 +19,70 @@ Ebben a példában a forrás, ami egy `try-with-resources` példában van deklar
 A Java SE 7 előtti verziókban, használhatsz egy finally blokkot, hogy biztosítsd a forrás bezárását, függetlenül attól, hogy a `try` állítás normál módon vagy hirtelen ér véget. A következő példa egy finally blokkot használ a `try-with-resources` állítás helyett:
 
 	static String readFirstLineFromFileWithFinallyBlock(String path) throws IOException {
-	  BufferedReader br = new BufferedReader(new FileReader(path));
-	  try {
-	    return br.readLine();
-	  } finally {
-	    if (br != null) br.close();
-	  }
+		BufferedReader br = new BufferedReader(new FileReader(path));
+		try {
+			return br.readLine();
+		} finally {
+			if (br != null) br.close();
+		}
 	}
 
 Ezzel szemben ha ebben a példában a readLine és a close metódus is kivételt dob, akkor a readFirstLineFromFileWithFinallyBlock metódus azt a kivételt fogja dobni, amit a finally blokk dobott; elfojtva ezzel a `try` blokk által dobott kivételt. Ugyanakkor a readFirstLineFromFile példában ha kivételt dob a `try` blokk és a `try-with-resources` állítás is, akkor a `readFirstLineFromFile()` metódus a `try` blokk kivételét fogja dobni; ekkor a `try-with-resources` blokk kivétele lesz elfojtva. A Java SE 7-ben és az újabb verziókban ki lehet nyerni az elfojtott kivételt is, lásd az Elfojtott Kivételek bekezdést több információért.
 
 Egy vagy több forrást is deklarálhatsz egy `try-with-resources` állításban. A következő példa kinyeri a fájlok nevét egy csomagolt `zipFileName` zip fájlból, és készít egy szöveges fájlt, ami ezek neveit tartalmazza:
 
-	  public static void writeToFileZipFileContents(String zipFileName, String outputFileName)
-	    throws java.io.IOException {
+	public static void writeToFileZipFileContents(String zipFileName, String outputFileName)
+			throws java.io.IOException {
 
-	    java.nio.charset.Charset charset = java.nio.charset.Charset.forName("US-ASCII");
-	    java.nio.file.Path outputFilePath = java.nio.file.Paths.get(outputFileName);
+		java.nio.charset.Charset charset = java.nio.charset.Charset.forName("US-ASCII");
+		java.nio.file.Path outputFilePath = java.nio.file.Paths.get(outputFileName);
 
-	    // Open zip file and create output file with try-with-resources statement
+		// Open zip file and create output file with try-with-resources statement
 
-	    try (
-	      java.util.zip.ZipFile zf = new java.util.zip.ZipFile(zipFileName);
-	      java.io.BufferedWriter writer = java.nio.file.Files.newBufferedWriter(outputFilePath, charset)
-	    ) {
+		try (
+			java.util.zip.ZipFile zf = new java.util.zip.ZipFile(zipFileName);
+			java.io.BufferedWriter writer = java.nio.file.Files.newBufferedWriter(outputFilePath, charset)
+		) {
 
-	      // Enumerate each entry
+			// Enumerate each entry
 
-	      for (java.util.Enumeration entries = zf.entries(); entries.hasMoreElements();) {
+			for (java.util.Enumeration entries = zf.entries(); entries.hasMoreElements();) {
 
-		// Get the entry name and write it to the output file
+				// Get the entry name and write it to the output file
 
-		String newLine = System.getProperty("line.separator");
-		String zipEntryName = ((java.util.zip.ZipEntry)entries.nextElement()).getName() + newLine;
-		writer.write(zipEntryName, 0, zipEntryName.length());
-	      }
-	    }
+				String newLine = System.getProperty("line.separator");
+				String zipEntryName = ((java.util.zip.ZipEntry)entries.nextElement()).getName() + newLine;
+				writer.write(zipEntryName, 0, zipEntryName.length());
+			}
+		}
 	  }
 
 Ebben a példában a `try-with-resources` két deklarációt tartalmaz, amiket egy pontosvessző választ el: egy `ZipFile` és egy `BufferedWriter` példányt. Amikor a közvetlenül utána következő kódblokk befejeződik, akár normál módon, akár kivétellel, a `BufferedWriter` és a `ZipFile` `close()` metódusai automatiksan meghívódnak, ebben a sorrendben. Vegyük figyelembe, hogy a források `close()` metódusai a készítésük fordított sorrendjében lesznek meghívva.
 
 A következő példa egy `try-with-resources` állítást használ, hogy automatikusan bezárja a `java.sql.Statement` objektumot:
 
-	  public static void viewTable(Connection con) throws SQLException {
+	public static void viewTable(Connection con) throws SQLException {
 
-	    String query = "select COF_NAME, SUP_ID, PRICE, SALES, TOTAL from COFFEES";
+		String query = "select COF_NAME, SUP_ID, PRICE, SALES, TOTAL from COFFEES";
 
-	    try (Statement stmt = con.createStatement()) {
+		try (Statement stmt = con.createStatement()) {
 
-	      ResultSet rs = stmt.executeQuery(query);
+			ResultSet rs = stmt.executeQuery(query);
 
-	      while (rs.next()) {
-		String coffeeName = rs.getString("COF_NAME");
-		int supplierID = rs.getInt("SUP_ID");
-		float price = rs.getFloat("PRICE");
-		int sales = rs.getInt("SALES");
-		int total = rs.getInt("TOTAL");
-		System.out.println(coffeeName + ", " + supplierID + ", " + price +
-				   ", " + sales + ", " + total);
-	      }
+			while (rs.next()) {
+				String coffeeName = rs.getString("COF_NAME");
+				int supplierID = rs.getInt("SUP_ID");
+				float price = rs.getFloat("PRICE");
+				int sales = rs.getInt("SALES");
+				int total = rs.getInt("TOTAL");
+				System.out.println(coffeeName + ", " + supplierID + ", " + price +
+						", " + sales + ", " + total);
+			}
 
-	    } catch (SQLException e) {
-	      JDBCTutorialUtilities.printSQLException(e);
-	    }
-	  }
+		} catch (SQLException e) {
+			JDBCTutorialUtilities.printSQLException(e);
+		}
+	}
 
 Ebben a példában a `java.sql.Statement` része a JDBC 4.1 és az újabb API könyvtáraknak.
 
@@ -98,7 +98,7 @@ Az `AutoCloseable` és `Closeable` interfészek specifikációjában olvasható,
 
 > **Részletesen**
 >
-> AutoCloseable <http://docs.oracle.com/javase/7/docs/api/java/lang/AutoCloseable.html>
+> <http://docs.oracle.com/javase/7/docs/api/java/lang/AutoCloseable.html>
 >
-> Closeable <http://docs.oracle.com/javase/7/docs/api/java/io/Closeable.html>
+> <http://docs.oracle.com/javase/7/docs/api/java/io/Closeable.html>
 

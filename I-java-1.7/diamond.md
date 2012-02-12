@@ -10,7 +10,7 @@ Például vegyük a következő változó deklarációt:
 
 	Map<String, List<String>> myMap = new HashMap<String, List<String>>();
 
-JAVA SE 7-ben, helyettesíthetjük a paraméterezett konstruktor típust üres paramétertípussal (`<>`):
+Java SE 7-ben, helyettesíthetjük a paraméterezett konstruktor típust üres paramétertípussal (`<>`):
 
 	Map<String, List<String>> myMap = new HashMap<>();
 
@@ -53,7 +53,7 @@ Nézzük a `MyClass` példányosítását, ami a Java SE 7-ben és a korábbi ve
 
 Ez az állítás létrehoz egy példányt a paraméterezett típusú `MyClass<Integer>` osztályból. Az állítás kifejezetten meghatározza az `Integer` típust formális paramétertípusnak, `X` a generikus `Myclass<X>` osztálynak. Megjegyzendő, hogy a generikus osztály konstruktora formális paramétert tartalmaz (`T`). A fordító `String` típusra következtet a generikus osztály konstruktorából (mert az aktuális paramétere a konstruktornak egy `String` objektum).
 
-A Java SE 7 előtti kiadású fordítók képesek következtetni a generikus konstruktor aktuális paraméter típusára, hasonlóan a generikus metódusokhoz. Ugyanakkor, a fordító Java SE 7 esetén következtetni tud az aktuális paraméterre a generikus osztály példányosításánál, ha használjuk a gyémántot(`<>`). Vegyük a következő példát, ami érvényes a Java SE 7 és a későbbi verziókban:
+A Java SE 7 előtti kiadású fordítók képesek következtetni a generikus konstruktor aktuális paraméter típusára, hasonlóan a generikus metódusokhoz. Ugyanakkor, a fordító Java SE 7 esetén következtetni tud az *aktuális paraméterre a generikus osztály példányosításánál*, ha használjuk a gyémántot(`<>`). Vegyük a következő példát, ami érvényes a Java SE 7 és a későbbi verziókban:
 
 	MyClass<Integer> myObject = new MyClass<>("");
 

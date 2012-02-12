@@ -1,7 +1,7 @@
 Továbbfejlesztett típusellenőrzés: eltérő típusú kivételek egyidejű elkapása, kivételek újradobása
 ==================================================================================================
 
-> **Megjegyzés** Az alábbi fejezetet a Java 1.5 egy bevezetőjének (kissé átdolgozott) magyar fordítását tartalmazza. A fordítást köszönjük Magyarkuti Barnának! 
+> **Megjegyzés** Az alábbi fejezetet a Java 1.7 egy bevezetőjének (kissé átdolgozott) magyar fordítását tartalmazza. A fordítást köszönjük Magyarkuti Barnának! 
 > 
 > <http://docs.oracle.com/javase/7/docs/technotes/guides/language/catch-multiple.html>
 

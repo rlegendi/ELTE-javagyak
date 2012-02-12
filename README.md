@@ -33,4 +33,5 @@ segítsége nélkül (nagyjából időrendben):
 * Molnár Szilvi (2010-2011-II, a Java 1.5 enum tutorial teljes fordítása)
 * [Magyarkuti Barna](mailto:bmagyarkuti@gmail.com) (2011-2012-I, a Java 1.7 többszörös kivételkezelés és továbbfejlesztett újradobás tutorial teljes fordítása)
 * [Zöld Gábor](mailto:hurkajoker@gmail.com) (2011-2012-I, a Java 1.7 try-with-resources tutorial teljes fordítása)
+* [Rontó Balázs](mailto:rontobalazs@caesar.elte.hu) (2011-2012-I, a Java 1.7 diamond tutorial teljes fordítása))
 

@@ -1,6 +1,6 @@
 # A try-with-resources állítás #
 
-> **Megjegyzés** Az alábbi fejezetet a Java 1.5 egy bevezetőjének (kissé átdolgozott) magyar fordítását tartalmazza. A fordítást köszönjük Zöld Gábornak! 
+> **Megjegyzés** Az alábbi fejezetet a Java 1.7 egy bevezetőjének (kissé átdolgozott) magyar fordítását tartalmazza. A fordítást köszönjük Zöld Gábornak! 
 > 
 > <http://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html>
 

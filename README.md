@@ -32,4 +32,5 @@ segítsége nélkül (nagyjából időrendben):
 * Márton Dávid (2010-2011-II, a Java 1.5 újdonságainak teljes fordítása)
 * Molnár Szilvi (2010-2011-II, a Java 1.5 enum tutorial teljes fordítása)
 * [Magyarkuti Barna](mailto:bmagyarkuti@gmail.com) (2011-2012-I, a Java 1.7 többszörös kivételkezelés és továbbfejlesztett újradobás tutorial teljes fordítása)
+* [Zöld Gábor](mailto:hurkajoker@gmail.com) (2011-2012-I, a Java 1.7 try-with-resources tutorial teljes fordítása)
 

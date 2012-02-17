@@ -25,44 +25,45 @@ int lineAsInt = Integer.parseInt( line );
   kivétel)
 * Inicializáció:
 
-``` java
-// barr1, barr2, barr3 ekvivalens definicio
-boolean[] barr1 = { true, false };
-boolean[] barr2 = new boolean[] { true, false }; // kifejezesben kotelezo!
-boolean[] barr3 = new boolean[2];
-barr3[0] = true; barr3[1] = false;
-```
+	``` java
+	// barr1, barr2, barr3 ekvivalens definicio
+	boolean[] barr1 = { true, false };
+	boolean[] barr2 = new boolean[] { true, false }; // kifejezesben kotelezo!
+	boolean[] barr3 = new boolean[2];
+	barr3[0] = true; barr3[1] = false;
+	```
 
 * Tömbök elemei default értéket kapnak (pl. objektum `null`-t, `int` `0`-t, `boolean` `false`-t, stb.)
 * Bejárás: tömb tudja a méretét
 
-``` java
-int iarr[] = { 1, 2, 3, 4, 5 };
-		
-for (int i=0; i<iarr.length; ++i) {
-	System.out.println(iarr[i]);
-}
-```
+	``` java
+	int iarr[] = { 1, 2, 3, 4, 5 };
+			
+	for (int i=0; i<iarr.length; ++i) {
+		System.out.println(iarr[i]);
+	}
+	```
 
 * Többdimenziós példa:
 
-``` java
-public static void enumerate(int[][] arr) {
-    for (int i=0; i < arr.length; ++i) {
-        for (int j=0; j < arr[i].length; ++j) {
-            System.out.print( arr[i][j] + " " );
-        }
-    }
-}
-...
-enumerate( new int[][] {
-	    {0, 1},
-	    {2, 3}
-});
-```
+	``` java
+	public static void enumerate(int[][] arr) {
+	    for (int i=0; i < arr.length; ++i) {
+		for (int j=0; j < arr[i].length; ++j) {
+		    System.out.print( arr[i][j] + " " );
+		}
+	    }
+	}
+	...
+	enumerate( new int[][] {
+		    {0, 1},
+		    {2, 3}
+	});
+	```
 
 * Inicializálásnál az 1. dimenzió megadása kötelező (pl.
-`int[][] arr = new int[5][];` teljesen legális definíció!)
+	
+	`int[][] arr = new int[5][];` teljesen legális definíció!)
 
 ### Tömb értékű kifejezések ###
 Inicializálásnál elég az `{ e_1, e_2, ... }` forma. DE! Mindenhol máshol, ahol tömb
@@ -94,119 +95,119 @@ megírod kézzel).
 * Vararg paraméterek: tetszőleges számú formális paraméter, kezelés mintha tömb
   lenne:
 
-``` java
-public static void printMessages(String... messages) {
-    System.out.println("# of params: " + messages.length);
-    for (String act : messages) {
-        System.out.println(act);
-    }
-}
-...
-printMessages( "hello", "hi", "bye");
-```
+	``` java
+	public static void printMessages(String... messages) {
+	    System.out.println("# of params: " + messages.length);
+	    for (String act : messages) {
+		System.out.println(act);
+	    }
+	}
+	...
+	printMessages( "hello", "hi", "bye");
+	```
 
-Ha minden függvényben szükséges egy érték:
+* Ha minden függvényben szükséges egy érték:
 
-``` java
-public class A {
-	public static int X = 1;
-	
-	public static void inc() { X++; }
-	public static void dec() { X--; }
-}
-```
+	``` java
+	public class A {
+		public static int X = 1;
+		
+		public static void inc() { X++; }
+		public static void dec() { X--; }
+	}
+	```
 
 ## Stringek ##
 
 * Létrehozás:
 
-``` java
-String s = "hai!";
-```
+	``` java
+	String s = "hai!";
+	```
 
 * Objektum, így lehet az értéke `null`! Ha `null` értéket próbáljátok feloldani
 akkor az eredmény egy `NullPointerException` lesz.
 
-``` java
-String nullString = null;
-		
-if (nullString != null) { // Helyes ellenorzes
-	...
-}
-		
-nullString.isEmpty(); // NPE!
-```
+	``` java
+	String nullString = null;
+			
+	if (nullString != null) { // Helyes ellenorzes
+		...
+	}
+			
+	nullString.isEmpty(); // NPE!
+	```
 
 * Rengeteg hasznos szolgálgatás:
 
-``` java
-int length = s.length;
-char firstChar = s.charAt(0);
-char[] carr = s.toCharArray();
-		
-boolean isExecutable = s.endsWith(".exe");
-boolean isEmpty = s.isEmpty();
-boolean aidx = s.indexOf('a');
-boolean hasEM = s.contains('!');
-		
-String upper = s.toUpperCase();
-String hai = s.substring(1, 3);
-String haiThere = hai + " there".
-String[] haiThereArr = haiThere.split(" ");
-```
+	``` java
+	int length = s.length;
+	char firstChar = s.charAt(0);
+	char[] carr = s.toCharArray();
+			
+	boolean isExecutable = s.endsWith(".exe");
+	boolean isEmpty = s.isEmpty();
+	boolean aidx = s.indexOf('a');
+	boolean hasEM = s.contains('!');
+			
+	String upper = s.toUpperCase();
+	String hai = s.substring(1, 3);
+	String haiThere = hai + " there".
+	String[] haiThereArr = haiThere.split(" ");
+	```
 	
 > **Részletesen** <http://download.oracle.com/javase/6/docs/api/java/lang/String.html>
 
 * Karakterenkénti bejárás:
 
-``` java
-for (int i=0; i<s.length(); ++i) {
-	char act = s.charAt(i);
-	...
-}
-		
-// vagy:
-for (char act : s.toCharArray()) {
-	...
-}
-```
+	``` java
+	for (int i=0; i<s.length(); ++i) {
+		char act = s.charAt(i);
+		...
+	}
+			
+	// vagy:
+	for (char act : s.toCharArray()) {
+		...
+	}
+	```
 
 * `replaceAll()`, `split()` használható regexp (ld. Pattern osztály
 dokumentációja <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>)
 
 * Immutable (megváltoztathatatlan) adatszerkezet
 
-``` java
-String string = "AAAxAAA";
-string.replace('x', 'A');
-System.out.println(string); // "AAAxAAA"
-string = string.replace('x', 'A');
-System.out.println(string); // "AAAAAAA"
-```
+	``` java
+	String string = "AAAxAAA";
+	string.replace('x', 'A');
+	System.out.println(string); // "AAAxAAA"
+	string = string.replace('x', 'A');
+	System.out.println(string); // "AAAAAAA"
+	```
 
    Vagy `StringBuilder`, `StringBuffer` használható:
 
-``` java
-StringBuffer sb = new StringBuffer();
-sb.append("Hello ").append("World");
-sb.reverse();
-System.out.println( sb.toString() ); // "dlroW olleH"
-sb.reverse();
-sb.setCharAt(6, '-');
-System.out.println( sb.toString() ); // "Hello-World"
-sb.deleteCharAt(6);
-System.out.println( sb.toString() ); // "HelloWorld"
-sb.delete(0, sb.length() );
-System.out.println( sb.toString() ); // ""
-```
+	``` java
+	StringBuffer sb = new StringBuffer();
+	sb.append("Hello ").append("World");
+	sb.reverse();
+	System.out.println( sb.toString() ); // "dlroW olleH"
+	sb.reverse();
+	sb.setCharAt(6, '-');
+	System.out.println( sb.toString() ); // "Hello-World"
+	sb.deleteCharAt(6);
+	System.out.println( sb.toString() ); // "HelloWorld"
+	sb.delete(0, sb.length() );
+	System.out.println( sb.toString() ); // ""
+	```
 
 * Összehasonlítás: `equals()` metódussal (az `==` operátor referencia szerinti
 összehasonlítást végez csak, nem tartalom szerintit).
 
-``` java
-boolean b1 = "a" == "a";      // lehet hamis!
-boolean b2 = "a".equals("a"); // mindig megfeleloen mukodik
-```
+	``` java
+	boolean b1 = "a" == "a";      // lehet hamis!
+	boolean b2 = "a".equals("a"); // mindig megfeleloen mukodik
+	```
 
 > **Részletesen** <http://download.oracle.com/javase/6/docs/api/java/lang/StringBuilder.html>
 
@@ -256,11 +257,11 @@ dimenziós tömböt!
 
    Példa (az `asMatrix` függvényt csak visszaadja Stringet!):
 
-``` java
-doule[][] arr = new double[3][3];
-arr[1][1] = 1
-System.out.println( asMatrix( arr) );
-```
+	``` java
+	doule[][] arr = new double[3][3];
+	arr[1][1] = 1
+	System.out.println( asMatrix( arr) );
+	```
 
 	Eredmény:
 

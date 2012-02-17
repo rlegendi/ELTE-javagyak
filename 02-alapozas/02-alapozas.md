@@ -80,7 +80,8 @@ public static void main(String[] args) {
 
 ### Tömb segédosztály ###
 `java.util.Arrays`, hasznos pl. a `toString()`, `binarySearch()`, `fill()`, etc.
-Részletesen: <http://download.oracle.com/javase/6/docs/api/java/util/Arrays.html>
+
+> **Részletesen** <http://download.oracle.com/javase/6/docs/api/java/util/Arrays.html>
 
 ### Összehasonlítás ###
 Az `==` operátor **nem** használható (_referencia szerinti egyenlőség vizsgálat, nem érték szerinti_).
@@ -89,9 +90,9 @@ megírod kézzel).
 
 ## Függvények ##
 
-* Érték szerint
-* Referenciák? - Azok is
-* Tömbök, objektumok
+* Érték szerinti paraméterátadás.
+* Referenciák? - Azok is!
+* Tömbök, objektumok?
 * Vararg paraméterek: tetszőleges számú formális paraméter, kezelés mintha tömb
   lenne:
 
@@ -184,9 +185,9 @@ dokumentációja <http://download.oracle.com/javase/6/docs/api/java/util/regex/P
 	string = string.replace('x', 'A');
 	System.out.println(string); // "AAAAAAA"
 	```
-
-   Vagy `StringBuilder`, `StringBuffer` használható:
-
+	
+	Vagy `StringBuilder`, `StringBuffer` használható:
+	
 	``` java
 	StringBuffer sb = new StringBuffer();
 	sb.append("Hello ").append("World");
@@ -254,25 +255,25 @@ használjátok azt a függvényt, amit az adott feladatban megírtatok!
 
 1. Készíts egy függvényt, amely megfelelően formázva kiír a képernyőre egy 2
 dimenziós tömböt!
-
-   Példa (az `asMatrix` függvényt csak visszaadja Stringet!):
-
+	
+	Példa (az `asMatrix` függvényt csak visszaadja Stringet!):
+	
 	``` java
 	doule[][] arr = new double[3][3];
 	arr[1][1] = 1
 	System.out.println( asMatrix( arr) );
 	```
-
+	
 	Eredmény:
-
+	
 		0.0 0.0 0.0
 		0.0 1.0 0.0
 		0.0 0.0 0.0
-
+	
 2. Készíts egy függvényt, amely képes megmondani, hogy egy kapott, 2 dimenziós
 tömb soraiban, oszlopaiban, és főátlójában szereplő elemek összege mennyi!
 
-   A program valami hasonló kimenetet generáljon:
+	A program valami hasonló kimenetet generáljon:
 
 		0 1 2 | 3
 		1 2 3 | 6

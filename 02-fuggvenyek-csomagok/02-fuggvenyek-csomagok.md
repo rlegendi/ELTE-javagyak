@@ -73,6 +73,22 @@ Ha esetleg névütközés van (2 azonos nevű osztály), akkor minősített név
 használjatok nyugodtan, nem gáz, nem emészt erőforrást (nem C++, dinamikus
 osztálybetöltés van).
 
+
+## Rekurzív fordítás ##
+Alapból nincs rekurzív fordítás, viszont megadható a fordítónak egy fájl,
+ami a fordítani kívánt fájlok listáját tartalmazza - ezt a `@` karakterrel
+jelezheted.
+
+	# Linux
+	$ find -name "*.java" > sources.txt
+	$ javac @sources.txt
+
+	:: Windows
+	> dir /s /B *.java > sources.txt
+	> javac @sources.txt
+
+> **Részletesen** [Itt](http://stackoverflow.com/questions/6623161/javac-option-to-compile-recursively/8769536#8769536)
+
 # Függvények #
 Általános prototípus:
 
@@ -135,16 +151,17 @@ Készítsetek egy függvényt, amely megadja egy másodfokú egyenlet gyökeit! 
 függvény definíciója legyen a következő:
 
 ``` java
-private static double[] sqroots(final double a, final double b,
-	final double c) {
+private static double[] sqroots(final double a, final double b, final double c) {
 	// ...
 }
 ```
 
-A függvény dobjon _nem ellenőrzött és ellenőrzött kivételeket is_ (pl.
-`IllegalArgumentException` és egy saját), ha `a == 0`, vagy a diszkrimináns
-negatív! A függvény által dobott kivételeket kezeld is le a `main()`
-függvényben! A paramétereket a parancssori argumentumok határozzák meg, és az
-`Integer.parseInt()` függvény által dobott `NumberFormatException` kivételt is
-kezeljétek le ugyanabban a kivételkezelő ágban!
+A függvény visszatérési értéke legyen:
+
+* üres tömb (nem `null` érték!), ha `a == 0` vagy a diszkrimináns negatív,
+* egyelemű tömb, ha egyetlen megoldás van (`D == 0`), illetve
+* kételemű tömb, amennyiben két különböző megoldás létezik!
+
+A paramétereket a parancssori argumentumok határozzák meg, amiket a
+`Double.parseDouble()` segítségével tudsz értelmezni.
 

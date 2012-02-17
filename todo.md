@@ -213,11 +213,3 @@ Nézzük meg, hogy néz ez ki, ha proper exception handlinget használunk!
 
 Remélem sikerült egy kicsit segíteni a megértést ezen a példán keresztül.
 
-Rekurzív fordítás
------------------
-find ./src -name "*.java" > sources_list.txt
-javac -classpath "${CLASSPATH}" @sources_list.txt
-
-
-On Windows first line should be replaced with: dir .\src\*.java /s /B > sources_list.txt
-

@@ -257,7 +257,7 @@ használjátok azt a függvényt, amit az adott feladatban megírtatok!
 1. Készíts egy függvényt, amely megfelelően formázva kiír a képernyőre egy 2
 dimenziós tömböt!
 	
-	Példa (az `asMatrix` függvényt csak visszaadja Stringet!):
+	Példa (az `asMatrix()` függvényt csak adja vissza Stringet!):
 	
 	``` java
 	doule[][] arr = new double[3][3];

@@ -238,12 +238,13 @@ használjátok azt a függvényt, amit az adott feladatban megírtatok!
    konkatenáció közé ezt kell beszúrni), és a függvény fogadjon el tetszőleges
    számú paramétert!
 7. Az előző pontban készített függvényhez készíts egy azonos nevű (túlterhelt)
-   változatot, amelynek nincs szüksége az első paraméterre, és a ' ' karakterrel
+   változatot, amelynek nincs szüksége az első paraméterre, és a `' '` karakterrel
    fűzi össze a karakterláncokat!
 8. Készíts egy függvényt, amely képes meghatározni két paraméterként kapott tömb
    skaláris szorzatát!
-9. (?) Készíts egy függvényt, amely képes meghatározni két paraméterként kapott
-   tömb vektoriális szorzatát! % TODO: 2 dimenzióra!
+9. Készíts egy függvényt, amely képes meghatározni két paraméterként kapott
+   tömb vektoriális szorzatát az általuk bezárt szög alapján
+   (3 dimenzióra, az eredmény egy vektor)!
 10. Készítsetek egy kódoló függvényt, amely egy `char[]` paraméterként
     megadott szöveget úgy kódol, hogy minden karaktert egy konstans értékkel
     XOR-ol (használjátok a `^` operátort!).
@@ -297,7 +298,7 @@ sorban megoldhatók a megfelelő API függvények használatával!
    Stringet átalakít a következőképpen:
 	1. Minden numerikus karaktert változatlanul hagy
 	2. Minden betűt kisbetűvé alakít
-	3. Minden egyéb karaktert lecserél egy _ karakterre
+	3. Minden egyéb karaktert lecserél egy `_` karakterre
 
 2. Készítsetek egy programot, amely minden ékezetes karaktert lecserél a
 megfelelő, ékezet nélküli változatára!

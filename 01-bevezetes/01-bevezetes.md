@@ -469,7 +469,7 @@ kezdőtagból kiindulva (`N<100` parancssori paraméter, ezt ellenőrizzük is!)
 egészen addig, míg `a_n = 1`! A sorozat tagjait a következő szabályok alapján
 generáljuk:
 
-![Collatz-probléma](https://github.com/rlegendi/ELTE-javagyak/raw/master/01-bevezetes/collatz_equation.png.png "Kivételek Osztályhierarchiája")
+![Collatz-probléma](https://github.com/rlegendi/ELTE-javagyak/raw/master/01-bevezetes/collatz_equation.png "Collatz-probléma")
 
 Példa:
 

@@ -469,8 +469,7 @@ kezdőtagból kiindulva (`N<100` parancssori paraméter, ezt ellenőrizzük is!)
 egészen addig, míg `a_n = 1`! A sorozat tagjait a következő szabályok alapján
 generáljuk:
 
-	a_{n} = \frac{1}{2}~a_{n-1}, ha ~ a_{n-1} ~ pros $$ ill.
-	a_{n} = 3 * a_{n-1} + 1, ha ~ a_{n-1} ~ ptlan $$
+![Collatz-probléma](https://github.com/rlegendi/ELTE-javagyak/raw/master/01-bevezetes/collatz_equation.png.png "Kivételek Osztályhierarchiája")
 
 Példa:
 

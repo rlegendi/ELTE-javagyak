@@ -59,7 +59,8 @@ public class HelloWorldApp {
 };
 ```
 
-> **Fontos** Ha csomagokat használunk, akkor mindig a package root alól adjuk ki a fordításhoz/futtatáshoz szükséges parancsokat! Erre azért van szükség, mert ha nem állítod be kézzel a `CLASSPATH` változó értékét (azon útvonal, ahol a Java alapértelmezés szerint keresi a szükséges osztályokat), akkor az a `.` (azaz az aktuális) könyvtár. Így ha pl. a `foo.A` osztály hivatkozik egy `foo.bar.B` osztályra, és a `foo` könyvtárból fordítod az `A` osztályt, akkor a fordító/futtatókörnyezet a `foo` konyvtárban keres egy másik `foo`, majd abban egy `bar` könyvtárat!
+> **Fontos** Ha csomagokat használunk, akkor mindig a *package root* alól adjuk ki a fordításhoz/futtatáshoz szükséges parancsokat (azaz abból a könyvtárból, ami a legfelső szintű csomagokat tartalmazza)! Erre azért van szükség, mert ha nem állítod be kézzel a `CLASSPATH` változó értékét (ez azon útvonal, ahol a Java alapértelmezés szerint keresi a szükséges osztályokat), akkor az a `.` (azaz az aktuális) könyvtár. Így ha pl. a `foo.A` osztály hivatkozik egy `foo.bar.B` osztályra, és a `foo` könyvtárból fordítod az `A` osztályt, akkor a fordító/futtatókörnyezet a `foo` konyvtárban keres egy másik `foo`, majd abban egy `bar` könyvtárat!
+> 
 > Tehát a lényeg: **mindig a package root könyvtárból fordítsunk, futtassunk!**
 
 **Fordítás** a Java fájl **teljes útvonalának** megadásával:

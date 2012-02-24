@@ -59,14 +59,14 @@ public class HelloWorldApp {
 };
 ```
 
-Fordítás teljes útvonal megadásával:
+**Fordítás** a Java fájl **teljes útvonalának** megadásával:
 
-	C:\tmp>javac pkg/*.java
+	C:\tmp>javac pkg/HelloWorldApp.java
+
+**Futtatáshoz** azonban a **teljes hivatkozási név** szükséges (*fully qualified classname*):
 	
 	C:\tmp>java pkg.HelloWorldApp
 	Hello World!
-	
-	C:\tmp>
 
 Ha esetleg névütközés van (2 azonos nevű osztály), akkor minősített névvel
 érhetjük el az egyiket (pl. `java.util.List`, `java.awt.List`). Importokat

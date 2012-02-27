@@ -225,7 +225,7 @@ class B extends A {
     int g() { return 0; }     			// OK: Exception lista nem szamit
 	
     @Override
-    B   h() { return null; }; 			// OK: Visszateresi ertekre specializal
+    B h() { return null; }; 			// OK: Visszateresi ertekre specializal
 }
 ```
 

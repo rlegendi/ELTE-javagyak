@@ -142,7 +142,7 @@ akkor az eredmény egy `NullPointerException` lesz.
 * Rengeteg hasznos szolgálgatás:
 
 	``` java
-	int length = s.length;
+	int length = s.length();
 	char firstChar = s.charAt(0);
 	char[] carr = s.toCharArray();
 			

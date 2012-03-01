@@ -35,8 +35,7 @@ public class Student { // extends Object - ha nincs megadva, implicit ez lesz
 	  
 	@Override
 	public String toString() {
-		return "Student [name=" + name + "," + "ETR=" + ETR + ", " +
-		"yearsAtUni=" + yearsAtUni + "]";
+		return "Student [name=" + name + "," + "ETR=" + ETR + ", " + "yearsAtUni=" + yearsAtUni + "]";
 	}
 
 }
@@ -200,7 +199,7 @@ Főleg tulajdonságok, viselkedés hozzáadására. Például:
 ``` java
 interface Beolvashato {
 	public abstract void beolvas();
-	}
+}
 	
 class Kor implements Beolvashato {
 	...
@@ -364,7 +363,8 @@ Egészítsd ki az osztálydefinícióót az általános, `Object` osztályból �
 függvényeket (`equals()`, `hashCode()`, `toString()`).
 
 Egy mátrix típus rendelkezzen a fentieken túl a következő funkciókkal is:
-	* transzponálás
-	* nyom kiszámítása (átló elemeinek összege, ha négyzetes)
-	* mátrixok szorzása mátrixokkal (amennyiben lehetséges)
+
+* transzponálás
+* nyom kiszámítása (átló elemeinek összege, ha négyzetes)
+* mátrixok szorzása mátrixokkal (amennyiben lehetséges)
 

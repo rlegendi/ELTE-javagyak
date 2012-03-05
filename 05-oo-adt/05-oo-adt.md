@@ -70,7 +70,7 @@ abstract class Sikidom {
 	public abstract double kerulet();
 	public abstract double terulet();
 	
-	public void isTukorszimmetrikus() {
+	public boolean isTukorszimmetrikus() {
 		return tukorszimmetrikus;
 	}
 	
@@ -100,7 +100,7 @@ class Kor extends Sikidom {
 }
 	
 class Teglalap extends Sikidom {
-	private double a = 1, b = 1;
+	private double a = 1.0, b = 1.0;
 	  
 	public Teglalap() {
 		super( true );
@@ -236,13 +236,13 @@ class A extends B implements I1, I2 { ... }
 public abstract class Point {
 	private int x = 1, y = 1;
 
-	void move(final int dx, final int dy) {
+	public void move(final int dx, final int dy) {
 		x += dx;
 		y += dy;
 		alert();
 	}
 
-	abstract void alert();
+	protected abstract void alert();
 }
 ```
 

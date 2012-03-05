@@ -35,3 +35,6 @@ segítsége nélkül (nagyjából időrendben):
 * [Zöld Gábor](mailto:hurkajoker@gmail.com) (2011-2012-I, a Java 1.7 try-with-resources tutorial teljes fordítása)
 * [Rontó Balázs](mailto:rontobalazs@caesar.elte.hu) (2011-2012-I, a Java 1.7 diamond tutorial teljes fordítása))
 
+#### Corrections & Errata ####
+* [Nádai Levente](mailto:nnlete@gmail.com) (2011-2012-II)
+

@@ -80,7 +80,7 @@ akkor nem lehet felüldefiniálni (ld. később!).
 
 ``` java
 public class Main {
-	public static final int DEBUG = true;
+	public static final boolean DEBUG = true;
 
 	public sum(int[] arr) {
 		if ( DEBUG ) {
@@ -168,7 +168,7 @@ class Kor extends Sikidom {
 	}
 	
 class Teglalap extends Sikidom {
-	private double a = 1, b = 1;
+	private double a = 1.0, b = 1.0;
 		
 	@Override
 	public double kerulet() {

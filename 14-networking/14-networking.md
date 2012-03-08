@@ -201,9 +201,9 @@ Készítsetek egy minimális fájlszervert!
   * Egy megadott nevű fájl átküldése a felügyelt könyvtárból a kliensnek, amit
     az azonos néven mentsen le a lokális gépre egy `downloads` mappába.
 
-# v1.0: egy kliens egy kapcsolattal egy utasításvégrehajtást kezdeményezhet.
-# v2.0: A kliens addig hajthasson végre utasításokat, amíg a felhasználó
-  külön utasításra nem bontja a kapcsolatot.
+1. v1.0: egy kliens egy kapcsolattal egy utasításvégrehajtást kezdeményezhet.
+2. v2.0: A kliens addig hajthasson végre utasításokat, amíg a felhasználó
+   külön utasításra nem bontja a kapcsolatot.
 
 ### Remote shell alkalmazás ###
 
@@ -250,6 +250,7 @@ Az elkészült protokollt teszteljük le egy tetszőleges kliensalkalmazással (
 esetén WinSCP-vel, stb.).
 
 > **Tipp**
+> 
 > * Google &rarr; FTP over telnet
 >
 > * SSH-val ne próbálkozzatok :-)

@@ -10,14 +10,14 @@ Elméletben *OSI* modell (*"All People Seem To Need Data Processing"* vagy
 Szolgáltatási pont definiálásához három dolog kell:
 
 * Internet cím (IPv4 vagy DNS által feloldva)
-* Protokoll azonosító (TCP v. UDP)
+* Protokoll azonosító (most: TCP v. UDP)
 * Port (lehet TCP, UDP is, a címtartományok függetlenek (!), 16 bites egész
   érték 0-65535)
 
 Java esetén a `java.net.*` csomag használható.
 
 ## Összeköttetés-alapú kapcsolat ##
-Kliens-szerver modell, a szerver általában:
+Kliens-szerver modell, egy egyszálú szerver általában:
 
 * Lefoglal egy TCP portot
 * Várakozik egy kliens kapcsolódására
@@ -25,7 +25,7 @@ Kliens-szerver modell, a szerver általában:
   kiszolgálja
 * Folytatja a 2. ponttól
 
-A kliens működése általában:
+Egy kliens működése általában:
 
 * Lefoglal egy TCP portot, ezen keresztül kommunikál a szerverrel
 * Kapcsolódik a másik végponton a szerverhez, azon a porton, amelyet az
@@ -40,7 +40,7 @@ A kliens működése általában:
 > * a szerver szinte mindig többszálú (ld. következő óra!)
 
 ## Összeköttetés-mentes kapcsolat ##
-Majd előadáson ;]
+*User Data Protocol* - Majd előadáson ;]
 
 ## Címek kezelése ##
 Hasznunkra válik az `InetAddress` osztály:
@@ -100,7 +100,7 @@ public class SimpleServer {
 ```
 
 #### Használat ####
-	$ java SimpleServer 5000
+	$ java networking.SimpleServer 5000
 
 ### Kliens alkalmazás ###
 ``` java
@@ -137,9 +137,9 @@ public class SimpleClient {
 ```
 
 ### Használat ###
-	$ java SimpleClient localhost 5000 mentegetnem
-	$ java SimpleClient localhost 5000 ideseggesedi
-	$ java SimpleClient localhost 5000 exit
+	$ java networking.SimpleClient localhost 5000 mentegetnem
+	$ java networking.SimpleClient localhost 5000 ideseggesedi
+	$ java networking.SimpleClient localhost 5000 exit
 
 Palindromok, haha <http://hu.wikipedia.org/wiki/Magyar_nyelvű_palindromok_listája>
 
@@ -147,7 +147,14 @@ Palindromok, haha <http://hu.wikipedia.org/wiki/Magyar_nyelvű_palindromok_list�
 Socketek helyett `[Http]URLConnection` osztály használatával.
 
 ## Hasznos segédeszközök ##
-`ping`, `netstat`, `netcat`, `telnet`, `tcpdump`, etc. 
+
+* `ping`: Elérem-e a hostot?
+* `netstat`: Milyen foglalt portok vannak? Kihez kapcsolódnak?
+* `netcat`: Port nyitása a szerveren tesztelésre, rendben zajlik-e a kommunikáció?
+* `telnet`: Adott portra csatlakozás egy szerverhez, rendben átmennek-e az adatok?
+* `tcpdump`: Pontosan milyen adatok mennek át?
+* `ngrep`: Teljes hálózati forgalom megfigyelése
+* ...
 
 ## Feladatok ##
 
@@ -164,7 +171,12 @@ konzolon. Ennek szabványos kommunikációja így zajlik:
 
 	$
 
-> **Megjegyzés** A végén két új sor karakter van!
+> **Megjegyzés** A végén két újsor karakter van!
+
+> **Tipp**
+> Példaként próbáljatok megfigyelni egy teljes kommunikációváltást egy tetszőleges
+> weboldallal! Használjátok hozzá tetszőleges segédeszközt (pl. `ngrep`,
+LiveHTTPHeaders).
 
 ### Port scanner ###
 Készítsetek egy minimális port scanner alkalmazást! A programnak egyetlen
@@ -176,6 +188,31 @@ kapcsolatot létrehozni). Amennyiben ez sikeres, jelezzük a felhasználónak, m
 teszteljétek. A host azonosításához használjátok az `InetAddress` osztályt!
 
 Egy lista, amely tartalmazza a szolgáltatások neveit: <http://www.iana.org/assignments/port-numbers>
+
+### Fájlszerver ###
+Készítsetek egy minimális fájlszervert!
+
+* A szerver parancssori argumentumként kapja meg, hogy milyen porton figyeljen,
+  továbbá szüksége van egy lokális könyvtár elérési útjára. Ezután várjon kliensek
+  kapcsolódási kérelmére.
+
+* A kliensek a következő műveletek elvégzésére kérhetik a szervert:
+  * A szerver által felügyelt könyvtár tartalmának listázása
+  * Egy megadott nevű fájl átküldése a felügyelt könyvtárból a kliensnek, amit
+    az azonos néven mentsen le a lokális gépre egy `downloads` mappába.
+
+# v1.0: egy kliens egy kapcsolattal egy utasításvégrehajtást kezdeményezhet.
+# v2.0: A kliens addig hajthasson végre utasításokat, amíg a felhasználó
+  külön utasításra nem bontja a kapcsolatot.
+
+### Remote shell alkalmazás ###
+
+Készítsünk egy szokásos *remote shell* alkalmazást! Ez egy olyan szerver program,
+amely képes a klienstől kapott utasításokat konzolos utasításokat végrehajtani a
+szerveren, majd annak a teljes eredményét (*standard output*, *standard error*
+kimenetét) visszaküldi a szervernek.
+
+Az alkalmazást teszteld a `telnet` program segítségével!
 
 ## Bonyolultabb feladatok ##
 
@@ -209,5 +246,11 @@ ellátására képes. Nézz utána, hogy működik az adott protokoll, majd pró
 `telnet` segítségével használni. Ha sikerül, írj a kisebb funkciókra egy
 programot.
 
-> **Tipp** Google &rarr; FTP over telnet
+Az elkészült protokollt teszteljük le egy tetszőleges kliensalkalmazással (pl. FTP
+esetén WinSCP-vel, stb.).
+
+> **Tipp**
+> * Google &rarr; FTP over telnet
+>
+> * SSH-val ne próbálkozzatok :-)
 

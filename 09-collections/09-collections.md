@@ -198,7 +198,7 @@ megvalósításhoz használj egy `String` &rarr; `Integer` leképezést
 	$ cat input.txt
 	Ia! Ia! Cthulhu fhtagn!
 	$ java collections.WordCounter input.txt
-	{Ia!=2, Cthulhu=1, fhtagn=1}
+	{Ia!=2, Cthulhu=1, fhtagn!=1}
 
 Megoldási javaslat: minden szó esetén ellenőrizd le, hogy szerepel-e már az
 adatszerkezetben. Ha nem, rakd bele 1-es értékkel; ha igen, vedd ki az előző
@@ -226,6 +226,12 @@ class Foo implements Comparable<Foo> {
 
 Ha ennek használatára nincs lehetőség, marad egy saját `Comparator` készítése
 (pl. egyazon objektumot több szempont szerint kell rendezni).
+
+> **Megjegyzés** Vegyük észre, hogy a visszatérési érték számként definiálása
+> sokszor hasznos lehet. Ha például két felhasználó születési éve alapján
+> szeretnénk egy rendezést definiálni, egyszerűen vonjuk ki a két számot
+> egymásból (azonosság esetén az eredmény 0, negatív, ha a paraméter értéke
+> nagyobb, és negatív fordított esetben)!
 
 #### Feladat ####
 Készítsetek egy `Date` osztályt, amely tartalmazza az év, hónap, nap adatokat

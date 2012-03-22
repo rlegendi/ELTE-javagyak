@@ -162,9 +162,9 @@ Két lehetőség:
 		}
 	}
 	```
-   
-   Ugyanez névtelen osztállyal:
-   
+	
+	Ugyanez névtelen osztállyal:
+ 	
 	``` java
 	new Thread( new Runnable() {
 		@Override

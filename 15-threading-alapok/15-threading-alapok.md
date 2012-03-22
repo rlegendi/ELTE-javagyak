@@ -24,7 +24,7 @@ megvalósítási kérdés :-)
 **Common hülyeségek:**
 
 * Ha párhuzamos, akkor gyorsabb. **FAIL**
-* A program szerkezetén nem kell változtatni, ha párhuzamosítani akarunk. **FAIL** (*még akkor sem igaz, ha az adott API/Framework ezt állítja!)
+* A program szerkezetén nem kell változtatni, ha párhuzamosítani akarunk. **FAIL** (*még akkor sem igaz, ha az adott API/Framework ezt állítja!*)
 * Egyszerűbb megírni simán, aztán párhuzamosítani, két hét alatt meglesz. **FAIL**
 * Nem kell foglalkozni a párhuzamos kérdésekkel, úgysem jön elő. **FAIL**
 * Ha rosszul tervezem, írom meg, sebaj, majd kidebuggolom a hibát. **FAIL**
@@ -108,9 +108,9 @@ Két lehetőség:
 1. `Thread` osztályból származtatva: a `run()` metódust kell felüldefiniálni,
    majd a `start()` segítségével indítható az új szál. Megjegyzés: `start()`
    függvényt **nem bántod**, csak ha hívod a `super.start()` függvényt is!
-   
-   Példa:
-
+    
+    Példa:
+	
 	``` java
 	package threading;
 			
@@ -128,9 +128,9 @@ Két lehetőség:
 		}
 	}
 	```
-    
-    Névtelen osztállyal ugyanez:
-    
+	
+	Névtelen osztállyal ugyanez:
+	
 	``` java
 	new Thread() {
 		@Override
@@ -139,7 +139,7 @@ Két lehetőség:
 		}
 	}.start();
 	```
-    
+	
 2. `Runnable` interfész implementálása: ha a származtatás nem lehetséges (pl. a
    fő osztály egy `JFrame`, `Applet`, stb.). Egyetlen függvényt ír elő: `run()`,
    melyet meg kell valósítani. Indítani úgy lehet, ha egy `Thread` objektumnak
@@ -228,7 +228,8 @@ Két lehetőség:
 A szinkronizációt ezen problémák elkerülésével kell megoldani.
 
 ## Kölcsönös kizárás ##
-Javaban ún. *szinkronizációs burok* van:
+Javaban ún. *szinkronizációs burok* van, amelyet tetszőleges objektumra
+(`resource`) alkalmazhatunk:
 
 ``` java
 synchronized ( resource ) {
@@ -405,23 +406,23 @@ A `java.util.concurrent.*`, `java.util.concurrent.atomic.*`,
 * Lockok, pl. `ReentrantLock`, ...
 * Atomi változók: `AtomicLong`, `AtomicReference`, ...
 
-## Megjegyzések ##
+## Megjegyzés ##
 
-* A párhuzamosság egyik dimenzióját néztük csak most meg (eseményvezérelt típus),
-  számos más megközelítés létezik (adatvezérlésű modellek, pl. GPGPU-k, igényvezérelt
-  megközelítések). A profik sem tudnak tisztességes párhuzamos programot írni, még
-  keresik a módját.
+A párhuzamosság egyik dimenzióját néztük csak most meg (eseményvezérelt típus),
+számos más megközelítés létezik (adatvezérlésű modellek, pl. GPGPU-k, igényvezérelt
+megközelítések). A profik sem tudnak tisztességes párhuzamos programot írni, még
+keresik a módját.
 
 ## Olvasnivaló ##
 
 Párhuzamossággal kapcsolatban:
 
 1. Nyékyné Gaizler Judit (szerk.) et al.: Programozási nyelvek, Budapest, Kiskapu, ISBN: 9639301469, 2003.
-   Párhuzamos nyelvi elemek c. fejezet, áttekintés.
+   *Párhuzamos nyelvi elemek c. fejezet, áttekintés.*
 2. Brian Goetz et al.: Java Concurrency in Practice, Addison-Wesley Professional, ISBN-10: 0321349601, ISBN-13: 978-0321349606, May 19, 2006.
-   Java-specifikus alapmű.
+   *Java-specifikus alapmű.*
 3. Kozma László, Varga László: A szoftvertechnológia elméleti kérdései, Budapest, ELTE Eötvös Kiadó Kft., ISBN: 963 463 648 9, 2007.
-   ELTE-specifikus formális keret :-)
+   *ELTE-specifikus formális keret :-)*
 
 ## Feladatok ##
 1. Készíts egy 2 szállal működő programot, amelyek neve térjen el! A szálak

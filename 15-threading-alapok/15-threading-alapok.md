@@ -459,13 +459,12 @@ Párhuzamossággal kapcsolatban:
 8. Készíts egy egyszerű grafikus alkalmazást, amely egyetlen panelt tartalmaz, az
    aktuális idővel. A panelen található információt másodpercenként frissítsd! Az
    osztály definíciója nézzen ki a következőképpen:
-
-``` java
-public class ... extends JFrame implements Runnable {
-	...
-}
-```
-		
+	
+	``` java
+	public class ... extends JFrame implements Runnable {
+		...
+	}
+	```
 9. Egészítsd ki az előző feladatot úgy, hogy ha ráklikkel a felhasználó a
    megjelenített `JLabel`-re, akkor szüneteltesse a frissítést a program. Ha újra
    ráklikkel a felhasználó, akkor folytassa a számlálást!
@@ -483,3 +482,107 @@ fájlba soronként a weboldal címét (a `<meta name="title" content="xxx">`
 értékét), valamint az éppen vizsgált URL-t. Parancssori argumentumként kapjon
 egy URL címet, amelyet végigolvasva további URL címeket keressenek a szálak.
 
+### Chat alkalmazás ###
+Dolgozzatok csoportokban, és készítsetek egy egyszerű chat alkalmazást!
+A csoport egy tagja készítse el a szervert, a többiek pedig a kliens alkalmazásokat!
+
+#### Szerver ####
+
+A szerver legyen egy többszálú alkalmazás: minden klienst egy-egy saját szálban
+szolgáljon ki.
+
+A szerver váza a következőképpen nézhet ki például:
+
+``` java
+public class ChatServer {
+	public static final int PORT = 2442;
+	
+	public static void main(final String[] args) {
+		try (ServerSocket socket = new ServerSocket( PORT )) {
+			long ctr = 0;
+			System.out.println( "Server active, listening..." );
+			while ( true ) {
+				final Thread handler = new ClientHandler( ctr++, socket.accept() );
+				handler.start();
+				
+				System.out.println( "New handler initiated: " + handler );
+			}
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+```
+
+Megvalósítandó a `ClientHandler` osztály, mely származzon a `Thread` osztályból!
+
+Konstruktorának első paramétere egy egyedi ID, második pedig a fogadott `Socket` kapcsolat.
+
+Az osztály statikus adattagként tartalmazzon egy listát, amely tartalmazza az összes, már
+csatlakozott kliens példányát!
+
+A `ClientHandler` egy ciklusban figyeli, hogy jön-e üzenet az adott klienstől, és ha kap
+egyet, azt továbbküldi az összes többinek (*broadcast*).
+
+Figyelj a szinkronizációra, az erőforrások helyes használatára, indokolt esetben megfelelő
+szinkronizált adatszerkezet használatára, és az esetlegesen fellépő hibák megfelelő kezelésére
+(nem célszerű, ha az egész szerver meghal, ha egy kliens véletlenül lekapcsolódik)!
+
+#### Kliens ####
+
+A kliens viszonylag egyszerű:
+
+``` java
+public class ChatClient {
+	private final Thread reader;
+	private final Thread writer;
+	
+	public ChatClient(final Socket socket)
+			throws IOException {
+		reader = new ConsoleReader( socket );
+		writer = new ConsoleWriter( socket );
+	}
+	
+	public void begin()
+			throws InterruptedException {
+		reader.start();
+		writer.start();
+		
+		reader.join();
+		writer.join();
+	}
+	
+	public static void main(final String[] args) {
+		try (Socket socket = new Socket( "localhost", ChatServer.PORT )) {
+			final ChatClient client = new ChatClient( socket );
+			client.begin();
+		} catch (final IOException | InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+}
+```
+
+Készíts egy `ConsoleReader` és egy `ConsoleWriter` szálat (mindkettő legyen a
+`Thread` osztály leszármazottja). A program indulásakor induljon el mindkét szál,
+majd várja is be őket (`join()` utasítás).
+
+A `ConsoleWriter` osztály feladata, hogy folyamatosan olvas a standard inputról,
+és minden beolvasott sort továbbít a szerver felé (azaz *"beleírja a socketbe"*).
+
+A `ConsoleReader` osztály feladata, hogy folyamatosan figyeli a socketről érkező
+információt, és ha beolvas valamit, akkor kiírja azt a standard inputra (azaz
+*"kiolvas minden adatot a socketből"*).
+
+#### Továbbfejlesztési lehetőségek ####
+
+* A szerver host (kliens esetében) és port (mind a kliens, mind a szerver esetében) legyen
+  parancssori argumentum.
+* Minden üzenet körbeküldése esetén tartalmazza az üzenet a küldő fél egyedi azonosítóját.
+* Minden esetben, amikor egy kliens csatlakozik a szerverhez, legyen egy körüzenet a többi
+  kliens felé, hogy az adott azonosítójú kliens belépett a beszélgetésbe.
+* Minden esetben, amikor egy kliens lekapcsolódik a szerverről, legyen egy körüzenet a többi
+  kliens felé, hogy az adott azonosítójú kliens kilépett a beszélgetésből.
+* Amikor egy kliens csatlakozik a szerverhez, első üzenetként adja meg a használni kívánt
+  azonosítót (egyetlen szó). Amennyiben az már foglalt, a szerver ne engedje kapcsolódni a
+  klienst, valamint adjon neki megfelelő hibaüzenetet.

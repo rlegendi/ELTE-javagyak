@@ -5,20 +5,42 @@ Párhuzamosság: több részfeladat egyidejűleg történő végrehajtása.
 
 Miért?
 
-* A feladat logikai szerkezete
-* A program több, fizikailag is független eszközön fut
-* Hatékonyság (v.ö. Amdahl's law <http://en.wikipedia.org/wiki/Amdahl's_law>)
+* A feladat logikai szerkezete indokolja (egyszerűen így egyszerű megközelíteni a problémát, pl. termelő-fogyasztó rendszerek, grafikus alkalmazásban progress bar, stb.)
+* A program több, fizikailag is független eszközön fut (weboldal kiszolgálása az egyiken, adott szolgáltatás egy másikon, *load balancing*, stb.)
+* Hatékonyság (v.ö. Amdahl's law <http://en.wikipedia.org/wiki/Amdahl's_law>, ezt meg keményen be lehet nézni)
 
 Elég régóta foglalkoztatja az embereket. *Látszat párhuzamosságról* is hallani
-még (oprendszerek, multitasking: egyszerre egy folyamatot hajt végre, de adott
-időtartam alatt akár többet is), de a *valódi párhuzamosság* is már mindennapos
+még (oprendszerek, multitasking: egyszerre egy folyamatot hajt végre, mert csak
+egy processzor van a gépben, de adott időtartam alatt akár többet is, így lehet
+pl. Mariozni a Winamp mellett, és egyáltalán bármilyen programot futtatni az
+operációs rendszeren kívül), de a *valódi párhuzamosság* is már mindennapos
 (pl. többmagos, többprocesszoros gépekben).
 
+> **Megjegyzés** A folyamatok konkrét leképezése egy vagy több processzorra
+megvalósítási kérdés :-)
+
+## Mítoszok és tévhitek ##
+
+**Common hülyeségek:**
+
+* Ha párhuzamos, akkor gyorsabb. **FAIL**
+* A program szerkezetén nem kell változtatni, ha párhuzamosítani akarunk. **FAIL** (*még akkor sem igaz, ha az adott API/Framework ezt állítja!)
+* Egyszerűbb megírni simán, aztán párhuzamosítani, két hét alatt meglesz. **FAIL**
+* Nem kell foglalkozni a párhuzamos kérdésekkel, úgysem jön elő. **FAIL**
+* Ha rosszul tervezem, írom meg, sebaj, majd kidebuggolom a hibát. **FAIL**
+
+**A véres valóság:**
+
+* A párhuzamos programozás **bonyolult**
+* A párhuzamosságnak **ára van** (*skálázható megoldások kellenek és mérések*)
+* A **hibák felfedése irgalmatlanul nehéz** (nemdeterminisztikusság, *kozmikus sugárzással, napkitörésekkel magyarázni könnyű*)
+* Tisztességes megoldáshoz alapvető **struktúrális módosításra** van szükség (pl. más *design patternek*)
+
 ## Párhuzamosság szintjei ##
-* Utasítások
-* Taskok
-* Folyamatok (processes)
-* **Szálak (threads)**
+* Utasítások - multicore rendszerek
+* Taskok - párhuzamos alprogramok
+* Folyamatok (*processes*) - külön memóriaterülettel, pl. párhuzamosan futó alkalmazások
+* **Szálak (threads)** - közös memóriaszegmenssel is rendelkezhetnek, azonos folyamaton belül futnak
 
 Viselkedésük alapján lehetnek:
 
@@ -28,9 +50,15 @@ Viselkedésük alapján lehetnek:
 
 ## Alapproblémák ##
 
-* Kommunikáció: kommunikációs közeg: socket, signal handler, fájl, osztott
+* **Kommunikáció** kommunikációs közeg: socket, signal handler, fájl, osztott
   memória, etc.
-* Szinkronizáció: folyamatok összehangolása, szinkron - aszinkron
+* **Szinkronizáció** folyamatok összehangolása, szinkron - aszinkron
+
+### Megoldások ###
+
+* Kölcsönös kizárás és szinkronizáció
+  * "Tevékeny várakozás" (*busy waiting*), szemafor, monitor, feltételes kritikus szakasz, ...
+* Összehangolásoknál egyedi problémák léphetnek fel (holtpont, kiéheztetés, livelock)
 
 ## Alapdefiníciók ##
 
@@ -42,8 +70,37 @@ Viselkedésük alapján lehetnek:
 * **Atomi művelet** bármilyen közbeeső állapota nem látható a többi folyamat
   számára
 
-Miért kell ez az egész? Pl. `x++`, 64 bites JVM , `long`-on ábrázolva 2
-regiszterben van tárolva &rarr; 2 olvasás + 2 írás
+### Példa probléma ###
+
+Tekintsük az alábbi kódrészletet:
+
+	public class FlawedIdIncrementer {
+		private int id = 0;
+		public int getId() {
+			return id++;
+		}
+	}
+
+Egyszerű, mi? Na nem :-)
+
+**A fordítóprogram, JIT, valamint a Java memóriamodell által oszthatatlan (atomi)
+műveletnek tekintett utasítások alapján *12 870* különböző végrehajtási módja
+lehet a fenti pár sornak!**
+
+Amennyiben `long` típust használunk, az eset még borzasztóbb, *2 704 156* különböző
+eset lehetséges, mert mind a kiolvasás, mind a tárolás 2-2 utasítás, mert a JVM a
+`long` típust két virtuális regiszteren tárolja (hiába használsz 64 bites virtuális
+gépet).
+
+Természetesen ezeknek az útvonalaknak egy nagy része helyes eredményt ad - a gond
+csak az, hogy *egy része nem*.
+
+Általában `N` utasítás és `T` szál esetén a végrehajtási utak száma megadható a
+következő képlettel:
+
+	(N * T)! / N!^T
+
+A fenti kódblokk esetén `N = 8` bájtkód utasítás keletkezik.
 
 ## Szálak létrehozása ##
 Két lehetőség:
@@ -54,68 +111,68 @@ Két lehetőség:
    
    Példa:
 
-``` java
-package threading;
-		
-class TestThread extends Thread {
-	@Override
-	public void run() {
-		System.out.println("TestThread");
+	``` java
+	package threading;
+			
+	class TestThread extends Thread {
+		@Override
+		public void run() {
+			System.out.println("TestThread");
+		}
 	}
-}
 
-public class Create1 {
-	public static void main(String[] args) {
-		TestThread test = new TestThread();
-		test.start();
+	public class Create1 {
+		public static void main(String[] args) {
+			TestThread test = new TestThread();
+			test.start();
+		}
 	}
-}
-```
-
-   Névtelen osztállyal ugyanez:
-
-``` java
-new Thread() {
-	@Override
-	public void run() {
-		System.out.println("TestThread");
-	}
-}.start();
-```
-
+	```
+    
+    Névtelen osztállyal ugyanez:
+    
+	``` java
+	new Thread() {
+		@Override
+		public void run() {
+			System.out.println("TestThread");
+		}
+	}.start();
+	```
+    
 2. `Runnable` interfész implementálása: ha a származtatás nem lehetséges (pl. a
    fő osztály egy `JFrame`, `Applet`, stb.). Egyetlen függvényt ír elő: `run()`,
    melyet meg kell valósítani. Indítani úgy lehet, ha egy `Thread` objektumnak
    megadod paraméterként, és arra meghívjuk a `start()` eljárást:
-
-``` java
-package threading;
-		
-class TestRunnable implements Runnable {
-	@Override
-	public void run() {
-		System.out.println("TestRunnable");
+   
+	``` java
+	package threading;
+			
+	class TestRunnable implements Runnable {
+		@Override
+		public void run() {
+			System.out.println("TestRunnable");
+		}
 	}
-}
-		
-public class Create2 {
-	public static void main(String[] args) {
-		Thread thread = new Thread( new TestRunnable() );
-		thread.start();
+			
+	public class Create2 {
+		public static void main(String[] args) {
+			Thread thread = new Thread( new TestRunnable() );
+			thread.start();
+		}
 	}
-}
-```
-
-  Ugyanez névtelen osztállyal:
-
-``` java
-new Thread( new Runnable() {
-	@Override
-	public void run() {
-		System.out.println("TestRunnable");
-	}
-}).start();
-```
+	```
+   
+   Ugyanez névtelen osztállyal:
+   
+	``` java
+	new Thread( new Runnable() {
+		@Override
+		public void run() {
+			System.out.println("TestRunnable");
+		}
+	}).start();
+	```
 
 ## Szálak függvényei ##
 
@@ -158,7 +215,7 @@ new Thread( new Runnable() {
 
 ## Felmerülő problémák ##
 
-* Azon túl, hogy megbízhatóság \dots
+* Azon túl, hogy **megbízhatóság**...
 * **Holtpont** kölcsönösen egymásra várakoznak a folyamatok, és egyik sem tud
   tovább haladni
 * **Kiéheztetés** több folyamat azonos erőforrást használ, és valamelyik ritkán
@@ -219,7 +276,6 @@ class MyClass {
 > `stop()` kiváltására írt példát feljebb!).
 
 > **Megjegyzés** Immutable osztályokhoz nem kell szinkronizálni!
-
 
 ## Szinkronizáció üzenetekkel ##
 Feltételes beváráshoz: `Object` osztályban definiált `wait()`, `notify()` és
@@ -344,10 +400,28 @@ final List<T> list = Collections.synchronizedList(new ArrayList<T>(...));
 A `java.util.concurrent.*`, `java.util.concurrent.atomic.*`,
 `java.util.concurrent.lock.*` csomagok változatos, hatékony eszközöket nyújtanak:
 
-* Barrier, Semaphor, FutureTask, ...
-* Adatszerkezetek: ConcurrentHashMap, BlockingQueue, ...
-* Lockok, pl. ReentrantLock, ...
-* Atomi változók: AtomicLong, AtomicReference, ...
+* `Barrier`, `Semaphor`, `FutureTask`, ...
+* Adatszerkezetek: `ConcurrentHashMap`, `BlockingQueue`, ...
+* Lockok, pl. `ReentrantLock`, ...
+* Atomi változók: `AtomicLong`, `AtomicReference`, ...
+
+## Megjegyzések ##
+
+* A párhuzamosság egyik dimenzióját néztük csak most meg (eseményvezérelt típus),
+  számos más megközelítés létezik (adatvezérlésű modellek, pl. GPGPU-k, igényvezérelt
+  megközelítések). A profik sem tudnak tisztességes párhuzamos programot írni, még
+  keresik a módját.
+
+## Olvasnivaló ##
+
+Párhuzamossággal kapcsolatban:
+
+1. Nyékyné Gaizler Judit (szerk.) et al.: Programozási nyelvek, Budapest, Kiskapu, ISBN: 9639301469, 2003.
+   Párhuzamos nyelvi elemek c. fejezet, áttekintés.
+2. Brian Goetz et al.: Java Concurrency in Practice, Addison-Wesley Professional, ISBN-10: 0321349601, ISBN-13: 978-0321349606, May 19, 2006.
+   Java-specifikus alapmű.
+3. Kozma László, Varga László: A szoftvertechnológia elméleti kérdései, Budapest, ELTE Eötvös Kiadó Kft., ISBN: 963 463 648 9, 2007.
+   ELTE-specifikus formális keret :-)
 
 ## Feladatok ##
 1. Készíts egy 2 szállal működő programot, amelyek neve térjen el! A szálak
@@ -407,3 +481,4 @@ interneten, minden szám max. 50 weboldalt járjon végig, és írják ki egy k�
 fájlba soronként a weboldal címét (a `<meta name="title" content="xxx">`
 értékét), valamint az éppen vizsgált URL-t. Parancssori argumentumként kapjon
 egy URL címet, amelyet végigolvasva további URL címeket keressenek a szálak.
+

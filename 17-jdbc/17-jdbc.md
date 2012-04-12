@@ -188,16 +188,7 @@ változtattak a DB-ben (itt `[0, 1, 1, 1, ...]` lesz).
 > * <http://www.jdbc-tutorial.com/>
 > * <http://java.sun.com/developer/technicalArticles/J2SE/Desktop/javadb/>
 
-## Grafikus Kliens ##
-Készítsetek egy egyszerű adatbázis kezelő grafikus felületet, amely az alábbi
-ábrán látható! A program tartalmazzon egy `JTextField` komponenst, ahol a
-lekérdezést lehet megadni, egy `JTextArea` komponenst, ahol megjeleníti az
-eredményt, valamint egy gombot, amivel le lehet futtatni a megadott SQL
-utasítást.
-
-![JDBC alkalmazás](https://github.com/rlegendi/ELTE-javagyak/raw/master/17-jdbc/jdbc_application.png "JDBC alkalmazás")
-
-**Képernyőkép** - A program grafikus szerkezete
+## Feladatok ##
 
 * A megvalósításhoz használjátok a következő címen elérhető `derby.jar` fájlt:
   <http://people.inf.elte.hu/legendi/resources/java/materials/derby.jar>
@@ -211,7 +202,18 @@ utasítást.
   eredményben, ezt a `ResultSet#getMetaData()` függvényen keresztül elért
   objektumtól tudjátok lekérdezni.
 
-## Névjegyzék ##
+### Grafikus Kliens ###
+Készítsetek egy egyszerű adatbázis kezelő grafikus felületet, amely az alábbi
+ábrán látható! A program tartalmazzon egy `JTextField` komponenst, ahol a
+lekérdezést lehet megadni, egy `JTextArea` komponenst, ahol megjeleníti az
+eredményt, valamint egy gombot, amivel le lehet futtatni a megadott SQL
+utasítást.
+
+![JDBC alkalmazás](https://github.com/rlegendi/ELTE-javagyak/raw/master/17-jdbc/jdbc_application.png "JDBC alkalmazás")
+
+**Képernyőkép** - A program grafikus szerkezete
+
+### Névjegyzék ###
 
 Készítsetek egy szerveralkalmazást, amely adatbázisban képes tárolni elérhetőségeket!
 
@@ -229,11 +231,11 @@ A szerverhez kliensek csatlakoznak (egyelőre egyszerre egy), és képesek ezeke
 
 A feladatot vagy RMI, vagy saját protokoll implementálásával socketeken keresztül oldhatod meg.
 
-### Továbbfejlesztési lehetőségek ###
+#### Továbbfejlesztési lehetőségek ####
 
-* Feltesszük, hogy egy személynek egyszerre csak egy elérhetősége van. Készíts egy másik táblát, ami a névhez különböző elérhetőségeket rendel!
-* Készítsd fel az alkalmazást tranzakciókezelésre!
-* Egyszerre akár több kliens is használhassa párhuzamosan a szervert!
+* Feltesszük, hogy egy személynek egyszerre csak egy elérhetősége van. Készíts egy másik táblát, ami a névhez különböző elérhetőségeket rendel.
+* Készítsd fel az alkalmazást tranzakciókezelésre.
+* Egyszerre akár több kliens is használhassa párhuzamosan a szervert.
 * A kliens képes legyen egy egyszerű CSV (*Coma Separated Values*) fájlból adatokat beolvasni, és azokat egyszerre továbbítva tárolni a szerverben.
 * A kliens legyen képes egy egyszerű HTML formátumű listát generálni a szerveren tárolt azonosítókból.
 

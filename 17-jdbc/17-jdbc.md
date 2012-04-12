@@ -132,38 +132,38 @@ Három lehetőség:
   áttekinthetőség érdekében a `String` literál lezáró `"` jeleket és a
   konkatenációt elhagytam):
 
-``` java
-String strCreateTable = "CREATE TABLE inventory
-	(
-	id INT PRIMARY KEY,
-	product VARCHAR(50),
-	quantity INT,
-	price DECIMAL
-	)";
-		
-statement = dbConnection.createStatement();
-statement.execute(strCreateTable);
-```
+	``` java
+	String strCreateTable = "CREATE TABLE inventory
+		(
+		id INT PRIMARY KEY,
+		product VARCHAR(50),
+		quantity INT,
+		price DECIMAL
+		)";
+			
+	statement = dbConnection.createStatement();
+	statement.execute(strCreateTable);
+	```
 
 * `executeQuery(String)`: lekérdezéshez, az eredmény egy `ResultSet` objektum
   lesz. %Mindig olvassátok végig az eredményt, mert addig nem záródik. Pl.:
 
-``` java
-ResultSet rs = statement.executeQuery("SELECT * FROM inventory");
-while (rs.next()) {
-    String p = rs.getString("product");
-    int q = rs.getInt("quantity");
-    double d = rs.getDouble("price");
-    ...
-}
-```
+	``` java
+	ResultSet rs = statement.executeQuery("SELECT * FROM inventory");
+	while (rs.next()) {
+	    String p = rs.getString("product");
+	    int q = rs.getInt("quantity");
+	    double d = rs.getDouble("price");
+	    ...
+	}
+	```
 
 * `executeUpdate(String)`: insert, update, delete, és adatdefiníciós
   utasításokhoz, az eredmény a módosított sorok száma (vagy 0). Pl.:
 
-``` java
-statement.executeUpdate("DELETE WHERE id=0");
-```
+	``` java
+	statement.executeUpdate("DELETE WHERE id=0");
+	```
 
 ## Kötegelt végrehajtás ##
 Van rá lehetőség, hogy parancsokat összefogjunk, és egyszerre küldjünk el a
@@ -188,7 +188,7 @@ változtattak a DB-ben (itt `[0, 1, 1, 1, ...]` lesz).
 > * <http://www.jdbc-tutorial.com/>
 > * <http://java.sun.com/developer/technicalArticles/J2SE/Desktop/javadb/>
 
-## Feladat ##
+## Grafikus Kliens ##
 Készítsetek egy egyszerű adatbázis kezelő grafikus felületet, amely az alábbi
 ábrán látható! A program tartalmazzon egy `JTextField` komponenst, ahol a
 lekérdezést lehet megadni, egy `JTextArea` komponenst, ahol megjeleníti az
@@ -210,3 +210,30 @@ utasítást.
   metódussal írjátok ki. Ehhez tudnotok kell, hogy hány oszlop található az
   eredményben, ezt a `ResultSet#getMetaData()` függvényen keresztül elért
   objektumtól tudjátok lekérdezni.
+
+## Névjegyzék ##
+
+Készítsetek egy szerveralkalmazást, amely adatbázisban képes tárolni elérhetőségeket!
+
+A következő adatok szükségesek egy bejegyzéshez:
+
+* Név
+* Becenév (opcionális)
+* Telefonszám
+* E-mail cím
+* Cím
+* Születésnap
+* Kép (URL)
+
+A szerverhez kliensek csatlakoznak (egyelőre egyszerre egy), és képesek ezeket az adatokat létrehozni, lekérdezni, frissíteni és törölni (CRUD). A kliens elég, ha egyszerű konzolos felülettel rendelkezik.
+
+A feladatot vagy RMI, vagy saját protokoll implementálásával socketeken keresztül oldhatod meg.
+
+### Továbbfejlesztési lehetőségek ###
+
+* Feltesszük, hogy egy személynek egyszerre csak egy elérhetősége van. Készíts egy másik táblát, ami a névhez különböző elérhetőségeket rendel!
+* Készítsd fel az alkalmazást tranzakciókezelésre!
+* Egyszerre akár több kliens is használhassa párhuzamosan a szervert!
+* A kliens képes legyen egy egyszerű CSV (*Coma Separated Values*) fájlból adatokat beolvasni, és azokat egyszerre továbbítva tárolni a szerverben.
+* A kliens legyen képes egy egyszerű HTML formátumű listát generálni a szerveren tárolt azonosítókból.
+

@@ -29,27 +29,27 @@ Objektumreferencia megszerzése:
 
 * Objektumtól lekérdezhető:
 
-``` java
-Class<?> clazz = this.getClass();
-```
+	``` java
+	Class<?> clazz = this.getClass();
+	```
 
 * Osztálytól lekérdezhető:
 
-``` java
-Class<?> intClazz = int.class;
-```
+	``` java
+	Class<?> intClazz = int.class;
+	```
 
 * Közvetlenül név szerint lekérdezhető:
 
-``` java
-Class<?> clazz = Class.forName("java.lang.Boolean");
-```
+	``` java
+	Class<?> clazz = Class.forName("java.lang.Boolean");
+	```
 
 * Új osztály létrehozása:
 
-``` java
-Proxy.getProxyClass(clazz.getClassLoader(), clazz.getInterfaces());
-```
+	``` java
+	Proxy.getProxyClass(clazz.getClassLoader(), clazz.getInterfaces());
+	```
 
 ## Példa ##
 ``` java

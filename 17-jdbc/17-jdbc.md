@@ -40,7 +40,7 @@ Ahol:
   az adattábla nevét, és tartalmazhatja a felhasználó nevét, jelszavát
 
 **Itt a gyakon egy egyszerű, minimális DB kezelőt, a Derby-t fogjuk használni (*"Java DB is a free, fast, robust, full-featured pure Java database that fits in a 2.5MB JAR file, blah-blah-buzzword-blah-blah)"*.**
-Elérhető az alábbi címen: <http://www.oracle.com/technetwork/java/javadb/overview/index.html>.
+Elérhető az alábbi címen: <http://www.oracle.com/technetwork/java/javadb/overview/index.html>, azonban JDK 1.6 óta része a standard JDK-nak is JavaDB néven (már a default installnak), és általában a `jdk/db` könyvtár alatt található az összes szükséges állománnyal.
 Ehhez a következő osztály dinamikus betöltésére van szükség (ő implementálja a
 `Driver` interfészt):
 

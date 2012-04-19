@@ -142,7 +142,7 @@ public class EchoClient {
 		-Djava.security.policy=server.policy
 		-Djava.rmi.server.codebase=file:/<path_a_classfile_okhoz>
 
-   > **Megjegyzés** Figyelni, itt **nem** `file://` kell!
+	> **Megjegyzés** Figyelni, itt **nem** `file://` kell!
 
 5. Futtassuk a klienst!
 

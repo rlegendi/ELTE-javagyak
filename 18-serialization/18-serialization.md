@@ -157,8 +157,7 @@ private void readObject(ObjectInputStream in)
 	}
 	```
 
-  A program a szerializáció során kezelje ezt az attribútumot nem perzisztens
-  attribútumnak!
+	A program a szerializáció során kezelje ezt az attribútumot nem perzisztens attribútumnak!
 
 * Készítsz egy egyszerű programot, amely egy tetszőleges `String`
   adatszerkezettel rendelkezik (tömb, lista, halmaz, etc.). Oldd meg az osztály

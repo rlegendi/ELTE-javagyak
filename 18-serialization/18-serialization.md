@@ -125,17 +125,17 @@ private void readObject(ObjectInputStream in)
 * Az `ObjectOutputStream` cache-el! Amint kapott egy referenciát, azt megjegyzi,
 és a többiről nem is akar tudni:
 
-``` java
-oos.writeObject( obj );
-obj.value = 1; // Hiaba allitjuk at, ha elotte nem 1 volt
-oos.writeObject(obj); // akkor itt az eredeti erteke lesz
-```
+	``` java
+	oos.writeObject( obj );
+	obj.value = 1; // Hiaba allitjuk at, ha elotte nem 1 volt
+	oos.writeObject(obj); // akkor itt az eredeti erteke lesz
+	```
 
 * Verziókezelés:
 
-``` java
-private static final long serialVersionUID = <ronda_nagy_generalt_szam>L;
-```
+	``` java
+	private static final long serialVersionUID = <ronda_nagy_generalt_szam>L;
+	```
 	
 * Teljesítmény: a default Java szerializációnál vannak hatékonyabb frameworkök!
 
@@ -145,17 +145,17 @@ private static final long serialVersionUID = <ronda_nagy_generalt_szam>L;
 * A kör legyen képes megmondani a kerületét! A kerületszámolás legyen lusta
   kiértékelésű:
 
-``` java
-private Double c = null;
-		
-public double getCircumference() {
-	if (null == c) {
-		c = new Double(...);
+	``` java
+	private Double c = null;
+			
+	public double getCircumference() {
+		if (null == c) {
+			c = new Double(...);
+		}
+			    
+		return c.doubleValue();
 	}
-		    
-	return c.doubleValue();
-}
-```
+	```
 
   A program a szerializáció során kezelje ezt az attribútumot nem perzisztens
   attribútumnak!

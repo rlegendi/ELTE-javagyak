@@ -70,6 +70,9 @@ Connection dbConnection = null;
 String strUrl = "jdbc:derby:DefaultAddressBook;user=dbuser;password=dbuserpwd";
 try {
     dbConnection = DriverManager.getConnection(strUrl);
+    
+    // ...
+    
 } catch (SQLException e) {
     e.printStackTrace();
 }
@@ -85,15 +88,21 @@ String strUrl = "jdbc:derby:DefaultAddressBook";
 Properties props = new Properties();
 props.put("user", "dbuser");
 props.put("password", "dbuserpwd");
+
 try {
     dbConnection = DriverManager.getConnection(strUrl, props);
+    
+    // ...
+    
 } catch(SQLException sqle) {
     sqle.printStackTrace();
 }
 ```
 
 Hova kerül a DB? A `derby.system.home` system property által beállított érték
-határozza meg. Ezt vagy kódból lehet beállítani:
+határozza meg. Ezt vagy kódból lehet beállítani (**fontos**, hogy a `Driver`
+**betöltése előtt** tegyük ezt meg, különben a derby az aktuális könyvtárba
+szemetel):
 
 ``` java
 System.setProperty("derby.system.home", "/tmp");
@@ -133,20 +142,20 @@ Három lehetőség:
   konkatenációt elhagytam):
 
 	``` java
-	String strCreateTable = "CREATE TABLE inventory
-		(
-		id INT PRIMARY KEY,
-		product VARCHAR(50),
-		quantity INT,
-		price DECIMAL
-		)";
+	String strCreateTable = "CREATE TABLE inventory" +
+		"(" +
+		"id INT PRIMARY KEY," +
+		"product VARCHAR(50)," +
+		"quantity INT," +
+		"price DECIMAL" +
+		")";
 			
-	statement = dbConnection.createStatement();
+	Statement statement = dbConnection.createStatement();
 	statement.execute(strCreateTable);
 	```
 
 * `executeQuery(String)`: lekérdezéshez, az eredmény egy `ResultSet` objektum
-  lesz. %Mindig olvassátok végig az eredményt, mert addig nem záródik. Pl.:
+  lesz. *Mindig olvassátok végig az eredményt, mert addig nem záródik.* Pl.:
 
 	``` java
 	ResultSet rs = statement.executeQuery("SELECT * FROM inventory");
@@ -164,6 +173,13 @@ Három lehetőség:
 	``` java
 	statement.executeUpdate("DELETE WHERE id=0");
 	```
+
+> **Megjegyzés** A Java 7 óta viszonylag egyszerűbb a kezelés, automatikusan
+> lezárható (részletesen a [kiegészítő anyagban](https://github.com/rlegendi/ELTE-javagyak/blob/master/I-java-1.7/try-with-resources.md)):
+>
+> 	try ( Statement stmt = con.createStatement() ) {
+>		...
+>	}
 
 ## Kötegelt végrehajtás ##
 Van rá lehetőség, hogy parancsokat összefogjunk, és egyszerre küldjünk el a

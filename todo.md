@@ -113,6 +113,9 @@ kivételkezelést, konstruktorokat
 ### 12-gui-alapok ###
 * Tic-Tac-Toe feladat (régen volt?)
 
+### JDBC ### 
+* Jó lenne 2 egyszerű példa: egy inicializáló alkalmazás (feltölt egy DB-t adattal, etc.), illetve egy lekérdező alkalmazás (az meg kapcsolódhatna a már létrehozott DB-hez, és lekérdezhetne). A `shutdown=true` már kiszedhető, nem kell az új változatokban.
+
 ### D-assert ###
 * DbC szekciót kiegészíteni
 

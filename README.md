@@ -37,4 +37,5 @@ segítsége nélkül (nagyjából időrendben):
 
 #### Corrections & Errata ####
 * [Nádai Levente](mailto:nnlete@gmail.com) (2011-2012-II)
+* [Hudoba Péter](mailto:hudi1989@gmail.com) (2011-2012-II)
 

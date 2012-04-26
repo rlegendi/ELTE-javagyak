@@ -31,8 +31,8 @@ FIRST alapelvek:
 ## Mit követel meg? ##
 A tervezést, kódstrukturálást is átalakítja.
 
-* Kicsit más kódszervezés kell
-* Sok POJO, minimális funkcionalitással -> azt könnyű tesztelni
+* Kicsit más kódszervezés kell (mellékhatások elkerülése - azt nem tudod tesztelni)
+* Sok POJO, minimális funkcionalitással (azt könnyű tesztelni)
 * Lazy instantiationt kidobni (premature optimalizáció)
 	* Osztály nem vállalja fel a másodlagos feladatokat (Single Resp. Princ.)
 	* Helyette inkább IoC/Dep. Inj. (AOP keretek, akkor hozza létre, amikor kell)
@@ -43,11 +43,11 @@ Ilyeneket mindenki szeret írni, mert kicsik és egyzserűek. Dunát lehet rekes
 
 ### Assert utasítás###
 
-Nem nagyon használják, pedig érdemes. Részletesen külön [anyag foglalkozik vele][https://github.com/rlegendi/ELTE-javagyak/blob/master/E-assert/E-assert.md].
+Nem nagyon használják, pedig érdemes. Részletesen külön [anyag foglalkozik vele](https://github.com/rlegendi/ELTE-javagyak/blob/master/E-assert/E-assert.md).
 
 ### JUnit ###
 
-**Gyakorlaton csak ezzel foglalkozunk! **
+**Gyakorlaton csak ezzel foglalkozunk!**
 
 [Kent Beck](http://en.wikipedia.org/wiki/Kent_Beck) (XP megalkotója, Agile demigod), [Erich Gamma](http://en.wikipedia.org/wiki/Erich_Gamma) (hasonló kaliberű úriember, pl. Eclipse JDT-ben volt benne a keze) haxolta össze egy repülőgépen a [JUnit](http://www.junit.org/) első verzióját.
 
@@ -102,11 +102,11 @@ public class UtilsTest {
 
 Fordítás:
 
-	$ javac -cp .;lib/junit-4.10.jar ...
+	$ javac -cp .;lib/junit-4.10.jar *.java
 
 Futtatás (fordítás után, persze):
 
-	$ java  -cp .;lib/junit-4.10.jar org.junit.runner.JUnitCore some.test.package.SomeTestHereAsArgument
+	$ java  -cp .;lib/junit-4.10.jar org.junit.runner.JUnitCore UtilsTest
 
 Output:
 
@@ -189,16 +189,16 @@ assertThat(...); // Matcher
 #### Linkek ####
 
 * Szükséges JUnit jar file: [junit-4.10.jar](https://github.com/rlegendi/ELTE-javagyak/raw/master/20-testing/junit-4.10.jar)
-* JUnit weboldala:
+* JUnit weboldala: http://www.junit.org/
 * [Bevezető tuturial](http://code.google.com/p/t2framework/wiki/JUnitQuickTutorial)
 
 ### Egyéb rendszerek ###
 #### Mocking ####
-	Motiváció (adatbázis nincs...)
-	DAO-s példa, van interfész, van JdbcDao implementáció, aztán meg Test1Dao implementáció...
-	DE! Helyette: lehet mockolni, ügyes cucc.
-	Ebből is [van egy pár][http://code.google.com/p/jmockit/wiki/MockingToolkitComparisonMatrix] (Mockito/EasyMock/etc.)
-	Összehasonlító táblázat
+
+* Motiváció (adatbázis nincs...)
+* DAO-s példa, van interfész, van JdbcDao implementáció, aztán meg Test1Dao implementáció...
+* DE! Helyette: lehet mockolni, ügyes cucc.
+* Ebből is [van egy pár][http://code.google.com/p/jmockit/wiki/MockingToolkitComparisonMatrix] (Mockito/EasyMock/etc.)
 
 ``` java
  public void testBobsLogin() {
@@ -297,7 +297,7 @@ Ellenőrizd tesztekkel a viselkedést!
 ### String manipuláció ###
 
 Készíts két egyszerű függvényt:
-* `String rotate(int k, String str)`: Visszaadja egy adott String `k` karakterrel eltolt változatát (k lehet negatív szám is!). Például `rotate("abc", 1)` eredménye `"bca"`, és `rotate("abc", -1)` eredménye `"cba"`. Készíts teszteket legalább a `k = 1, 2, 3` esetekre, valamint a szélsőséges esetekre (`k=0, k=str.lengt()`). Külön ellenőrizd, hogy a függvény nem megfelelő paraméterezés esetén kivételt vált ki, valamint hogy 100-nál rövidebb input karakterláncra 1 másodperc alatt lefut!
+* `String rotate(int k, String str)`: Visszaadja egy adott String `k` karakterrel eltolt változatát (k lehet negatív szám is!). Például `rotate("abc", 1)` eredménye `"bca"`, és `rotate("abc", -1)` eredménye `"cab"`. Készíts teszteket legalább a `k = 1, 2, 3` esetekre, valamint a szélsőséges esetekre (`k=0, k=str.lengt()`). Külön ellenőrizd, hogy a függvény nem megfelelő paraméterezés esetén kivételt vált ki, valamint hogy 100-nál rövidebb input karakterláncra 1 másodperc alatt lefut!
 
 * `String join(String[] arr, String separator)`: Visszaadja az adott Stringek, a megadott `separator` karakterrel konkatenált változatát. Készíts teszteket legalább `1, 2, 3` hosszú tömbökre, valamint a szélsőséges esetre (`0` hosszú tömb). Külön ellenőrizd, hogy a függvény nem megfelelő paraméterezések esetén kivételt vált ki, **valamint ellenőrizd a kivétel szövegét is**! (Cseles)
 
@@ -333,6 +333,8 @@ Valamint adottak a következő függvények, amiket valaki már elkezdett implem
 
 ``` java
 package test;
+
+import java.util.List;
 
 public class Utils {
 	

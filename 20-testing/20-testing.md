@@ -57,14 +57,14 @@ A tesztelendő osztály:
 
 ``` java
 public class Utils {
-	public static void sum(int[] arr) {
+	public static int sum(int[] arr) {
 		if (null == arr) {
 			throw new IllegalArgumentException("arr == null");
 		}
 		
 		int sum = 0;
 		for (int i : arr) {
-			sum += arr;
+			sum += i;
 		}
 		
 		return sum;
@@ -270,6 +270,7 @@ public interface Stack<E> {
 * Mindenféle statisztikák - a *trend* miatt fontos.
 * Összekötve a CI rendszerrel
 * Mutatja a tesztelésre szoruló részeket
+* [Tonnányi projecthez példa](http://nemo.sonarsource.org/)
 
 #### Acceptance tesztek ####
 

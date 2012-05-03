@@ -216,3 +216,9 @@ Nézzük meg, hogy néz ez ki, ha proper exception handlinget használunk!
 
 Remélem sikerült egy kicsit segíteni a megértést ezen a példán keresztül.
 
+
+----------
+Feladatnak jó lehet (Software Engineering Tech Trends - May Issue, 2012)
+
+The cube is one of five Platonic solids. Platonic solids are regular convex polyhedrons whose faces are congruent regular polygons. There are five Platonic solids: the tetrahedron (4 faces, each a equilateral triangle), the hexahedron (or the cube, 6 faces, each a square), octahedron (8 faces, each a triangle), dodecahedron (12 faces, each a pentagon), and icosahedron (20 faces, each a triangle.)
+

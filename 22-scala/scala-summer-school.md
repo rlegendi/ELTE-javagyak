@@ -266,17 +266,17 @@ Részletek a problémáról [Wikipédiában][knights-tour].
 
 Ha kicsit izgalmasabb feladatokat szeretnél, az alábbi weboldalon [a hivatalos Google Code Jam selejtezõ feladatait][code-jam] is megpróbálhatod ;-)
 
-  [scala-ea]: 		http://
-  [scala-ide]: 		http://...
-  [oreilly-scala]: 	http://ofps.oreilly.com/titles/9780596155957/
-  [scala-impatient]: 	http://typesafe.com/resources/scala-for-the-impatient
-  [scala-in-depth]: 	http://typesafe.com/resources/scala-in-depth
-  [phil]: 		http://aperiodic.net/phil/
-  [p99]: 		https://prof.ti.bfh.ch/hew1/informatik3/prolog/p-99/
-  [s99]: 		http://aperiodic.net/phil/scala/s-99/
-  [caesar]: 		http://en.wikipedia.org/wiki/Caesar_cipher
-  [itext]: 		http://itextpdf.com
-  [itext-tutorial]: 	http://itextpdf.com/examples/iia.php?id=12
-  [knights-tour]: 	http://en.wikipedia.org/wiki/Knight's_tour
-  [code-jam]:		http://code.google.com/codejam/contest/1460488/dashboard
+  [scala-ea]:        http://
+  [scala-ide]:       http://...
+  [oreilly-scala]:   http://ofps.oreilly.com/titles/9780596155957/
+  [scala-impatient]: http://typesafe.com/resources/scala-for-the-impatient
+  [scala-in-depth]:  http://typesafe.com/resources/scala-in-depth
+  [phil]:            http://aperiodic.net/phil/
+  [p99]:             https://prof.ti.bfh.ch/hew1/informatik3/prolog/p-99/
+  [s99]:             http://aperiodic.net/phil/scala/s-99/
+  [caesar]:          http://en.wikipedia.org/wiki/Caesar_cipher
+  [itext]:           http://itextpdf.com
+  [itext-tutorial]:  http://itextpdf.com/examples/iia.php?id=12
+  [knights-tour]:    http://en.wikipedia.org/wiki/Knight's_tour
+  [code-jam]:        http://code.google.com/codejam/contest/1460488/dashboard
 

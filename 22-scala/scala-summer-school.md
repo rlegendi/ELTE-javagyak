@@ -23,12 +23,12 @@ Megjegyzések:
 
 Az alábbiakban egyszerûbb feladatok találhatók, amelyek nagyjából 15-20 perc alatt megoldhatók. Az elsõ feladatoknál még konkrét szignatúrát is megadunk, késõbb azonban ezt fokozatosan elhagyjuk, ezt is nektek kell helyesen megírnotok.
 
-### Lista elsõ elemének meghatározása ###
+### Lista utolsó elemének meghatározása ###
 
 Készíts egy függvényt a következõ szignatúrával:
 
 ```scala
-def last[A](n: Int, ls: List[A]): A
+def last[A](ls: List[A]): A
 ```
 
 Példa a használatra:

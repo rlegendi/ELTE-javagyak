@@ -23,9 +23,9 @@ Az inputban csak a 2004 utáni adatokkal foglalkozzatok.
 - Rendezzétek az inputot dátum szerint csökkenõen (Comparable)
 
 - Mentsétek a feldolgozás eredményét egy fájlba, ahol a fájl nevét parancssori argumentumként lehessen megadni, formátuma pedig a következõ legyen:
-
-	# Average: xxx
-	# Max: yyy
-	Sorted elements (one per line)
-	... 
+  
+		# Average: xxx
+		# Max: yyy
+		Sorted elements (one per line)
+		... 
 

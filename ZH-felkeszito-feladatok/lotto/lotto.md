@@ -20,7 +20,7 @@ Az inputban csak a 2004 utáni adatokkal foglalkozzatok.
 
 - Mikor vitték el a legnagyobb nyereményt, mekkora összeg volt, és milyen számokkal?
 
-- Rendezzétek az inputot dátum szerint csökkenõen (Comparable)
+- Rendezzétek az inputot dátum szerint növekvõen (Comparable)
 
 - Mentsétek a feldolgozás eredményét egy fájlba, ahol a fájl nevét parancssori argumentumként lehessen megadni, formátuma pedig a következõ legyen:
   

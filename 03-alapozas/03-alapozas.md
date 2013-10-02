@@ -148,7 +148,7 @@ akkor az eredmény egy `NullPointerException` lesz.
 			
 	boolean isExecutable = s.endsWith(".exe");
 	boolean isEmpty = s.isEmpty();
-	boolean aidx = s.indexOf('a');
+	int aidx = s.indexOf('a');
 	boolean hasEM = s.contains('!');
 			
 	String upper = s.toUpperCase();

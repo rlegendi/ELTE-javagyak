@@ -183,7 +183,7 @@ Aki esetleg mélyebben érdeklődne, a *Numerikus Analízis c. tárgy* keretein 
 
 A gépeken tárolt valós változók közelítések, approximációk. Alapvetően kétféle megközelítést használnak a programozási nyelvek: *fixpontos* ill. *lebegőpontos* ábrázolásmódot. Előbbit úgy képzeljétek el, hogy fix számú biten tárolják az előjelet, egészrészt valamint a törtrészt (ez már maga komoly numerikus hibákkal járhat), utóbbinál pedig a következő formában: `(-1)^s * m * 10^k`, ahol `0 <= |m| <= 10` a mantissza, *k* pedig a karakterisztika (ezt hívják *normál alaknak*, a bináris reprezentációban tízes alap helyett kettest használnak). Van nyelv, ami az egyiket, van, ami a másikat támogatja, és van, ami mindkettőt (pl. a Pascal, Ada).
 
-A legtöbb programozási nyelv az 1985-ben elfogadott IEE 754 szabvány szerint kezeli a számokat, ezek alól a Java sem kivétel.
+A legtöbb programozási nyelv az 1985-ben elfogadott IEEE 754 szabvány szerint kezeli a számokat, ezek alól a Java sem kivétel.
 
 Ami a lényeg: ha leírsz egy számot, az *közelítés*, hiába gondolsz bármi mást. Mutatok egy példát:
 

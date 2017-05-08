@@ -103,7 +103,7 @@ public class Deal {
 		[FIVE of HEARTS, FOUR of DIAMONDS, SIX of DIAMONDS, NINE of CLUBS, JACK of CLUBS]
 		[SEVEN of HEARTS, SIX of CLUBS, DEUCE of DIAMONDS, THREE of SPADES, EIGHT of CLUBS]
 
-Tegyük fel, hogy vmilyen adatot és viselkedés formát akarunk adni egy felsorolónak. Például nézzük a Naprendszer bolygóit. Minden bolygónak van tömege és sugara, ki lehet számolni a felszíni gravitációt és a bolygón lévő tárgyak a tömegét. Így néz ki:
+Tegyük fel, hogy vmilyen adatot és viselkedés formát akarunk adni egy felsorolónak. Például nézzük a Naprendszer bolygóit. Minden bolygónak van tömege és sugara, ki lehet számolni a felszíni gravitációt és a bolygón lévő tárgyak tömegét. Így néz ki:
 
 ``` java
 public enum Planet {
